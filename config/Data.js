@@ -11,7 +11,7 @@ con.connect(function(err) {
     let sql;
     if (err) throw err;
     console.log("Connected!");
-    sql = "CREATE TABLE IF NOT EXISTS `User` (id INT AUTO_INCREMENT NOT NULL, nickname VARCHAR(255), password VARCHAR(255), email VARCHAR(255), photo TEXT, PRIMARY KEY (id))";
+    sql = "CREATE TABLE IF NOT EXISTS `User` (id INT AUTO_INCREMENT NOT NULL, nickname VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, photo TEXT, PRIMARY KEY (id))";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Table USER created");
@@ -71,7 +71,7 @@ con.connect(function(err) {
 
     if (err) throw err;
     console.log("Connected!");
-    sql = "CREATE TABLE IF NOT EXISTS `List_Item` (id_List INT(15) NOT NULL, id_Item INT(20) NOT NULL, quantity INT(5), PRIMARY KEY (id_List,id_Item), FOREIGN KEY (id_List) references List(id), FOREIGN KEY (id_Item) references `Item`(id))";
+    sql = "CREATE TABLE IF NOT EXISTS `List_Item` (id_List INT(15) NOT NULL, id_Item INT(20) NOT NULL, quantity INT(5), status INT(1), PRIMARY KEY (id_List,id_Item), FOREIGN KEY (id_List) references List(id), FOREIGN KEY (id_Item) references `Item`(id))";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Table User_Group created");
