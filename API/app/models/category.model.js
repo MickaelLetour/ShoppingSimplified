@@ -1,4 +1,4 @@
-const sql = require("./db.js");
+const sql = require("./connect.js/index.js");
 
 // constructor
 const category = function(category) {
