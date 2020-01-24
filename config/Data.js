@@ -46,7 +46,7 @@ con.connect(function(err) {
 
     if (err) throw err;
     console.log("Connected!");
-    sql = "CREATE TABLE IF NOT EXISTS `Category` (id INT(5) AUTO_INCREMENT NOT NULL, Category VARCHAR(255), PRIMARY KEY (id))";
+    sql = "CREATE TABLE IF NOT EXISTS `Category` (id INT(5) AUTO_INCREMENT NOT NULL, name VARCHAR(255), PRIMARY KEY (id))";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Table Category created");
