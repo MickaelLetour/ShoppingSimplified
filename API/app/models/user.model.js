@@ -55,7 +55,6 @@ user.getAll = result => {
 };
 
 user.updateById = (id, user, result) => {
-<<<<<<< HEAD
 
   if(user.nickname !=null){
   sql.query(`UPDATE user SET nickname = ? WHERE id = ${id}`,
@@ -137,11 +136,6 @@ result(null, { id: id, ...user });
 /* else {
  sql.query(`UPDATE user SET nickname = ?, password = ?, email = ?, photo = ? WHERE id = ${id}`,
     [user.nickname, user.password, user.email, user.photo],
-=======
-  sql.query(
-    "UPDATE user SET nickname = ?, password = ?, email = ?, photo = ? WHERE id = ?",
-    [user.nickname, user.password, user.email, user.photo, id],
->>>>>>> mickael
     (err, res) => {
       if (err) {
         console.log("error: ", err);
