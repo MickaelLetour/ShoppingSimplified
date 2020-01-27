@@ -15,7 +15,7 @@ module.exports = app => {
     
 
     // Delete a user with userId
-    app.delete("/user_groups/:userId:groupId", user_groups.delete);
+    app.delete("/user_groups/:userId&:groupId", user_groups.delete);
   
     // Create a new user
     app.delete("/user_groups", user_groups.deleteAll);

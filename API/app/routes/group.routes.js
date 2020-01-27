@@ -5,7 +5,7 @@ module.exports = app => {
     app.post("/groups", groups.create);
   
     // Retrieve all users
-    app.get("/groupss", groups.findAll);
+    app.get("/groups", groups.findAll);
   
     // Retrieve a single user with userId
     app.get("/groups/:groupId", groups.findOne);

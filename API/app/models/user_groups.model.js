@@ -7,7 +7,7 @@ const User_Groups = function(user_groups) {
 };
 
 User_Groups.create = (newUser_Group, result) => {
-  sql.query("INSERT INTO user_groups SET ?", newUser_Group, (err, res) => {
+  sql.query("INSERT INTO `user_groups` SET ?", newUser_Group, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -20,7 +20,7 @@ User_Groups.create = (newUser_Group, result) => {
 };
 
 User_Groups.findUserGById = (userId, result) => {
-  sql.query(`SELECT * FROM user_groups WHERE id_User = ${userId}`, (err, res) => {
+  sql.query(`SELECT * FROM "user_groups" WHERE id_User = ${userId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -56,7 +56,7 @@ User_Groups.findGroupById = (groupId, result) => {
   };
 
 User_Groups.getAll = result => {
-  sql.query("SELECT * FROM user_groups", (err, res) => {
+  sql.query("SELECT * FROM `user_groups`", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -83,13 +83,13 @@ User_Groups.removeGuser = (id_user,id_group, result) => {
       return;
     }
 
-    console.log("deleted icon with id: ", id);
+    //console.log("deleted icon with id: ", id);
     result(null, res);
   });
 };
 
 User_Groups.removeAll = result => {
-  sql.query("DELETE FROM user_groups", (err, res) => {
+  sql.query("DELETE FROM `user_groups`", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
