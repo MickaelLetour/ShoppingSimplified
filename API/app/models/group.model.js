@@ -8,7 +8,7 @@ const Group = function(group) {
 };
 
 Group.create = (newGroup, result) => {
-  sql.query("INSERT INTO groups SET ?", newGroup, (err, res) => {
+  sql.query("INSERT INTO `groups` SET ?", newGroup, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -21,7 +21,7 @@ Group.create = (newGroup, result) => {
 };
 
 Group.findById = (groupId, result) => {
-  sql.query(`SELECT * FROM groups WHERE id = ${groupId}`, (err, res) => {
+  sql.query("SELECT * FROM `groups` WHERE id = ${groupId}", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -40,7 +40,7 @@ Group.findById = (groupId, result) => {
 };
 
 Group.getAll = result => {
-  sql.query("SELECT * FROM groups", (err, res) => {
+  sql.query("SELECT * FROM `groups`", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -55,7 +55,7 @@ Group.getAll = result => {
 Group.updateById = (id, group, result) => {
 
   if(group.group_name !=null){
-  sql.query(`UPDATE groups SET group_name = ? WHERE id = ${id}`,
+  sql.query("UPDATE `groups` SET group_name = ? WHERE id = ${id}",
     [group.group_name],
     (err, res) => {
       if (err) {
@@ -74,7 +74,7 @@ Group.updateById = (id, group, result) => {
 }
 
 else if(group.n_members !=null){
-  sql.query(`UPDATE groups SET n_members = ? WHERE id = ${id}`,
+  sql.query("UPDATE `groups` SET n_members = ? WHERE id = ${id}",
     [group.n_members],
     (err, res) => {
       if (err) {
@@ -93,7 +93,7 @@ else if(group.n_members !=null){
 }
 
 else if(group.logo !=null){
-  sql.query(`UPDATE groups SET logo = ? WHERE id = ${id}`,
+  sql.query("UPDATE `groups` SET logo = ? WHERE id = ${id}",
     [group.logo],
     (err, res) => {
       if (err) {
@@ -118,7 +118,7 @@ result(null, { id: id, ...Group });
 };
 
 Group.remove = (id, result) => {
-  sql.query("DELETE FROM groups WHERE id = ?", id, (err, res) => {
+  sql.query("DELETE FROM `groups` WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -137,7 +137,7 @@ Group.remove = (id, result) => {
 };
 
 Group.removeAll = result => {
-  sql.query("DELETE FROM groups", (err, res) => {
+  sql.query("DELETE FROM `groups`", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

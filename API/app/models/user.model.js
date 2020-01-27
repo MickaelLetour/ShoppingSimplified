@@ -3,10 +3,21 @@ var passwordHash = require ('password-hash');
 
 // constructor
 const user = function(user) {
-  this.nickname =user.nickname;
-  this.password = passwordHash.generate(user.password);
-  this.email = user.email;
-  this.photo = user.photo;
+  if (typeof user.nickname === 'string' && user.nickname.length !=0){
+    this.nickname = user.nickname;
+  }
+  if (typeof user.password === 'string' && user.password.length !=0){
+    this.password = passwordHash.generate(user.password);
+  }
+  if (typeof user.email === 'string' && user.email.length !=0){
+    this.email = passwordHash.generate(user.email);
+  }
+  if (typeof user.photo === 'string' && user.photo.length !=0){
+    this.photo = user.photo;
+  }
+  else {
+    console.log("Error type or empty");
+  }
 };
 
 user.create = (newuser, result) => {
