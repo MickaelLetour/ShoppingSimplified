@@ -2,8 +2,8 @@ const sql = require("./connect.js");
 
 // constructor
 const User_Groups = function(user_groups) {
-  this.id_user = user_groups.id_user;
-  this.id_group = user_groups.id_group;
+  this.id_User = user_groups.id_User;
+  this.id_Group = user_groups.id_Group;
 };
 
 User_Groups.create = (newUser_Group, result) => {
@@ -46,8 +46,8 @@ User_Groups.findGroupById = (groupId, result) => {
       }
   
       if (res.length) {
-        console.log("found group: ", res[0]);
-        result(null, res[0]);
+        console.log("found group: ", res);
+        result(null, res);
         return;
       }
       // not found category with the id

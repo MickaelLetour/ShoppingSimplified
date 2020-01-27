@@ -14,7 +14,6 @@ build.connect(function(err) {
     build.query("CREATE DATABASE IF NOT EXISTS ShoppingSimplified CHARACTER SET latin1 COLLATE latin1_general_cs", function (err, result) {
       if (err) throw err;
       console.log("Database created");
-      
     });
 
 });
