@@ -1,9 +1,10 @@
 const sql = require("./connect.js");
+var passwordHash = require ('password-hash');
 
 // constructor
 const user = function(user) {
-  this.nickname = user.nickname;
-  this.password = user.password;
+  this.nickname =user.nickname;
+  this.password = passwordHash.generate(user.password);
   this.email = user.email;
   this.photo = user.photo;
 };
