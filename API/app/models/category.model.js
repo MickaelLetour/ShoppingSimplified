@@ -1,8 +1,10 @@
-const sql = require("./connect.js/index.js");
+const sql = require("./connect.js");
 
 // constructor
 const category = function(category) {
-  this.name = category.name;
+  if (typeof category.name === 'string' && category.name.length !=0){
+    this.name = category.name;
+  }
 };
 
 category.create = (newcategory, result) => {

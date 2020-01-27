@@ -1,9 +1,10 @@
 const sql = require("./connect.js");
+var passwordHash = require ('password-hash');
 
 // constructor
 const user = function(user) {
-  this.nickname = user.nickname;
-  this.password = user.password;
+  this.nickname =user.nickname;
+  this.password = passwordHash.generate(user.password);
   this.email = user.email;
   this.photo = user.photo;
 };
@@ -55,7 +56,7 @@ user.getAll = result => {
 
 user.updateById = (id, user, result) => {
   sql.query(
-    "UPDATE user SET nickname = ?, password = ?, email = ?, photo = ?,   WHERE id = ?",
+    "UPDATE user SET nickname = ?, password = ?, email = ?, photo = ? WHERE id = ?",
     [user.nickname, user.password, user.email, user.photo, id],
     (err, res) => {
       if (err) {
