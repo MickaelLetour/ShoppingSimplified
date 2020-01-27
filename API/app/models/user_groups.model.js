@@ -70,7 +70,9 @@ User_Groups.getAll = result => {
 
 
 User_Groups.removeGuser = (id_user,id_group, result) => {
-  sql.query(`DELETE FROM user_groups WHERE id_User = ${id_user} AND id_Group = ${id_group}`, (err, res) => {
+  sql.query("DELETE FROM user_groups WHERE id_User = ? AND id_Group = ?",
+  [id_user,id_group], (err, res) => {
+     
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -83,7 +85,7 @@ User_Groups.removeGuser = (id_user,id_group, result) => {
       return;
     }
 
-    console.log("deleted icon with id: ", id);
+    //console.log("deleted icon with id: ", id);
     result(null, res);
   });
 };

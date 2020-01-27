@@ -19,6 +19,7 @@ require("./routes/category.routes.js")(app);
 require("./routes/icon.routes.js")(app);
 require("./routes/group.routes.js")(app);
 require("./routes/user_groups.routes.js")(app);
+require("./routes/list_item.routes.js")(app);
 
 // set port, listen for requests
 app.listen(2112, () => {

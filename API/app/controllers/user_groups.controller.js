@@ -9,7 +9,7 @@ exports.create = (req, res) => {
       });
     }
   
-    // Create a user
+    // Create a conection
     const user_groups = new User_Groups({
       id_User : req.body.id_User,
       id_Group : req.body.id_Group,
@@ -73,7 +73,7 @@ User_Groups.findGroupById(req.params.groupId, (err, data) => {
 
 // Delete a user with the specified userId in the request
 exports.delete = (req, res) => {
-    User_Groups.removeGuser(req.params.userId,req.params.groupId, (err, data) => {
+    User_Groups.removeGuser(req.params.userId, req.params.groupId, (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
