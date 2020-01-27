@@ -76,6 +76,7 @@ con.connect(function(err) {
         if (err) throw err;
         console.log("Table User_Group created");
     });
+    con.end();
 });
 
    
