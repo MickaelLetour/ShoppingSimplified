@@ -36,7 +36,7 @@ class Login extends Component {
                         </label>
                         <div>
                             <label className="Form">Password:
-                                <input type={this.state.type} className="Form__input" placeholder="Enter Password" />
+                                <input type={this.state.type} className="Form__input" placeholder="Enter Password" required/>
                                 <span className="Form__show" onClick={this.showHide}>{this.state.type === 'input' ? 'Hide' : 'Show'}</span>
                             </label>
                         </div>
