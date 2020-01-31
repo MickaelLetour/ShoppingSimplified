@@ -36,7 +36,11 @@ class Login extends Component {
                         </label>
                         <div>
                             <label className="Form">Password:
+<<<<<<< HEAD
                                 <input type={this.state.type} className="Form__input" placeholder="Enter Password" required/>
+=======
+                                <input type={this.state.type} className="Form__input" placeholder="Enter Password" />
+>>>>>>> ba88e97eb2ba3b36d3ccbb7dc95f1e0329f46be3
                                 <span className="Form__show" onClick={this.showHide}>{this.state.type === 'input' ? 'Hide' : 'Show'}</span>
                             </label>
                         </div>
