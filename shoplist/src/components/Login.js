@@ -1,28 +1,25 @@
 import React, {Component} from "react"
 import avatar from "../img/user.png"
-import {createUser} from "./functions.js"
+
 
 
 class Login extends Component {
-    constructor(){
-        super()
-        this.state = {
-          type: 'password',
-          logged: false,
-          email: '',
-          password: '',
-          name: '' 
+    constructor(props){
+        super(props)
+        
+          this.state = {
+          //type: "password", 
+          //logged: false,
+          /* email: '',
+          password: '', */
+          //name: '' 
         }
-        this.showHide = this.showHide.bind(this)
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit=this.handleSubmit.bind(this);
+        //this.showHide = this.showHide.bind(this);
+        
+        //this.handleSubmit=this.handleSubmit.bind(this);
       }
       
-       showHide(){
-        this.setState({
-          type: this.state.type === 'password' ? 'input' : 'password'
-        })  
-      } 
+      
       
     /* componentDidMount() {
         fetch("http://localhost:2112/users")
@@ -32,89 +29,42 @@ class Login extends Component {
             })
     } */
 
-    handleChange(event) {
-        const {name, value} = event.target
-        
-        this.setState({
-            [name]: value
-        })
-    }
+    
 
-    handleSubmit(event) {
-        console.log(this.state.email);
-        console.log(this.state.password);
-        
-        event.preventDefault();
-
-        
-        const Data = {nickname: "Mickaël",
-        password: "Elly1312",
-        email: "mickael.letour@hotmail.fr",
-        photo: "superphotourl"} ;
-
-        const url = 'http://localhost:2112/users/';
-
-        createUser(url,Data);
-
-
-         /* fetch('http://localhost:2112/users/', {
-            method: 'POST',
-            mode: 'CORS',
-
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-              },
-
-            body: JSON.stringify({
-                nickname: "betatester",
-                password: "ultimatepass",
-                email: "one@MediaList.com",
-                photo: "superphotourl",
-            }),
-           
-            }).then(res => res.json())
-                .then(res =>{
-                console.log(res);
-                //return res;
-            }).catch(err => err);
-        
- */
-        
-    }
+    
 
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.props.handleSubmit}>
                     <div className="imgContainer">
                         <img src={avatar} alt="Avatar"/>
                     </div>
 
                     <div>
-                        <label className="Form">Email:
+                        <label className="Form">Username:
                             <input 
                                 type="text" 
-                                placeholder="Enter Email" 
-                                value= {this.state.email}
-                                name="email" 
-                                onChange={this.handleChange}
+                                placeholder="Enter Username" 
+                                value= {this.props.nickname}
+                                name="nickname" 
+                                onChange={this.props.handleChange}
                                 required 
                             />
                         </label>
                         <div>
                             <label className="Form">Password:
                                 <input 
-                                    type={this.state.type} 
+                                    type={this.props.type} 
                                     className="Form__input" 
                                     placeholder="Enter Password" 
-                                    value={this.state.pass}
+                                    value={this.props.pass}
                                     name="password"
-                                    onChange={this.handleChange}
+                                    onChange={this.props.handleChange}
                                     required
                                 />
 
-                                <span className="Form__show" onClick={this.showHide}>{this.state.type === 'input' ? 'Hide' : 'Show'}</span>
+                                <span className="Form__show" onClick={this.props.showHide}>{this.props.type === 'input' ? 'Hide' : 'Show'}</span>
                             </label>
                         </div>
                         <div className="logbuttons">

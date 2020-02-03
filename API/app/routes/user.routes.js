@@ -9,7 +9,7 @@ module.exports = app => {
   
     // Retrieve a single user with userId
     app.get("/users/:userId", users.findOne);
-  
+
     // Update a user with userId
     app.put("/users/:userId", users.update);
   
@@ -19,6 +19,5 @@ module.exports = app => {
     // Create a new user
     app.delete("/users", users.deleteAll);
 
-    
-
+    app.get("/users/pass/:userNick&:userPass", users.VerifyPassword);
   };

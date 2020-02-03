@@ -192,5 +192,13 @@ form input {
   }
 
 }
+//---rui test
+@media only screen and (max-width: 400px) {
+  #mainContainer {
+    display:flex;
+    display: block;
+    width:100vw;
+  }
+}
 
 /*# sourceMappingURL=index.css.map */
