@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./components/Header.js"
 import Login from "./components/Login.js"
+import Footer from "./components/Footer.js"
 import {dbGETFetch} from "./components/functions"
 
 class App extends React.Component {
@@ -79,6 +80,7 @@ class App extends React.Component {
                     password={this.state.password}
                     handleSubmit={this.handleSubmit}
                 />
+                <Footer />
             </div>
         )
     }

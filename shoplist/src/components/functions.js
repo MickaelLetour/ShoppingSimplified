@@ -39,6 +39,7 @@ export function dbPOSTFetch(url,data) {
 
       .then(res=>{
           console.log(res);
+          console.log("User Created");
       })
   } 
 
