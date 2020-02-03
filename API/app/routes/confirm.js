@@ -3,4 +3,6 @@ module.exports = app => {
 
 app.get("/confirm/:token", users.updateByToken);
 
+Location: 'http://http://localhost:21012//';
+ 
 };
