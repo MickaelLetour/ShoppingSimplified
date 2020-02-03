@@ -1,12 +1,15 @@
 import React from "react";
 import Header from "./components/Header.js"
-import Login from "./components/Login.js"
+import NewUser from "./components/NewUser.js"
+//import Login from "./components/Login.js"
+import Footer from "./components/Footer.js"
 
 function App() {
     return (
         <div>
             <Header />
-            <Login />
+            <NewUser />
+            <Footer />
         </div>
     )
 }

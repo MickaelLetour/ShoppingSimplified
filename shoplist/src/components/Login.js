@@ -18,9 +18,6 @@ class Login extends Component {
         this.handleSubmit=this.handleSubmit.bind(this);
       }
       
-
-
-
        showHide(){
         this.setState({
           type: this.state.type === 'password' ? 'input' : 'password'
@@ -50,14 +47,16 @@ class Login extends Component {
         event.preventDefault();
 
         
-        const Data = {nickname: "betatester",
-        password: "ultimatepass",
-        email: "one@MediaList.com",
+        const Data = {nickname: "Mickaël",
+        password: "Elly1312",
+        email: "mickael.letour@hotmail.fr",
         photo: "superphotourl"} ;
 
         const url = 'http://localhost:2112/users/';
 
         createUser(url,Data);
+
+
          /* fetch('http://localhost:2112/users/', {
             method: 'POST',
             mode: 'CORS',

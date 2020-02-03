@@ -1,137 +1,196 @@
-body {
-    background-color: rgb(252, 195, 110);
+$fontColor : #141414;
+$bodyColor : rgba(226, 167, 28, 0.5);
+$formColor : rgba(226, 167, 28, 0.40);
+$HeaderColor : #97C552;
+$button : #250463;
+
+body{
+  margin : 0;
+}
+
+#mainContainer {
+  background-color: $bodyColor;
+}
+
+hr {
+  border :solid 0.5px $fontColor;
+  background-color: $fontColor;
 }
 
 .mainNav {
-    display:flex;
-    justify-content: space-around;
-    text-align: center;
-    
-    .imgNav {
-        width:15vw;
-        height:15vh;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  background-color: $HeaderColor;
+  font-family: Angelina Alt Demo;
+  border-bottom: $fontColor solid 1px;
+  .imgNav {
+    width: 15vh;
+    height: 15vh;
+    margin-left: 2vw;
+    border-radius: 5px;
+  }
+  #title,#linkLogin {
+    margin-top: 5vh;
+    color : white;
+    font-size: 2.5em;
+    #titleColor {
+    color:$fontColor
     }
+  }
+  #linkLogin {
+    margin-right: 2vw;
+    width: 15vh;
+  }
 }
 
-.imgContainer {
-    
-    img {
-        max-width: 100%;
-        height:40vh;
-        display: block;
-        margin-right:auto;
-        margin-left: auto;
-        margin-bottom: 2em;
-    }
+footer {
+  background-color: $HeaderColor;
+  width: 100%;
+  height: 15vh;
+  border-top: $fontColor solid 1px;
 }
 
+.imgContainer img {
+  max-width: 100%;
+  height: 40vh;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 2em;
+}
 
-
-//-------------------------------- password
-
-$accent: #00BCD4;
-$primary: #212121;
-$secondary: #250463;
-
-body, html{
+body, html {
   height: 100%;
 }
 
-
-
-form{
+form {
   margin: 3em auto;
   max-width: 320px;
-  background: #FFFFFF;
+  background: $formColor;
   padding: 40px;
-  box-shadow: 0 0 20px rgba(0,0,0,.25);
-
-
-    input {
-        margin-top:1em;
-        margin-bottom: 1em;
-        width: 100%;
-    }
+  box-shadow: 0 0 20px $fontColor;
+  border-radius: 10px;
 }
-.Form{
+
+form input {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 100%;
+  height: 5vh;
+  border-width: 0 0 1.5px;
+  border-style: solid;
+  border-color: $fontColor;
+  border-radius: 5px;
+}
+
+.Form {
   display: block;
   position: relative;
   text-transform: uppercase;
   font-weight: 700;
   width: 100%;
-  color: $secondary;
-  
-  &__input{
-    display: block;
-    text-transform: none;
-    width: 100%;
-    height: 42px;
-    border-width: 0 0 1px;
-    border-style: solid;
-    border-color: #B6B6B6;
-    font-weight: 400;
-    color: $primary;
-    
-    &:focus, &:active{
-      border-color: $accent;
-      outline: 0;
-    }
-  }
-  
-  &__show{
-    cursor: pointer;
-    position: absolute;
-    bottom: 11px;
-    height: 16px;
-    right: 0;
-    background: $secondary;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-weight: 700;
-    font-size: .8em;
-    
-  }
+  color: $button;
+}
 
-  
-  
+.Form__input {
+  display: block;
+  text-transform: none;
+  width: 100%;
+  height: 7vh;
+  border-width: 0 0 1.5px;
+  border-style: solid;
+  border-color: $fontColor;
+  font-weight: 400;
+  color: $fontColor;
+  margin-bottom: 5vh;
+}
+
+.Form__input:focus, .Form__input:active {
+  border-color: $HeaderColor;
+  outline: 0;
+
+}
+.Form__show {
+  cursor: pointer;
+  position: absolute;
+  bottom: 11px;
+  height: 16px;
+  right: 0;
+  background: $button;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.8em;
 }
 
 .logbuttons {
-    display: flex;
-    justify-content: space-evenly;
-    .loginButton {
-        position: relative;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        background-color: $primary;
-        color:white;
-        border-color: $primary;
-    }
-    
-    .forgotpw {
-        position: relative;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        background-color: #f44336;
-        color:white;
-        border-color: #f44336;
-    }
+  display: flex;
+  justify-content: space-evenly;
+
+}
+
+.loginButton {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: $button;
+  color: white;
+  width: 10vw;
+  height: 5vh;
+  border-radius: 5px;
+}
+
+.logbuttons .forgotpw {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f44336;
+  color: white;
+  border-color: #f44336;
 }
 
 
-@media only screen and (max-width: 350px) {
-    form{
-        text-align: center;
-    }
 
-    .Form__show {
-        bottom: -25px;
-    }
 
-    .logbuttons {
-        margin-top: 2em;
+@media only screen and (max-width: 768px) {
+
+  .mainNav {
+    flex-wrap: wrap;
+    .imgNav {
+      width: 15vw;
+      height: 15vw;
+      margin : auto;
+      margin-top: 1vh;
+      margin-bottom: 1vh;
+    }
+    #title,#linkLogin {
+      margin : auto;
+      margin-top: 1vh;
+      margin-bottom: 1vh;
+      width: 100%;
     }
   }
+
+  form {
+    text-align: center;
+  }
+
+  .Form__show {
+    bottom: -25px;
+  }
+
+  .logbuttons {
+    margin-top: 2em;
+  }
+
+  .loginButton{
+    width: 20vw;
+  }
+
+}
+
+/*# sourceMappingURL=index.css.map */

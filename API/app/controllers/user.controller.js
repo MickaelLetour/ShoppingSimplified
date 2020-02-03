@@ -1,4 +1,7 @@
 const User = require("../models/user.model.js");
+const nodemailer = require("nodemailer");
+var jwtUtils = require('../utils/jwt.utils');
+
 
 // Create and Save a new user
 exports.create = (req, res) => {
@@ -15,8 +18,33 @@ exports.create = (req, res) => {
       password : req.body.password,
       email: req.body.email,
       photo: req.body.photo,
+      active : 0,
+      temporaryToken : jwtUtils.generateTokenForUser(req.body.nickname)
     });
-  
+
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'mickael.letour@gmail.com',
+        pass:'Ellhaym131214'
+      }
+    });
+
+    var mailOptions = {
+      from : 'mickael.letour@gmail.com',
+      to : 'ideldridge@hotmail.fr',
+      subject: 'test sending email with node js',
+      text : 'http://localhost:2112/confirm/'+user.temporaryToken
+    };
+
+    transporter.sendMail(mailOptions, function (err, info){
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+
     // Save user in the database
     User.create(user, (err, data) => {
       if (err)
@@ -24,8 +52,10 @@ exports.create = (req, res) => {
           message:
             err.message || "Some error occurred while creating the user."
         });
-      else res.send(data);
-    });
+
+      else  
+        res.send(data)
+    })
   };
 
 // Retrieve all users from the database.
@@ -56,6 +86,31 @@ exports.findOne = (req, res) => {
       } else res.send(data);
     });
   };
+  
+
+exports.updateByToken = (req, res) => {
+
+  if(!req.params.token){
+    res.status(400).send({
+      message: "Content can not be empty!" + req.params.token
+    });
+  }
+  User.updateByToken(req.params.token,(err,data) => {
+      if (err) {
+        if (err.kind === "not_found") {
+          res.status(404).send({
+            message: `Not found user with this token ${req.params.token}`
+          });
+        } else {
+          res.status(500).send({
+            message: "Error updating user with this token " + req.params.token
+          });
+        }
+      } else res.send(data);
+    }
+  );
+};
+  
 
 // Update a user identified by the userId in the request
 exports.update = (req, res) => {

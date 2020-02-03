@@ -15,21 +15,36 @@ const user = function(user) {
   if (typeof user.photo === 'string' && user.photo.length !=0){
     this.photo = user.photo;
   }
+  if (typeof user.active === 'string' && user.active.length !=0){
+    this.active = user.active;
+  }
+  if (typeof user.temporaryToken === 'string' && user.temporaryToken.length !=0){
+    this.temporaryToken = user.temporaryToken;
+  }
+
   else {
     console.log("Error type or empty");
   }
 };
 
 user.create = (newuser, result) => {
-  sql.query("INSERT INTO user SET ?", newuser, (err, res) => {
+  sql.query(`SELECT * FROM user WHERE user.email = ?`, newuser.email, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
-
-    console.log("created user: ", { id: res.insertId, ...newuser });
-    result(null, { id: res.insertId, ...newuser });
+    else {
+      sql.query("INSERT INTO user SET ?", newuser, (err, res) => {
+        if (err) {
+          console.log("error: ", err);
+          result(err, null);
+          return;
+        }
+        console.log("created user: ", { id: res.insertId, ...newuser });
+        result(null, { id: res.insertId, ...newuser });
+      });
+    }
   });
 };
 
@@ -64,6 +79,25 @@ user.getAll = result => {
     result(null, res);
   });
 };
+
+user.updateByToken = (token, result) => {
+    sql.query(`UPDATE user SET user.active = 1, temporaryToken = NULL WHERE user.temporaryToken ='${token}'`,(err, res) => {
+      if (err) {
+        console.log("error:", err);
+        result(null, err);
+        return;
+      }
+      else {
+        result (null, res);
+        return;
+      }
+    }
+    );
+  }
+  
+    
+  
+
 
 user.updateById = (id, user, result) => {
 
@@ -143,7 +177,7 @@ else if(user.photo !=null){
   );
 }
 console.log("updated user: ", { id: id, ...user });
-result(null, { id: id, ...user }); 
+result(null, { id: id, ...user });  
 /* else {
  sql.query(`UPDATE user SET nickname = ?, password = ?, email = ?, photo = ? WHERE id = ${id}`,
     [user.nickname, user.password, user.email, user.photo],
