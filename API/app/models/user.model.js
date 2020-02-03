@@ -20,6 +20,7 @@ const user = function(user) {
   }
 };
 
+
 user.create = (newuser, result) => {
   sql.query("INSERT INTO user SET ?", newuser, (err, res) => {
     if (err) {
@@ -65,6 +66,43 @@ user.getAll = result => {
   });
 };
 
+ user.getPwByNick = (userNick, result) => {
+  sql.query("SELECT password FROM user where nickname = ?", userNick, (err,res)=>{
+    if(err) {
+      console.log("error: ", err);
+      result(null,false);
+      
+    }
+    console.log("pass: ", res);
+    result(null, res[0]);
+  })
+} 
+
+/* user.getEmail = result => {
+  sql.query("SELECT email FROM user", (err,res)=>{
+    if(err) {
+      console.log("mail: ", err);
+      result(null,err);
+      return;
+    }
+    console.log("emails: ", res);
+    result(null, res);
+  });
+} */
+
+user.getPass = result => {
+  sql.query("SELECT passwords FROM user", (err,res)=>{
+    if(err) {
+      console.log("mail: ", err);
+      result(null,err);
+      return;
+    }
+    console.log("emails: ", res);
+    result(null, res);
+  });
+}
+
+
 user.updateById = (id, user, result) => {
 
   if(user.nickname !=null){
@@ -85,6 +123,7 @@ user.updateById = (id, user, result) => {
     }
   );
 }
+
 
 else if(user.password !=null){
   sql.query(`UPDATE user SET password = ? WHERE id = ${id}`,

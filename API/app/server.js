@@ -23,6 +23,15 @@ require("./routes/list_item.routes.js")(app);
 require("./routes/item.routes.js")(app);
 require("./routes/list.routes.js")(app);
 
+let allowCrossDomain = function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  res.setHeader("Access-Control-Allow-Methods", "*");
+  next();
+};
+app.use(allowCrossDomain);
+
+
 // set port, listen for requests
 app.listen(2112, () => {
   console.log("Server is running on port 2112.");

@@ -1,4 +1,5 @@
 const User = require("../models/user.model.js");
+var passwordHash = require ('password-hash');
 
 // Create and Save a new user
 exports.create = (req, res) => {
@@ -28,6 +29,8 @@ exports.create = (req, res) => {
     });
   };
 
+
+
 // Retrieve all users from the database.
 exports.findAll = (req, res) => {
     User.getAll((err, data) => {
@@ -36,9 +39,32 @@ exports.findAll = (req, res) => {
           message:
             err.message || "Some error occurred while retrieving users."
         });
-      else res.send(data);
+      else
+        {
+          console.log(data);
+          let row=data[6];
+
+
+
+
+          res.send(data);
+        }                                                                                                           
+        
     });
   };
+
+/* exports.verifyUser = (req,res)=> {
+  User.getAll((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving users."
+      });
+    else 
+    //console.log(res.password);
+    //res.send(data);
+  //});
+} */
 
 // Find a single user with a userId
 exports.findOne = (req, res) => {
@@ -56,6 +82,27 @@ exports.findOne = (req, res) => {
       } else res.send(data);
     });
   };
+
+   exports.VerifyPassword = (req, res)=> {
+    User.getPwByNick(req.params.userNick, (err, data) =>{
+        //let value=req.params.userPass.slice(0,-1);
+        //console.log(data);
+        if(data==null) 
+            res.send(false);
+
+        else {
+          if(passwordHash.verify(req.params.userPass, data.password)===true){
+           /*  console.log(req.params.userPass);
+            console.log(data.password); */
+            
+            res.send(true);
+          }
+          else {
+            res.send(false);
+          }
+      } 
+    });
+  } 
 
 // Update a user identified by the userId in the request
 exports.update = (req, res) => {
