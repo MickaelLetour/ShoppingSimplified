@@ -4,7 +4,7 @@ import Header from "./components/Header.js"
 import Footer from "./components/Footer.js"
 import Login from "./components/Login.js"
 import Navbar from "./components/Navbar.js"
-//import {dbGETFetch} from "./components/functions"
+import {dbGETFetch} from "./components/functions"
 //import {dbPOSTFetch} from "./components/functions"
 
 class App extends React.Component {
