@@ -2,6 +2,8 @@ import React from "react";
 import Header from "./components/Header.js"
 import Login from "./components/Login.js"
 import Footer from "./components/Footer.js"
+import Navbar from "./components/Navbar.js"
+
 import {dbGETFetch} from "./components/functions"
 
 class App extends React.Component {
@@ -73,6 +75,7 @@ class App extends React.Component {
         return (
             <div>
                 <Header />
+                <Navbar pageWrapId={"page-wrap"} outerContainerId={"App"}/>
                 <Login showHide={this.showHide} 
                     type={this.state.type}
                     handleChange={this.handleChange}
