@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import {createUser} from "./functions.js"
+import {dbPOSTFetch} from "./functions"
 
 class NewUser extends Component {
     constructor(){
@@ -49,7 +49,7 @@ class NewUser extends Component {
                     password: this.state.password,
                     photo: ""
                 };
-            createUser(url,Data);
+            dbPOSTFetch(url,Data);
         }
         else {
             console.log("password different confirmPassword");

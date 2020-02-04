@@ -1,11 +1,12 @@
 import React from "react";
 import Header from "./components/Header.js"
-import Login from "./components/Login.js"
+import NewUser from "./components/NewUser.js"
 import Footer from "./components/Footer.js"
-import {dbGETFetch} from "./components/functions"
+//import {dbGETFetch} from "./components/functions"
+//import {dbPOSTFetch} from "./components/functions"
 
 class App extends React.Component {
-    constructor() {
+    /* constructor() {
         super();
         this.state ={
             type: 'password',
@@ -35,9 +36,9 @@ class App extends React.Component {
         this.setState({
             [name]: value
         })
-    }
+    } */
 
-    handleSubmit(event) {
+    /* handleSubmit(event) {
         let nick =this.state.nickname;
         let pass= this.state.password;
         event.preventDefault();
@@ -58,7 +59,7 @@ class App extends React.Component {
 
          console.log(this.state.logged);
            
-    }
+    } */
 
 /*     componentDidMount() {
          this.handleSubmit().then(result=> this.setState({
@@ -73,13 +74,14 @@ class App extends React.Component {
         return (
             <div>
                 <Header />
-                <Login showHide={this.showHide} 
+                {/* <Login showHide={this.showHide} 
                     type={this.state.type}
                     handleChange={this.handleChange}
                     nickname={this.state.nickname}
                     password={this.state.password}
                     handleSubmit={this.handleSubmit}
-                />
+                /> */}
+                <NewUser />
                 <Footer />
             </div>
         )

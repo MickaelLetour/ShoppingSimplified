@@ -6,13 +6,14 @@ var jwtUtils = require('../utils/jwt.utils');
 
 // Create and Save a new user
 exports.create = (req, res) => {
+
     // Validate request
     if (!req.body) {
       res.status(400).send({
         message: "Content can not be empty!"
       });
     }
-  
+
     // Create a user
     const user = new User({
       nickname : req.body.nickname,
@@ -23,29 +24,6 @@ exports.create = (req, res) => {
       temporaryToken : jwtUtils.generateTokenForUser(req.body.nickname)
     });
 
-    var transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'mickael.letour@gmail.com',
-        pass:'Ellhaym131214'
-      }
-    });
-
-    var mailOptions = {
-      from : 'mickael.letour@gmail.com',
-      to : 'ideldridge@hotmail.fr',
-      subject: 'test sending email with node js',
-      text : 'http://localhost:2112/confirm/'+user.temporaryToken
-    };
-
-    transporter.sendMail(mailOptions, function (err, info){
-      if (err) {
-        console.log(err);
-      } else {
-        console.log('Email sent: ' + info.response);
-      }
-    });
-
     // Save user in the database
     User.create(user, (err, data) => {
       if (err)
@@ -53,13 +31,34 @@ exports.create = (req, res) => {
           message:
             err.message || "Some error occurred while creating the user."
         });
+      else {
 
-      else  
+        var transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: 'mickael.letour@gmail.com',
+            pass:'Ellhaym131214'
+          }
+        });
+  
+        var confirmAccount = {
+          from : 'mickael.letour@gmail.com',
+          to : user.email,
+          subject: 'Confirm your registration',
+          text : 'Please clik on this link for confirm your registration : http://localhost:2112/confirm/'+user.temporaryToken
+        };
+  
+        transporter.sendMail(confirmAccount, function (err, info){
+          if (err) {
+            console.log(err);
+          } else {
+            console.log('Email sent: ' + info.response);
+          }
+        });
         res.send(data)
+      }
     })
   };
-
-
 
 // Retrieve all users from the database.
 exports.findAll = (req, res) => {
@@ -73,9 +72,6 @@ exports.findAll = (req, res) => {
         {
           console.log(data);
           let row=data[6];
-
-
-
 
           res.send(data);
         }                                                                                                           
@@ -116,27 +112,55 @@ exports.findOne = (req, res) => {
 
 exports.updateByToken = (req, res) => {
 
-  if(!req.params.token){
+  if(!req.params.token&&req.params.email){
     res.status(400).send({
       message: "Content can not be empty!" + req.params.token
     });
   }
-  User.updateByToken(req.params.token,(err,data) => {
-      if (err) {
-        if (err.kind === "not_found") {
-          res.status(404).send({
-            message: `Not found user with this token ${req.params.token}`
-          });
-        } else {
-          res.status(500).send({
-            message: "Error updating user with this token " + req.params.token
-          });
+
+  User.updateUserByToken(req.params.token,(err,data) => {
+
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found user with this token`
+        });
+      } 
+      else {
+        res.status(500).send({
+          message: "Error updating user with this token"
+        });
+      }
+    } 
+    else {
+
+      var transporter2 = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'mickael.letour@gmail.com',
+          pass:'Ellhaym131214'
         }
-      } else res.send(data);
+      });
+    
+      var confirmedAccount = {
+        from : 'mickael.letour@gmail.com',
+        to : '???',
+        subject: 'Account confirmed',
+        text : 'Your registration was confirmed'
+      };
+      
+      transporter2.sendMail(confirmedAccount, function (err, info){
+        if (err) {
+          console.log(err);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+      res.redirect('http://localhost:21012/');
     }
-  );
+  });
 };
-  
+
 
    exports.VerifyPassword = (req, res)=> {
     User.getPwByNick(req.params.userNick, (err, data) =>{
