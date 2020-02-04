@@ -2,8 +2,14 @@ import React from "react";
 import Header from "./components/Header.js"
 import NewUser from "./components/NewUser.js"
 import Footer from "./components/Footer.js"
+<<<<<<< HEAD
 //import {dbGETFetch} from "./components/functions"
 //import {dbPOSTFetch} from "./components/functions"
+=======
+import Navbar from "./components/Navbar.js"
+
+import {dbGETFetch} from "./components/functions"
+>>>>>>> master
 
 class App extends React.Component {
     /* constructor() {
@@ -74,7 +80,12 @@ class App extends React.Component {
         return (
             <div>
                 <Header />
+<<<<<<< HEAD
                 {/* <Login showHide={this.showHide} 
+=======
+                <Navbar pageWrapId={"page-wrap"} outerContainerId={"App"}/>
+                <Login showHide={this.showHide} 
+>>>>>>> master
                     type={this.state.type}
                     handleChange={this.handleChange}
                     nickname={this.state.nickname}
