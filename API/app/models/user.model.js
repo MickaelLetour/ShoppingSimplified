@@ -115,12 +115,7 @@ user.getPass = result => {
     result(null, res);
   });
 }
-<<<<<<< HEAD
 user.updateUserByToken = (token, result) => {
-=======
-
-user.updateByToken = (token, result) => {
->>>>>>> master
     sql.query(`UPDATE user SET user.active = 1, temporaryToken = NULL WHERE user.temporaryToken ='${token}'`,(err, res) => {
       if (err) {
         console.log("error:", err);
@@ -135,11 +130,7 @@ user.updateByToken = (token, result) => {
     }
     );
   }
-<<<<<<< HEAD
   
-=======
-
->>>>>>> master
 user.updateById = (id, user, result) => {
 
   if(user.nickname !=null){
