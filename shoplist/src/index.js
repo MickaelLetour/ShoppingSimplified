@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import './css/index.css';
-import App from "./App";
+import Routes from "./Routes.js";
 
-ReactDOM.render(<App />, document.getElementById("mainContainer"))
+
+
+ReactDOM.render(<Routes />, document.getElementById("mainContainer"))
