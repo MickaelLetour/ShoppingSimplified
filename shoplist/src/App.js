@@ -1,7 +1,9 @@
 import React from "react";
 import Header from "./components/Header.js"
-import NewUser from "./components/NewUser.js"
+//import NewUser from "./components/NewUser.js"
 import Footer from "./components/Footer.js"
+import Login from "./components/Login.js"
+import Navbar from "./components/Navbar.js"
 //import {dbGETFetch} from "./components/functions"
 //import {dbPOSTFetch} from "./components/functions"
 
@@ -82,7 +84,7 @@ class App extends React.Component {
                     password={this.state.password}
                     handleSubmit={this.handleSubmit}
                 /> */}
-                <NewUser />
+                {/* <NewUser /> */}
                 <Footer />
             </div>
         )
