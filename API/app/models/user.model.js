@@ -10,7 +10,7 @@ const user = function(user) {
     this.password = passwordHash.generate(user.password);
   }
   if (typeof user.email === 'string' && user.email.length !=0){
-    this.email = passwordHash.generate(user.email);
+    this.email = user.email;
   }
   if (typeof user.photo === 'string' && user.photo.length !=0){
     this.photo = user.photo;
@@ -26,7 +26,6 @@ const user = function(user) {
     console.log("Error type or empty");
   }
 };
-
 
 user.create = (newuser, result) => {
   sql.query(`SELECT * FROM user WHERE user.email = ?`, newuser.email, (err, res) => {
@@ -116,6 +115,7 @@ user.getPass = result => {
     result(null, res);
   });
 }
+
 user.updateByToken = (token, result) => {
     sql.query(`UPDATE user SET user.active = 1, temporaryToken = NULL WHERE user.temporaryToken ='${token}'`,(err, res) => {
       if (err) {
@@ -130,10 +130,6 @@ user.updateByToken = (token, result) => {
     }
     );
   }
-  
-    
-  
-
 
 user.updateById = (id, user, result) => {
 
@@ -155,7 +151,6 @@ user.updateById = (id, user, result) => {
     }
   );
 }
-
 
 else if(user.password !=null){
   sql.query(`UPDATE user SET password = ? WHERE id = ${id}`,
