@@ -3,6 +3,7 @@ import Header from "./components/Header.js"
 import Login from "./components/Login.js"
 import Footer from "./components/Footer.js"
 import Navbar from "./components/Navbar.js"
+//import NewUser from "./components/NewUser.js";
 
 import {dbGETFetch} from "./components/functions"
 
