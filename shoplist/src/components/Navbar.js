@@ -1,45 +1,41 @@
 import React, {Component} from "react"
 import { slide as Menu } from "react-burger-menu";
+import {NavLink} from 'react-router-dom'
+
 
 class Navbar extends Component {
     constructor(props) {
         super(props)
     
         this.state = {
-          menuOpen: false,
+          
         }
       }
     
-      openMenu() {
-        this.setState({ menuOpen: true })
-      }
-    
-      closeMenu() {
-        this.setState({ menuOpen: false })
-      }
+     
     
       render() {
         return (
             <Menu >
-                <a className="menu-item" href="/ActiveList">
+                <NavLink className="menu-item" to="/ShopList/ActiveList">
                  Active List
-                </a>
+                </NavLink>
 
-                <a className="menu-item" href="/Lists">
+                <NavLink className="menu-item" to="/ShopList/Lists">
                  My Lists
-                </a>
+                </NavLink>
 
-                <a className="menu-item" href="/Items">
+                <NavLink className="menu-item" to="/ShopList/Items">
                     Items
-                </a>
+                </NavLink>
 
-                <a className="menu-item" href="/Profile">
+                <NavLink className="menu-item" to="/ShopList/Profile">
                     Profile
-                </a>
+                </NavLink>
 
-                <a className="menu-item" href="/Account">
+                <NavLink className="menu-item" to="/ShopList/Account">
                     Account
-                </a>
+                </NavLink>
             </Menu>
           )}
         }

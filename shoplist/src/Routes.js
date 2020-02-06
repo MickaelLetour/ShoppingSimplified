@@ -1,15 +1,15 @@
 import React from 'react'
-//import ReactDOM from 'react-dom'
-import { Route, /* Link, */ BrowserRouter as Router } from 'react-router-dom'
-//import Header from "./components/Header.js";
-import App from "./App.js";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
+import Log from "./Log.js";
+import ShopList from "./ShopList.js";
+import { ProtectedRoute } from './protRoute.js';
 
 class Routes extends React.Component {
 
   constructor() {
     super();
     this.state = {
-
+      
     }
   }
 
@@ -17,7 +17,11 @@ class Routes extends React.Component {
     return (
       <Router>
       <div>
-        {<Route path="/" component={App} />}
+        <Switch>
+          <Route exact path="/" component={Log} />
+          <ProtectedRoute exact path="/ShopList" component={ShopList} />
+          <Route path="*" component={() => "404 NOT FOUND"} />
+        </Switch>
       </div>
     </Router>
     )

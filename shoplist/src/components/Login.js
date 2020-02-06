@@ -3,90 +3,13 @@ import avatar from "../img/user.png"
 import {dbGETFetch} from "./functions"
 
 
-
 class Login extends Component {
-    /*constructor(props){
+    constructor(props){
         super(props)
-        
           this.state = {
-          //type: "password", 
-          //logged: false,
-          / email: '',
-          password: '', 
-          //name: '' 
+            
         }
-        //this.showHide = this.showHide.bind(this);
-        
-        //this.handleSubmit=this.handleSubmit.bind(this);
       }
-      
-      
-      
-    /* componentDidMount() {
-        fetch("http://localhost:2112/users")
-            .then(response => response.json())
-            .then(response => {
-                console.log(response);
-            })
-    } */
-
-    //Just For Works!!!!!!
-    
-    constructor() {
-        super();
-        this.state ={
-            type: 'password',
-            nickname: '',
-            password: '',
-            logged:false,
-        }
-        this.showHide = this.showHide.bind(this);
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit=this.handleSubmit.bind(this);
-        //this.componentDidMount=this.componentDidMount.bind(this);
-    }
-
-    showHide(){
-        this.setState({
-          type: this.state.type === 'password' ? 'input' : 'password'
-          
-        }) 
-        console.log(this.state.type); 
-      } 
-
-    
-
-      handleChange(event) {
-        const {name, value} = event.target
-        
-        this.setState({
-            [name]: value
-        })
-    }
-
-    handleSubmit(event) {
-        let nick =this.state.nickname;
-        let pass= this.state.password;
-        event.preventDefault();
-        
-
-        const url = `http://localhost:2112/users/pass/${nick}&${pass}`;
-
-        //let response = dbGETFetch(url);
-
-        dbGETFetch(url).then((res) => {
-            console.log("result "+res);
-            this.setState({
-                 logged: res  
-             })
-
-             console.log(this.state.logged)
-         });
-
-         console.log(this.state.logged);
-           
-    }
-    
 
     render() {
         return (
