@@ -124,12 +124,68 @@ user.updateUserByToken = (token, result) => {
       }
       else {
         result(null, res);
-        //res.redirect('http://localhost:21012/');
         return;
       }
     }
     );
+}
+
+user.updatePass = (newuser, result) => {
+  sql.query(`UPDATE user SET user.active = 1, user.temporaryToken = NULL WHERE user.temporaryToken = '${newuser.temporaryToken}'`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+    else {
+      result(null, res);
+      return;
+    }
+  });
+}
+
+user.forgotPassword = (newuser, result) => {
+  sql.query(`UPDATE user SET user.active = 0,temporaryToken = '${newuser.temporaryToken}' WHERE user.email = '${newuser.email}'`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+    else {
+      result(null, res);
+      return;
+    }
+  });
+}
+user.updatePassByToken = (newuser, result) => {
+  sql.query(`UPDATE user SET user.active = 1, temporaryToken = NULL WHERE user.temporaryToken ='${newuser.token}'`,(err, res) => {
+    if (err) {
+      console.log("error:", err);
+      result(null, err);
+      return;
+    }
+    else {
+      result(null, res);
+      //res.redirect('http://localhost:21012/');
+      return;
+    }
   }
+  );
+}
+
+user.verifToken = (token, result) => {
+  sql.query(`SELECT * FROM user WHERE user.temporaryToken = '${token}'`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+    else {
+      result(null, res);
+      return;
+    }
+  });
+};
   
 user.updateById = (id, user, result) => {
 

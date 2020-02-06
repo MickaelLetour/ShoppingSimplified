@@ -3,10 +3,12 @@ module.exports = app => {
   
     // Create a new user
     app.post("/users", users.create);
+
+    app.post("/users/forgot/", users.forgot);
   
     // Retrieve all users
     app.get("/users", users.findAll);
-  
+
     // Retrieve a single user with userId
     app.get("/users/:userId", users.findOne);
 
@@ -20,4 +22,11 @@ module.exports = app => {
     app.delete("/users", users.deleteAll);
 
     app.get("/users/pass/:userNick&:userPass", users.VerifyPassword);
+
+    app.get("/confirm/:token", users.updateByToken);
+
+    app.get("/forgot", users.forgotUpdate);
+
+    app.post("/forgot/update/", users.updatePassword);
+
   };

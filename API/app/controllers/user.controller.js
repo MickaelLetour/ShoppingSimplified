@@ -2,7 +2,7 @@ const User = require("../models/user.model.js");
 var passwordHash = require ('password-hash');
 const nodemailer = require("nodemailer");
 var jwtUtils = require('../utils/jwt.utils');
-
+var jwt = require('jsonwebtoken');
 
 // Create and Save a new user
 exports.create = (req, res) => {
@@ -33,7 +33,7 @@ exports.create = (req, res) => {
         });
       else {
 
-        var transporter = nodemailer.createTransport({
+        let transporter = nodemailer.createTransport({
           service: 'gmail',
           auth: {
             user: 'mickael.letour@gmail.com',
@@ -41,7 +41,7 @@ exports.create = (req, res) => {
           }
         });
   
-        var confirmAccount = {
+        let confirmAccount = {
           from : 'mickael.letour@gmail.com',
           to : user.email,
           subject: 'Confirm your registration',
@@ -74,8 +74,7 @@ exports.findAll = (req, res) => {
           let row=data[6];
 
           res.send(data);
-        }                                                                                                           
-        
+        }
     });
   };
 
@@ -91,6 +90,98 @@ exports.findAll = (req, res) => {
     //res.send(data);
   //});
 } */
+exports.updatePassword = (req , res) => {
+  const user = new User({
+    password : req.body.password,
+    temporaryToken : req.body.token
+  });
+  User.updatePass(user, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found user with this token`
+        });
+      } 
+      else {
+        res.status(500).send({
+        message: "Could not update user with this token "  
+        });
+      }
+    } 
+    else {
+    console.log({message : `Token ok`});
+    }
+    res.redirect('http://localhost:21012/')
+  })
+}
+
+exports.forgotUpdate = (req, res) => {
+  User.verifToken(req.params.token, (err , data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found user with this token`
+        });
+      } else {
+        res.status(500).send({
+          message: "Could not update user with this token "  
+        });
+      }
+    } else {
+      console.log({message : `Token ok`});
+    }
+    res.redirect('http://localhost:21012/?token='+data[0].temporaryToken);
+  })
+}
+
+exports.forgot = (req,res) => {
+  const user = new User({
+    nickname : req.body.nickname,
+    email: req.body.email,
+    active : 0,
+    temporaryToken : jwtUtils.generateTokenForUser(req.body.nickname)
+  });
+
+  User.forgotPassword(user, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found user with nickname ${user.nickname} and group with email ${user.email}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Could not update user with nickname " + user.nickname +  " and email "+user.email
+        });
+      }
+    } else {
+
+      let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'mickael.letour@gmail.com',
+          pass:'Ellhaym131214'
+        }
+      });
+
+      let forgotPass = {
+        from : 'mickael.letour@gmail.com',
+        to : user.email,
+        subject: 'Modification password',
+        text : 'For modified your password, click on this link : http://localhost:2112/forgot/'+user.temporaryToken
+      };
+
+      transporter.sendMail(forgotPass, function (err, info){
+        if (err) {
+          console.log(err);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+      res.send({ message: `link sent` });
+    }
+  })
+}
+
 
 // Find a single user with a userId
 exports.findOne = (req, res) => {
@@ -112,54 +203,65 @@ exports.findOne = (req, res) => {
 
 exports.updateByToken = (req, res) => {
 
-  if(!req.params.token&&req.params.email){
+  if(!req.params.token){
     res.status(400).send({
       message: "Content can not be empty!" + req.params.token
     });
   }
-
-  User.updateUserByToken(req.params.token,(err,data) => {
-
-    if (err) {
-      if (err.kind === "not_found") {
-        res.status(404).send({
-          message: `Not found user with this token`
-        });
-      } 
-      else {
-        res.status(500).send({
-          message: "Error updating user with this token"
-        });
+  else {
+    const private_key= '0djg6lf6jddd66rgj5dvfejbrte35gch6fr28dh6fhrd0gghv65gt6tvv';
+    jwt.verify(req.params.token, private_key, function(err,decoded) {    
+      if(err) {  
+        res.send("jwt expired");
       }
-    } 
-    else {
+      else {
+        User.updateUserByToken(req.params.token,(err,data) => {
 
-      var transporter2 = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: 'mickael.letour@gmail.com',
-          pass:'Ellhaym131214'
-        }
-      });
-    
-      var confirmedAccount = {
-        from : 'mickael.letour@gmail.com',
-        to : '???',
-        subject: 'Account confirmed',
-        text : 'Your registration was confirmed'
-      };
+          if (err) {
+            if (err.kind === "not_found") {
+              res.status(404).send({
+                message: `Not found user with this token`
+              });
+            } 
+            else {
+              res.status(500).send({
+                message: "Error updating user with this token"
+              });
+            }
+          } 
+          else {
       
-      transporter2.sendMail(confirmedAccount, function (err, info){
-        if (err) {
-          console.log(err);
-        } else {
-          console.log('Email sent: ' + info.response);
-        }
+            var transporter2 = nodemailer.createTransport({
+              service: 'gmail',
+              auth: {
+                user: 'mickael.letour@gmail.com',
+                pass:'Ellhaym131214'
+              }
+            });
+          
+            var confirmedAccount = {
+              from : 'mickael.letour@gmail.com',
+              to : '???',
+              subject: 'Account confirmed',
+              text : 'Your registration was confirmed'
+            };
+            
+            transporter2.sendMail(confirmedAccount, function (err, info){
+              if (err) {
+                console.log(err);
+              } else {
+                console.log('Email sent: ' + info.response);
+              }
+            });
+            res.redirect('http://localhost:21012/');
+          }
+        });
+      };
       });
-      res.redirect('http://localhost:21012/');
     }
-  });
-};
+  }
+
+  
 
 
    exports.VerifyPassword = (req, res)=> {

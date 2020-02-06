@@ -1,7 +1,7 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
-import Header from "./components/Header.js";
+//import ReactDOM from 'react-dom'
+import { Route, /* Link, */ BrowserRouter as Router } from 'react-router-dom'
+//import Header from "./components/Header.js";
 import App from "./App.js";
 
 class Routes extends React.Component {

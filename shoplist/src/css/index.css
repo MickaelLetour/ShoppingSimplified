@@ -61,6 +61,7 @@ body, html {
 form {
   margin: 3em auto;
   max-width: 320px;
+  min-height: 320px;
   background: rgba(226, 167, 28, 0.4);
   padding: 40px;
   box-shadow: 0 0 20px #141414;

@@ -1,16 +1,18 @@
-import React, {Component} from "react"
-import {dbPOSTFetch} from "./functions"
+import React, {Component} from "react";
+import {dbPOSTFetch} from "./functions";
 
-class NewUser extends Component {
+let params = new URLSearchParams(document.location.search.substring(1));
+let token = params.get("token");
+
+class NewPassword extends Component {
     constructor(){
         super()
         this.state = {
           type: 'password',
           logged: false,
-          email: '',
           password: '',
           confirmPassword:'',
-          nickname: '',
+          token: token
         }
         this.showHide = this.showHide.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -32,21 +34,18 @@ class NewUser extends Component {
     }
 
     handleSubmit(event) {
-        console.log(this.state.nickname);
-        console.log(this.state.email);
+        console.log(this.state.token);
         console.log(this.state.password);
         console.log(this.state.confirmPassword);  
         
         event.preventDefault();
 
         if (this.state.confirmPassword===this.state.password){
-            const url = 'http://localhost:2112/users/';
+            const url = 'http://localhost:2112/forgot/update/';
             const Data = 
                 {
-                    nickname: this.state.nickname,
-                    email: this.state.email,
                     password: this.state.password,
-                    photo: ""
+                    token: this.state.token
                 };
             dbPOSTFetch(url,Data);
         }
@@ -59,32 +58,8 @@ class NewUser extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <h2>Sign UP</h2>
+                    <h2>Update Password</h2>
                     <hr/>
-                    <div>
-                        <label className="Form">Nickname:
-                            <input 
-                                type="text" 
-                                placeholder="Enter Nickname" 
-                                value= {this.state.nickname}
-                                name="nickname" 
-                                onChange={this.handleChange}
-                                //required 
-                            />
-                        </label>
-                    </div>
-                    <div>
-                        <label className="Form">Email:
-                            <input 
-                                type="email" 
-                                placeholder="Enter Email" 
-                                value= {this.state.email}
-                                name="email" 
-                                onChange={this.handleChange}
-                                required 
-                            />
-                        </label>
-                    </div>
                     <div>
                         <label className="Form">Password:
                             <input 
@@ -126,4 +101,4 @@ class NewUser extends Component {
     }
 }
 
-export default NewUser
+export default NewPassword

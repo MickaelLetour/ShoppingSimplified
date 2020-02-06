@@ -1,11 +1,14 @@
 import React from "react";
 import Header from "./components/Header.js"
-//import NewUser from "./components/NewUser.js"
-import Footer from "./components/Footer.js"
 import Login from "./components/Login.js"
+import Footer from "./components/Footer.js"
+import Forgot from "./components/Forgot.js"
 import Navbar from "./components/Navbar.js"
-import {dbGETFetch} from "./components/functions"
+import NewUser from "./components/NewUser.js"
+import NewPassword from "./components/NewPassword.js"
+
 //import {dbPOSTFetch} from "./components/functions"
+//import {dbGETFetch} from "./components/functions"
 
 class App extends React.Component {
     /* constructor() {
@@ -38,9 +41,9 @@ class App extends React.Component {
         this.setState({
             [name]: value
         })
-    } */
+    }
 
-    /* handleSubmit(event) {
+    handleSubmit(event) {
         let nick =this.state.nickname;
         let pass= this.state.password;
         event.preventDefault();
@@ -61,7 +64,7 @@ class App extends React.Component {
 
          console.log(this.state.logged);
            
-    } */
+    }  */
 
 /*     componentDidMount() {
          this.handleSubmit().then(result=> this.setState({
@@ -77,14 +80,18 @@ class App extends React.Component {
             <div>
                 <Header />
                 <Navbar pageWrapId={"page-wrap"} outerContainerId={"App"}/>
-                <Login showHide={this.showHide} 
+                {/* <Login showHide={this.showHide} 
                     type={this.state.type}
                     handleChange={this.handleChange}
                     nickname={this.state.nickname}
                     password={this.state.password}
                     handleSubmit={this.handleSubmit}
-                /> */}
-                {/* <NewUser /> */}
+                />  */}
+                
+                <NewUser /> 
+                <Login />
+                <Forgot />
+                <NewPassword />
                 <Footer />
             </div>
         )

@@ -1,10 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
-
 const app = express();
-
-
 
 // parse requests of content-type: application/json
 app.use(bodyParser.json());
@@ -25,7 +22,6 @@ require("./routes/user_groups.routes.js")(app);
 require("./routes/list_item.routes.js")(app);
 require("./routes/item.routes.js")(app);
 require("./routes/list.routes.js")(app);
-require("./routes/confirm.js")(app);
 
 let allowCrossDomain = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
