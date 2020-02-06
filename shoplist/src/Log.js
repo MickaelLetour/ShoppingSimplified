@@ -7,16 +7,9 @@ import Forgot from "./components/Forgot.js"
 import Navbar from "./components/Navbar.js"
 import NewUser from "./components/NewUser.js"
 import NewPassword from "./components/NewPassword.js"
-
-//import {dbPOSTFetch} from "./components/functions"
-//import {dbGETFetch} from "./components/functions"
-
-/*class App extends React.Component {
-     constructor() {
-        super();
-//import NewUser from "./components/NewUser.js";
+import {dbPOSTFetch} from "./components/functions"
 import {BrowserRouter as Router} from "react-router-dom"
-import {dbGETFetch} from "./components/functions"*/
+import {dbGETFetch} from "./components/functions"
 
 
 
@@ -118,8 +111,8 @@ class Log extends React.Component {
                     {/* <NewUser /> 
                     <Login />
                     <Forgot />
-                    <NewPassword /> */}
-                    <Footer />
+                    <NewPassword /> 
+                    <Footer />  */}
                 </div>
             </Router>
         )
