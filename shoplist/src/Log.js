@@ -1,26 +1,34 @@
 import React from "react";
+import Auth from "./auth.js"
 import Header from "./components/Header.js"
 import Login from "./components/Login.js"
 import Footer from "./components/Footer.js"
 import Navbar from "./components/Navbar.js"
 //import NewUser from "./components/NewUser.js";
-
+import {BrowserRouter as Router} from "react-router-dom"
 import {dbGETFetch} from "./components/functions"
 
-class App extends React.Component {
-    constructor() {
-        super();
+
+
+class Log extends React.Component {
+    constructor(props) {
+        super(props);
         this.state ={
             type: 'password',
             nickname: '',
             password: '',
             logged:false,
+            menuOpen: false,
         }
         this.showHide = this.showHide.bind(this);
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit=this.handleSubmit.bind(this);
+        
         //this.componentDidMount=this.componentDidMount.bind(this);
     }
+
+
+    
 
     showHide(){
         this.setState({
@@ -52,14 +60,27 @@ class App extends React.Component {
 
         dbGETFetch(url).then((res) => {
             console.log("result "+res);
-            this.setState({
+             this.setState({
                  logged: res  
              })
-
-             console.log(this.state.logged)
+             console.log(this.state.logged) 
+             let test = Auth.isAuthenticated();
+             if(this.state.logged ===true){
+                console.log("this test" +test);
+                //Auth.isAuthenticated();
+                
+                Auth.login(()=> {
+                this.props.history.push("/ShopList");
+                })
+                console.log(Auth);
+                let test2 = Auth.isAuthenticated();
+                console.log("this test" +test2);
+             }
+             
          });
 
          console.log(this.state.logged);
+         
            
     }
 
@@ -74,20 +95,22 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
-                <Header />
-                <Navbar pageWrapId={"page-wrap"} outerContainerId={"App"}/>
-                <Login showHide={this.showHide} 
-                    type={this.state.type}
-                    handleChange={this.handleChange}
-                    nickname={this.state.nickname}
-                    password={this.state.password}
-                    handleSubmit={this.handleSubmit}
-                />
-                <Footer />
-            </div>
+            <Router>
+                <div>
+                    <Header />
+                   
+                    <Login showHide={this.showHide} 
+                        type={this.state.type}
+                        handleChange={this.handleChange}
+                        nickname={this.state.nickname}
+                        password={this.state.password}
+                        handleSubmit={this.handleSubmit}
+                    />
+                    <Footer />
+                </div>
+            </Router>
         )
     }
 }
 
-export default App;
+export default Log

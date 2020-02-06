@@ -2,36 +2,13 @@ import React, {Component} from "react"
 import avatar from "../img/user.png"
 
 
-
 class Login extends Component {
     constructor(props){
         super(props)
-        
           this.state = {
-          //type: "password", 
-          //logged: false,
-          /* email: '',
-          password: '', */
-          //name: '' 
+            
         }
-        //this.showHide = this.showHide.bind(this);
-        
-        //this.handleSubmit=this.handleSubmit.bind(this);
       }
-      
-      
-      
-    /* componentDidMount() {
-        fetch("http://localhost:2112/users")
-            .then(response => response.json())
-            .then(response => {
-                console.log(response);
-            })
-    } */
-
-    
-
-    
 
     render() {
         return (
