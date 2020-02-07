@@ -54,7 +54,7 @@ con.connect(function(err) {
 
     if (err) throw err;
     console.log("Connected!");
-    sql = "CREATE TABLE IF NOT EXISTS `Icon` (id INT(20) AUTO_INCREMENT NOT NULL, icon TEXT, PRIMARY KEY (id))";
+    sql = "CREATE TABLE IF NOT EXISTS `Icon` (id INT(20) AUTO_INCREMENT NOT NULL, icon TEXT, name VARCHAR(255), PRIMARY KEY (id))";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Table ICON created");

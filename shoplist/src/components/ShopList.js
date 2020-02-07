@@ -1,15 +1,14 @@
 import React from "react";
-import Auth from "./auth.js"
-import Header from "./components/Header.js"
-import Footer from "./components/Footer.js"
-import Navbar from "./components/Navbar.js"
-import Home from "./components/Home.js"
-import Lists from "./components/Lists"
+import Auth from "../auth.js"
+
+import Navbar from "./Navbar.js"
+import Home from "./Home.js"
+import Lists from "./Lists"
+import Items from "./Items.js"
 //import NewUser from "./components/NewUser.js";
 import {BrowserRouter as Router, Switch} from "react-router-dom"
-import {dbGETFetch} from "./components/functions"
-import auth from "./auth.js";
-import { ProtectedRoute } from './protRoute.js';
+import {dbGETFetch} from "./functions"
+import { ProtectedRoute } from '../protRoute.js';
 
 
 
@@ -27,7 +26,7 @@ class ShopList extends React.Component {
 
     openMenu() {
         this.setState({ menuOpen: true })
-        console.log("something");
+        //console.log("something");
       }
     
     closeMenu() {
@@ -42,7 +41,6 @@ class ShopList extends React.Component {
         return (
             <Router>
                 <div>
-                    <Header />
                     <Navbar /* pageWrapId={"page-wrap"} outerContainerId={"App"} */
                         openMenu={this.openMenu}
                         closeMenu={this.closeMenu}
@@ -50,8 +48,8 @@ class ShopList extends React.Component {
                         <Switch>
                             <ProtectedRoute exact path="/ShopList/ActiveList" component={Home}/>
                             <ProtectedRoute exact path="/ShopList/Lists" component={Lists} />
+                            <ProtectedRoute exact path="/ShopList/Items" component={Items} />
                         </Switch>
-                    <Footer />
                 </div>
             </Router>
         )

@@ -2,7 +2,18 @@ const sql = require("./connect.js");
 
 // constructor
 const Icon = function(icon) {
-  this.icon = icon.icon;
+  if (typeof icon.icon === 'string' && icon.icon.length !=0){
+    this.icon = icon.icon;
+  }
+  
+  if (typeof icon.name=== 'string' && icon.name.length !=0){
+    this.name = icon.name;
+  }
+  
+
+  else {
+    console.log("Error type or empty");
+  }
 };
 
 Icon.create = (newIcon, result) => {

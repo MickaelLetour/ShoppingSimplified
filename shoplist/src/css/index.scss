@@ -223,6 +223,21 @@ form input {
 }
 
 
+#arrive {
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    li{
+      h1 {
+        color:$fontColor;
+        font-size: 3em;
+        line-height: 40vh;
+      }
+    }
+  }
+}
+
 
 
 @media only screen and (max-width: 768px) {

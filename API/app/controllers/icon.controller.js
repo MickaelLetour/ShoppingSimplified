@@ -11,7 +11,8 @@ exports.create = (req, res) => {
   
     // Create a category
     const icon = new Icon({
-      icon : req.body.icon
+      icon : req.body.icon,
+      name : req.body.name
     });
   
     // Save category in the database

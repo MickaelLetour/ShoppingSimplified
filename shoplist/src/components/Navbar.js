@@ -17,7 +17,7 @@ class Navbar extends Component {
       render() {
         return (
             <Menu >
-                <NavLink className="menu-item" to="/ShopList/ActiveList">
+                <NavLink className="menu-item" to="/ShopList/ActiveList" >
                  Active List
                 </NavLink>
 

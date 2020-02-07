@@ -1,15 +1,15 @@
 import React from "react";
-import Auth from "./auth.js"
-import Header from "./components/Header.js"
-import Login from "./components/Login.js"
-import Footer from "./components/Footer.js"
-import Forgot from "./components/Forgot.js"
-import Navbar from "./components/Navbar.js"
-import NewUser from "./components/NewUser.js"
-import NewPassword from "./components/NewPassword.js"
-import {dbPOSTFetch} from "./components/functions"
+import Auth from "../auth.js"
+
+import Login from "./Login.js"
+
+import Forgot from "./Forgot.js"
+import Navbar from "./Navbar.js"
+import NewUser from "./NewUser.js"
+import NewPassword from "./NewPassword.js"
+import {dbPOSTFetch} from "./functions"
 import {BrowserRouter as Router} from "react-router-dom"
-import {dbGETFetch} from "./components/functions"
+import {dbGETFetch} from "./functions"
 
 
 
@@ -98,9 +98,7 @@ class Log extends React.Component {
     render() {
         return (
             <Router>
-                <div>
-                    <Header />
-                   
+                <div id="arrive">
                     <Login showHide={this.showHide} 
                         type={this.state.type}
                         handleChange={this.handleChange}
@@ -108,11 +106,9 @@ class Log extends React.Component {
                         password={this.state.password}
                         handleSubmit={this.handleSubmit}
                     />
-                    {/* <NewUser /> 
-                    <Login />
-                    <Forgot />
-                    <NewPassword /> 
-                    <Footer />  */}
+                    {/* <Forgot /> */}
+                    <NewUser />
+                   {/*  <NewPassword />  */} 
                 </div>
             </Router>
         )
