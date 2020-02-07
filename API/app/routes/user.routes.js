@@ -25,7 +25,7 @@ module.exports = app => {
 
     app.get("/confirm/:token", users.updateByToken);
 
-    app.get("/forgot", users.forgotUpdate);
+    app.get("/forgot/:token", users.forgotUpdate);
 
     app.post("/forgot/update/", users.updatePassword);
 
