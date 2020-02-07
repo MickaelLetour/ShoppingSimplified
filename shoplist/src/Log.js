@@ -108,11 +108,11 @@ class Log extends React.Component {
                         password={this.state.password}
                         handleSubmit={this.handleSubmit}
                     />
-                    {/* <NewUser /> 
+                    <NewUser /> 
                     <Login />
                     <Forgot />
                     <NewPassword /> 
-                    <Footer />  */}
+                    <Footer />  
                 </div>
             </Router>
         )

@@ -124,14 +124,22 @@ exports.forgotUpdate = (req, res) => {
         });
       } else {
         res.status(500).send({
-          message: "Could not update user with this token "  
+          message: "Could not update user with this token"  
         });
       }
-    } else {
-      console.log({message : `Token ok`});
+    } 
+    else {
+      const private_key= '0djg6lf6jddd66rgj5dvfejbrte35gch6fr28dh6fhrd0gghv65gt6tvv';
+      jwt.verify(req.params.token, private_key, function(err,decoded) {    
+        if(err) {  
+          res.send("jwt expired");
+        }
+        else {
+        res.redirect('http://localhost:21012/?token='+data[0].temporaryToken);
+        }
+      })
     }
-    res.redirect('http://localhost:21012/?token='+data[0].temporaryToken);
-  })
+  });
 }
 
 exports.forgot = (req,res) => {
@@ -272,7 +280,7 @@ exports.updateByToken = (req, res) => {
             res.send(false);
 
         else {
-          if(passwordHash.verify(req.params.userPass, data.password)===true){
+          if(passwordHash.verify(req.params.userPass, data.password)===true && data.active===1){
            /*  console.log(req.params.userPass);
             console.log(data.password); */
             

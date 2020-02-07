@@ -28,25 +28,41 @@ const user = function(user) {
 };
 
 user.create = (newuser, result) => {
-  sql.query(`SELECT * FROM user WHERE user.email = ?`, newuser.email, (err, res) => {
+  sql.query(`SELECT * FROM user WHERE user.email = '${newuser.email}'`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
-    else {
-      sql.query("INSERT INTO user SET ?", newuser, (err, res) => {
+    else if (res.length !=0){
+      console.log("email exists");
+      return;
+    }
+    else if (res.length ==0){
+      sql.query(`SELECT * FROM user WHERE user.nickname = '${newuser.nickname}'`, (err, res) => {
         if (err) {
           console.log("error: ", err);
           result(err, null);
           return;
         }
-        console.log("created user: ", { id: res.insertId, ...newuser });
-        result(null, { id: res.insertId, ...newuser });
+        else if (res.length !=0){
+          console.log("nickname exists");
+          return;
+        }
+        else if (res.length ==0){
+          sql.query("INSERT INTO user SET ?", newuser, (err, res) => {
+          if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+          }
+          result(null, { id: res.insertId, ...newuser });
+          });
+        }
       });
-    }
+    };
   });
-};
+}
 
 user.findById = (userId, result) => {
   sql.query(`SELECT * FROM user WHERE id = ${userId}`, (err, res) => {
@@ -81,11 +97,10 @@ user.getAll = result => {
 };
 
  user.getPwByNick = (userNick, result) => {
-  sql.query("SELECT password FROM user where nickname = ?", userNick, (err,res)=>{
+  sql.query("SELECT password,active FROM user where nickname = ?", userNick, (err,res)=>{
     if(err) {
       console.log("error: ", err);
       result(null,false);
-      
     }
     console.log("pass: ", res);
     result(null, res[0]);
@@ -131,7 +146,7 @@ user.updateUserByToken = (token, result) => {
 }
 
 user.updatePass = (newuser, result) => {
-  sql.query(`UPDATE user SET user.active = 1, user.temporaryToken = NULL WHERE user.temporaryToken = '${newuser.temporaryToken}'`, (err, res) => {
+  sql.query(`UPDATE user SET user.password = '${newuser.password}', user.active = 1, user.temporaryToken = NULL WHERE user.temporaryToken = '${newuser.temporaryToken}'`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
