@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 import avatar from "../img/user.png"
-import {dbGETFetch} from "./functions"
+//import {dbGETFetch} from "./functions"
 
 
 class createList extends Component {

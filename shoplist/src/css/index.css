@@ -210,17 +210,20 @@ form input {
   background: rgba(0, 0, 0, 0.3);
 }
 
-#arrive ul {
-  display: flex;
-  justify-content: space-evenly;
-  list-style: none;
-}
-#arrive ul li h1 {
-  color: #141414;
-  font-size: 3em;
-  line-height: 40vh;
-}
-
+/* #arrive {
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    li{
+      h1 {
+        color:$fontColor;
+        font-size: 3em;
+        line-height: 40vh;
+      }
+    }
+  }
+} */
 @media only screen and (max-width: 768px) {
   .mainNav {
     flex-wrap: wrap;

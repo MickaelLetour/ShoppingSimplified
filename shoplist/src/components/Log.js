@@ -2,13 +2,13 @@ import React from "react";
 import Auth from "../auth.js"
 
 import Login from "./Login.js"
-
+/* 
 import Forgot from "./Forgot.js"
 import Navbar from "./Navbar.js"
 import NewUser from "./NewUser.js"
 import NewPassword from "./NewPassword.js"
 import {dbPOSTFetch} from "./functions"
-import {BrowserRouter as Router} from "react-router-dom"
+import {BrowserRouter as Router} from "react-router-dom" */
 import {dbGETFetch} from "./functions"
 
 
@@ -30,8 +30,10 @@ class Log extends React.Component {
         //this.componentDidMount=this.componentDidMount.bind(this);
     }
 
-
-    
+/* 
+    componentDidMount(){
+        console.log("mikael "+Auth.isAuthenticated());
+    } */
 
     showHide(){
         this.setState({
@@ -71,13 +73,13 @@ class Log extends React.Component {
              if(this.state.logged ===true){
                 console.log("this test" +test);
                 //Auth.isAuthenticated();
-                
+                Auth.setLogout();
                 Auth.login(()=> {
                 this.props.history.push("/ShopList");
                 })
                 console.log(Auth);
-                let test2 = Auth.isAuthenticated();
-                console.log("this test" +test2);
+                let test2 = Auth.button();
+                console.log("this test " +test2);
              }
              
          });
@@ -97,8 +99,8 @@ class Log extends React.Component {
 
     render() {
         return (
-            <Router>
-                <div id="arrive">
+
+                <div>
                     <Login showHide={this.showHide} 
                         type={this.state.type}
                         handleChange={this.handleChange}
@@ -107,10 +109,10 @@ class Log extends React.Component {
                         handleSubmit={this.handleSubmit}
                     />
                     {/* <Forgot /> */}
-                    <NewUser />
+                    {/* <NewUser /> */}
                    {/*  <NewPassword />  */} 
                 </div>
-            </Router>
+
         )
     }
 }

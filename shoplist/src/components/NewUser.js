@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import {dbPOSTFetch} from "./functions"
+import Auth from "../auth.js"
 
 class NewUser extends Component {
     constructor(){
@@ -23,6 +24,10 @@ class NewUser extends Component {
         })  
       } 
 
+      componentDidMount(){
+          console.log(Auth.button())
+      }
+
     handleChange(event) {
         const {name, value} = event.target
         
@@ -32,10 +37,10 @@ class NewUser extends Component {
     }
 
     handleSubmit(event) {
-        console.log(this.state.nickname);
+       /*  console.log(this.state.nickname);
         console.log(this.state.email);
         console.log(this.state.password);
-        console.log(this.state.confirmPassword);  
+        console.log(this.state.confirmPassword);   */
         
         event.preventDefault();
 
@@ -48,7 +53,13 @@ class NewUser extends Component {
                     password: this.state.password,
                     photo: ""
                 };
-            dbPOSTFetch(url,Data);
+            dbPOSTFetch(url,Data)
+
+            .then((res) => {
+                Auth.setRegister();
+                this.props.history.push("/"); 
+                           
+            })
         }
         else {
             console.log("password different confirmPassword");
