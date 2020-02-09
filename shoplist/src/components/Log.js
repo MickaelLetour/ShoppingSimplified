@@ -2,13 +2,13 @@ import React from "react";
 import Auth from "../auth.js"
 
 import Login from "./Login.js"
-
+/* 
 import Forgot from "./Forgot.js"
 import Navbar from "./Navbar.js"
 import NewUser from "./NewUser.js"
 import NewPassword from "./NewPassword.js"
 import {dbPOSTFetch} from "./functions"
-import {BrowserRouter as Router} from "react-router-dom"
+import {BrowserRouter as Router} from "react-router-dom" */
 import {dbGETFetch} from "./functions"
 
 
@@ -30,8 +30,10 @@ class Log extends React.Component {
         //this.componentDidMount=this.componentDidMount.bind(this);
     }
 
-
-    
+/* 
+    componentDidMount(){
+        console.log("mikael "+Auth.isAuthenticated());
+    } */
 
     showHide(){
         this.setState({
@@ -55,29 +57,12 @@ class Log extends React.Component {
         let nick =this.state.nickname;
         let pass= this.state.password;
         event.preventDefault();
-        fetch(`http://localhost:2112/users/pass/${nick}&${pass}`, {
-            method: 'GET',
-            mode: 'cors'
-          })
-          .then(res => {
-            if (res.status === 200) {
-              this.props.history.push('/ShopList');
-            } else {
-              const error = new Error(res.error);
-              throw error;
-            }
-          })
-          .catch(err => {
-            console.error(err);
-            alert('Error logging in please try again');
-          });
         
-
         const url = `http://localhost:2112/users/pass/${nick}&${pass}`;
 
         //let response = dbGETFetch(url);
 
-       /*  dbGETFetch(url).then((res) => {
+       dbGETFetch(url).then((res) => {
             console.log("result "+res);
              this.setState({
                  logged: res  
@@ -87,18 +72,18 @@ class Log extends React.Component {
              if(this.state.logged ===true){
                 console.log("this test" +test);
                 //Auth.isAuthenticated();
-                
+                Auth.setLogout();
                 Auth.login(()=> {
                 this.props.history.push("/ShopList");
                 })
                 console.log(Auth);
-                let test2 = Auth.isAuthenticated();
-                console.log("this test" +test2);
+                let test2 = Auth.button();
+                console.log("this test " +test2);
              }
              
          });
 
-         console.log(this.state.logged); */
+         console.log(this.state.logged); 
          
            
     }  
@@ -113,8 +98,8 @@ class Log extends React.Component {
 
     render() {
         return (
-            <Router>
-                <div id="arrive">
+
+                <div>
                     <Login showHide={this.showHide} 
                         type={this.state.type}
                         handleChange={this.handleChange}
@@ -122,8 +107,11 @@ class Log extends React.Component {
                         password={this.state.password}
                         handleSubmit={this.handleSubmit}
                     />
+                    {/* <Forgot /> */}
+                    {/* <NewUser /> */}
+                   {/*  <NewPassword />  */} 
                 </div>
-            </Router>
+
         )
     }
 }

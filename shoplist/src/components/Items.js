@@ -1,13 +1,13 @@
 import React from "react";
 import Auth from "../auth.js"
-import Header from "./Header.js"
+/* import Header from "./Header.js"
 import Navbar from "./Navbar.js"
 import Home from "./Home.js"
 import Lists from "./Lists"
 //import NewUser from "./components/NewUser.js";
 import {BrowserRouter as Router, Switch} from "react-router-dom"
 import {dbGETFetch} from "./functions"
-import { ProtectedRoute } from '../protRoute.js';
+import { ProtectedRoute } from '../protRoute.js'; */
 
 
 
