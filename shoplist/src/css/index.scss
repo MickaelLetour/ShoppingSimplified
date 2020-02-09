@@ -22,7 +22,7 @@ hr {
   justify-content: space-between;
   text-align: center;
   background-color: $HeaderColor;
-  font-family: Angelina Alt Demo;
+  font-family: 'Angelina', arial;
   border-bottom: $fontColor solid 1px;
   .imgNav {
     width: 15vh;
@@ -30,7 +30,7 @@ hr {
     margin-left: 2vw;
     border-radius: 5px;
   }
-  #title,#linkLogin {
+  #title,#register {
     margin-top: 5vh;
     color : white;
     font-size: 2.5em;
@@ -38,9 +38,12 @@ hr {
     color:$fontColor
     }
   }
-  #linkLogin {
-    margin-right: 2vw;
+  #register {
+    margin-right: 6vw;
     width: 15vh;
+    a{
+      text-decoration: none;
+    }
   }
 }
 
@@ -129,7 +132,6 @@ form input {
 .logbuttons {
   display: flex;
   justify-content: space-evenly;
-
 }
 
 .loginButton {
@@ -157,6 +159,14 @@ form input {
 //---------------
 // NavBar
 
+slide {
+  color: white;
+}
+
+.hamburger {
+  background-color: $HeaderColor;
+}
+
 /* Individual item */
 .bm-item {
   display: inline-block;
@@ -180,8 +190,8 @@ form input {
   position: fixed;
   width: 36px;
   height: 30px;
-  left: 36px;
-  top: 36px;
+  right: 2vw;
+  top: 5vh;
 }
 
 /* Color/shape of burger icon bars */
@@ -251,7 +261,7 @@ form input {
       margin-top: 1vh;
       margin-bottom: 1vh;
     }
-    #title,#linkLogin {
+    #title,#register {
       margin : auto;
       margin-top: 1vh;
       margin-bottom: 1vh;

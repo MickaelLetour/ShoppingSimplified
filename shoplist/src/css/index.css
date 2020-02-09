@@ -16,7 +16,7 @@ hr {
   justify-content: space-between;
   text-align: center;
   background-color: #97C552;
-  font-family: Angelina Alt Demo;
+  font-family: "Angelina", arial;
   border-bottom: #141414 solid 1px;
 }
 .mainNav .imgNav {
@@ -25,17 +25,20 @@ hr {
   margin-left: 2vw;
   border-radius: 5px;
 }
-.mainNav #title, .mainNav #linkLogin {
+.mainNav #title, .mainNav #register {
   margin-top: 5vh;
   color: white;
   font-size: 2.5em;
 }
-.mainNav #title #titleColor, .mainNav #linkLogin #titleColor {
+.mainNav #title #titleColor, .mainNav #register #titleColor {
   color: #141414;
 }
-.mainNav #linkLogin {
-  margin-right: 2vw;
+.mainNav #register {
+  margin-right: 6vw;
   width: 15vh;
+}
+.mainNav #register a {
+  text-decoration: none;
 }
 
 footer {
@@ -147,6 +150,14 @@ form input {
   border-color: #f44336;
 }
 
+slide {
+  color: white;
+}
+
+.hamburger {
+  background-color: #97C552;
+}
+
 /* Individual item */
 .bm-item {
   display: inline-block;
@@ -168,8 +179,8 @@ form input {
   position: fixed;
   width: 36px;
   height: 30px;
-  left: 36px;
-  top: 36px;
+  right: 2vw;
+  top: 5vh;
 }
 
 /* Color/shape of burger icon bars */
@@ -232,7 +243,7 @@ form input {
     margin-top: 1vh;
     margin-bottom: 1vh;
   }
-  .mainNav #title, .mainNav #linkLogin {
+  .mainNav #title, .mainNav #register {
     margin: auto;
     margin-top: 1vh;
     margin-bottom: 1vh;

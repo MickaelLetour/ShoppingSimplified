@@ -1,21 +1,22 @@
 module.exports = app => {
+    const withAuth = require("./middleware");
     const groups = require("../controllers/group.controller.js");
   
     // Create a new user
-    app.post("/groups", groups.create);
+    app.post("/groups", withAuth,groups.create);
   
     // Retrieve all users
-    app.get("/groups", groups.findAll);
+    app.get("/groups",withAuth,groups.findAll);
   
     // Retrieve a single user with userId
-    app.get("/groups/:groupId", groups.findOne);
+    app.get("/groups/:groupId",withAuth, groups.findOne);
   
     // Update a user with userId
-    app.put("/groups/:groupId", groups.update);
+    app.put("/groups/:groupId",withAuth, groups.update);
   
     // Delete a user with userId
-    app.delete("/groups/:groupId", groups.delete);
+    app.delete("/groups/:groupId",withAuth, groups.delete);
   
     // Create a new user
-    app.delete("/groups", groups.deleteAll);
+    app.delete("/groups",withAuth, groups.deleteAll);
   };

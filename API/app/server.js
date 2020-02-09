@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cookieParser = require ('cookie-parser'); 
 
 const app = express();
 
@@ -22,6 +23,7 @@ require("./routes/user_groups.routes.js")(app);
 require("./routes/list_item.routes.js")(app);
 require("./routes/item.routes.js")(app);
 require("./routes/list.routes.js")(app);
+require("./routes/checktoken.routes.js")(app);
 
 let allowCrossDomain = function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -30,6 +32,7 @@ let allowCrossDomain = function(req, res, next) {
   next();
 };
 app.use(allowCrossDomain);
+app.use (cookieParser());
 
 
 // set port, listen for requests

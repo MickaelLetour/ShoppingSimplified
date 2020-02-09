@@ -3,6 +3,7 @@ import { slide as Menu } from "react-burger-menu";
 import {NavLink} from 'react-router-dom'
 
 
+
 class Navbar extends Component {
     constructor(props) {
         super(props)
@@ -16,7 +17,7 @@ class Navbar extends Component {
     
       render() {
         return (
-            <Menu >
+            <Menu className="hamburger" >
                 <NavLink className="menu-item" to="/ShopList/ActiveList" >
                  Active List
                 </NavLink>
@@ -36,7 +37,11 @@ class Navbar extends Component {
                 <NavLink className="menu-item" to="/ShopList/Account">
                     Account
                 </NavLink>
+                <NavLink className="menu-item" to="/ShopList/CreateItem">
+                    Create Item
+                </NavLink>
             </Menu>
+
           )}
         }
 

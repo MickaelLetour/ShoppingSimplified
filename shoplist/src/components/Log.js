@@ -55,13 +55,29 @@ class Log extends React.Component {
         let nick =this.state.nickname;
         let pass= this.state.password;
         event.preventDefault();
+        fetch(`http://localhost:2112/users/pass/${nick}&${pass}`, {
+            method: 'GET',
+            mode: 'cors'
+          })
+          .then(res => {
+            if (res.status === 200) {
+              this.props.history.push('/ShopList');
+            } else {
+              const error = new Error(res.error);
+              throw error;
+            }
+          })
+          .catch(err => {
+            console.error(err);
+            alert('Error logging in please try again');
+          });
         
 
         const url = `http://localhost:2112/users/pass/${nick}&${pass}`;
 
         //let response = dbGETFetch(url);
 
-        dbGETFetch(url).then((res) => {
+       /*  dbGETFetch(url).then((res) => {
             console.log("result "+res);
              this.setState({
                  logged: res  
@@ -82,7 +98,7 @@ class Log extends React.Component {
              
          });
 
-         console.log(this.state.logged);
+         console.log(this.state.logged); */
          
            
     }  
@@ -106,9 +122,6 @@ class Log extends React.Component {
                         password={this.state.password}
                         handleSubmit={this.handleSubmit}
                     />
-                    {/* <Forgot /> */}
-                    <NewUser />
-                   {/*  <NewPassword />  */} 
                 </div>
             </Router>
         )

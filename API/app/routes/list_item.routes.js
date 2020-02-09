@@ -1,25 +1,26 @@
 module.exports = app => {
+    const withAuth = require("./middleware");
     const list_item = require("../controllers/list_item.controller.js");
   
     // Create a new user
-    app.post("/list_item", list_item.create);
+    app.post("/list_item", withAuth,list_item.create);
  
     // Retrieve all users
-    app.get("/list_item", list_item.findAll);
+    app.get("/list_item", withAuth,list_item.findAll);
   
     // Retrieve a single user with userId
-    app.get("/list_item/listing=/:listId", list_item.findList);
+    app.get("/list_item/listing=/:listId", withAuth,list_item.findList);
 
     // Retrieve a single group with groupId
-    app.get("/list_item/itemoverload=/:itemId", list_item.findItem);
+    app.get("/list_item/itemoverload=/:itemId", withAuth,list_item.findItem);
  
     // Delete a user with userId
-    app.delete("/list_item/:listId&:itemId", list_item.delete);
+    app.delete("/list_item/:listId&:itemId", withAuth,list_item.delete);
   
      // Create a new user
-    app.delete("/list_item/delall", list_item.deleteAll); 
+    app.delete("/list_item/delall",withAuth, list_item.deleteAll); 
 
     // Update a user with userId
-    app.put("/list_item/uping=/:listId&:itemId", list_item.update);
+    app.put("/list_item/uping=/:listId&:itemId",withAuth, list_item.update);
 
   };

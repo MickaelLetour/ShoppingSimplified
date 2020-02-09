@@ -1,7 +1,8 @@
 const User = require("../models/user.model.js");
 var passwordHash = require ('password-hash');
 const nodemailer = require("nodemailer");
-var jwtUtils = require('../utils/jwt.utils');
+var generateTokenForUser = require('../utils/jwt.utils');
+var generateTokenForLogin = require('../utils/jwt.utils');
 var jwt = require('jsonwebtoken');
 
 // Create and Save a new user
@@ -21,7 +22,7 @@ exports.create = (req, res) => {
       email: req.body.email,
       photo: req.body.photo,
       active : 0,
-      temporaryToken : jwtUtils.generateTokenForUser(req.body.nickname)
+      temporaryToken : generateTokenForUser(req.body.nickname)
     });
 
     // Save user in the database
@@ -283,11 +284,14 @@ exports.updateByToken = (req, res) => {
           if(passwordHash.verify(req.params.userPass, data.password)===true && data.active===1){
            /*  console.log(req.params.userPass);
             console.log(data.password); */
-            
-            res.send(true);
+            const token = generateTokenForLogin(req.params.userNick);
+            res.cookie('token', token, {httpOnly : true})
+              .sendStatus(200);
           }
           else {
-            res.send(false);
+            //send token
+            //const private_key= '0djg6lf6jddd66rgj5dvfejbrte35gch6fr28dh6fhrd0gghv65gt6tvv';
+            res.send(false).sendStatus(400); 
           }
       } 
     });
@@ -349,3 +353,5 @@ exports.deleteAll = (req, res) => {
       else res.send({ message: `All users were deleted successfully!` });
     });
   };
+
+

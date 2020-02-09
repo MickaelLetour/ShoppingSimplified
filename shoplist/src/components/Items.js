@@ -37,13 +37,20 @@ class Items extends React.Component {
     }
     
     render() {
+        if ("" === true){
         return (
-            
                 <div>
-                    <h3> Items list</h3>
-                </div>
-            
+                    <h1>it work</h1>
+                </div>      
         )
+        }
+        else {
+            return (
+                <div>
+                    <h1>it not work</h1>
+                </div> 
+            )
+        }
     }
 }
 

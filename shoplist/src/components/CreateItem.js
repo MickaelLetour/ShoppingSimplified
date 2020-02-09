@@ -12,17 +12,23 @@ class CreateItem extends Component {
       }
 
     render() {
+        const url = `http://localhost:2112//categories`;
+        dbGETFetch(url).then((res) => {
+            let cat = res;
+        });   
+
         return (
             <div>
                 <form>
-                    <input list="browsers" name="browser" />
-                    <datalist id="brwsers">
-                        <option value="Internet Explorer" />
-                        <option value="Firefox"/>
-                        <option value="Chrome"/>
-                        <option value="Opera"/>
-                        <option value="Safari"/>
-                    </datalist>
+                    <input list="browsers" name="browser"/>
+                        <datalist id="browsers">
+                            <option value="Internet Explorer"/>
+                            <option value="Firefox"/>
+                            <option value="Chrome"/>
+                            <option value="Opera"/>
+                            <option value="Safari"/>
+                        </datalist>                     
+                    <input type="submit"/>
                 </form>
             </div>
         )

@@ -1,7 +1,6 @@
 import React from "react";
 import Auth from "../auth.js"
-
-import Navbar from "./Navbar.js"
+import Navbar from "./Navbar"
 import Home from "./Home.js"
 import Lists from "./Lists"
 import Items from "./Items.js"
@@ -19,6 +18,7 @@ class ShopList extends React.Component {
             logged: Auth.isAuthenticated(),
             menuOpen: false,
         }
+       
         this.openMenu=this.openMenu.bind(this);
         this.closeMenu=this.closeMenu.bind(this);
         //this.componentDidMount=this.componentDidMount.bind(this);
@@ -38,22 +38,23 @@ class ShopList extends React.Component {
     }
     
     render() {
+        const users = this.state.logged
+        if (users === true){
         return (
-            <Router>
                 <div>
-                    <Navbar /* pageWrapId={"page-wrap"} outerContainerId={"App"} */
-                        openMenu={this.openMenu}
-                        closeMenu={this.closeMenu}
-                    />
-                        <Switch>
-                            <ProtectedRoute exact path="/ShopList/ActiveList" component={Home}/>
-                            <ProtectedRoute exact path="/ShopList/Lists" component={Lists} />
-                            <ProtectedRoute exact path="/ShopList/Items" component={Items} />
-                        </Switch>
-                </div>
-            </Router>
+                    <h1>it work</h1>
+                </div>      
         )
+        }
+        else {
+            return (
+                <div>
+                    <h1>it not work</h1>
+                </div> 
+            )
+        }
     }
 }
+
 
 export default ShopList
