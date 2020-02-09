@@ -1,6 +1,5 @@
 module.exports = app => {
     const users = require("../controllers/user.controller.js");
-    const withAuth = require("./middleware");
   
     // Create a new user
     app.post("/users", users.create);
