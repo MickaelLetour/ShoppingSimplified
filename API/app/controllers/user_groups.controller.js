@@ -15,7 +15,7 @@ exports.create = (req, res) => {
       id_Group : req.body.id_Group,
     });
   
-    // Save user in the database
+    // Save user and group in the database
     User_Groups.create(user_groups, (err, data) => {
       if (err)
         res.status(500).send({

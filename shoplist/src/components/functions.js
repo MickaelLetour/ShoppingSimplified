@@ -38,8 +38,9 @@ export function dbPOSTFetch(url,data) {
       .catch(err => err)
 
       .then(res=>{
-          console.log(res);
-          console.log("User Created");
+          /* console.log(res);
+          console.log("item created"); */
+          return res;
       })
   } 
 

@@ -13,6 +13,7 @@ exports.create = (req, res) => {
     const group = new Group({
       group_name : req.body.group_name,
       n_members : req.body.n_members,
+      active : req.body.active,
       logo: req.body.logo,
     });
 

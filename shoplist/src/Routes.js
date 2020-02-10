@@ -11,6 +11,7 @@ import Items from "./components/Items.js"
 import Auth from "./auth"
 import { ProtectedRoute } from './protRoute.js';
 import NewUser from './components/NewUser';
+import ShopList from './components/ShopList';
 
 
 class Routes extends React.Component {
@@ -39,9 +40,13 @@ class Routes extends React.Component {
     this.setState({ menuOpen: false })
   }
 
+
+
+
 componentDidMount(){
-   if(this.state.status = true){
-    console.log("mounted");
+  let stats=Auth.isAuthenticated();
+   if(stats === true){
+   console.log("i entered mount")
     Auth.setLogout();
         console.log("i entered3")
         console.log(Auth.button())
@@ -53,7 +58,7 @@ componentDidMount(){
 
 
   headerHandler(){
-      if(this.state.button=== 'Register')
+      if(this.state.button=== 'Register' && (this.state.status === false))
       {
         Auth.setLoginButton();
         console.log("i entered")
@@ -63,7 +68,7 @@ componentDidMount(){
         })
       }
       
-      if(this.state.button === 'Login' && (this.state.status = false)){
+      if(this.state.button === 'Login' && (this.state.status === false)){
         Auth.setRegister();
         console.log("i entered2")
         console.log(Auth.button())
@@ -72,8 +77,14 @@ componentDidMount(){
         })
       }
 
-    
-      
+      if(this.state.button === 'Register' && (this.state.status === true)){
+        Auth.setLogout();
+        console.log("i entered2")
+        console.log(Auth.button())
+        this.setState({
+          button : Auth.button(),
+        })
+      }
   }
 
 
@@ -87,10 +98,10 @@ componentDidMount(){
          />
           <Switch>
             <Route exact path="/" component={Log} />
+            <Route exact path="/Login" component={Log} />
             <Route exact path="/Register" component={NewUser}/>
-            <ProtectedRoute exact path="/ShopList"
-            >
-              <Home />
+            <ProtectedRoute exact path="/ShopList">
+              <ShopList stats={this.state.status}/>
               <Navbar />
             </ProtectedRoute>
             <ProtectedRoute exact path="/ShopList/ActiveList">

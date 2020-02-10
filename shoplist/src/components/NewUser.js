@@ -3,6 +3,7 @@ import {dbPOSTFetch} from "./functions"
 import Auth from "../auth.js"
 
 class NewUser extends Component {
+    
     constructor(){
         super()
         this.state = {
@@ -43,6 +44,7 @@ class NewUser extends Component {
         console.log(this.state.confirmPassword);   */
         
         event.preventDefault();
+        var ids =[];
 
         if (this.state.confirmPassword===this.state.password){
             const url = 'http://localhost:2112/users/';
@@ -53,14 +55,52 @@ class NewUser extends Component {
                     password: this.state.password,
                     photo: ""
                 };
-            dbPOSTFetch(url,Data)
+            const urlgroup = 'http://localhost:2112/groups';
+            const DataGroup = 
+                {
+                    group_name: this.state.nickname,
+                    n_members: 1,
+                    active : 1,
+                    logo: ""
+                };
 
+            dbPOSTFetch(url,Data)
+            .then((res=>{
+            
+            ids[0] = res.id;
+            console.log(res.id)
+            
+
+            dbPOSTFetch(urlgroup,DataGroup)
+            .then((res=>{
+            
+                ids[1] = res.id;
+                
+            
+            console.log(ids[0]);
+            console.log(ids[1]);
+
+            const urluserg = 'http://localhost:2112/user_groups';
+            const DataUserGroup = 
+                {
+                    id_User : ids[0],
+                    id_Group : ids[1]
+                };
+
+            dbPOSTFetch(urluserg,DataUserGroup)
             .then((res) => {
+
+
                 Auth.setRegister();
                 this.props.history.push("/"); 
                            
             })
-        }
+
+            }))
+        }))
+            
+           
+        } 
         else {
             console.log("password different confirmPassword");
         }

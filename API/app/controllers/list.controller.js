@@ -12,7 +12,8 @@ exports.create = (req, res) => {
     // Create a list
     const list = new List({
       groupe_id : req.body.groupe_id,
-      name : req.body.name
+      name : req.body.name,
+      active : req.body.active
     });
   
     // Save list in the database
@@ -82,6 +83,36 @@ exports.update = (req, res) => {
       }
     );
   };
+
+
+
+  // Update a list identified by the listId in the request
+exports.updateActive = (req, res) => {
+  // Validate Request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+  }
+
+  List.updateActiveById(
+    req.params.listId,
+    new List(req.body),
+    (err, data) => {
+      if (err) {
+        if (err.kind === "not_found") {
+          res.status(404).send({
+            message: `Not found list with id ${req.params.listId}.`
+          });
+        } else {
+          res.status(500).send({
+            message: "Error updating list with id " + req.params.listId
+          });
+        }
+      } else res.send(data);
+    }
+  );
+};
 
 // Delete a list with the specified listId in the request
 exports.delete = (req, res) => {

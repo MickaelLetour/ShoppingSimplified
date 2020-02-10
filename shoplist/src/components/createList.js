@@ -15,16 +15,12 @@ class createList extends Component {
         return (
             <div>
                 <form onSubmit={this.props.handleSubmit}>
-                    <div className="imgContainer">
-                        <img src={avatar} alt="Avatar"/>
-                    </div>
-
                     <div>
                         <label className="Form">List Name:
                             <input 
                                 type="text" 
-                                placeholder="Enter Username" 
-                                value= {this.props.nickname}
+                                placeholder="Enter Listname" 
+                                value= {this.props.listname}
                                 name="nickname" 
                                 onChange={this.props.handleChange}
                                 required 

@@ -12,6 +12,9 @@ module.exports = app => {
   
     // Update a list with listId
     app.put("/lists/:listId", lists.update);
+
+    // Update a list with listId
+    app.put("/lists/Active/:listId", lists.updateActive);
   
     // Delete a list with listId
     app.delete("/lists/:listId", lists.delete);

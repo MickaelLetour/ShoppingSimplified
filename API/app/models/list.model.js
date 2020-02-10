@@ -8,6 +8,10 @@ const list = function(list) {
     if (typeof list.name === 'string' && list.name.length !=0){
         this.name = list.name;
     }
+
+    if (typeof list.active === 'number' && list.active.length !=0){
+      this.active = list.active;
+  }
 };
 
 list.create = (newlist, result) => {
@@ -77,6 +81,34 @@ list.updateById = (id, list, result) => {
     }
   );
 };
+
+
+list.updateActiveById = (id, list, result) => {
+  sql.query(
+    "UPDATE list SET active = ? WHERE id = ?",
+    [list.name, id],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      if (res.affectedRows == 0) {
+        // not found list with the id
+        result({ kind: "not_found" }, null);
+        return;
+      }
+
+      console.log("updated list: ", { id: id, ...list });
+      result(null, { id: id, ...list });
+    }
+  );
+};
+
+
+
+
 
 list.remove = (id, result) => {
   sql.query("DELETE FROM list WHERE id = ?", id, (err, res) => {
