@@ -1,15 +1,4 @@
 
-/* export function toglePw(id) {
-    var x = document.getElementById(id)
-
-    if(x.type === "password")
-        x.type = "text";
-    else
-        x.type = "password";
-} */
-
-
-
 /* export function showHide(){
     this.setState({
       type: this.state.type === 'password' ? 'input' : 'password'
@@ -57,19 +46,6 @@ export function dbPOSTFetch(url,data) {
         return res;
     })
 } 
-
-/* 
-export async function dbGETFetch(url) {
-    return await fetch(url, {
-        method: 'GET',
-        //mode: 'CORS',
-        //body: JSON.stringify(data),
-       /*  headers: {
-            'Content-Type': 'application/json'
-        } */
-    //}).then(res =>{ return res.json().catch((res) => {return res;})}).catch(err => err); */
-
-
 
 /*   export function test(){
       console.log("i'm a function");

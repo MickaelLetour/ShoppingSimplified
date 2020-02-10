@@ -2,16 +2,17 @@ const sql = require("./connect.js");
 
 // constructor
 const item = function(item) {
-    if (typeof item.category_id === 'int' && item.category_id.length !=0){ // int error with postman
+    if (typeof item.category_id === 'number' && item.category_id.length !=0){ // int error with postman
         this.category_id = item.category_id;
+    }
+    if (typeof item.icon_id === 'number' && item.icon_id.length !=0){
+        this.icon_id = item.icon_id;
     }
     if (typeof item.name === 'string' && item.name.length !=0){
         this.name = item.name;
     }
-    if (typeof item.logo === 'string' && item.logo.length !=0){
-        this.logo = item.logo;
-    }
 };
+
 
 item.create = (newitem, result) => {
   sql.query("INSERT INTO item SET ?", newitem, (err, res) => {

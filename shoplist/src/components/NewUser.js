@@ -98,8 +98,7 @@ class NewUser extends Component {
 
             }))
         }))
-            
-           
+                
         } 
         else {
             console.log("password different confirmPassword");

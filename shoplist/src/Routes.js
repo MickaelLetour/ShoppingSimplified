@@ -101,13 +101,13 @@ componentDidMount(){
             <Route exact path="/Login" component={Log} />
             <Route exact path="/Register" component={NewUser}/>
             <ProtectedRoute exact path="/ShopList">
-              <ShopList stats={this.state.status}/>
+              <ShopList /* stats={this.state.status} *//>
               <Navbar />
             </ProtectedRoute>
-            <ProtectedRoute exact path="/ShopList/ActiveList">
-              <Home />
-              <Navbar />
-            </ProtectedRoute>
+            <ProtectedRoute exact path="/ShopList/ActiveList"
+              component={()=>{return(<div><Home />  <Navbar /> </div>); }} 
+              
+           />
             <ProtectedRoute exact path="/ShopList/Lists">
               <Lists />
               <Navbar />

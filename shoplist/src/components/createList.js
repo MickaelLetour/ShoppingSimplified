@@ -29,24 +29,22 @@ class createList extends Component {
                         <div>
                             <label className="Form">Items:
                                 <input 
-                                    type={this.props.type} 
-                                    className="Form__input" 
-                                    placeholder="Enter Password" 
-                                    value={this.props.pass}
-                                    name="password"
-                                    onChange={this.props.handleChange}
-                                    required
+                                
+                                type="checkbox" 
+                                checked={props.item.selected} 
+                                onChange={() => props.handleChange(props.item.id)}
+                                 />
+                                <p style={props.item.completed ? completedStyle: null}>{props.item.text}</p>
                                 />
-
-                                <span className="Form__show" onClick={this.props.showHide}>{this.props.type === 'input' ? 'Hide' : 'Show'}</span>
+                                
                             </label>
                         </div>
                         <div className="logbuttons">
-                            <button type="button" className="forgotpw">Forgot Password?</button>
+                            <button type="button" className="cancel">Cancel</button>
                             <button 
-                            className="loginButton" 
+                            className="SubmitButton" 
                             type="submit"
-                            >Login</button>
+                            >Submit</button>
                         </div>
                     </div>
                 </form>

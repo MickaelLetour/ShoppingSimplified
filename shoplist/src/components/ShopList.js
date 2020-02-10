@@ -28,8 +28,8 @@ class ShopList extends React.Component {
 
 
     componentDidMount(props) {
-        if(this.state.logged===false)
-        return <Redirect to="/" />
+       // if(this.state.logged===false)
+        //return <Redirect to="/" />
 
         
        
