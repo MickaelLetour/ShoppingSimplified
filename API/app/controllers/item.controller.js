@@ -13,7 +13,7 @@ exports.create = (req, res) => {
     const item = new Item({
       name : req.body.name,
       category_id : req.body.category_id,
-      logo : req.body.logo
+      icon_id : req.body.icon_id
     });
   
     // Save item in the database

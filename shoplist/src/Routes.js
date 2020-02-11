@@ -11,6 +11,8 @@ import Items from "./components/Items.js"
 import Auth from "./auth"
 import { ProtectedRoute } from './protRoute.js';
 import NewUser from './components/NewUser';
+import Forgot from './components/Forgot';
+import CreateItem from './components/CreateItem';
 
 
 class Routes extends React.Component {
@@ -88,10 +90,16 @@ componentDidMount(){
           <Switch>
             <Route exact path="/" component={Log} />
             <Route exact path="/Register" component={NewUser}/>
-            <ProtectedRoute exact path="/ShopList"
-            >
+            <ProtectedRoute exact path="/CreateItem">
+              <CreateItem />
+              <Navbar />
+            </ProtectedRoute>
+            <ProtectedRoute exact path="/ShopList">
               <Home />
               <Navbar />
+            </ProtectedRoute>
+            <ProtectedRoute exact path="/ForgotPassword">
+              <Forgot />
             </ProtectedRoute>
             <ProtectedRoute exact path="/ShopList/ActiveList">
               <Home />
