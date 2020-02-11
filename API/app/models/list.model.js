@@ -2,14 +2,14 @@ const sql = require("./connect.js");
 
 // constructor
 const list = function(list) {
-    if (typeof list.group_id === 'number' && list.group_id.length !=0){// int error with postman
+    if (typeof list.group_id === 'string' && list.group_id.length !=0){// int error with postman
         this.group_id = list.group_id;
     }
     if (typeof list.name === 'string' && list.name.length !=0){
         this.name = list.name;
     }
 
-    if (typeof list.active === 'number' && list.active.length !=0){
+    if (typeof list.active === 'string' && list.active.length !=0){
       this.active = list.active;
   }
 };

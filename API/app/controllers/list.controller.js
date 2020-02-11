@@ -11,7 +11,7 @@ exports.create = (req, res) => {
   
     // Create a list
     const list = new List({
-      groupe_id : req.body.groupe_id,
+      group_id : req.body.group_id,
       name : req.body.name,
       active : req.body.active
     });

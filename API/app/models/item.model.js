@@ -2,10 +2,10 @@ const sql = require("./connect.js");
 
 // constructor
 const item = function(item) {
-    if (typeof item.category_id === 'number' && item.category_id.length !=0){ // int error with postman
+    if (typeof item.category_id === 'string' && item.category_id.length !=0){ // int error with postman
         this.category_id = item.category_id;
     }
-    if (typeof item.icon_id === 'number' && item.icon_id.length !=0){
+    if (typeof item.icon_id === 'string' && item.icon_id.length !=0){
         this.icon_id = item.icon_id;
     }
     if (typeof item.name === 'string' && item.name.length !=0){

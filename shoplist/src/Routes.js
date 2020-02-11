@@ -100,22 +100,22 @@ componentDidMount(){
             <Route exact path="/" component={Log} />
             <Route exact path="/Login" component={Log} />
             <Route exact path="/Register" component={NewUser}/>
-            <ProtectedRoute exact path="/ShopList">
-              <ShopList /* stats={this.state.status} *//>
-              <Navbar />
-            </ProtectedRoute>
+            <ProtectedRoute exact path="/ShopList"
+              component={()=>{return(<div><ShopList />  <Navbar /> </div>); }}
+            />
+
             <ProtectedRoute exact path="/ShopList/ActiveList"
               component={()=>{return(<div><Home />  <Navbar /> </div>); }} 
               
            />
-            <ProtectedRoute exact path="/ShopList/Lists">
-              <Lists />
-              <Navbar />
-            </ProtectedRoute>
-            <ProtectedRoute exact path="/ShopList/Items" >
-              <Items />
-              <Navbar />
-            </ProtectedRoute>
+            <ProtectedRoute exact path="/ShopList/Lists"
+              component={()=>{return(<div><Lists />  <Navbar /> </div>); }}
+            />
+
+            <ProtectedRoute exact path="/ShopList/Items" 
+              component={()=>{return(<div><Items />  <Navbar /> </div>); }}
+            />
+
             <Route path="*" component={() => "404 NOT FOUND"}>
             </Route>
           </Switch>

@@ -3,7 +3,7 @@ import avatar from "../img/user.png"
 //import {dbGETFetch} from "./functions"
 
 
-class createList extends Component {
+class CreateList extends Component {
     constructor(props){
         super(props)
           this.state = {
@@ -13,7 +13,7 @@ class createList extends Component {
 
     render() {
         return (
-            <div>
+/*             <div>
                 <form onSubmit={this.props.handleSubmit}>
                     <div>
                         <label className="Form">List Name:
@@ -25,21 +25,21 @@ class createList extends Component {
                                 onChange={this.props.handleChange}
                                 required 
                             />
-                        </label>
+                        </label> */
                         <div>
                             <label className="Form">Items:
-                                <input 
+{/*                                 <input 
                                 
                                 type="checkbox" 
-                                checked={props.item.selected} 
-                                onChange={() => props.handleChange(props.item.id)}
-                                 />
-                                <p style={props.item.completed ? completedStyle: null}>{props.item.text}</p>
+                                checked={this.props.item.} 
+                                //onChange={() => props.handleChange(props.item.id)}
+                                 /> */}
+                                <p >{this.props.item.name}</p>
                                 />
                                 
-                            </label>
-                        </div>
-                        <div className="logbuttons">
+                            </label> 
+                        {/*</div>
+                         <div className="logbuttons">
                             <button type="button" className="cancel">Cancel</button>
                             <button 
                             className="SubmitButton" 
@@ -47,8 +47,8 @@ class createList extends Component {
                             >Submit</button>
                         </div>
                     </div>
-                </form>
-            </div>
+                </form>*/}
+            </div> 
         )
     }
 }

@@ -19,7 +19,7 @@ con.connect(function(err) {
 
     if (err) throw err;
     console.log("Connected!");
-    sql = "CREATE TABLE IF NOT EXISTS `Groups` (id INT AUTO_INCREMENT NOT NULL, group_name VARCHAR(255), n_members INT(2), active INT(1),logo TEXT, PRIMARY KEY (id))";
+    sql = "CREATE TABLE IF NOT EXISTS `Groups` (id INT AUTO_INCREMENT NOT NULL, group_name VARCHAR(255), n_members INT(2), active INT(1), logo TEXT, PRIMARY KEY (id))";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Table Group created");
@@ -37,7 +37,7 @@ con.connect(function(err) {
 
     if (err) throw err;
     console.log("Connected!");
-    sql = "CREATE TABLE IF NOT EXISTS `List` (id INT(15) AUTO_INCREMENT NOT NULL, group_id INT(11), name VARCHAR(255); active INT(1), PRIMARY KEY (id), FOREIGN KEY (group_id) references `Groups`(id))";
+    sql = "CREATE TABLE IF NOT EXISTS `List` (id INT(15) AUTO_INCREMENT NOT NULL, group_id INT(11), name VARCHAR(255), active INT(1), PRIMARY KEY (id), FOREIGN KEY (group_id) references `Groups`(id))";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Table List created");
