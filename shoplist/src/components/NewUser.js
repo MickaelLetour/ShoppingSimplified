@@ -119,7 +119,7 @@ class NewUser extends Component {
                                 value= {this.state.nickname}
                                 name="nickname" 
                                 onChange={this.handleChange}
-                                //required 
+                                required 
                             />
                         </label>
                     </div>
