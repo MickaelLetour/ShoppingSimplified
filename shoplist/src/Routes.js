@@ -16,6 +16,7 @@ import Forgot from './components/Forgot';
 import CreateItem from './components/CreateItem';
 
 
+
 class Routes extends React.Component {
 
   constructor() {
@@ -99,7 +100,7 @@ componentDidMount(){
           button={this.state.button}
          />
           <Switch>
-            <Route exact path="/" component={Log} />
+            <Route exact path="/" component={Lists} /> {/* LOG */}
             <Route exact path="/Login" component={Log} />
             <Route exact path="/Register" component={NewUser}/>
             <ProtectedRoute exact path="/ShopList"

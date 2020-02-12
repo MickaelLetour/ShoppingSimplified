@@ -18,6 +18,7 @@ hr {
   background-color: #97C552;
   font-family: Angelina Alt Demo;
   border-bottom: #141414 solid 1px;
+  height: 17vh;
 }
 .mainNav .imgNav {
   width: 15vh;
@@ -147,6 +148,11 @@ form input {
   border-color: #f44336;
 }
 
+.bm {
+  position: fixed;
+  float: right;
+}
+
 /* Individual item */
 .bm-item {
   display: inline-block;
@@ -189,10 +195,23 @@ form input {
 }
 
 /* General sidebar styles */
+.bm-overlay {
+  position: fixed;
+  top: 17vh;
+}
+
+.bm-menu-wrap {
+  position: fixed !important;
+  height: 60% !important;
+  top: 17vh;
+}
+
 .bm-menu {
-  background: rgba(226, 167, 28, 0.4);
+  position: relative;
+  background: #97C552;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
+  opacity: 1;
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -240,6 +259,10 @@ form input {
     margin-top: 1vh;
     margin-bottom: 1vh;
     width: 100%;
+  }
+
+  .bm-menu-wrap {
+    top: 20vh;
   }
 
   form {

@@ -1,7 +1,7 @@
 import React from "react";
 import Auth from "../auth.js"
 //import {dbGETFetch} from "./functions"
-import {BrowserRouter as Redirect} from 'react-router-dom';
+//import {BrowserRouter as Redirect} from 'react-router-dom';
 /* import Navbar from "./Navbar.js"
 import Home from "./Home.js"
 import Lists from "./Lists"
@@ -10,7 +10,7 @@ import Items from "./Items.js"
 import {BrowserRouter as Router, Switch} from "react-router-dom"
 
 import { ProtectedRoute } from '../protRoute.js'; */
-
+import CreateItem from "./CreateItem.js"
 
 
 class ShopList extends React.Component {
@@ -41,7 +41,10 @@ class ShopList extends React.Component {
     
     render() {
         return (
-        <h1> home </h1>
+        <div>
+            <h1> home </h1>
+            <CreateItem />
+        </div>
         )
     }
 }
