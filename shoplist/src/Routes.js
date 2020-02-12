@@ -12,6 +12,8 @@ import Auth from "./auth"
 import { ProtectedRoute } from './protRoute.js';
 import NewUser from './components/NewUser';
 import ShopList from './components/ShopList';
+import Forgot from './components/Forgot';
+import CreateItem from './components/CreateItem';
 
 
 class Routes extends React.Component {
@@ -116,6 +118,15 @@ componentDidMount(){
               component={()=>{return(<div><Items />  <Navbar /> </div>); }}
             />
 
+            <ProtectedRoute exact path="/CreateItem">
+              <CreateItem />
+              <Navbar />
+            </ProtectedRoute>
+            
+            <ProtectedRoute exact path="/ForgotPassword">
+              <Forgot />
+            </ProtectedRoute>
+        
             <Route path="*" component={() => "404 NOT FOUND"}>
             </Route>
           </Switch>
