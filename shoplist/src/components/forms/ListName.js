@@ -34,7 +34,8 @@ class ListName extends Component {
                         </label>
 
                             <label className="Form">Item Categorie to Add:
-                            <input list="categorie" 
+                            <input 
+                                list="categorie" 
                                 name="ncate" 
                                 value={this.props.ncate} 
                                 onChange={this.props.handleChange}
