@@ -12,11 +12,14 @@ class ItemList extends Component {
         }
       }
 
+    
     render() {
+        //console.log(this.props.item)
         return (
-            
-                <li><div>
-                    {this.props.item.name}
+                <li><div className="item">
+                    <h4>{this.props.item.name}</h4>
+                    <img src={this.props.item.icon_ID} alt="icon" width='60vw' height="60vh"></img>
+                    <label>{this.props.item.category_id}</label>
                 </div></li>
            
         )
