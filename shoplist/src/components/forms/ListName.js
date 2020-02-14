@@ -17,7 +17,18 @@ class ListName extends Component {
       
 
     render() {
-        //console.log(this.props.categorie)
+         console.log(this.props.provisional)
+        /*if(this.props.provisional.length !==0)
+        {
+            this.props.provisional.map(obj => 
+               
+                
+             )
+        } */
+        let status=false;
+        
+        if(this.props.provisional.length !==0)
+            status= true;
         return (
              <div className="ListName">
                 <form onSubmit={this.props.handleSubmitName}>
@@ -33,7 +44,7 @@ class ListName extends Component {
                             />
                         </label>
 
-                            <label className="Form">Item Categorie to Add:
+                        <label className="Form">Item Categorie to Add:
                             <input list="categorie" 
                                 name="ncate" 
                                 value={this.props.ncate} 
@@ -45,7 +56,22 @@ class ListName extends Component {
                             ))}
                             </datalist>
                          </label>
+                         <div className="InputBox" >
+                             { status ? (this.props.provisional.map(prov=>(
+                                <li onClick={()=>this.props.onclickHandler(prov.id)}>
+                                <img src={prov.icon_ID} alt="icon" width='30%' height="30%"
+                                    key={prov.id+1000000000}
+                                ></img></li>
+                             ))) : (<img src="https://image.flaticon.com/icons/svg/916/916912.svg" alt="icon" width='100%' height="100%"></img>)
+                                 
+                         /*         return (<li onClick={()=>this.props.onclickHandler(prov.id)}>
+                                     <img src={prov.icon_ID} alt="icon" width='30%' height="30%"
+                                    key={prov.id}
+                                 ></img></li>
+                             ) */
+                             }
                             
+                        </div> 
 
                         <div className="logbuttons">
                             <button type="button" className="forgotpw">Cancel</button>

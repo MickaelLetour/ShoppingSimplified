@@ -2,6 +2,7 @@ import React from "react";
 //import auth from "./auth";
 import ListName from "./forms/ListName.js"
 import ItemList from "./forms/ItemList.js"
+import ItemSelection from "./forms/ItemSelection.js"
 import {dbGETFetch} from "./functions"
 //import CreateList from "./createList";
 
@@ -10,14 +11,20 @@ class Lists extends React.Component {
     constructor() {
       super();
       this.state={
-        itemlist : "",
+        originallist : "",
+        displayList:"",
         listname : "",
         categorie : "",
+        ProvisionalItems : "",
         mountonce: false,
+        ncate :"",
+        selectedItems : [],
       }
       this.componentDidMount=this.componentDidMount.bind(this);
+      this.componentDidUpdate=this.componentDidUpdate.bind(this);
       this.handleChange=this.handleChange.bind(this);
       this.handleSubmitName=this.handleSubmitName.bind(this);
+      this.onclickHandler=this.onclickHandler.bind(this)
       
     }
 
@@ -28,35 +35,37 @@ class Lists extends React.Component {
       const cats= "http://localhost:2112/categories";
 
       var mounted = this.state.mountonce;
+      
       if(mounted===false)
       {
         dbGETFetch(cats)
-          .catch(err => err)
-          .then(allcats=>{
-          this.setState({
-            categorie : allcats,
-            mountonce : true,
-            ncate :"",
+        .catch(err => err)
+        .then(allcats=>{
+        this.setState({
+          categorie : allcats,
           })
         })
+        dbGETFetch(url)
+        .catch(err => err)
+        .then((items=>{
+          this.setState({
+            originallist : items,
+            mountonce : true,
+            })
+          }))
+          
       }
+      
 
       dbGETFetch(url)
       .catch(err => err)
-    
       .then((items=>{
-        //console.log(res)
-        /* this.setState({
-          itemlist : res,
-        }) */
-        //var urlCat= 
-        for(let data of items){
+
+          for(let data of items){
            let cat= data.category_id;
           let icon = data.icon_ID;
 
-         /*  console.log(cat)
-          console.log(icon)  */
-          //console.log(data);
+        
           var caturl=`http://localhost:2112/categories/${cat}`;
           var iconurl=`http://localhost:2112/icons/${icon}`;
 
@@ -69,7 +78,7 @@ class Lists extends React.Component {
               // console.log(data.category_id);
 
               this.setState({
-                itemlist :items,
+                displayList :items,
               })
             }
           }) 
@@ -81,41 +90,117 @@ class Lists extends React.Component {
             if(data.icon_ID===icons.id){
               data.icon_ID=icons.icon;
               this.setState({
-                itemlist :items
+                displayList:items
               })
             }
           }) 
-        }
-        }))
+        } 
+      }))
       }
 
-    handleChange(event) {
-      const {name, value} = event.target
-      this.setState({
-          [name]: value
-      })
-      console.log(this.state.ncate)
+    componentDidUpdate(){
+      let itemList = [];
+      let i = 0;
+      let asID = Number(this.state.ncate)
+      if(this.state.ncate.length !==0){
+          this.state.originallist.map(original=>
+          this.state.displayList.map(items =>{
+            
+            if( items.id === original.id && 
+              (items.category_id.indexOf(this.state.ncate) !== -1 ||  
+              original.category_id === asID)) {
+              itemList[i]=items;
+              i++;
+            } 
+            
+            return itemList
+            })
+          )
+          
+        }
+        return itemList
     }
 
-  handleSubmitName(event) {
-    event.preventDefault();
-    console.log(this.state.listname)
-  }
+    handleChange(event) {
+      
+      const {name, value} = event.target
+      
+/*       if(name === 'ncate')
+      {
+        this.setState({
+          [name]: value,
+          displayList : test
+        })
+      }
+      else {  */
+        this.setState({
+          [name]: value
+      }) 
+     // }
+
+      //console.log(test)
+    }
+
+    handleSubmitName(event) {
+      event.preventDefault();
+      //console.log(this.state.listname)
+    }
   
 
-  onclickHandler(id) {
+    onclickHandler(id) {
+      let items =  this.state.selectedItems;
+      let display = [];
+      let i=0;
+      if(items.includes(id) === false)
+        items.push(id);
+      
+        else {
+          for(let i=0; i<items.length ; i++)
+          { 
+            if(items[i]===id)
+            items.splice(i,1)
+          }
+        }
 
-  }
+      this.setState({
+        selectedItems : items
+      })
+
+      this.state.displayList.map(selected =>{
+        //console.log(selected.id)
+        for(let j=0 ; j<items.length ; j++)
+        {
+          if(items[i]===selected.id){
+            display[i] = selected;
+            i++;
+          }
+        }
+        return display;
+      })
+
+      this.setState({
+        ProvisionalItems : display,
+      })
+      
+      /*console.log(this.state.selectedItems) */
+    }
 
 
     render(){
-      
-      
-       if(this.state.itemlist!=="")
+      //console.log(this.state.ProvisionalItems);
+      let mount = this.componentDidUpdate();
+      if(this.state.displayList!=="" && mount.length ===0)
       {
-      const items =  this.state.itemlist.map(item => <ItemList key={item.id} item={item} 
-      //componentDidMount={this.componentDidMount}
-      />)
+      const items =  this.state.displayList.map(item => 
+       // this.state.originallist.map(ori=>
+          <ItemList 
+          key={item.id} 
+          item={item} 
+          ncate={this.state.ncate}
+          mount={this.componentDidUpdate()}
+          onclickHandler={this.onclickHandler}
+          />   
+      )
       return (
         <div>
             <ListName 
@@ -124,7 +209,8 @@ class Lists extends React.Component {
             listname={this.state.listname}
             categorie={this.state.categorie}
             ncate={this.state.ncate}
-
+            provisional={this.state.ProvisionalItems}
+            onclickHandler={this.onclickHandler}
             />
           <div className="itemContainer">
             <ul className="itemList">
@@ -133,7 +219,39 @@ class Lists extends React.Component {
           </div>
         </div>
       )
-      } 
+      } else if(this.state.displayList!=="" && mount.length !==0){
+        
+        const nitems =  mount.map(nitem => 
+          // this.state.originallist.map(ori=>
+             <ItemList 
+             key={nitem.id} 
+             item={nitem} 
+             ncate={this.state.ncate}
+             mount={this.componentDidUpdate()}
+             onclickHandler={this.onclickHandler}
+             />
+
+         )
+        
+        return (
+          <div>
+              <ListName 
+              handleSubmitName={this.handleSubmitName}
+              handleChange={this.handleChange} 
+              listname={this.state.listname}
+              categorie={this.state.categorie}
+              ncate={this.state.ncate}
+              provisional={this.state.ProvisionalItems}
+              onclickHandler={this.onclickHandler}
+              />
+            <div className="itemContainer">
+              <ul className="itemList">
+                {nitems}
+              </ul>
+            </div>
+          </div>
+        )
+      }
 
       else {
         return(
