@@ -18,13 +18,8 @@ class ListName extends Component {
 
     render() {
          console.log(this.props.provisional)
-        /*if(this.props.provisional.length !==0)
-        {
-            this.props.provisional.map(obj => 
-               
-                
-             )
-        } */
+
+
         let status=false;
         
         if(this.props.provisional.length !==0)
@@ -57,20 +52,18 @@ class ListName extends Component {
                             </datalist>
                          </label>
                          <div className="InputBox" >
+                             <ul className="ListDisplay">
                              { status ? (this.props.provisional.map(prov=>(
-                                <li onClick={()=>this.props.onclickHandler(prov.id)}>
-                                <img src={prov.icon_ID} alt="icon" width='30%' height="30%"
-                                    key={prov.id+1000000000}
+                                <li key={prov.id}
+                                className="DisplayItem" 
+                                onClick={()=>this.props.onclickHandler(prov.id)}>
+                                <img src={prov.icon_ID} alt="icon" width='55px' height="55px"
+                                    
                                 ></img></li>
                              ))) : (<img src="https://image.flaticon.com/icons/svg/916/916912.svg" alt="icon" width='100%' height="100%"></img>)
                                  
-                         /*         return (<li onClick={()=>this.props.onclickHandler(prov.id)}>
-                                     <img src={prov.icon_ID} alt="icon" width='30%' height="30%"
-                                    key={prov.id}
-                                 ></img></li>
-                             ) */
                              }
-                            
+                          </ul>  
                         </div> 
 
                         <div className="logbuttons">

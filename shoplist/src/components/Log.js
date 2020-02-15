@@ -70,16 +70,17 @@ class Log extends React.Component {
              })
              console.log(this.state.logged) 
              let test = Auth.isAuthenticated();
-             if(this.state.logged ===true){
+             if(this.state.logged !==false){
                 console.log("this test" +test);
                 //Auth.isAuthenticated();
+                Auth.storeID(res);
                 Auth.setLogout();
                 Auth.login(()=> {
                 this.props.history.push("/ShopList");
                 })
                 console.log(Auth);
-                let test2 = Auth.button();
-                console.log("this test " +test2);
+                //let test2 = Auth.storeID();
+                console.log("this test " +Auth.storeID(res));
              }
              
          });

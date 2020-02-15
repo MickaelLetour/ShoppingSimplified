@@ -100,7 +100,7 @@ componentDidMount(){
           button={this.state.button}
          />
           <Switch>
-            <Route exact path="/" component={Lists} /> {/* LOG */}
+            <Route exact path="/" component={Log} /> {/* LOG */}
             <Route exact path="/Login" component={Log} />
             <Route exact path="/Register" component={NewUser}/>
             <ProtectedRoute exact path="/ShopList"

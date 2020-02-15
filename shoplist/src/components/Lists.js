@@ -1,8 +1,7 @@
 import React from "react";
-//import auth from "./auth";
+import Auth from "../auth";
 import ListName from "./forms/ListName.js"
 import ItemList from "./forms/ItemList.js"
-import ItemSelection from "./forms/ItemSelection.js"
 import {dbGETFetch} from "./functions"
 //import CreateList from "./createList";
 
@@ -19,6 +18,7 @@ class Lists extends React.Component {
         mountonce: false,
         ncate :"",
         selectedItems : [],
+        userID : Auth.sendID(),
       }
       this.componentDidMount=this.componentDidMount.bind(this);
       this.componentDidUpdate=this.componentDidUpdate.bind(this);
@@ -140,11 +140,6 @@ class Lists extends React.Component {
 
       //console.log(test)
     }
-
-    handleSubmitName(event) {
-      event.preventDefault();
-      //console.log(this.state.listname)
-    }
   
 
     onclickHandler(id) {
@@ -152,8 +147,10 @@ class Lists extends React.Component {
       let display = [];
       let i=0;
       if(items.includes(id) === false)
+      {
         items.push(id);
-      
+        items.sort();
+      }
         else {
           for(let i=0; i<items.length ; i++)
           { 
@@ -176,13 +173,34 @@ class Lists extends React.Component {
           }
         }
         return display;
+
+        
       })
 
       this.setState({
         ProvisionalItems : display,
       })
+
+    }
+
+
+    handleSubmitName(event) {
+      event.preventDefault();
+      console.log(this.state.listname)
+      console.log(this.state.ProvisionalItems);
+      let userid = this.state.userID;
       
-      /*console.log(this.state.selectedItems) */
+      var groupsURL= `http://localhost:2112/user_groups/userpower=/${userid}`
+      //var postList=
+
+
+      dbGETFetch(groupsURL)
+
+      .then(groups => {
+        console.log(groups.id_Group)
+
+        
+      })
     }
 
 
