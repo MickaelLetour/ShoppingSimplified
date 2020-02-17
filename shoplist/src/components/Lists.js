@@ -25,8 +25,8 @@ class Lists extends React.Component {
       this.handleChange=this.handleChange.bind(this);
       this.handleSubmitName=this.handleSubmitName.bind(this);
       this.onclickHandler=this.onclickHandler.bind(this)
-      
     }
+
 
 
 
@@ -190,14 +190,16 @@ class Lists extends React.Component {
       console.log(this.state.ProvisionalItems);
       let userid = this.state.userID;
       
-      var groupsURL= `http://localhost:2112/user_groups/userpower=/${userid}`
-      //var postList=
+      var groupsURL= `http://localhost:2112/user_groups/userpower=/${userid}`;
+      
+      //var 
 
 
       dbGETFetch(groupsURL)
 
       .then(groups => {
         console.log(groups.id_Group)
+
 
         
       })
