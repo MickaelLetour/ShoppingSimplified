@@ -1,4 +1,6 @@
 import React, {Component} from "react"
+import Modal from "react-modal"
+//import {RadioGroup, Radio} from 'react-radio-group'
 /* import avatar from "../img/user.png"
 import {dbGETFetch} from "./functions" */
 
@@ -11,9 +13,12 @@ class CreateItem extends Component {
             icon : "",
             name :"",
             category_id :"",
-            icon_id:""
+            icon_id:"",
+            icon_selected:""
         }
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
 
         fetch("http://localhost:2112/categories" ,{
             method: 'GET',
@@ -40,10 +45,12 @@ class CreateItem extends Component {
             this.setState({ icon : res})
             return res;
         })
-      }
+        
+        Modal.setAppElement('body')
+        }
 
         handleSubmit(event) {
-            event.preventDefault();
+            
             const data = 
                 {
                     category_id:this.state.category_id,
@@ -67,6 +74,28 @@ class CreateItem extends Component {
             })
         }
 
+        openModal() {
+            this.setState({modalIsOpen: true});
+        }
+         
+        closeModal() {
+            this.setState({modalIsOpen: false});
+            console.log(this.state.icon_id);
+            fetch(`http://localhost:2112/icons/${this.state.icon_id}` ,{
+            method: 'GET',
+            mode : 'cors',
+    
+        }).then(res => res.json())
+    
+        .catch(err => err)
+    
+        .then(res => {
+            this.setState({ icon_selected : res})
+            console.log(this.state.icon_selected.icon)
+            return res;
+        })
+        }
+
     render() {
         return (
             <div>
@@ -76,20 +105,34 @@ class CreateItem extends Component {
                     <select name="category_id" value={this.state.category_id} onChange={e => this.setState({category_id : e.target.value})} required>
                             <option></option>
                         {Object.entries(this.state.category).map(([key, category], i) => (
-                            <option name="category" key={i} value={category.id}>{category.name}</option>
+                            <option name="category" key={i} value={category.id_category}>{category.name}</option>
                         ))}
                     </select>
                     </label><br/>
 
-                    <label>ItemIcon:<br/>
-                    <select name="icon_id" value={this.state.icon_id} onChange={e => this.setState({icon_id : e.target.value})} required>
-                            <option></option>
-                        {Object.entries(this.state.icon).map(([key, icons], i) => (
-                            <option key={i}  value={icons.id}>{icons.icon}</option>
-                        ))}
-                    </select>
-                    </label><br/>
-
+                    <label>ItemIcon:</label><br/>
+                    <button onClick={this.openModal}>Icon</button>
+                    <Modal
+                        isOpen={this.state.modalIsOpen}
+                        onRequestClose={this.closeModal}
+                        contentLabel="Example Modal"
+                    >
+                        <div id="divModal">
+                            <form>
+                                <label htmlFor="icon">
+                                    {Object.entries(this.state.icon).map(([key, icons], i) => (
+                                        <div key={i}>
+                                            <input type="radio" id="icon" name="icon" value={icons.id_icon} onChange={e => this.setState({icon_id : e.target.value})}/><img src={icons.icon} />
+                                        </div>
+                                    ))} 
+                                </label>
+                            </form>
+                            <button onClick={this.closeModal}>Valider</button>
+                        </div>
+                    </Modal>
+                    <br/>
+                    <img src={this.state.icon_selected.icon}></img>
+                    <br/>
                     <label>ItemName:<br/>
                         <input 
                             type="text" 

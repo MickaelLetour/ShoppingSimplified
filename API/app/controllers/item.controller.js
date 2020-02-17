@@ -13,7 +13,7 @@ exports.create = (req, res) => {
     const item = new Item({
       category_id : req.body.category_id,
       icon_id : req.body.icon_id,
-      name : req.body.name
+      name_item : req.body.name
     });
   
     // Save item in the database
@@ -64,10 +64,15 @@ exports.update = (req, res) => {
         message: "Content can not be empty!"
       });
     }
+    const item = new Item({
+      category_id : req.body.category_id,
+      icon_id : req.body.icon_id,
+      name_item : req.body.name
+    });
   
     Item.updateById(
       req.params.itemId,
-      new Item(req.body),
+      item,
       (err, data) => {
         if (err) {
           if (err.kind === "not_found") {
@@ -97,12 +102,14 @@ exports.delete = (req, res) => {
             message: "Could not delete item with id " + req.params.itemId
           });
         }
-      } else res.send({ message: `item was deleted successfully!` });
+      } else {
+        res.redirect("http://localhost:21012/ShopList/Items");
+      }
     });
   };
 
 // Delete all items from the database.
-exports.deleteAll = (req, res) => {
+/* exports.deleteAll = (req, res) => {
     Item.removeAll((err, data) => {
       if (err)
         res.status(500).send({
@@ -111,4 +118,4 @@ exports.deleteAll = (req, res) => {
         });
       else res.send({ message: `All items were deleted successfully!` });
     });
-  };
+  }; */

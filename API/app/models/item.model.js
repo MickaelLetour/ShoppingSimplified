@@ -2,13 +2,13 @@ const sql = require("./connect.js");
 
 // constructor
 const item = function(item) {
-    if (typeof item.category_id === 'string' && item.category_id.length !=0){ // int error with postman
+    if (item.category_id.length !=0){ // int error with postman
         this.category_id = parseInt(item.category_id);
     }
-    if (typeof item.name === 'string' && item.name.length !=0){
-        this.name = item.name;
+    if (typeof item.name_item === 'string' && item.name_item.length !=0){
+        this.name_item = item.name_item;
     }
-    if (typeof item.icon_id === 'string' && item.icon_id.length !=0){
+    if (item.icon_id.length !=0){
         this.icon_id = parseInt(item.icon_id);
     }
 };
@@ -28,7 +28,7 @@ item.create = (newitem, result) => {
 }; 
 
 item.findById = (itemId, result) => {
-  sql.query(`SELECT * FROM item WHERE id = ${itemId}`, (err, res) => {
+  sql.query(`SELECT * FROM item INNER JOIN icon on item.icon_id = icon.id_icon INNER JOIN category on item.category_id = category.id_category WHERE id = ${itemId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -47,7 +47,7 @@ item.findById = (itemId, result) => {
 };
 
 item.getAll = result => {
-  sql.query("SELECT * FROM item", (err, res) => {
+  sql.query("SELECT * FROM item INNER JOIN icon on item.icon_id = icon.id_icon INNER JOIN category on item.category_id = category.id_category", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -61,8 +61,8 @@ item.getAll = result => {
 
 item.updateById = (id, item, result) => {
   sql.query(
-    "UPDATE item SET name = ? WHERE id = ?",
-    [item.name, id],
+    "UPDATE item SET name_item = ?, category_id = ?, icon_id = ?  WHERE id = ?",
+    [item.name_item,item.category_id,item.icon_id, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -101,7 +101,7 @@ item.remove = (id, result) => {
   });
 };
 
-item.removeAll = result => {
+/* item.removeAll = result => {
   sql.query("DELETE FROM item", (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -112,6 +112,6 @@ item.removeAll = result => {
     console.log(`deleted ${res.affectedRows} items`);
     result(null, res);
   });
-};
+}; */
 
 module.exports = item;
