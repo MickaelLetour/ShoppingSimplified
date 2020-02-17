@@ -17,7 +17,6 @@ import CreateItems from './components/CreateItems';
 import UpdateItems from './components/UpdateItems';
 
 
-
 class Routes extends React.Component {
 
   constructor() {
@@ -100,48 +99,42 @@ componentDidMount(){
           headerHandler={this.headerHandler}
           button={this.state.button}
          />
+         
           <Switch>
-            <Route exact path="/" component={Log} /> {/* LOG */}
+          
+            <Route exact path="/" component={Log} />
             <Route exact path="/Login" component={Log} />
             <Route exact path="/Register" component={NewUser}/>
+            <Route exact path="/Login/Forgot" component={Forgot} />
+            
             <ProtectedRoute exact path="/ShopList"
-              component={()=>{return(<div><ShopList />  <Navbar /> </div>); }}
+              component={()=>{return(<div><div className="main"><ShopList /> </div> <Navbar /> </div>); }}
             />
 
             <ProtectedRoute exact path="/ShopList/ActiveList"
-              component={()=>{return(<div><Home />  <Navbar /> </div>); }} 
-              
+              component={()=>{return(<div><div className="main"><Home /></div>  <Navbar /> </div>); }} 
            />
+
             <ProtectedRoute exact path="/ShopList/Lists"
-              component={()=>{return(<div><Lists />  <Navbar /> </div>); }}
+              component={()=>{return(<div><div className="main"><Lists /></div>  <Navbar /> </div>); }}
             />
 
-            {/* <ProtectedRoute exact path="/ShopList/Items" 
-              component={()=>{return(<div><Items />  <Navbar /> </div>); }}
-            /> */}
+            <ProtectedRoute exact path="/ShopList/Items" 
+              component={()=>{return(<div><div className="main"><Items /> </div> <Navbar /> </div>); }}
+            /> 
 
-            <ProtectedRoute exact path="/ShopList/Items/CreateItems">
-              <CreateItems />
-              <Navbar />
-            </ProtectedRoute>
-
-            <ProtectedRoute exact path="/ShopList/Items">
-              <Items />
-              <Navbar />
-            </ProtectedRoute>
-
-            <ProtectedRoute exact path="/ShopList/Items/UpdateItems">
-              <UpdateItems />
-              <Navbar />
-            </ProtectedRoute>
-            
-            <ProtectedRoute exact path="/ForgotPassword">
-              <Forgot />
-            </ProtectedRoute>
+            <ProtectedRoute exact path="/ShopList/Items/CreateItems"
+            component={()=>{return(<div><div className="main"><CreateItems /> </div> <Navbar /> </div>);}}
+            />
+             
+            <ProtectedRoute exact path="/ShopList/Items/UpdateItems"
+            component={()=>{return(<div><div className="main"><UpdateItems /> </div> <Navbar /> </div>);}}
+            />
         
             <Route path="*" component={() => "404 NOT FOUND"}>
             </Route>
           </Switch>
+          
         <Footer />
       </div>
     </Router>

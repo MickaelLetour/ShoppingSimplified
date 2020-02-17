@@ -18,7 +18,6 @@ hr {
   background-color: #97C552;
   font-family: Angelina Alt Demo;
   border-bottom: #141414 solid 1px;
-  height: 17vh;
 }
 .mainNav .imgNav {
   width: 15vh;
@@ -151,11 +150,6 @@ form input {
   border-color: #f44336;
 }
 
-<<<<<<< HEAD
-.bm {
-  position: fixed;
-  float: right;
-=======
 #item {
   display: flex;
   flex-wrap: wrap;
@@ -197,7 +191,11 @@ form input {
 #icon-modal {
   display: flex;
   flex-wrap: wrap;
->>>>>>> mickael
+}
+
+.bm {
+  position: fixed;
+  float: right;
 }
 
 /* Individual item */
@@ -247,27 +245,18 @@ form input {
   top: 17vh;
 }
 
-.bm-menu-wrap {
+/* .bm-menu-wrap {
   position: fixed !important;
-  height: 60% !important;
+  height:60% !important;
   top: 17vh;
-}
-
+} */
 .bm-menu {
-<<<<<<< HEAD
-  position: relative;
-  background: #97C552;
-  padding: 2.5em 1.5em 0;
-  font-size: 1.15em;
-  opacity: 1;
-=======
   background: white;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
   position: fixed;
   top: 12vh;
   right: 0;
->>>>>>> mickael
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -309,6 +298,10 @@ form input {
   align-items: center;
 }
 
+.main {
+  min-height: 70vh;
+}
+
 .InputBox {
   display: flex;
   background-color: white;
@@ -340,6 +333,10 @@ form input {
 }
 
 @media only screen and (max-width: 768px) {
+  .main {
+    max-height: 70vh;
+  }
+
   .mainNav {
     flex-wrap: wrap;
   }
@@ -357,10 +354,6 @@ form input {
     width: 100%;
   }
 
-<<<<<<< HEAD
-  .bm-menu-wrap {
-    top: 20vh;
-=======
   .headerButton {
     width: 100%;
     margin: auto;
@@ -372,7 +365,6 @@ form input {
     height: 30px;
     right: 36px;
     top: 26px;
->>>>>>> mickael
   }
 
   form {

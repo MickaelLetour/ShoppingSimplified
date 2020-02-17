@@ -55,11 +55,11 @@ class Items extends React.Component {
                                 <li><img src={item.icon} /></li>
                                 <li>Name : {item.name_item}</li>
                                 <li>Catégory : {item.name}</li>
-                                <li><button name="itemId" value={item.id}><a href={ 'http://localhost:21012/ShopList/Items/UpdateItems/?id='+ item.id} >Update</a></button></li>
+                                <li><button name="itemId" value={item.id}><NavLink to={"/ShopList/Items/UpdateItems?id="+item.id} >Update</NavLink></button></li>
                             </ul>
                         </div>
                     ))}
-                    <button id="newItem"><a href="http://localhost:21012/ShopList/Items/CreateItems">Add New Item</a></button>
+                    <button id="newItem" className="ItemButton"><NavLink to={"/ShopList/Items/CreateItems"}>Add New Item </NavLink></button>
                     
                 </div>
         )
