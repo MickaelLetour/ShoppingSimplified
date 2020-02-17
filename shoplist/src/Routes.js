@@ -13,7 +13,8 @@ import { ProtectedRoute } from './protRoute.js';
 import NewUser from './components/NewUser';
 import ShopList from './components/ShopList';
 import Forgot from './components/Forgot';
-import CreateItem from './components/CreateItem';
+import CreateItems from './components/CreateItems';
+import UpdateItems from './components/UpdateItems';
 
 
 
@@ -115,12 +116,22 @@ componentDidMount(){
               component={()=>{return(<div><Lists />  <Navbar /> </div>); }}
             />
 
-            <ProtectedRoute exact path="/ShopList/Items" 
+            {/* <ProtectedRoute exact path="/ShopList/Items" 
               component={()=>{return(<div><Items />  <Navbar /> </div>); }}
-            />
+            /> */}
 
-            <ProtectedRoute exact path="/CreateItem">
-              <CreateItem />
+            <ProtectedRoute exact path="/ShopList/Items/CreateItems">
+              <CreateItems />
+              <Navbar />
+            </ProtectedRoute>
+
+            <ProtectedRoute exact path="/ShopList/Items">
+              <Items />
+              <Navbar />
+            </ProtectedRoute>
+
+            <ProtectedRoute exact path="/ShopList/Items/UpdateItems">
+              <UpdateItems />
               <Navbar />
             </ProtectedRoute>
             

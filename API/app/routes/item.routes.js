@@ -17,5 +17,5 @@ module.exports = app => {
     app.delete("/items/:itemId", items.delete);
   
     // Create a new item
-    app.delete("/items", items.deleteAll);
+    /* app.delete("/items", items.deleteAll); */
   };
