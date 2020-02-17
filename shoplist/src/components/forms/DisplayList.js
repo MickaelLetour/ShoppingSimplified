@@ -1,10 +1,11 @@
 import React, {Component} from "react"
+import {Redirect } from "react-router-dom";
 
 
 //import {dbGETFetch} from "./functions"
 
 
-class ItemList extends Component {
+class DisplayList extends Component {
     constructor(props){
         super(props)
           this.state = {
@@ -58,4 +59,4 @@ class ItemList extends Component {
     }
 }
 
-export default ItemList
+export default DisplayList

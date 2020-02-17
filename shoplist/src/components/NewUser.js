@@ -60,7 +60,7 @@ class NewUser extends Component {
                 {
                     group_name: this.state.nickname,
                     n_members: 1,
-                    active : 1,
+                   
                     logo: ""
                 };
 
@@ -84,7 +84,8 @@ class NewUser extends Component {
             const DataUserGroup = 
                 {
                     id_User : ids[0],
-                    id_Group : ids[1]
+                    id_Group : ids[1],
+                    active : 1,
                 };
 
             dbPOSTFetch(urluserg,DataUserGroup)

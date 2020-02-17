@@ -17,7 +17,7 @@
 export function dbPOSTFetch(url,data) {
       return fetch(url, {
           method: 'POST',
-          //mode: 'CORS',
+          mode: 'cors',
           body: JSON.stringify(data),
           headers: {
               'Content-Type': 'application/json'

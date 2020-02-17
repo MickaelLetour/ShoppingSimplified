@@ -2,23 +2,26 @@ import React from "react";
 import Auth from "../auth";
 import ListName from "./forms/ListName.js"
 import ItemList from "./forms/ItemList.js"
-import {dbGETFetch} from "./functions"
+import {dbGETFetch, dbPOSTFetch} from "./functions"
+import {Redirect } from "react-router-dom";
 //import CreateList from "./createList";
 
 
 class Lists extends React.Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
       this.state={
         originallist : "",
         displayList:"",
         listname : "",
+        quantity: [], 
         categorie : "",
         ProvisionalItems : "",
         mountonce: false,
         ncate :"",
         selectedItems : [],
         userID : Auth.sendID(),
+        active:false,
       }
       this.componentDidMount=this.componentDidMount.bind(this);
       this.componentDidUpdate=this.componentDidUpdate.bind(this);
@@ -122,24 +125,17 @@ class Lists extends React.Component {
     }
 
     handleChange(event) {
-      
       const {name, value} = event.target
-      
-/*       if(name === 'ncate')
-      {
-        this.setState({
-          [name]: value,
-          displayList : test
-        })
-      }
-      else {  */
         this.setState({
           [name]: value
       }) 
-     // }
-
-      //console.log(test)
     }
+
+    /* saveQuantity(event){
+      const {name, value} = event.target;
+     
+
+    } */
   
 
     onclickHandler(id) {
@@ -186,28 +182,106 @@ class Lists extends React.Component {
 
     handleSubmitName(event) {
       event.preventDefault();
-      console.log(this.state.listname)
+      //console.log(this.state.listname)
       console.log(this.state.ProvisionalItems);
       let userid = this.state.userID;
       
       var groupsURL= `http://localhost:2112/user_groups/userpower=/${userid}`;
       
-      //var 
+      var listsURL = `http://localhost:2112/lists`;
+
+      var lastList = `http://localhost:2112/last/lists`;
+
+      var listitemURL = "http://localhost:2112/list_item";
 
 
-      dbGETFetch(groupsURL)
-
-      .then(groups => {
-        console.log(groups.id_Group)
 
 
-        
+       dbGETFetch(groupsURL).then(groups => {
+        //console.log(groups.id_Group)
+        let idgroups= groups.id_Group;
+
+        var verifyActiveLists = `http://localhost:2112/lists/groups/${idgroups}`;
+
+        dbGETFetch(verifyActiveLists).then(actives=>{
+          //console.log(actives);
+          
+
+          if(actives!==false){
+            for(let data of actives){
+              //console.log(data.active)
+              if(data.active ===1){
+                var dataList = 
+                {
+                    group_id: idgroups,
+                    name: this.state.listname,
+                    active: 0,  
+                }
+  
+              dbPOSTFetch(listsURL,dataList).then(createdlist =>{
+                dbGETFetch(lastList).then(list=>{
+                  for(let id of list){
+                    this.state.ProvisionalItems.map(items=>{
+                      var itemList = 
+                      {
+                        id_List: id.id,
+                        id_Item: items.id,
+                        quantity: 1, 
+                        status : 1, 
+                      }
+                      dbPOSTFetch(listitemURL,itemList).then(res=>{
+                        this.render()
+                        return (<Redirect to='/Shoplist' />)
+                      })
+                      return true
+                    })
+                  }
+                })
+                
+              })
+              } 
+            }
+          } 
+          
+          else {
+            var opdataList = 
+            {
+                group_id: idgroups,
+                name: this.state.listname,
+                active: 1,  
+            }
+
+          dbPOSTFetch(listsURL,opdataList).then(createdlist =>{
+            dbGETFetch(lastList).then(list=>{
+              for(let id of list){
+                this.state.ProvisionalItems.map(items=>{
+                  var itemList = 
+                  {
+                    id_List: id.id,
+                    id_Item: items.id,
+                    quantity: 1, 
+                    status : 1, 
+                  }
+                  dbPOSTFetch(listitemURL,itemList).then(res=>{
+                    return <Redirect to='/Shoplist' />
+                  })
+                  return true
+                })
+              }
+              
+            })
+          })
+          }
+           
+        }) 
       })
+
+     
     }
 
 
     render(){
-      //console.log(this.state.ProvisionalItems);
+      //console.log(this.state.quantity);
       let mount = this.componentDidUpdate();
       if(this.state.displayList!=="" && mount.length ===0)
       {
@@ -219,6 +293,8 @@ class Lists extends React.Component {
           ncate={this.state.ncate}
           mount={this.componentDidUpdate()}
           onclickHandler={this.onclickHandler}
+          quantity={this.state.quantity}
+          handleChange={this.handleChange} 
           />   
       )
       return (

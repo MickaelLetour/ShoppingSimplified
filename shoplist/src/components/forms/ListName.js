@@ -17,7 +17,7 @@ class ListName extends Component {
       
 
     render() {
-         console.log(this.props.provisional)
+        // console.log(this.props.provisional)
 
 
         let status=false;

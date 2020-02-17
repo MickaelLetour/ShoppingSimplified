@@ -1,6 +1,6 @@
 import React from "react";
 import Auth from "../auth.js"
-//import {dbGETFetch} from "./functions"
+import {dbGETFetch} from "./functions"
 //import {BrowserRouter as Redirect} from 'react-router-dom';
 /* import Navbar from "./Navbar.js"
 import Home from "./Home.js"
@@ -27,11 +27,16 @@ class ShopList extends React.Component {
     }
 
 
-    componentDidMount(props) {
-       // if(this.state.logged===false)
-        //return <Redirect to="/" />
+    componentDidMount() {
+        let userid =1; //Auth.sendID();
+        //console.log(userid);
+        var getGroupUrl = `http://localhost:2112/user_groups/userpower=/${userid}`;
 
-        
+ 
+        dbGETFetch(getGroupUrl).then(idgroup=>{
+            console.log(idgroup.id_Group)
+            
+        })
        
     }
 

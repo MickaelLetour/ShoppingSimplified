@@ -64,23 +64,23 @@ class Log extends React.Component {
         //let response = dbGETFetch(url);
 
         dbGETFetch(url).then((res) => {
-            console.log("result "+res);
+            //console.log("result "+res);
              this.setState({
                  logged: res  
              })
-             console.log(this.state.logged) 
-             let test = Auth.isAuthenticated();
+             //console.log(this.state.logged) 
+             //let test = Auth.isAuthenticated();
              if(this.state.logged !==false){
-                console.log("this test" +test);
+                //console.log("this test" +test);
                 //Auth.isAuthenticated();
                 Auth.storeID(res);
                 Auth.setLogout();
                 Auth.login(()=> {
                 this.props.history.push("/ShopList");
                 })
-                console.log(Auth);
+                //console.log(Auth);
                 //let test2 = Auth.storeID();
-                console.log("this test " +Auth.storeID(res));
+                //console.log("this test " +Auth.storeID(res));
              }
              
          });

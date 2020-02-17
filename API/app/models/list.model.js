@@ -2,14 +2,14 @@ const sql = require("./connect.js");
 
 // constructor
 const list = function(list) {
-    if (typeof list.group_id === 'string' && list.group_id.length !=0){// int error with postman
+    if (typeof list.group_id === 'number'  && list.group_id !==null) {// int error with postman
         this.group_id = list.group_id;
     }
     if (typeof list.name === 'string' && list.name.length !=0){
         this.name = list.name;
     }
 
-    if (typeof list.active === 'string' && list.active.length !=0){
+    if (typeof list.active === 'number' && list.active !==null){
       this.active = list.active;
   }
 };
@@ -45,6 +45,39 @@ list.findById = (listId, result) => {
     result({ kind: "not_found" }, null);
   });
 };
+
+list.listByGroupId = (idGroup, result) =>{
+  sql.query(`SELECT * FROM list WHERE group_id = ${idGroup}` , (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      console.log("found list: ", res);
+      result(null, res);
+      return;
+    }
+
+    // not found list with the id
+    result({ kind: "not_found" }, null);
+  });
+}
+
+list.lastAdded = result => {
+  sql.query("SELECT * FROM list ORDER BY id DESC LIMIT 1", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    console.log("lists: ", res);
+    result(null, res);
+  });
+};
+
 
 list.getAll = result => {
   sql.query("SELECT * FROM list", (err, res) => {
@@ -105,6 +138,7 @@ list.updateActiveById = (id, list, result) => {
     }
   );
 };
+
 
 
 
