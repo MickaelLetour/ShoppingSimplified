@@ -17,7 +17,13 @@ class ListName extends Component {
       
 
     render() {
-        //console.log(this.props.categorie)
+         console.log(this.props.provisional)
+
+
+        let status=false;
+        
+        if(this.props.provisional.length !==0)
+            status= true;
         return (
              <div className="ListName">
                 <form onSubmit={this.props.handleSubmitName}>
@@ -33,9 +39,8 @@ class ListName extends Component {
                             />
                         </label>
 
-                            <label className="Form">Item Categorie to Add:
-                            <input 
-                                list="categorie" 
+                        <label className="Form">Item Categorie to Add:
+                            <input list="categorie" 
                                 name="ncate" 
                                 value={this.props.ncate} 
                                 onChange={this.props.handleChange}
@@ -46,7 +51,20 @@ class ListName extends Component {
                             ))}
                             </datalist>
                          </label>
-                            
+                         <div className="InputBox" >
+                             <ul className="ListDisplay">
+                             { status ? (this.props.provisional.map(prov=>(
+                                <li key={prov.id}
+                                className="DisplayItem" 
+                                onClick={()=>this.props.onclickHandler(prov.id)}>
+                                <img src={prov.icon_ID} alt="icon" width='55px' height="55px"
+                                    
+                                ></img></li>
+                             ))) : (<img src="https://image.flaticon.com/icons/svg/916/916912.svg" alt="icon" width='100%' height="100%"></img>)
+                                 
+                             }
+                          </ul>  
+                        </div> 
 
                         <div className="logbuttons">
                             <button type="button" className="forgotpw">Cancel</button>

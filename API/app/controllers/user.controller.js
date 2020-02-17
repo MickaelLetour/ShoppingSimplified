@@ -283,8 +283,9 @@ exports.updateByToken = (req, res) => {
           if(passwordHash.verify(req.params.userPass, data.password)===true && data.active===1){
            /*  console.log(req.params.userPass);
             console.log(data.password); */
-            
-            res.send(true);
+            //console.log(data);
+            let id = JSON.stringify(data.id);
+            res.send(id);
           }
           else {
             res.send(false);

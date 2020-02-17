@@ -20,7 +20,7 @@ User_Groups.create = (newUser_Group, result) => {
 };
 
 User_Groups.findUserGById = (userId, result) => {
-  sql.query(`SELECT * FROM "user_groups" WHERE id_User = ${userId}`, (err, res) => {
+  sql.query(`SELECT * FROM user_groups WHERE id_User = ${userId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);

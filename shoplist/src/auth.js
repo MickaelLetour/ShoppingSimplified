@@ -2,6 +2,7 @@ class Auth {
     constructor() {
       this.authenticated = false;
       this.Button="Register";
+      this.id = "";
     }
   
     login(cb) {
@@ -31,6 +32,15 @@ class Auth {
     setLogout() {
       this.Button = "Logout";
       return this.Button
+    }
+
+    storeID(id) {
+      this.id =id;
+      return this.id;
+    }
+
+    sendID(){
+      return this.id;
     }
 
     button() {

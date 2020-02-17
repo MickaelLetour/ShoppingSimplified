@@ -97,7 +97,7 @@ user.getAll = result => {
 };
 
  user.getPwByNick = (userNick, result) => {
-  sql.query("SELECT password,active FROM user where nickname = ?", userNick, (err,res)=>{
+  sql.query("SELECT id,password,active FROM user where nickname = ?", userNick, (err,res)=>{
     if(err) {
       console.log("error: ", err);
       result(null,false);
