@@ -305,7 +305,7 @@ form input {
   
   .item {
     width: 200px;
-    height: 25%;
+    height: 40%;
     margin:3vh;
     position: inherit;
     text-align: center;
@@ -319,6 +319,11 @@ form input {
 }
 
 
+.Quantity {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
 .main {
   min-height: 70vh;   
 }

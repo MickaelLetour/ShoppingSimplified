@@ -39,6 +39,18 @@ exports.findAll = (req, res) => {
     });
   };
 
+  //finds last list added
+  exports.findLast = (req, res) => {
+    List.lastAdded((err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving lists."
+        });
+      else res.send(data);
+    });
+  };
+
 // Find a single list with a listId
 exports.findOne = (req, res) => {
     List.findById(req.params.listId, (err, data) => {
@@ -55,6 +67,24 @@ exports.findOne = (req, res) => {
       } else res.send(data);
     });
   };
+
+//Find all lists beloonging to a group
+  exports.findGroupLists = (req, res) => {
+    List.listByGroupId(req.params.groupid, (err, data) => {
+      if (err) {
+        if (err.kind === "not_found") {
+          res.status(404).send(false/* {
+            message: `Not found list with id ${req.params.groupid}.`
+          } */);
+        } else {
+          res.status(500).send({
+            message: "Error retrieving list with id " + req.params.listId
+          });
+        }
+      } else res.send(data);
+    });
+  };
+
 
 // Update a list identified by the listId in the request
 exports.update = (req, res) => {

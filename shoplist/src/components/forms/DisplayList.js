@@ -1,10 +1,11 @@
 import React, {Component} from "react"
+import {Redirect } from "react-router-dom";
 
 
 //import {dbGETFetch} from "./functions"
 
 
-class ItemList extends Component {
+class DisplayList extends Component {
     constructor(props){
         super(props)
           this.state = {
@@ -14,6 +15,7 @@ class ItemList extends Component {
       } 
 
 
+    
     render() {
       //console.log(this.props.mount.length)
         if(this.props.mount.length ===0 )
@@ -24,14 +26,14 @@ class ItemList extends Component {
                 <img src={this.props.item.icon_ID} alt="icon" width='60vw' height="60vh"></img>
                 <label>{this.props.item.category_id}</label>
             </div>
-            {/* <input className="Quantity"
+            <input className="Quantity"
                     type="text" pattern="[0-9]*" 
                     placeholder="Quantity/Numeric" 
                     value= {this.props.quantity}
                     name={this.props.item.id} 
                     onChange={this.props.handleChange}
                     required 
-                /> */}
+                />
             </li> 
           )
         }
@@ -42,14 +44,14 @@ class ItemList extends Component {
                     <img src={this.props.item.icon_ID} alt="icon" width='60vw' height="60vh"></img>
                     <label>{this.props.item.category_id}</label>
                 </div>
-               {/*  <input className="Quantity"
+                <input className="Quantity"
                         type="text" pattern="[0-9]*" 
                         placeholder="Quantity/Numeric" 
                         value= {this.props.quantity}
                         name={this.props.item.id} 
                         onChange={this.props.handleChange}
                         required 
-                    /> */}
+                    />
                 </li> 
               )
         }
@@ -57,4 +59,4 @@ class ItemList extends Component {
     }
 }
 
-export default ItemList
+export default DisplayList
