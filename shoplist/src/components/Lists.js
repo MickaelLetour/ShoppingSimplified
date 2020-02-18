@@ -25,9 +25,9 @@ class Lists extends React.Component {
       }
       this.componentDidMount=this.componentDidMount.bind(this);
       this.componentDidUpdate=this.componentDidUpdate.bind(this);
-      //this.handleChange=this.handleChange.bind(this);
-      //this.handleSubmitName=this.handleSubmitName.bind(this);
-      //this.onclickHandler=this.onclickHandler.bind(this)
+      this.handleChange=this.handleChange.bind(this);
+      this.handleSubmitName=this.handleSubmitName.bind(this);
+      this.onclickHandler=this.onclickHandler.bind(this)
     }
 
 
@@ -269,12 +269,9 @@ class Lists extends React.Component {
               
             })
           })
-          }
-           
+          } 
         }) 
       })
-
-     
     } 
 
 
@@ -308,7 +305,7 @@ class Lists extends React.Component {
             />
           <div className="itemContainer">
             <ul className="itemList">
-              {items}
+             {items}
             </ul>
           </div>
         </div>

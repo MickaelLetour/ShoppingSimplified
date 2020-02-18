@@ -47,7 +47,7 @@ class ListName extends Component {
                                 />
                             <datalist id="categorie">
                             {this.props.categorie.map(cat =>  (
-                            <option key={cat.id} value={cat.id}>{cat.name}</option>
+                            <option key={cat.id_category} value={cat.id_category}>{cat.name}</option>
                             ))}
                             </datalist>
                          </label>

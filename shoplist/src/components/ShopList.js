@@ -28,14 +28,23 @@ class ShopList extends React.Component {
 
 
     componentDidMount() {
-        let userid =1; //Auth.sendID();
+        let userid = Auth.sendID();
         //console.log(userid);
         var getGroupUrl = `http://localhost:2112/user_groups/userpower=/${userid}`;
 
  
         dbGETFetch(getGroupUrl).then(idgroup=>{
             console.log(idgroup.id_Group)
+            let group = idgroup.id_Group;
+
             
+            
+            var listActiveUrl = `http://localhost:2112/lists/groups/${group}`;
+
+            dbGETFetch(listActiveUrl).then(list =>{
+                console.log(list)
+            })
+
         })
        
     }
