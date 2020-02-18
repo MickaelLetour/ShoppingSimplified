@@ -2,13 +2,12 @@ import React from "react";
 import Auth from "../auth.js"
 import Modal from "react-modal"
 
-let params = new URLSearchParams(document.location.search.substring(1));
-let id = params.get("id");
-
-
 class UpdateItems extends React.Component {
     constructor(props) {
         super(props);
+        var params = new URLSearchParams(document.location.search.substring(1));
+        var id = params.get("id");
+
         this.state ={
             logged: Auth.isAuthenticated(),
             menuOpen: false,
@@ -27,6 +26,8 @@ class UpdateItems extends React.Component {
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+
+        console.log(this.state.itemId);
 
         fetch("http://localhost:2112/categories" ,{
             method: 'GET',
@@ -191,7 +192,7 @@ class UpdateItems extends React.Component {
 
                     <input type="submit"/>
 
-                    <button onClick={this.handleClick} action="http://localhost:21012/ShopList/Items">Delete this Item</button>
+                    <button className="ItemButton" onClick={this.handleClick} action="http://localhost:21012/ShopList/Items">Delete this Item</button>
                     
                 </form>
             </div>

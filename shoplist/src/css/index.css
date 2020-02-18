@@ -18,7 +18,6 @@ hr {
   background-color: #97C552;
   font-family: Angelina Alt Demo;
   border-bottom: #141414 solid 1px;
-  height: 17vh;
 }
 .mainNav .imgNav {
   width: 15vh;
@@ -246,12 +245,11 @@ form input {
   top: 17vh;
 }
 
-.bm-menu-wrap {
+/* .bm-menu-wrap {
   position: fixed !important;
-  height: 60% !important;
+  height:60% !important;
   top: 17vh;
-}
-
+} */
 .bm-menu {
   background: white;
   padding: 2.5em 1.5em 0;
@@ -300,6 +298,10 @@ form input {
   align-items: center;
 }
 
+.main {
+  min-height: 70vh;
+}
+
 .InputBox {
   display: flex;
   background-color: white;
@@ -331,6 +333,10 @@ form input {
 }
 
 @media only screen and (max-width: 768px) {
+  .main {
+    max-height: 70vh;
+  }
+
   .mainNav {
     flex-wrap: wrap;
   }

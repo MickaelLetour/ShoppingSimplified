@@ -24,7 +24,6 @@ hr {
   background-color: $HeaderColor;
   font-family: Angelina Alt Demo;
   border-bottom: $fontColor solid 1px;
-  height: 17vh;
   .imgNav {
     width: 15vh;
     height: 15vh;
@@ -261,11 +260,11 @@ form input {
   position: fixed;
   top: 17vh;
 } 
-.bm-menu-wrap {
+/* .bm-menu-wrap {
   position: fixed !important;
   height:60% !important;
   top: 17vh;
-}
+} */
 
 .bm-menu {
   background: white;
@@ -317,9 +316,11 @@ form input {
    
     //justify-content: center;
   }
+}
 
-  
 
+.main {
+  min-height: 70vh;   
 }
 
 .InputBox {
@@ -358,11 +359,11 @@ form input {
     //align-items: center; 
   }
 
-
-
-
-
 @media only screen and (max-width: 768px) {
+
+  .main {
+    max-height: 70vh;   
+  }
 
   .mainNav {
     flex-wrap: wrap;

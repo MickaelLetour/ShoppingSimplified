@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import {dbPOSTFetch} from "./functions"
+import {NavLink} from "react-router-dom"
 
 class Forgot extends Component {
     constructor(){
@@ -74,6 +75,7 @@ class Forgot extends Component {
                             >Submit</button>
                     </div>
                     <hr/>
+                    <button type="button" className="loginButton"><NavLink to={"/Login"}>Sign In</NavLink></button>
                 </form>
             </div>
         )
