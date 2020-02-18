@@ -25,12 +25,10 @@ class Lists extends React.Component {
       }
       this.componentDidMount=this.componentDidMount.bind(this);
       this.componentDidUpdate=this.componentDidUpdate.bind(this);
-      this.handleChange=this.handleChange.bind(this);
-      this.handleSubmitName=this.handleSubmitName.bind(this);
-      this.onclickHandler=this.onclickHandler.bind(this)
+      //this.handleChange=this.handleChange.bind(this);
+      //this.handleSubmitName=this.handleSubmitName.bind(this);
+      //this.onclickHandler=this.onclickHandler.bind(this)
     }
-
-
 
 
     componentDidMount() {
@@ -44,6 +42,7 @@ class Lists extends React.Component {
         dbGETFetch(cats)
         .catch(err => err)
         .then(allcats=>{
+          console.log(allcats)
         this.setState({
           categorie : allcats,
           })
@@ -56,16 +55,15 @@ class Lists extends React.Component {
             mountonce : true,
             })
           }))
-          
       }
       
 
-      dbGETFetch(url)
+       dbGETFetch(url)
       .catch(err => err)
       .then((items=>{
 
           for(let data of items){
-           let cat= data.category_id;
+          let cat= data.category_id;
           let icon = data.icon_ID;
 
         
@@ -75,10 +73,10 @@ class Lists extends React.Component {
           dbGETFetch(caturl)
           .catch(err => err)
           .then(categorie=>{
-            //console.log(categorie.id)
-            if(data.category_id === categorie.id){
+            
+            if(data.category_id === categorie.id_category){
                 data.category_id = categorie.name;
-              // console.log(data.category_id);
+               //console.log(data.category_id);
 
               this.setState({
                 displayList :items,
@@ -89,8 +87,8 @@ class Lists extends React.Component {
           dbGETFetch(iconurl)
           .catch(err => err)
           .then(icons=>{
-
-            if(data.icon_ID===icons.id){
+            console.log(icons.icon)
+            if(data.icon_ID===icons.id_icon){
               data.icon_ID=icons.icon;
               this.setState({
                 displayList:items
@@ -98,10 +96,10 @@ class Lists extends React.Component {
             }
           }) 
         } 
-      }))
+      })) 
       }
 
-    componentDidUpdate(){
+     componentDidUpdate(){
       let itemList = [];
       let i = 0;
       let asID = Number(this.state.ncate)
@@ -123,22 +121,22 @@ class Lists extends React.Component {
         }
         return itemList
     }
-
-    handleChange(event) {
+ 
+     handleChange(event) {
       const {name, value} = event.target
         this.setState({
           [name]: value
       }) 
-    }
+    } 
 
-    /* saveQuantity(event){
+   /*  saveQuantity(event){
       const {name, value} = event.target;
      
 
-    } */
+    }  */
   
 
-    onclickHandler(id) {
+     onclickHandler(id) {
       let items =  this.state.selectedItems;
       let display = [];
       let i=0;
@@ -177,9 +175,9 @@ class Lists extends React.Component {
         ProvisionalItems : display,
       })
 
-    }
+    } 
 
-
+ 
     handleSubmitName(event) {
       event.preventDefault();
       //console.log(this.state.listname)
@@ -277,7 +275,7 @@ class Lists extends React.Component {
       })
 
      
-    }
+    } 
 
 
     render(){

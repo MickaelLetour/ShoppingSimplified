@@ -50,7 +50,7 @@ class CreateItem extends Component {
         }
 
         handleSubmit(event) {
-            
+            event.preventDefault();
             const data = 
                 {
                     category_id:this.state.category_id,
