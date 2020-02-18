@@ -1,13 +1,13 @@
 const sql = require("./connect.js");
 
 // constructor
-const category = function(category) {
+const category = function(category) {//verify the type of data send and it's ok, stock it.
   if (typeof category.name === 'string' && category.name.length !=0){
     this.name = category.name;
   }
 };
 
-category.create = (newcategory, result) => {
+category.create = (newcategory, result) => {//
   sql.query("INSERT INTO category SET ?", newcategory, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -20,6 +20,7 @@ category.create = (newcategory, result) => {
   });
 };
 
+//get category with an Id
 category.findById = (categoryId, result) => {
   sql.query(`SELECT * FROM category WHERE id_category = ${categoryId}`, (err, res) => {
     if (err) {
@@ -39,6 +40,7 @@ category.findById = (categoryId, result) => {
   });
 };
 
+//get all category
 category.getAll = result => {
   sql.query("SELECT * FROM category", (err, res) => {
     if (err) {
@@ -52,6 +54,7 @@ category.getAll = result => {
   });
 };
 
+//update category with an Id
 category.updateById = (id, category, result) => {
   sql.query(
     "UPDATE category SET name = ? WHERE id_category = ?",
@@ -75,6 +78,7 @@ category.updateById = (id, category, result) => {
   );
 };
 
+//delete one category with an Id
 category.remove = (id, result) => {
   sql.query("DELETE FROM category WHERE id_category = ?", id, (err, res) => {
     if (err) {
@@ -94,6 +98,7 @@ category.remove = (id, result) => {
   });
 };
 
+//delete all category
 category.removeAll = result => {
   sql.query("DELETE FROM category", (err, res) => {
     if (err) {

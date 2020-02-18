@@ -16,7 +16,7 @@ const Group = function(group) {
   }
 }
   
-
+//create a new group
 Group.create = (newGroup, result) => {
   sql.query("INSERT INTO `groups` SET ?", newGroup, (err, res) => {
     if (err) {
@@ -30,6 +30,7 @@ Group.create = (newGroup, result) => {
   });
 };
 
+// get a group with an Id
 Group.findById = (groupId, result) => {
   sql.query("SELECT * FROM `groups` WHERE id = ${groupId}", (err, res) => {
     if (err) {
@@ -49,6 +50,7 @@ Group.findById = (groupId, result) => {
   });
 };
 
+//get all groups
 Group.getAll = result => {
   sql.query("SELECT * FROM `groups`", (err, res) => {
     if (err) {
@@ -62,6 +64,7 @@ Group.getAll = result => {
   });
 };
 
+// update a group with an Id
 Group.updateById = (id, group, result) => {
 
   if(group.group_name !=null){

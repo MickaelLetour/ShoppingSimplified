@@ -6,11 +6,11 @@ import {NavLink} from "react-router-dom"
 class UpdateItems extends React.Component {
     constructor(props) {
         super(props);
-        var params = new URLSearchParams(document.location.search.substring(1));
+        var params = new URLSearchParams(document.location.search.substring(1));//get informations on url
         var id = params.get("id");
 
         this.state ={
-            logged: Auth.isAuthenticated(),
+            logged: Auth.isAuthenticated(),//verify if user is connected
             menuOpen: false,
             itemId:id,
             category_id:"",
@@ -23,14 +23,14 @@ class UpdateItems extends React.Component {
         }
         this.openMenu=this.openMenu.bind(this);
         this.closeMenu=this.closeMenu.bind(this);
-        this.handleClick=this.handleClick.bind(this);
+        this.handleClick=this.handleClick.bind(this);//different method
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
         console.log(this.state.itemId);
 
-        fetch("http://localhost:2112/categories" ,{
+        fetch("http://localhost:2112/categories" ,{//get all categories on database
             method: 'GET',
             mode : 'cors',
     
@@ -43,7 +43,7 @@ class UpdateItems extends React.Component {
             return res;
         })
 
-        fetch("http://localhost:2112/iconsNotUsed" ,{
+        fetch("http://localhost:2112/iconsNotUsed" ,{//get all icons not used by items
             method: 'GET',
             mode : 'cors',
     
@@ -58,7 +58,7 @@ class UpdateItems extends React.Component {
         
         Modal.setAppElement('body')
 
-        fetch(`http://localhost:2112/itemsInfo/${this.state.itemId}` ,{
+        fetch(`http://localhost:2112/itemsInfo/${this.state.itemId}` ,{//get informations of items with an id
                 method: 'GET',
                 mode : 'cors',
         }).then(res => res.json())
@@ -75,17 +75,17 @@ class UpdateItems extends React.Component {
         }
         
 
-        openMenu() {
+        openMenu() {//open the navbar
             this.setState({ menuOpen: true })
             //console.log("something");
           }
       
-        closeMenu() {
+        closeMenu() {//close the nav bar
             this.setState({ menuOpen: false })
         }
 
-        handleClick() {
-            fetch("http://localhost:2112/items/"+this.state.itemId ,{
+        handleClick() {//method on click
+            fetch("http://localhost:2112/items/"+this.state.itemId ,{//delete an item with an id
                 method: 'delete',
                 //mode : 'cors',
         }).then(res => res.json())
@@ -98,7 +98,7 @@ class UpdateItems extends React.Component {
         }) 
         }
 
-        handleSubmit(event) {        
+        handleSubmit(event) {        //method on submit 
             event.preventDefault();  
             const data = 
                 {
@@ -107,7 +107,7 @@ class UpdateItems extends React.Component {
                     name: this.state.name
                 };
             console.log(data);
-            fetch("http://localhost:2112/items/"+this.state.itemId, {
+            fetch("http://localhost:2112/items/"+this.state.itemId, {//update item with id item
                 method : 'PUT',
                 body: JSON.stringify(data),
                 headers: {
@@ -123,11 +123,11 @@ class UpdateItems extends React.Component {
             })
         }
 
-        openModal() {
+        openModal() {//open modal
             this.setState({modalIsOpen: true});
         }
          
-        closeModal() {
+        closeModal() {// close modal
             this.setState({modalIsOpen: false});
             console.log(this.state.icon_id);
             fetch(`http://localhost:2112/icons/${this.state.icon_id}` ,{
@@ -152,7 +152,7 @@ class UpdateItems extends React.Component {
                     <label>ItemCategory:<br/>
                     <select name="category_id" value={this.state.category_id} onChange={e => this.setState({category_id : e.target.value})} required>
                             <option name="category" value={this.state.item.category_id}>{this.state.item.name}</option>
-                        {Object.entries(this.state.category).map(([key, category], i) => (
+                        {Object.entries(this.state.category).map(([key, category], i) => (//foreach row of this object
                             <option name="category" key={i} value={category.id_category}>{category.name}</option>
                         ))}
                     </select>
@@ -168,18 +168,18 @@ class UpdateItems extends React.Component {
                         <div id="divModal">
                             <form>
                                 <label htmlFor="icon">
-                                    {Object.entries(this.state.icon).map(([key, icons], i) => (
+                                    {Object.entries(this.state.icon).map(([key, icons], i) => (//foreach row of this object
                                         <div key={i}>
-                                            <input type="radio" id="icon" name="icon" value={icons.id_icon} onChange={e => this.setState({icon_id : e.target.value})}/><img src={icons.icon} />
+                                            <input type="radio" id="icon" name="icon" value={icons.id_icon} onChange={e => this.setState({icon_id : e.target.value})}/><img src={icons.icon} alt={icons.name_item} />
                                         </div>
                                     ))} 
                                 </label>
                             </form>
-                            <button onClick={this.closeModal}>Valider</button>
+                            <button onClick={this.closeModal}>Valider</button> {/* close modal */}
                         </div>
                     </Modal>
                     <br/>
-                    <img src={this.state.icon_selected}></img>
+                    <img src={this.state.icon_selected} alt={this.state.icon_selected.name}></img>
                     <br/>
                     <label>ItemName:<br/>
                         <input 

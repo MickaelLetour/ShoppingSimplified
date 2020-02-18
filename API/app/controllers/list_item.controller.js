@@ -9,15 +9,15 @@ exports.create = (req, res) => {
       });
     }
   
-    // Create a conection
+    // Create a list_item
     const list_item = new List_Item({
       id_List : req.body.id_List,
-      id_Item : req.body.id_Item,
+      id_Item : req.body.id_Item,   //save informations necessary for the request on a const
       quantity : req.body.quantity,
       status : req.body.status,
     });
   
-    // Save user in the database
+    // Save list_item in the database
     List_Item.create(list_item, (err, data) => {
       if (err)
         res.status(500).send({
@@ -28,7 +28,7 @@ exports.create = (req, res) => {
     });
   };
 
-// Retrieve all user_groups from the database.
+// Retrieve all list_items from the database.
 exports.findAll = (req, res) => {
     List_Item.getAll((err, data) => {
       if (err)
@@ -40,7 +40,7 @@ exports.findAll = (req, res) => {
     });
   };
 
-// Find a single user with a userId
+// Find a single list_item with a listId
 exports.findList = (req, res) => {
     List_Item.findListById(req.params.listId, (err, data) => {
       if (err) {
@@ -57,6 +57,8 @@ exports.findList = (req, res) => {
     });
   };
 
+
+// Find ?????
 exports.findItem = (req, res) => {
 List_Item.findItemById(req.params.itemId, (err, data) => {
     if (err) {
@@ -73,7 +75,7 @@ List_Item.findItemById(req.params.itemId, (err, data) => {
 });
 };
 
-// Delete a user with the specified userId in the request
+// Delete a list_item with the specified list_item_Id in the request
 exports.delete = (req, res) => {
     List_Item.removeItemFromList(req.params.listId, req.params.itemId, (err, data) => {
       if (err) {
@@ -90,7 +92,7 @@ exports.delete = (req, res) => {
     });
   };
 
-// Delete all users from the database.
+// Delete all list_item from the database.
 exports.deleteAll = (req, res) => {
     List_Item.removeAll((err, data) => {
       if (err)
@@ -103,7 +105,7 @@ exports.deleteAll = (req, res) => {
   };
 
 
-  // Update a user identified by the userId in the request
+  // Update a list_item identified by the list_item_Id in the request
 exports.update = (req, res) => {
     // Validate Request
     if (!req.body) {

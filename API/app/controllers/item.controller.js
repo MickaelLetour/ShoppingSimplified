@@ -11,7 +11,7 @@ exports.create = (req, res) => {
   
     // Create a item
     const item = new Item({
-      category_id : req.body.category_id,
+      category_id : req.body.category_id, //save informations necessary for the request on a const
       icon_id : req.body.icon_id,
       name_item : req.body.name
     });

@@ -4,13 +4,13 @@ const Category = require("../models/category.model.js");
 exports.create = (req, res) => {
     // Validate request
     if (!req.body) {
-      res.status(400).send({
+      res.status(400).send({//file not exist
         message: "Content can not be empty!"
       });
     }
   
     // Create a category
-    const category = new Category({
+    const category = new Category({ //save informations necessary for the request on a const
       name : req.body.name
     });
   
@@ -39,7 +39,7 @@ exports.findAll = (req, res) => {
 
 // Find a single category with a categoryId
 exports.findOne = (req, res) => {
-    Category.findById(req.params.categoryId, (err, data) => {
+    Category.findById(req.params.categoryId, (err, data) => {//need id like parameter
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
@@ -80,7 +80,7 @@ exports.update = (req, res) => {
         } else res.send(data);
       }
     );
-  };
+};
 
 // Delete a category with the specified categoryId in the request
 exports.delete = (req, res) => {

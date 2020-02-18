@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {dbPOSTFetch} from "./functions";
 
-let params = new URLSearchParams(document.location.search.substring(1));
+let params = new URLSearchParams(document.location.search.substring(1));//get information on url
 let token = params.get("token");
 
 class NewPassword extends Component {
@@ -38,16 +38,16 @@ class NewPassword extends Component {
         console.log(this.state.password);
         console.log(this.state.confirmPassword);  
         
-        event.preventDefault();
+        event.preventDefault();//cancel the default evenemement
 
-        if (this.state.confirmPassword===this.state.password){
+        if (this.state.confirmPassword===this.state.password){//verify if the 2 password are the sames
             const url = 'http://localhost:2112/forgot/update/';
             const Data = 
                 {
                     password: this.state.password,
                     token: this.state.token
                 };
-            dbPOSTFetch(url,Data);
+            dbPOSTFetch(url,Data);//Create a new user
         }
         else {
             console.log("password different confirmPassword");
@@ -57,7 +57,7 @@ class NewPassword extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit}>{/* method on submit */}
                     <h2>Update Password</h2>
                     <hr/>
                     <div>

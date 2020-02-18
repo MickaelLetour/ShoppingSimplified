@@ -8,6 +8,8 @@ const List_Item = function(list_item) {
   this.status = list_item.status;
 };
 
+
+//create a new list_item
 List_Item.create = (newList_Item, result) => {
   sql.query("INSERT INTO list_item SET ?", newList_Item, (err, res) => {
     if (err) {
@@ -21,6 +23,7 @@ List_Item.create = (newList_Item, result) => {
   });
 };
 
+//find list_item with an id
 List_Item.findListById = (listId, result) => {
   sql.query(`SELECT * FROM list_item WHERE id_List = ${listId}`, (err, res) => {
     if (err) {
@@ -39,6 +42,7 @@ List_Item.findListById = (listId, result) => {
   });
 };
 
+//????
 List_Item.findItemById = (itemId, result) => {
     sql.query(`SELECT * FROM list_item WHERE id_Group = ${itemId}`, (err, res) => {
       if (err) {
@@ -57,6 +61,7 @@ List_Item.findItemById = (itemId, result) => {
     });
   };
 
+  //get all list_items 
 List_Item.getAll = result => {
   sql.query("SELECT * FROM list_item", (err, res) => {
     if (err) {
@@ -70,7 +75,7 @@ List_Item.getAll = result => {
   });
 };
 
-
+//delete a list_item with an id
 List_Item.removeItemFromList = (id_list,id_item, result) => {
   sql.query("DELETE FROM list_item WHERE id_List = ? AND id_Item = ?",
   [id_list,id_item], (err, res) => {
@@ -92,6 +97,7 @@ List_Item.removeItemFromList = (id_list,id_item, result) => {
   });
 };
 
+//delete all list_items
 List_Item.removeAll = result => {
   sql.query("DELETE FROM list_item", (err, res) => {
     if (err) {
@@ -105,6 +111,7 @@ List_Item.removeAll = result => {
   });
 };
 
+//??
 List_Item.updateDataByIds = (id_list,id_item, list_item, result) => {
     if(list_item.quantity !=null){
     sql.query("UPDATE list_item SET quantity = ? WHERE id_List = ? AND id_Item = ?",

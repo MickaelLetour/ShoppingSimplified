@@ -14,7 +14,7 @@ class Items extends React.Component {
         this.openMenu=this.openMenu.bind(this);
         this.closeMenu=this.closeMenu.bind(this);
 
-        fetch("http://localhost:2112/itemsInfo" ,{
+        fetch("http://localhost:2112/itemsInfo" ,{//get items and informations related
                 method: 'GET',
                 mode : 'cors',
         }).then(res => res.json())
@@ -28,29 +28,29 @@ class Items extends React.Component {
         }) 
         }
 
-        openMenu() {
+        openMenu() {//for open modal
             this.setState({ menuOpen: true })
             //console.log("something");
           }
       
-        closeMenu() {
+        closeMenu() {//for close modal
             this.setState({ menuOpen: false })
         }
 
         render() {
             return (
                 <div id="item">
-                    {Object.entries(this.state.listItem).map(([key, item], i)=> (
+                    {Object.entries(this.state.listItem).map(([key, item], i)=> (//for each row in object of state item
                         <div key={i} className="modal_item">
                             <ul id={item.id} className="item">
-                                <li><img src={item.icon} /></li>
+                                <li><img src={item.icon} alt={item.name_item} /></li>
                                 <li>Name : {item.name_item}</li>
                                 <li>Catégory : {item.name}</li>
-                                <li><button name="itemId" value={item.id}><NavLink to={"/ShopList/Items/UpdateItems?id="+item.id} >Update</NavLink></button></li>
+                                <li><button name="itemId" value={item.id}><NavLink to={"/ShopList/Items/UpdateItems?id="+item.id} >Update</NavLink></button></li>{/* redirect after click */}
                             </ul>
                         </div>
                     ))}
-                    <button id="newItem" className="ItemButton"><NavLink to={"/ShopList/Items/CreateItems"}>Add New Item </NavLink></button>
+                    <button id="newItem" className="ItemButton"><NavLink to={"/ShopList/Items/CreateItems"}>Add New Item </NavLink></button>{/* redirect after click */}
                 </div>
         )
     }

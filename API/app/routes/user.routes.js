@@ -4,6 +4,7 @@ module.exports = app => {
     // Create a new user
     app.post("/users", users.create);
 
+    //update password after 
     app.post("/users/forgot/", users.forgot);
   
     // Retrieve all users
@@ -21,12 +22,16 @@ module.exports = app => {
     // Create a new user
     app.delete("/users", users.deleteAll);
 
+    //???
     app.get("/users/pass/:userNick&:userPass", users.VerifyPassword);
 
+    //confirm activation of new user with a token
     app.get("/confirm/:token", users.updateByToken);
 
+    //update status of account with token
     app.get("/forgot/:token", users.forgotUpdate);
 
+    //update the password 
     app.post("/forgot/update/", users.updatePassword);
 
   };

@@ -1,6 +1,6 @@
 const User_Groups = require("../models/user_groups.model.js");
 
-// Create and Save a new user
+// Create and Save a new user_groups
 exports.create = (req, res) => {
     // Validate request
     if (!req.body) {
@@ -9,7 +9,7 @@ exports.create = (req, res) => {
       });
     }
   
-    // Create a conection
+    // Create a new user_group
     const user_groups = new User_Groups({
       id_User : req.body.id_User,
       id_Group : req.body.id_Group,

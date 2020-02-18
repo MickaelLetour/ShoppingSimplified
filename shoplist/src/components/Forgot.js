@@ -14,7 +14,7 @@ class Forgot extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
       
-    handleChange(event) {
+    handleChange(event) {//change value of state with value of form
         const {name, value} = event.target
         
         this.setState({
@@ -22,13 +22,13 @@ class Forgot extends Component {
         })
     }
 
-    handleSubmit(event) {
+    handleSubmit(event) {//send nickame and email for forgot password
         console.log(this.state.nickname);
         console.log(this.state.email); 
         
         event.preventDefault();
 
-        const url = 'http://localhost:2112/users/forgot/';
+        const url = 'http://localhost:2112/users/forgot/';// the route for this request
         const Data = 
             {
                 nickname: this.state.nickname,
@@ -40,7 +40,7 @@ class Forgot extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit}> {/* method on submit */}
                     <h2>Forgot Password</h2>
                     <hr/>
                     <div>
@@ -75,7 +75,7 @@ class Forgot extends Component {
                             >Submit</button>
                     </div>
                     <hr/>
-                    <button type="button" className="loginButton"><NavLink to={"/Login"}>Sign In</NavLink></button>
+                    <button type="button" className="loginButton"><NavLink to={"/Login"}>Sign In</NavLink></button> {/* redirect on click */} 
                 </form>
             </div>
         )

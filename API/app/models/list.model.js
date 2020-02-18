@@ -2,7 +2,7 @@ const sql = require("./connect.js");
 
 // constructor
 const list = function(list) {
-    if (typeof list.group_id === 'number'  && list.group_id !==null) {// int error with postman
+    if (typeof list.group_id === 'number'  && list.group_id !==null) {
         this.group_id = list.group_id;
     }
     if (typeof list.name === 'string' && list.name.length !=0){
@@ -14,6 +14,7 @@ const list = function(list) {
   }
 };
 
+//create a new list
 list.create = (newlist, result) => {
   sql.query("INSERT INTO list SET ?", newlist, (err, res) => {
     if (err) {
@@ -27,6 +28,7 @@ list.create = (newlist, result) => {
   });
 };
 
+//get a list with an id
 list.findById = (listId, result) => {
   sql.query(`SELECT * FROM list WHERE id = ${listId}`, (err, res) => {
     if (err) {
@@ -46,6 +48,7 @@ list.findById = (listId, result) => {
   });
 };
 
+//get list by group with an id
 list.listByGroupId = (idGroup, result) =>{
   sql.query(`SELECT * FROM list WHERE group_id = ${idGroup}` , (err, res) => {
     if (err) {
@@ -65,6 +68,7 @@ list.listByGroupId = (idGroup, result) =>{
   });
 }
 
+//get the last list added
 list.lastAdded = result => {
   sql.query("SELECT * FROM list ORDER BY id DESC LIMIT 1", (err, res) => {
     if (err) {
@@ -78,7 +82,7 @@ list.lastAdded = result => {
   });
 };
 
-
+//get all list
 list.getAll = result => {
   sql.query("SELECT * FROM list", (err, res) => {
     if (err) {
@@ -92,6 +96,7 @@ list.getAll = result => {
   });
 };
 
+//update a list with an id
 list.updateById = (id, list, result) => {
   sql.query(
     "UPDATE list SET name = ? WHERE id = ?",
@@ -115,7 +120,7 @@ list.updateById = (id, list, result) => {
   );
 };
 
-
+//update the list active with his id
 list.updateActiveById = (id, list, result) => {
   sql.query(
     "UPDATE list SET active = ? WHERE id = ?",

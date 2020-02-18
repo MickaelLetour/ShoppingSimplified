@@ -21,7 +21,7 @@ class CreateItem extends Component {
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
 
-        fetch("http://localhost:2112/categories" ,{
+        fetch("http://localhost:2112/categories" ,{// get all categories of database
             method: 'GET',
             mode : 'cors',
     
@@ -34,7 +34,7 @@ class CreateItem extends Component {
             return res;
         })
 
-        fetch("http://localhost:2112/iconsNotUsed" ,{
+        fetch("http://localhost:2112/iconsNotUsed" ,{//get all icons not used by items 
             method: 'GET',
             mode : 'cors',
     
@@ -47,10 +47,10 @@ class CreateItem extends Component {
             return res;
         })
         
-        Modal.setAppElement('body')
+        Modal.setAppElement('body')//relate modal on body
         }
 
-        handleSubmit(event) {
+        handleSubmit(event) {// method on submit for create item
             event.preventDefault();
             const data = 
                 {
@@ -75,11 +75,11 @@ class CreateItem extends Component {
             })
         }
 
-        openModal() {
+        openModal() {// change the state for open modal
             this.setState({modalIsOpen: true});
         }
          
-        closeModal() {
+        closeModal() {//close the modal and get informations of icon with an id selected
             this.setState({modalIsOpen: false});
             console.log(this.state.icon_id);
             fetch(`http://localhost:2112/icons/${this.state.icon_id}` ,{
@@ -105,47 +105,47 @@ class CreateItem extends Component {
                     <label>ItemCategory:<br/>
                     <select name="category_id" value={this.state.category_id} onChange={e => this.setState({category_id : e.target.value})} required>
                             <option></option>
-                        {Object.entries(this.state.category).map(([key, category], i) => (
+                        {Object.entries(this.state.category).map(([key, category], i) => (// for each row on object
                             <option name="category" key={i} value={category.id_category}>{category.name}</option>
                         ))}
                     </select>
                     </label><br/>
 
                     <label>ItemIcon:</label><br/>
-                    <button onClick={this.openModal}>Icon</button>
+                    <button onClick={this.openModal}>Icon</button>  {/* for open modal */}
                     <Modal
-                        isOpen={this.state.modalIsOpen}
+                        isOpen={this.state.modalIsOpen}//settings of modal
                         onRequestClose={this.closeModal}
                         contentLabel="Example Modal"
                     >
-                        <div id="divModal">
+                        <div id="divModal">{/* inside modal */}
                             <form>
                                 <label htmlFor="icon">
                                     {Object.entries(this.state.icon).map(([key, icons], i) => (
                                         <div key={i}>
-                                            <input type="radio" id="icon" name="icon" value={icons.id_icon} onChange={e => this.setState({icon_id : e.target.value})}/><img src={icons.icon} />
+                                            <input type="radio" id="icon" name="icon" value={icons.id_icon} onChange={e => this.setState({icon_id : e.target.value})}/><img src={icons.icon} alt={icons.name} />
                                         </div>
                                     ))} 
                                 </label>
                             </form>
-                            <button onClick={this.closeModal}>Valider</button>
+                            <button onClick={this.closeModal}>Valider</button>{/*  for close modal */}
                         </div>
                     </Modal>
                     <br/>
-                    <img src={this.state.icon_selected.icon}></img>
+                    <img src={this.state.icon_selected.icon} alt={this.state.icon_selected.name}></img> {/* icon selected */}
                     <br/>
                     <label>ItemName:<br/>
                         <input 
                             type="text" 
                             placeholder="Enter Name of item" 
-                            value= {this.state.name}
+                            value= {this.state.name}                    //update the state with value of input
                             name="name" 
                             onChange={e => this.setState({name : e.target.value})}
                             required 
                         />
                     </label>
                 
-                    <button onClick={this.handleSubmit}><NavLink to={"/ShopList/Items"}>OK</NavLink></button>
+                    <button onClick={this.handleSubmit}><NavLink to={"/ShopList/Items"}>OK</NavLink></button> {/* submit the form with the method related */}
                 </form>
             </div>
         )

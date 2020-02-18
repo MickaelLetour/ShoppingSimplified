@@ -2,18 +2,18 @@ const sql = require("./connect.js");
 
 // constructor
 const item = function(item) {
-    if (item.category_id.length !=0){ // int error with postman
-        this.category_id = parseInt(item.category_id);
+    if (item.category_id.length !=0){ 
+        this.category_id = parseInt(item.category_id);// transform a string on Int
     }
     if (typeof item.name_item === 'string' && item.name_item.length !=0){
         this.name_item = item.name_item;
     }
     if (item.icon_id.length !=0){
-        this.icon_id = parseInt(item.icon_id);
+        this.icon_id = parseInt(item.icon_id);// transform a string on Int
     }
 };
 
-
+//create a new item
 item.create = (newitem, result) => {
   sql.query(`INSERT INTO item SET ?`, newitem, (err, res) => {
     if (err) {
@@ -27,6 +27,7 @@ item.create = (newitem, result) => {
   });
 }; 
 
+// find an item with an id
 item.findById = (itemId, result) => {
   sql.query(`SELECT * FROM item WHERE id = ${itemId}`, (err, res) => {
     if (err) {
@@ -46,6 +47,7 @@ item.findById = (itemId, result) => {
   });
 };
 
+// find an item and information related of icon and category with an id
 item.findByIdWithInfo = (itemId, result) => {
   sql.query(`SELECT * FROM item INNER JOIN icon on item.icon_id = icon.id_icon INNER JOIN category on item.category_id = category.id_category WHERE id = ${itemId}`, (err, res) => {
     if (err) {
@@ -65,6 +67,7 @@ item.findByIdWithInfo = (itemId, result) => {
   });
 };
 
+// find all items
 item.getAll = result => {
   sql.query("SELECT * FROM item", (err, res) => {
     if (err) {
@@ -78,6 +81,7 @@ item.getAll = result => {
   });
 };
 
+//find all items and informations related of icons and categories
 item.getAllWithJoin = result => {
   sql.query("SELECT * FROM item INNER JOIN icon on item.icon_id = icon.id_icon INNER JOIN category on item.category_id = category.id_category", (err, res) => {
     if (err) {
@@ -91,6 +95,7 @@ item.getAllWithJoin = result => {
   });
 };
 
+//update an item with an id
 item.updateById = (id, item, result) => {
   sql.query(
     "UPDATE item SET name_item = ?, category_id = ?, icon_id = ?  WHERE id = ?",
@@ -114,6 +119,7 @@ item.updateById = (id, item, result) => {
   );
 };
 
+//delete an item with an id
 item.remove = (id, result) => {
   sql.query("DELETE FROM item WHERE id = ?", id, (err, res) => {
     if (err) {
@@ -133,6 +139,7 @@ item.remove = (id, result) => {
   });
 };
 
+//delete all items
 /* item.removeAll = result => {
   sql.query("DELETE FROM item", (err, res) => {
     if (err) {

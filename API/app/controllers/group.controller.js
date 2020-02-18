@@ -1,6 +1,6 @@
 const Group = require("../models/group.model.js");
 
-// Create and Save a new user
+// Create and Save a new Group
 exports.create = (req, res) => {
     // Validate request
     if (!req.body) {
@@ -9,15 +9,15 @@ exports.create = (req, res) => {
       });
     }
   
-    // Create a user
-    const group = new Group({
+    // Create a group
+    const group = new Group({ 
       group_name : req.body.group_name,
-      n_members : req.body.n_members,
+      n_members : req.body.n_members,   //save informations necessary for the request on a const
       active : req.body.active,
       logo: req.body.logo,
     });
 
-    // Save user in the database
+    // Save group in the database
     Group.create(group, (err, data) => {
       if (err)
         res.status(500).send({
@@ -28,7 +28,7 @@ exports.create = (req, res) => {
     });
   };
 
-// Retrieve all users from the database.
+// Retrieve all groups from the database.
 exports.findAll = (req, res) => {
     Group.getAll((err, data) => {
       if (err)
@@ -40,7 +40,7 @@ exports.findAll = (req, res) => {
     });
   };
 
-// Find a single user with a userId
+// Find a single group with a groupId
 exports.findOne = (req, res) => {
     Group.findById(req.params.groupId, (err, data) => {
       if (err) {
@@ -57,7 +57,7 @@ exports.findOne = (req, res) => {
     });
   };
 
-// Update a user identified by the userId in the request
+// Update a group identified by the groupId in the request
 exports.update = (req, res) => {
     // Validate Request
     if (!req.body) {
@@ -85,7 +85,7 @@ exports.update = (req, res) => {
     );
   };
 
-// Delete a user with the specified userId in the request
+// Delete a group with the specified groupId in the request
 exports.delete = (req, res) => {
     Group.remove(req.params.groupId, (err, data) => {
       if (err) {
@@ -102,7 +102,7 @@ exports.delete = (req, res) => {
     });
   };
 
-// Delete all users from the database.
+// Delete all groups from the database.
 exports.deleteAll = (req, res) => {
     Group.removeAll((err, data) => {
       if (err)
