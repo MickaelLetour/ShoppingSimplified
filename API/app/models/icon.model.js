@@ -48,6 +48,19 @@ Icon.findById = (iconId, result) => {
 };
 
 Icon.getAll = result => {
+  sql.query("SELECT * FROM icon", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    console.log("icon: ", res);
+    result(null, res);
+  });
+};
+
+Icon.getNotUsed = result => {
   sql.query("SELECT * FROM icon LEFT JOIN item on icon.id_icon = item.icon_id WHERE item.icon_id IS NULL", (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -62,7 +75,7 @@ Icon.getAll = result => {
 
 Icon.updateById = (id, icon, result) => {
   sql.query(
-    "UPDATE icon SET icon = ? WHERE id = ?",
+    "UPDATE icon SET icon = ? WHERE id_icon = ?",
     [icon.icon, id],
     (err, res) => {
       if (err) {
@@ -84,7 +97,7 @@ Icon.updateById = (id, icon, result) => {
 };
 
 Icon.remove = (id, result) => {
-  sql.query("DELETE FROM icon WHERE id = ?", id, (err, res) => {
+  sql.query("DELETE FROM icon WHERE id_icon = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

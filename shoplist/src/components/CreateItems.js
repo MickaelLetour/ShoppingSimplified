@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import Modal from "react-modal"
+import {NavLink} from "react-router-dom"
 //import {RadioGroup, Radio} from 'react-radio-group'
 /* import avatar from "../img/user.png"
 import {dbGETFetch} from "./functions" */

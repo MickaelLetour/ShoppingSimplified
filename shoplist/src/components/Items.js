@@ -1,6 +1,5 @@
 import React from "react";
 import Auth from "../auth.js"
-import Modal from "react-modal"
 import {NavLink} from "react-router-dom"
 
 class Items extends React.Component {
@@ -24,6 +23,7 @@ class Items extends React.Component {
 
         .then(res => {
             this.setState({ listItem : res})
+            console.log(this.state.listItem)
             return res;
         }) 
         }

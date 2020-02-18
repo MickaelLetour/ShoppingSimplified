@@ -1,6 +1,7 @@
 import React from "react";
 import Auth from "../auth.js"
 import Modal from "react-modal"
+import {NavLink} from "react-router-dom"
 
 class UpdateItems extends React.Component {
     constructor(props) {
@@ -145,7 +146,7 @@ class UpdateItems extends React.Component {
         render() {
             return (
                 <div>
-                <form onSubmit={this.handleSubmit} action="http://localhost:21012/ShopList/Items">
+                <form onSubmit={this.handleSubmit}>
 
                     <label>ItemCategory:<br/>
                     <select name="category_id" value={this.state.category_id} onChange={e => this.setState({category_id : e.target.value})} required>
@@ -192,7 +193,7 @@ class UpdateItems extends React.Component {
 
                     <input type="submit"/>
 
-                    <button className="ItemButton" onClick={this.handleClick} action="http://localhost:21012/ShopList/Items">Delete this Item</button>
+                    <button className="ItemButton" onClick={this.handleClick}><NavLink to={"/ShopList/Items/CreateItems"}>Add New Item </NavLink>Delete this Item</button>
                     
                 </form>
             </div>

@@ -28,6 +28,25 @@ item.create = (newitem, result) => {
 }; 
 
 item.findById = (itemId, result) => {
+  sql.query(`SELECT * FROM item WHERE id = ${itemId}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      console.log("found item: ", res[0]);
+      result(null, res[0]);
+      return;
+    }
+
+    // not found item with the id
+    result({ kind: "not_found" }, null);
+  });
+};
+
+item.findByIdWithInfo = (itemId, result) => {
   sql.query(`SELECT * FROM item INNER JOIN icon on item.icon_id = icon.id_icon INNER JOIN category on item.category_id = category.id_category WHERE id = ${itemId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -47,6 +66,19 @@ item.findById = (itemId, result) => {
 };
 
 item.getAll = result => {
+  sql.query("SELECT * FROM item", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    console.log("items: ", res);
+    result(null, res);
+  });
+};
+
+item.getAllWithJoin = result => {
   sql.query("SELECT * FROM item INNER JOIN icon on item.icon_id = icon.id_icon INNER JOIN category on item.category_id = category.id_category", (err, res) => {
     if (err) {
       console.log("error: ", err);
