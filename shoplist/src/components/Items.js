@@ -3,15 +3,6 @@ import Auth from "../auth.js"
 import Modal from "react-modal"
 import {NavLink} from "react-router-dom"
 
-/* import Header from "./Header.js"
-import Navbar from "./Navbar.js"
-import Home from "./Home.js"
-import Lists from "./Lists"
-//import NewUser from "./components/NewUser.js";
-import {BrowserRouter as Router, Switch} from "react-router-dom"
-import {dbGETFetch} from "./functions"
-import { ProtectedRoute } from '../protRoute.js'; */
-
 class Items extends React.Component {
     constructor(props) {
         super(props);
@@ -60,7 +51,6 @@ class Items extends React.Component {
                         </div>
                     ))}
                     <button id="newItem" className="ItemButton"><NavLink to={"/ShopList/Items/CreateItems"}>Add New Item </NavLink></button>
-                    
                 </div>
         )
     }
