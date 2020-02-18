@@ -43,7 +43,7 @@ class UpdateItems extends React.Component {
             return res;
         })
 
-        fetch("http://localhost:2112/icons" ,{
+        fetch("http://localhost:2112/iconsNotUsed" ,{
             method: 'GET',
             mode : 'cors',
     
@@ -58,7 +58,7 @@ class UpdateItems extends React.Component {
         
         Modal.setAppElement('body')
 
-        fetch(`http://localhost:2112/items/${this.state.itemId}` ,{
+        fetch(`http://localhost:2112/itemsInfo/${this.state.itemId}` ,{
                 method: 'GET',
                 mode : 'cors',
         }).then(res => res.json())
@@ -98,7 +98,8 @@ class UpdateItems extends React.Component {
         }) 
         }
 
-        handleSubmit(event) {          
+        handleSubmit(event) {        
+            event.preventDefault();  
             const data = 
                 {
                     category_id:this.state.category_id,
@@ -146,7 +147,7 @@ class UpdateItems extends React.Component {
         render() {
             return (
                 <div>
-                <form onSubmit={this.handleSubmit}>
+                <form>
 
                     <label>ItemCategory:<br/>
                     <select name="category_id" value={this.state.category_id} onChange={e => this.setState({category_id : e.target.value})} required>
@@ -191,9 +192,9 @@ class UpdateItems extends React.Component {
                         />
                     </label>
 
-                    <input type="submit"/>
+                    <button onClick={this.handleSubmit}><NavLink to={"/ShopList/Items"}>Valider</NavLink></button>
 
-                    <button className="ItemButton" onClick={this.handleClick}><NavLink to={"/ShopList/Items/CreateItems"}>Add New Item </NavLink>Delete this Item</button>
+                    <button className="ItemButton" onClick={this.handleClick}><NavLink to={"/ShopList/Items"}>Delete this Item</NavLink></button>
                     
                 </form>
             </div>

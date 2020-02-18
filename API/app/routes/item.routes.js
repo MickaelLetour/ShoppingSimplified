@@ -9,12 +9,18 @@ module.exports = app => {
   
     // Retrieve a single item with itemId
     app.get("/items/:itemId", items.findOne);
+
+    app.get("/itemsInfo", items.findWithInfo)
+
+    app.get("/itemsInfo/:itemId", items.findOneWithInfo);
   
     // Update a item with itemId
     app.put("/items/:itemId", items.update);
   
     // Delete a item with itemId
     app.delete("/items/:itemId", items.delete);
+
+
   
     // Create a new item
     /* app.delete("/items", items.deleteAll); */

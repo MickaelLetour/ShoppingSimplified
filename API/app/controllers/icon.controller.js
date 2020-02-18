@@ -38,6 +38,17 @@ exports.findAll = (req, res) => {
     });
   };
 
+exports.findAllWithInfo = (req, res) => {
+    Icon.getNotUsed((err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving icons."
+        });
+      else res.send(data);
+    });
+  };
+  
 // Find a single category with a categoryId
 exports.findOne = (req, res) => {
     Icon.findById(req.params.iconId, (err, data) => {
