@@ -47,6 +47,19 @@ item.findById = (itemId, result) => {
 };
 
 item.getAll = result => {
+  sql.query("SELECT * FROM item", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    console.log("items: ", res);
+    result(null, res);
+  });
+};
+
+item.getAllWithJoin = result => {
   sql.query("SELECT * FROM item INNER JOIN icon on item.icon_id = icon.id_icon INNER JOIN category on item.category_id = category.id_category", (err, res) => {
     if (err) {
       console.log("error: ", err);
