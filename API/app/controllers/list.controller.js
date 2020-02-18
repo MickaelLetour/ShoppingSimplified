@@ -73,9 +73,10 @@ exports.findOne = (req, res) => {
     List.listByGroupId(req.params.groupid, (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
-          res.status(404).send(false/* {
+          res.send(false)
+          /*res.status(404).send(false);/* {
             message: `Not found list with id ${req.params.groupid}.`
-          } */);
+          } );*/
         } else {
           res.status(500).send({
             message: "Error retrieving list with id " + req.params.listId
