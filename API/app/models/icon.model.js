@@ -30,7 +30,7 @@ Icon.create = (newIcon, result) => {
 };
 
 Icon.findById = (iconId, result) => {
-  sql.query(`SELECT * FROM icon WHERE id = ${iconId}`, (err, res) => {
+  sql.query(`SELECT * FROM icon WHERE id_icon = ${iconId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -48,7 +48,7 @@ Icon.findById = (iconId, result) => {
 };
 
 Icon.getAll = result => {
-  sql.query("SELECT * FROM icon", (err, res) => {
+  sql.query("SELECT * FROM icon LEFT JOIN item on icon.id_icon = item.icon_id WHERE item.icon_id IS NULL", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

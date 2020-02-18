@@ -1,15 +1,7 @@
 import React from "react";
 import Auth from "../auth.js"
-/* import Header from "./Header.js"
-import Navbar from "./Navbar.js"
-import Home from "./Home.js"
-import Lists from "./Lists"
-//import NewUser from "./components/NewUser.js";
-import {BrowserRouter as Router, Switch} from "react-router-dom"
-import {dbGETFetch} from "./functions"
-import { ProtectedRoute } from '../protRoute.js'; */
-
-
+import Modal from "react-modal"
+import {NavLink} from "react-router-dom"
 
 class Items extends React.Component {
     constructor(props) {
@@ -17,32 +9,49 @@ class Items extends React.Component {
         this.state ={
             logged: Auth.isAuthenticated(),
             menuOpen: false,
+            itemId:"",
+            listItem : ""
         }
         this.openMenu=this.openMenu.bind(this);
         this.closeMenu=this.closeMenu.bind(this);
-        //this.componentDidMount=this.componentDidMount.bind(this);
-    }
 
-    openMenu() {
-        this.setState({ menuOpen: true })
-        //console.log("something");
-      }
-    
-    closeMenu() {
-        this.setState({ menuOpen: false })
-    }
+        fetch("http://localhost:2112/items" ,{
+                method: 'GET',
+                mode : 'cors',
+        }).then(res => res.json())
 
-    componentDidMount() {
-        console.log(this.state.logged);
-    }
-    
-    render() {
-        return (
-            
-                <div>
-                    <h3> Items list</h3>
+        .catch(err => err)
+
+        .then(res => {
+            this.setState({ listItem : res})
+            return res;
+        }) 
+        }
+
+        openMenu() {
+            this.setState({ menuOpen: true })
+            //console.log("something");
+          }
+      
+        closeMenu() {
+            this.setState({ menuOpen: false })
+        }
+
+        render() {
+            return (
+                <div id="item">
+                    {Object.entries(this.state.listItem).map(([key, item], i)=> (
+                        <div key={i} className="modal_item">
+                            <ul id={item.id} className="item">
+                                <li><img src={item.icon} /></li>
+                                <li>Name : {item.name_item}</li>
+                                <li>Catégory : {item.name}</li>
+                                <li><button name="itemId" value={item.id}><NavLink to={"/ShopList/Items/UpdateItems?id="+item.id} >Update</NavLink></button></li>
+                            </ul>
+                        </div>
+                    ))}
+                    <button id="newItem" className="ItemButton"><NavLink to={"/ShopList/Items/CreateItems"}>Add New Item </NavLink></button>
                 </div>
-            
         )
     }
 }

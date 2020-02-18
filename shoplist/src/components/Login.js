@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import avatar from "../img/user.png"
+import {NavLink} from "react-router-dom"
 //import {dbGETFetch} from "./functions"
 
 
@@ -46,7 +47,7 @@ class Login extends Component {
                             </label>
                         </div>
                         <div className="logbuttons">
-                            <button type="button" className="forgotpw">Forgot Password?</button>
+                            <button type="button" className="forgotpw"><NavLink to={"/Login/Forgot"}>Forgot Password?</NavLink></button>
                             <button 
                             className="loginButton" 
                             type="submit"

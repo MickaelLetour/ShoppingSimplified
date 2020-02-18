@@ -24,14 +24,13 @@ hr {
   background-color: $HeaderColor;
   font-family: Angelina Alt Demo;
   border-bottom: $fontColor solid 1px;
-  height: 17vh;
   .imgNav {
     width: 15vh;
     height: 15vh;
     margin-left: 2vw;
     border-radius: 5px;
   }
-  #title,#linkLogin {
+  #title,#button{
     margin-top: 5vh;
     color : white;
     font-size: 2.5em;
@@ -39,9 +38,12 @@ hr {
     color:$fontColor
     }
   }
-  #linkLogin {
-    margin-right: 2vw;
+  #button{
+    margin-right: 10vw;
     width: 15vh;
+    a{
+      text-decoration: none;
+    }
   }
 }
 
@@ -155,6 +157,52 @@ form input {
   border-color: #f44336;
 }
 
+
+#item{
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 75vw;
+  justify-content: center;
+  text-align: center;
+  ul{
+    border: 2px solid black;
+    list-style: none;
+    padding:0;
+    //width: 12vw;
+    //height: 14vw;
+    &:hover {
+      border : red 2px solid;
+    }
+    li{
+      padding:0;
+    }
+  }
+}
+
+.item {
+  margin-right: 3vw;
+  margin-left: 3vw;
+}
+
+#newItem{
+  margin-top: 10vh;
+  height: 5vw;
+  width: 5vw;
+  a{
+    text-decoration: none;
+    color:$fontColor;
+  }
+  &:hover{
+    border-color:blue;
+  }
+}
+
+#icon-modal{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 //---------------
 // NavBar
 
@@ -185,7 +233,7 @@ form input {
   position: fixed;
   width: 36px;
   height: 30px;
-  left: 36px;
+  right: 36px;
   top: 36px;
 }
 
@@ -212,18 +260,19 @@ form input {
   position: fixed;
   top: 17vh;
 } 
-.bm-menu-wrap {
+/* .bm-menu-wrap {
   position: fixed !important;
   height:60% !important;
   top: 17vh;
-}
+} */
 
 .bm-menu {
-  position: relative;
-  background: $HeaderColor;
+  background: white;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
-  opacity: 1;
+  position: fixed;
+  top:12vh;
+  right: 0;
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -275,6 +324,9 @@ form input {
   margin-right: auto;
   margin-left: auto;
 }
+.main {
+  min-height: 70vh;   
+}
 
 .InputBox {
   display: flex;
@@ -312,11 +364,11 @@ form input {
     //align-items: center; 
   }
 
-
-
-
-
 @media only screen and (max-width: 768px) {
+
+  .main {
+    max-height: 70vh;   
+  }
 
   .mainNav {
     flex-wrap: wrap;
@@ -327,7 +379,7 @@ form input {
       margin-top: 1vh;
       margin-bottom: 1vh;
     }
-    #title,#linkLogin {
+    #title,#button {
       margin : auto;
       margin-top: 1vh;
       margin-bottom: 1vh;
@@ -335,8 +387,17 @@ form input {
     }
   }
 
-  .bm-menu-wrap {
-    top: 20vh;
+  .headerButton {
+    width: 100%;
+    margin: auto;
+  }
+
+  .bm-burger-button {
+    position: fixed;
+    width: 36px;
+    height: 30px;
+    right: 36px;
+    top: 26px;
   }
 
   form {
@@ -354,7 +415,6 @@ form input {
   .loginButton{
     width: 20vw;
   }
-
 }
 //---rui test
 @media only screen and (max-width: 400px) {

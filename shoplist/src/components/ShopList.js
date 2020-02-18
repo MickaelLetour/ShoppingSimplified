@@ -10,7 +10,7 @@ import Items from "./Items.js"
 import {BrowserRouter as Router, Switch} from "react-router-dom"
 
 import { ProtectedRoute } from '../protRoute.js'; */
-import CreateItem from "./CreateItem.js"
+
 
 
 class ShopList extends React.Component {
@@ -48,7 +48,6 @@ class ShopList extends React.Component {
         return (
         <div>
             <h1> home </h1>
-            <CreateItem />
         </div>
         )
     }

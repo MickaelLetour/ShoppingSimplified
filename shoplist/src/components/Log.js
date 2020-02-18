@@ -43,8 +43,6 @@ class Log extends React.Component {
         console.log(this.state.type); 
       } 
 
-    
-
       handleChange(event) {
         const {name, value} = event.target
         

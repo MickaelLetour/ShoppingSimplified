@@ -18,7 +18,6 @@ hr {
   background-color: #97C552;
   font-family: Angelina Alt Demo;
   border-bottom: #141414 solid 1px;
-  height: 17vh;
 }
 .mainNav .imgNav {
   width: 15vh;
@@ -26,17 +25,20 @@ hr {
   margin-left: 2vw;
   border-radius: 5px;
 }
-.mainNav #title, .mainNav #linkLogin {
+.mainNav #title, .mainNav #button {
   margin-top: 5vh;
   color: white;
   font-size: 2.5em;
 }
-.mainNav #title #titleColor, .mainNav #linkLogin #titleColor {
+.mainNav #title #titleColor, .mainNav #button #titleColor {
   color: #141414;
 }
-.mainNav #linkLogin {
-  margin-right: 2vw;
+.mainNav #button {
+  margin-right: 10vw;
   width: 15vh;
+}
+.mainNav #button a {
+  text-decoration: none;
 }
 
 footer {
@@ -148,6 +150,49 @@ form input {
   border-color: #f44336;
 }
 
+#item {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  width: 75vw;
+  justify-content: center;
+  text-align: center;
+}
+#item ul {
+  border: 2px solid black;
+  list-style: none;
+  padding: 0;
+}
+#item ul:hover {
+  border: red 2px solid;
+}
+#item ul li {
+  padding: 0;
+}
+
+.item {
+  margin-right: 3vw;
+  margin-left: 3vw;
+}
+
+#newItem {
+  margin-top: 10vh;
+  height: 5vw;
+  width: 5vw;
+}
+#newItem a {
+  text-decoration: none;
+  color: #141414;
+}
+#newItem:hover {
+  border-color: blue;
+}
+
+#icon-modal {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .bm {
   position: fixed;
   float: right;
@@ -174,7 +219,7 @@ form input {
   position: fixed;
   width: 36px;
   height: 30px;
-  left: 36px;
+  right: 36px;
   top: 36px;
 }
 
@@ -200,18 +245,18 @@ form input {
   top: 17vh;
 }
 
-.bm-menu-wrap {
+/* .bm-menu-wrap {
   position: fixed !important;
-  height: 60% !important;
+  height:60% !important;
   top: 17vh;
-}
-
+} */
 .bm-menu {
-  position: relative;
-  background: #97C552;
+  background: white;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
-  opacity: 1;
+  position: fixed;
+  top: 12vh;
+  right: 0;
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -259,6 +304,10 @@ form input {
   margin-left: auto;
 }
 
+.main {
+  min-height: 70vh;
+}
+
 .InputBox {
   display: flex;
   background-color: white;
@@ -290,6 +339,10 @@ form input {
 }
 
 @media only screen and (max-width: 768px) {
+  .main {
+    max-height: 70vh;
+  }
+
   .mainNav {
     flex-wrap: wrap;
   }
@@ -300,15 +353,24 @@ form input {
     margin-top: 1vh;
     margin-bottom: 1vh;
   }
-  .mainNav #title, .mainNav #linkLogin {
+  .mainNav #title, .mainNav #button {
     margin: auto;
     margin-top: 1vh;
     margin-bottom: 1vh;
     width: 100%;
   }
 
-  .bm-menu-wrap {
-    top: 20vh;
+  .headerButton {
+    width: 100%;
+    margin: auto;
+  }
+
+  .bm-burger-button {
+    position: fixed;
+    width: 36px;
+    height: 30px;
+    right: 36px;
+    top: 26px;
   }
 
   form {
