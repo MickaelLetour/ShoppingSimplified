@@ -30,7 +30,7 @@ Icon.create = (newIcon, result) => {
 };
 
 Icon.findById = (iconId, result) => {
-  sql.query(`SELECT * FROM icon WHERE id_icon_icon = ${iconId}`, (err, res) => {
+  sql.query(`SELECT * FROM icon WHERE id_icon = ${iconId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
