@@ -9,6 +9,8 @@ module.exports = app => {
   
     // Retrieve a single user with userId
     app.get("/icons/:iconId", icons.findOne);
+
+    app.get("/iconsNotUsed", icons.findAllWithInfo);
   
     // Update a user with userId
     app.put("/icons/:iconId", icons.update);

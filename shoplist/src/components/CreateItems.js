@@ -34,7 +34,7 @@ class CreateItem extends Component {
             return res;
         })
 
-        fetch("http://localhost:2112/icons" ,{
+        fetch("http://localhost:2112/iconsNotUsed" ,{
             method: 'GET',
             mode : 'cors',
     
@@ -51,7 +51,7 @@ class CreateItem extends Component {
         }
 
         handleSubmit(event) {
-            
+            event.preventDefault();
             const data = 
                 {
                     category_id:this.state.category_id,
@@ -100,7 +100,7 @@ class CreateItem extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form>
 
                     <label>ItemCategory:<br/>
                     <select name="category_id" value={this.state.category_id} onChange={e => this.setState({category_id : e.target.value})} required>
@@ -145,7 +145,7 @@ class CreateItem extends Component {
                         />
                     </label>
                 
-                    <input type="submit"/>
+                    <button onClick={this.handleSubmit}><NavLink to={"/ShopList/Items"}>OK</NavLink></button>
                 </form>
             </div>
         )

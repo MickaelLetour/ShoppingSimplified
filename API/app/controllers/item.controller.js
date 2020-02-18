@@ -37,11 +37,38 @@ exports.findAll = (req, res) => {
         });
       else res.send(data);
     });
+};
+
+exports.findWithInfo = (req, res) => {
+    Item.getAllWithJoin((err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving items."
+        });
+      else res.send(data);
+    });
   };
 
 // Find a single item with a itemId
 exports.findOne = (req, res) => {
     Item.findById(req.params.itemId, (err, data) => {
+      if (err) {
+        if (err.kind === "not_found") {
+          res.status(404).send({
+            message: `Not found item with id ${req.params.itemId}.`
+          });
+        } else {
+          res.status(500).send({
+            message: "Error retrieving item with id " + req.params.itemId
+          });
+        }
+      } else res.send(data);
+    });
+  };
+
+  exports.findOneWithInfo = (req, res) => {
+    Item.findByIdWithInfo(req.params.itemId, (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({

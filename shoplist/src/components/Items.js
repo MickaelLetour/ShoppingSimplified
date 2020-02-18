@@ -14,7 +14,7 @@ class Items extends React.Component {
         this.openMenu=this.openMenu.bind(this);
         this.closeMenu=this.closeMenu.bind(this);
 
-        fetch("http://localhost:2112/items" ,{
+        fetch("http://localhost:2112/itemsInfo" ,{
                 method: 'GET',
                 mode : 'cors',
         }).then(res => res.json())
