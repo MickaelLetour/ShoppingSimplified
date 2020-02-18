@@ -11,7 +11,7 @@ con.connect(function(err) {
     let sql;
     if (err) throw err;
     console.log("Connected!");
-    sql = "CREATE TABLE IF NOT EXISTS `User` (id INT AUTO_INCREMENT NOT NULL, nickname VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, photo TEXT, active INT NOT NULL DEFAUlT '0', temporaryToken VARCHAR(255) NOT NULL, PRIMARY KEY (id))";
+    sql = "CREATE TABLE IF NOT EXISTS `User` (id INT AUTO_INCREMENT NOT NULL, nickname VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, photo TEXT, active INT NOT NULL DEFAUlT '0', temporaryToken VARCHAR(255), PRIMARY KEY (id))";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Table USER created");

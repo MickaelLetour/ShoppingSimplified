@@ -21,7 +21,7 @@ category.create = (newcategory, result) => {
 };
 
 category.findById = (categoryId, result) => {
-  sql.query(`SELECT * FROM category WHERE id = ${categoryId}`, (err, res) => {
+  sql.query(`SELECT * FROM category WHERE id_category = ${categoryId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -54,7 +54,7 @@ category.getAll = result => {
 
 category.updateById = (id, category, result) => {
   sql.query(
-    "UPDATE category SET name = ? WHERE id = ?",
+    "UPDATE category SET name = ? WHERE id_category = ?",
     [category.name, id],
     (err, res) => {
       if (err) {
@@ -76,7 +76,7 @@ category.updateById = (id, category, result) => {
 };
 
 category.remove = (id, result) => {
-  sql.query("DELETE FROM category WHERE id = ?", id, (err, res) => {
+  sql.query("DELETE FROM category WHERE id_category = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
