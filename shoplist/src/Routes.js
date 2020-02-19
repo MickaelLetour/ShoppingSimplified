@@ -5,8 +5,8 @@ import Footer from "./components/Footer.js"
 import Log from "./components/Log.js";
 //import ShopList from "./components/ShopList.js";
 import Navbar from "./components/Navbar"
-import Home from "./components/Home.js"
-import Lists from "./components/Lists"
+import ActiveList from "./components/ActiveList"
+//import Lists from "./components/Lists"
 import Items from "./components/Items.js"
 import Auth from "./auth"
 import { ProtectedRoute } from './protRoute.js';
@@ -15,6 +15,7 @@ import ShopList from './components/ShopList';
 import Forgot from './components/Forgot';
 import CreateItems from './components/CreateItems';
 import UpdateItems from './components/UpdateItems';
+import AllLists from './components/AllLists';
 
 
 class Routes extends React.Component {
@@ -113,11 +114,11 @@ componentDidMount(){
             />
 
             <ProtectedRoute exact path="/ShopList/ActiveList"
-              component={()=>{return(<div><div className="main"><Home /></div>  <Navbar /> </div>); }} 
+              component={()=>{return(<div><div className="main"><ActiveList/></div>  <Navbar /> </div>); }} 
            />
 
             <ProtectedRoute exact path="/ShopList/Lists"
-              component={()=>{return(<div><div className="main"><Lists /></div>  <Navbar /> </div>); }}
+              component={()=>{return(<div><div className="main"><AllLists /></div>  <Navbar /> </div>); }}
             />
 
             <ProtectedRoute exact path="/ShopList/Items" 

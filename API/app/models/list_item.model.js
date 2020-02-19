@@ -30,8 +30,8 @@ List_Item.findListById = (listId, result) => {
     }
 
     if (res.length) {
-      console.log("found list: ", res[0]);
-      result(null, res[0]);
+      console.log("found list: ", res);
+      result(null, res);
       return;
     }
     // not found category with the id

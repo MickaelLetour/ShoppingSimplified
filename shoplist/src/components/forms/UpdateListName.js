@@ -1,10 +1,11 @@
 import React, {Component} from "react"
+import {NavLink} from "react-router-dom";
 
 
 //import {dbGETFetch} from "./functions"
 
 
-class ListName extends Component {
+class UpdateListName extends Component {
     constructor(props){
         super(props)
           this.state = {
@@ -31,7 +32,7 @@ class ListName extends Component {
                         <label className="Form">List Name:
                             <input 
                                 type="text" 
-                                placeholder="Enter Listname" 
+                                placeholder={"Previous Name: "+this.props.placeholder}
                                 value= {this.props.listname}
                                 name="listname" 
                                 onChange={this.props.handleChange}
@@ -72,7 +73,7 @@ class ListName extends Component {
                             <button 
                             className="loginButton" 
                             type="submit"
-                            >Submit</button>
+                            >Update</button>
                         </div>
                         </div>
                     </form>
@@ -81,4 +82,4 @@ class ListName extends Component {
     }
 }
 
-export default ListName
+export default UpdateListName

@@ -15,12 +15,12 @@ class ItemList extends Component {
 
 
     render() {
-      //console.log(this.props.mount.length)
+      //console.log(this.props.item)
         if(this.props.mount.length ===0 )
         {
           return (
             <li><div className="item" onClick={()=>this.props.onclickHandler(this.props.item.id)}>
-                <h4>{this.props.item.name}</h4>
+                <h4>{this.props.item.name_item}</h4>
                 <img src={this.props.item.icon_ID} alt="icon" width='60vw' height="60vh"></img>
                 <label>{this.props.item.category_id}</label>
             </div>
@@ -38,7 +38,7 @@ class ItemList extends Component {
         else {
               return (
                 <li><div className="item" onClick={()=>this.props.onclickHandler(this.props.item.id)}>
-                    <h4>{this.props.item.name}</h4>
+                    <h4>{this.props.item.name_item}</h4>
                     <img src={this.props.item.icon_ID} alt="icon" width='60vw' height="60vh"></img>
                     <label>{this.props.item.category_id}</label>
                 </div>

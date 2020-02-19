@@ -2,7 +2,6 @@ import React from "react";
 import Auth from "../auth.js"
 import {dbGETFetch} from "./functions"
 import Lists from "./Lists"
-import UpdateList from "./UpdateList.js"
 //import ActiveList from "./ActiveList"
 import DisplayList from "./forms/DisplayList.js";
 //import {BrowserRouter as Redirect} from 'react-router-dom';
@@ -17,17 +16,15 @@ import { ProtectedRoute } from '../protRoute.js'; */
 
 
 
-class ShopList extends React.Component {
+class AllLists extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
-            listdata: [],
+            logged: Auth.isAuthenticated(),
             list: true,
             loading: true,
             activeList : [],
-            update:false,
-            allcats : [],
-            allicons : [],
+            //clickedItems : [],
         }
         
         this.componentDidMount=this.componentDidMount.bind(this);
@@ -41,9 +38,6 @@ class ShopList extends React.Component {
         //console.log(userid);
         var getGroupUrl = `http://localhost:2112/user_groups/userpower=/${userid}`;
 
-        var allcatsUrl = "http://localhost:2112/categories";
-
-        var alliconsURL = "http://localhost:2112/icons"
  
         dbGETFetch(getGroupUrl).then(idgroup=>{
             //console.log(idgroup.id_Group)
@@ -59,16 +53,11 @@ class ShopList extends React.Component {
                         })
                 }
                 else {
-                    
                     for(let info of list){
                         //console.log(info)
-                        
+
                         if(info!==false && info.active === 1) {
-                            this.setState({
-                                listdata : list,
-                            })
                             let id = info.id;
-                            Auth.saveActivelist(id);
                             var itemsUrl = `http://localhost:2112/list_item/listing=/${id}`;
 
                             dbGETFetch(itemsUrl).then(itemid =>{
@@ -124,20 +113,6 @@ class ShopList extends React.Component {
             })
         })
 
-
-
-        dbGETFetch(allcatsUrl).then(cats=>{
-            this.setState({
-                allcats : cats,
-            })
-        })
-
-        dbGETFetch(alliconsURL).then(icon =>{
-            this.setState({
-                allicons : icon,
-            })
-        })
-
         setTimeout(() => {
             this.setState({
                 loading: false,
@@ -168,16 +143,7 @@ class ShopList extends React.Component {
         console.log(this.state.clickedItems) */
 
         if(id === 'updateList'){
-            this.setState({
-                loading: true,
-                update : true,
-            })
-
-            setTimeout(() => {
-                this.setState({
-                    loading: false,
-                })
-            }, 2000) 
+            console.log("updates")
         }
 
 
@@ -186,35 +152,18 @@ class ShopList extends React.Component {
 
 
     render() {
-        if(this.state.update === false) {
-          return (
-            <div>
-                {
-                this.state.loading ?
-                (<h1>Loading</h1>) :
-                (this.state.list ? (<DisplayList 
-                                    items={this.state.activeList} 
-                                    onclickHandler={this.onclickHandler}
-                                    />) : (<Lists />))  }
-            </div>
-          )
-        }
-        else {
-            return(
-                <div>
-                {this.state.loading ?
-                (<h1>Loading</h1>) :
-                (<UpdateList 
-                    rawlist={this.state.listdata} 
-                    displayList={this.state.activeList}
-                    categories = {this.state.allcats}
-                    allicons = {this.state.allicons}
-                />) }
-                </div>
-            ) 
-        }
-
+        return (
+        <div>
+            {
+             this.state.loading ?
+            (<h1>Loading</h1>) :
+            (this.state.list ? (<DisplayList 
+                                items={this.state.activeList} 
+                                onclickHandler={this.onclickHandler}
+                                />) : (<Lists />))  }
+        </div>
+        )
     }
 }
 
-export default ShopList
+export default AllLists

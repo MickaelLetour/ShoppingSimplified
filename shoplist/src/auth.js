@@ -3,6 +3,7 @@ class Auth {
       this.authenticated = false;
       this.Button="Register";
       this.id = "";
+      this.activeList = null;
     }
   
     login(cb) {
@@ -46,6 +47,16 @@ class Auth {
     button() {
       return this.Button;
     }
+
+    saveActivelist(id){
+      this.activeList = id;
+      return this.activeList;
+    }
+
+    getActiveList(){
+      return this.activeList;
+    }
+
   }
   
   export default new Auth();

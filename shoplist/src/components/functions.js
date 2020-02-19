@@ -33,6 +33,25 @@ export function dbPOSTFetch(url,data) {
       })
   } 
 
+  export function dbPUTFetch(url,data) {
+    return fetch(url, {
+        method: 'PUT',
+        mode: 'cors',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res =>res.json()) 
+        
+    .catch(err => err)
+
+    .then(res=>{
+        /* console.log(res);
+        console.log("item created"); */
+        return res;
+    })
+}
+
   export async function dbGETFetch(url) {
     return await fetch(url, {
         method: 'GET',
@@ -46,6 +65,20 @@ export function dbPOSTFetch(url,data) {
         return res;
     })
 } 
+
+export async function dbDeleteFetch(url) {
+    return await fetch(url, {
+        method: 'DELETE',
+        //mode: 'cors',
+       
+    }).then(res =>res.json()) 
+        
+    .catch(err => err)
+
+    .then(res=>{
+        return res;
+    })
+}
 
 /*   export function test(){
       console.log("i'm a function");
