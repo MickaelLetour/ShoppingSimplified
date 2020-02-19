@@ -122,7 +122,16 @@ componentDidMount(){
 
             <ProtectedRoute exact path="/ShopList/Items" 
               component={()=>{return(<div><div className="main"><Items /> </div> <Navbar /> </div>); }}
-            /> 
+            />  
+
+            {/* <ProtectedRoute exact path="/ShopList/Items">
+            <div>
+            <div className="main">
+              <Items />
+            </div>
+              <Navbar />
+            </div>
+            </ProtectedRoute> */}
 
             <ProtectedRoute exact path="/ShopList/Items/CreateItems"
             component={()=>{return(<div><div className="main"><CreateItems /> </div> <Navbar /> </div>);}}

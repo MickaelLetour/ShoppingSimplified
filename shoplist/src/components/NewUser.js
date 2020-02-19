@@ -19,10 +19,12 @@ class NewUser extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
       }
       
-       showHide(){
+      showHide(){
         this.setState({
           type: this.state.type === 'password' ? 'input' : 'password'
-        })  
+          
+        }) 
+        console.log(this.state.type); 
       } 
 
       componentDidMount(){
@@ -160,8 +162,8 @@ class NewUser extends Component {
                                 name="confirmPassword"
                                 onChange={this.handleChange}
                             />
+                            <span className="Form__show" onClick={this.showHide}>{this.state.type === 'input' ? <img src="https://img.icons8.com/material-sharp/24/000000/preview-pane.png" alt='Hide' width="24" /> : <img src="https://img.icons8.com/material-rounded/24/000000/hide.png" alt="show" width="24" />}</span>
 
-                            <span className="Form__show" onClick={this.showHide}>{this.state.type === 'input' ? 'Hide' : 'Show'}</span>
                         </label>
                     </div> 
                     <div className="logbuttons">

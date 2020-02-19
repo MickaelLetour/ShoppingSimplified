@@ -43,7 +43,7 @@ class Login extends Component {
                                     required
                                 />
 
-                                <span className="Form__show" onClick={this.props.showHide}>{this.props.type === 'input' ? 'Hide' : 'Show'}</span>
+                                <span className="Form__show" onClick={this.props.showHide}>{this.props.type === 'input' ? <img src="https://img.icons8.com/material-sharp/24/000000/preview-pane.png" alt='Hide' width="24" /> : <img src="https://img.icons8.com/material-rounded/24/000000/hide.png" alt="show" width="24" />}</span>
                             </label>
                         </div>
                         <div className="logbuttons">
@@ -51,6 +51,7 @@ class Login extends Component {
                             <button 
                             className="loginButton" 
                             type="submit"
+                            onClick={this.props.headerHandler}
                             >Login</button>
                         </div>
                     </div>

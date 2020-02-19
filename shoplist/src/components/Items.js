@@ -43,14 +43,13 @@ class Items extends React.Component {
                     {Object.entries(this.state.listItem).map(([key, item], i)=> (//for each row in object of state item
                         <div key={i} className="modal_item">
                             <ul id={item.id} className="item">
-                                <li><img src={item.icon} alt={item.name_item} /></li>
-                                <li>Name : {item.name_item}</li>
-                                <li>Catégory : {item.name}</li>
-                                <li><button name="itemId" value={item.id}><NavLink to={"/ShopList/Items/UpdateItems?id="+item.id} >Update</NavLink></button></li>{/* redirect after click */}
+                                <li><img className="imgItem" src={item.icon} alt={item.name_item}/></li>
+                                <li>{item.name_item}</li>
+                                <li><button name="itemId" className="buttonUpdate" value={item.id}><NavLink to={"/ShopList/Items/UpdateItems?id="+item.id} >Update</NavLink></button></li>{/* redirect after click */}
                             </ul>
                         </div>
                     ))}
-                    <button id="newItem" className="ItemButton"><NavLink to={"/ShopList/Items/CreateItems"}>Add New Item </NavLink></button>{/* redirect after click */}
+                    <button id="newItem" className="ItemButton"><NavLink to={"/ShopList/Items/CreateItems"}>New</NavLink></button>{/* redirect after click */}
                 </div>
         )
     }

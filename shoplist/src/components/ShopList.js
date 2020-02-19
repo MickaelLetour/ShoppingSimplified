@@ -24,8 +24,7 @@ class ShopList extends React.Component {
         
         this.componentDidMount=this.componentDidMount.bind(this);
         this.listCeck=this.listCeck.bind(this);
-    }
-
+    }   
 
     componentDidMount() {
         let userid = Auth.sendID();

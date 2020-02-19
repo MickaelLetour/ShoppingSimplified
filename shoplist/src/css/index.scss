@@ -4,6 +4,8 @@ $formColor : rgba(226, 167, 28, 0.40);
 $HeaderColor : #97C552;
 $button : #250463;
 
+@import url(http://fr.allfont.net/allfont.css?fonts=angelina);
+
 body{
   margin : 0;
 }
@@ -22,7 +24,7 @@ hr {
   justify-content: space-between;
   text-align: center;
   background-color: $HeaderColor;
-  font-family: Angelina Alt Demo;
+  font-family: 'Angelina';
   border-bottom: $fontColor solid 1px;
   .imgNav {
     width: 15vh;
@@ -30,6 +32,11 @@ hr {
     margin-left: 2vw;
     border-radius: 5px;
   }
+
+  #title{
+    margin-left: 7vw;
+  }
+
   #title,#button{
     margin-top: 5vh;
     color : white;
@@ -43,6 +50,10 @@ hr {
     width: 15vh;
     a{
       text-decoration: none;
+      color:blue;
+      &:hover{
+        border:blue solid 1px;
+      }
     }
   }
 }
@@ -52,11 +63,14 @@ footer {
   width: 100%;
   height: 15vh;
   border-top: $fontColor solid 1px;
+  text-align: center;
+  line-height: 15vh;
+  font-size: 1.5em;
 }
 
 .imgContainer img {
   max-width: 100%;
-  height: 40vh;
+  height: 20vh;
   display: block;
   margin-right: auto;
   margin-left: auto;
@@ -73,8 +87,30 @@ form {
   min-height: 320px;
   background: $formColor;
   padding: 40px;
-  box-shadow: 0 0 20px $fontColor;
   border-radius: 10px;
+  select,.ItemButton{
+    border:none;
+    width: 100%;
+    margin-bottom: 5vh;
+    height: 5vh;;
+  }
+
+  #buttonDelete{
+    margin-top:2vh;
+  }
+
+  #buttonValid{
+    width: 100%;
+    margin-top: 2vh;
+  }
+}
+
+.imgUpdate{
+  width: 100%;
+  justify-content: center;
+  img{
+    
+  }
 }
 
 form input {
@@ -82,10 +118,8 @@ form input {
   margin-bottom: 1em;
   width: 100%;
   height: 5vh;
-  border-width: 0 0 1.5px;
-  border-style: solid;
-  border-color: $fontColor;
   border-radius: 5px;
+  border:none;
 }
 
 .Form {
@@ -95,43 +129,34 @@ form input {
   font-weight: 700;
   width: 100%;
   color: $button;
+  box-decoration-break: none;
 }
 
 .Form__input {
+  
   display: block;
   text-transform: none;
   width: 100%;
   height: 7vh;
-  border-width: 0 0 1.5px;
-  border-style: solid;
-  border-color: $fontColor;
   font-weight: 400;
   color: $fontColor;
   margin-bottom: 5vh;
 }
 
-.Form__input:focus, .Form__input:active {
-  border-color: $HeaderColor;
-  outline: 0;
-
-}
 .Form__show {
   cursor: pointer;
   position: absolute;
-  bottom: 11px;
-  height: 16px;
+  bottom: 15px;
+  height: 15px;
   right: 0;
-  background: $button;
-  color: white;
   padding: 4px 8px;
-  border-radius: 4px;
-  font-weight: 700;
-  font-size: 0.8em;
+  border:none;
 }
 
 .logbuttons {
   display: flex;
   justify-content: space-evenly;
+  border:none;
 
 }
 
@@ -145,6 +170,7 @@ form input {
   width: 10vw;
   height: 5vh;
   border-radius: 5px;
+  border:none;
 }
 
 .logbuttons .forgotpw {
@@ -152,9 +178,15 @@ form input {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  background-color: #f44336;
   color: white;
-  border-color: #f44336;
+  border:none;
+  &:hover{
+    border:solid blue 1px;
+  }
+  a{
+    text-decoration: none;
+    color:blue;
+  }
 }
 
 
@@ -162,21 +194,37 @@ form input {
   display: flex;
   flex-wrap: wrap;
   margin: auto;
-  width: 75vw;
   justify-content: center;
   text-align: center;
+  width: 100%;
   ul{
-    border: 2px solid black;
     list-style: none;
     padding:0;
-    //width: 12vw;
-    //height: 14vw;
-    &:hover {
-      border : red 2px solid;
+    .imgItem{
+      width: 7.5vh;
+      height:7.5vh ;
+      border: 2px solid black;
+      border-radius: 50%;
+      &:active {
+        border : $HeaderColor 2px solid;
+      }
     }
     li{
       padding:0;
     }
+  }
+}
+
+.buttonUpdate{
+  background-color: $HeaderColor;
+  border:none;
+  &:hover{
+    border:$bodyColor 3px solid;
+  }
+  a{
+    text-decoration: none;
+    color:$fontColor;
+    
   }
 }
 
@@ -187,14 +235,16 @@ form input {
 
 #newItem{
   margin-top: 10vh;
-  height: 5vw;
-  width: 5vw;
+  height: 5vh;
+  background-color: $HeaderColor;
+  border:none;
+  &:hover{
+    border:$bodyColor 3px solid;
+  }
   a{
     text-decoration: none;
     color:$fontColor;
-  }
-  &:hover{
-    border-color:blue;
+    
   }
 }
 
@@ -325,7 +375,7 @@ form input {
   margin-left: auto;
 }
 .main {
-  min-height: 70vh;   
+  min-height: 68vh;   
 }
 
 .InputBox {
@@ -365,6 +415,10 @@ form input {
   }
 
 @media only screen and (max-width: 768px) {
+
+  #title{
+    margin-left:0;
+  }
 
   .main {
     max-height: 70vh;   

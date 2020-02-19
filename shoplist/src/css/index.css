@@ -1,3 +1,4 @@
+@import url(http://fr.allfont.net/allfont.css?fonts=angelina);
 body {
   margin: 0;
 }
@@ -16,7 +17,7 @@ hr {
   justify-content: space-between;
   text-align: center;
   background-color: #97C552;
-  font-family: Angelina Alt Demo;
+  font-family: "Angelina";
   border-bottom: #141414 solid 1px;
 }
 .mainNav .imgNav {
@@ -24,6 +25,9 @@ hr {
   height: 15vh;
   margin-left: 2vw;
   border-radius: 5px;
+}
+.mainNav #title {
+  margin-left: 7vw;
 }
 .mainNav #title, .mainNav #button {
   margin-top: 5vh;
@@ -39,6 +43,10 @@ hr {
 }
 .mainNav #button a {
   text-decoration: none;
+  color: blue;
+}
+.mainNav #button a:hover {
+  border: blue solid 1px;
 }
 
 footer {
@@ -46,11 +54,14 @@ footer {
   width: 100%;
   height: 15vh;
   border-top: #141414 solid 1px;
+  text-align: center;
+  line-height: 15vh;
+  font-size: 1.5em;
 }
 
 .imgContainer img {
   max-width: 100%;
-  height: 40vh;
+  height: 20vh;
   display: block;
   margin-right: auto;
   margin-left: auto;
@@ -67,19 +78,33 @@ form {
   min-height: 320px;
   background: rgba(226, 167, 28, 0.4);
   padding: 40px;
-  box-shadow: 0 0 20px #141414;
   border-radius: 10px;
 }
+form select, form .ItemButton {
+  border: none;
+  width: 100%;
+  margin-bottom: 5vh;
+  height: 5vh;
+}
+form #buttonDelete {
+  margin-top: 2vh;
+}
+form #buttonValid {
+  width: 100%;
+  margin-top: 2vh;
+}
 
+.imgUpdate {
+  width: 100%;
+  justify-content: center;
+}
 form input {
   margin-top: 1em;
   margin-bottom: 1em;
   width: 100%;
   height: 5vh;
-  border-width: 0 0 1.5px;
-  border-style: solid;
-  border-color: #141414;
   border-radius: 5px;
+  border: none;
 }
 
 .Form {
@@ -89,6 +114,7 @@ form input {
   font-weight: 700;
   width: 100%;
   color: #250463;
+  box-decoration-break: none;
 }
 
 .Form__input {
@@ -96,36 +122,25 @@ form input {
   text-transform: none;
   width: 100%;
   height: 7vh;
-  border-width: 0 0 1.5px;
-  border-style: solid;
-  border-color: #141414;
   font-weight: 400;
   color: #141414;
   margin-bottom: 5vh;
 }
 
-.Form__input:focus, .Form__input:active {
-  border-color: #97C552;
-  outline: 0;
-}
-
 .Form__show {
   cursor: pointer;
   position: absolute;
-  bottom: 11px;
-  height: 16px;
+  bottom: 15px;
+  height: 15px;
   right: 0;
-  background: #250463;
-  color: white;
   padding: 4px 8px;
-  border-radius: 4px;
-  font-weight: 700;
-  font-size: 0.8em;
+  border: none;
 }
 
 .logbuttons {
   display: flex;
   justify-content: space-evenly;
+  border: none;
 }
 
 .loginButton {
@@ -138,6 +153,7 @@ form input {
   width: 10vw;
   height: 5vh;
   border-radius: 5px;
+  border: none;
 }
 
 .logbuttons .forgotpw {
@@ -145,29 +161,52 @@ form input {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  background-color: #f44336;
   color: white;
-  border-color: #f44336;
+  border: none;
+}
+.logbuttons .forgotpw:hover {
+  border: solid blue 1px;
+}
+.logbuttons .forgotpw a {
+  text-decoration: none;
+  color: blue;
 }
 
 #item {
   display: flex;
   flex-wrap: wrap;
   margin: auto;
-  width: 75vw;
   justify-content: center;
   text-align: center;
+  width: 100%;
 }
 #item ul {
-  border: 2px solid black;
   list-style: none;
   padding: 0;
 }
-#item ul:hover {
-  border: red 2px solid;
+#item ul .imgItem {
+  width: 7.5vh;
+  height: 7.5vh;
+  border: 2px solid black;
+  border-radius: 50%;
+}
+#item ul .imgItem:active {
+  border: #97C552 2px solid;
 }
 #item ul li {
   padding: 0;
+}
+
+.buttonUpdate {
+  background-color: #97C552;
+  border: none;
+}
+.buttonUpdate:hover {
+  border: rgba(226, 167, 28, 0.5) 3px solid;
+}
+.buttonUpdate a {
+  text-decoration: none;
+  color: #141414;
 }
 
 .item {
@@ -177,15 +216,16 @@ form input {
 
 #newItem {
   margin-top: 10vh;
-  height: 5vw;
-  width: 5vw;
+  height: 5vh;
+  background-color: #97C552;
+  border: none;
+}
+#newItem:hover {
+  border: rgba(226, 167, 28, 0.5) 3px solid;
 }
 #newItem a {
   text-decoration: none;
   color: #141414;
-}
-#newItem:hover {
-  border-color: blue;
 }
 
 #icon-modal {
@@ -305,7 +345,7 @@ form input {
 }
 
 .main {
-  min-height: 70vh;
+  min-height: 68vh;
 }
 
 .InputBox {
@@ -339,6 +379,10 @@ form input {
 }
 
 @media only screen and (max-width: 768px) {
+  #title {
+    margin-left: 0;
+  }
+
   .main {
     max-height: 70vh;
   }

@@ -159,7 +159,7 @@ class UpdateItems extends React.Component {
                     </label><br/>
 
                     <label>ItemIcon:</label><br/>
-                    <button onClick={this.openModal}>Icon</button>
+                    <button className="ItemButton" onClick={this.openModal}>Icon</button>
                     <Modal
                         isOpen={this.state.modalIsOpen}
                         onRequestClose={this.closeModal}
@@ -175,11 +175,11 @@ class UpdateItems extends React.Component {
                                     ))} 
                                 </label>
                             </form>
-                            <button onClick={this.closeModal}>Valider</button> {/* close modal */}
+                            <button className="ItemButton" onClick={this.closeModal}>Valider</button> {/* close modal */}
                         </div>
                     </Modal>
                     <br/>
-                    <img src={this.state.icon_selected} alt={this.state.icon_selected.name}></img>
+                    <div id="imgUpdate"><img src={this.state.icon_selected} alt={this.state.icon_selected.name}></img></div>
                     <br/>
                     <label>ItemName:<br/>
                         <input 
@@ -192,9 +192,9 @@ class UpdateItems extends React.Component {
                         />
                     </label>
 
-                    <button onClick={this.handleSubmit}><NavLink to={"/ShopList/Items"}>Valider</NavLink></button>
+                    <button id="buttonValid" className="ItemButton" onClick={this.handleSubmit}><NavLink to={"/ShopList/Items"}>Valider</NavLink></button>
 
-                    <button className="ItemButton" onClick={this.handleClick}><NavLink to={"/ShopList/Items"}>Delete this Item</NavLink></button>
+                    <button id="buttonDelete" className="ItemButton" onClick={this.handleClick}><NavLink to={"/ShopList/Items"}>Delete this Item</NavLink></button>
                     
                 </form>
             </div>
