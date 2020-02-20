@@ -20,51 +20,54 @@ class  ActiveList extends React.Component {
 
     componentDidMount(){
         let id =  this.state.idlist;
-        var itemsUrl = `http://localhost:2112/list_item/listing=/${id}`;
+        if(id!==null){
 
-        dbGETFetch(itemsUrl).then(itemid =>{
-            //console.log(item)
-            let itemdata = this.state.activeList;
-            for(let data of itemid){
-                let idItem =  data.id_Item;
-                let url =`http://localhost:2112/items/${idItem}`;
+            var itemsUrl = `http://localhost:2112/list_item/listing=/${id}`;
 
-                dbGETFetch(url).then(items=>{
-                    //console.log(items.id)
-                    
-                    let cat= items.category_id;
-                    let icon = items.icon_ID;
-          
-                  
-                    var caturl=`http://localhost:2112/categories/${cat}`;
-                    var iconurl=`http://localhost:2112/icons/${icon}`;
-          
-                    dbGETFetch(caturl)
-                    .catch(err => err)
-                    .then(categorie=>{
-                      
-                      if(items.category_id === categorie.id_category){
-                          items.category_id = categorie.name;
-                         //console.log(data.category_id);
-                      }
-                    }) 
-          
-                    dbGETFetch(iconurl)
-                    .catch(err => err)
-                    .then(icons=>{
-                      //console.log(icons.icon)
-                      if(items.icon_ID===icons.id_icon){
-                        items.icon_ID=icons.icon;
+            dbGETFetch(itemsUrl).then(itemid =>{
+                //console.log(item)
+                let itemdata = this.state.activeList;
+                for(let data of itemid){
+                    let idItem =  data.id_Item;
+                    let url =`http://localhost:2112/items/${idItem}`;
+
+                    dbGETFetch(url).then(items=>{
+                        //console.log(items.id)
                         
-                      }
-                    }) 
-                   itemdata.push(items);
-                   this.setState({
-                       activeList : itemdata,
-                   })
-                })
-            }
-        })
+                        let cat= items.category_id;
+                        let icon = items.icon_ID;
+            
+                    
+                        var caturl=`http://localhost:2112/categories/${cat}`;
+                        var iconurl=`http://localhost:2112/icons/${icon}`;
+            
+                        dbGETFetch(caturl)
+                        .catch(err => err)
+                        .then(categorie=>{
+                        
+                        if(items.category_id === categorie.id_category){
+                            items.category_id = categorie.name;
+                            //console.log(data.category_id);
+                        }
+                        }) 
+            
+                        dbGETFetch(iconurl)
+                        .catch(err => err)
+                        .then(icons=>{
+                        //console.log(icons.icon)
+                        if(items.icon_ID===icons.id_icon){
+                            items.icon_ID=icons.icon;
+                            
+                        }
+                        }) 
+                    itemdata.push(items);
+                    this.setState({
+                        activeList : itemdata,
+                    })
+                    })
+                }
+            })
+        }
 
 
         setTimeout(() => {

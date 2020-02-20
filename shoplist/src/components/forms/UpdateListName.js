@@ -69,7 +69,7 @@ class UpdateListName extends Component {
                         </div> 
 
                         <div className="logbuttons">
-                            <button type="button" className="forgotpw">Cancel</button>
+                            <button type="button" className="forgotpw"><NavLink to={"/Shoplist"}>Cancel</NavLink></button>
                             <button 
                             className="loginButton" 
                             type="submit"

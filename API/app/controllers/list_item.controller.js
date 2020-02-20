@@ -105,7 +105,7 @@ exports.deleteAll = (req, res) => {
   };
 
 
-  // Update a list_item identified by the list_item_Id in the request
+  // Update a list_item status identified by the item_Id  and list idin the request
 exports.update = (req, res) => {
     // Validate Request
     if (!req.body) {
@@ -128,7 +128,7 @@ exports.update = (req, res) => {
               message: "Error updating list with id " + req.params.listId + "and item" + req.params.itemId
             });
           }
-        } else res.send(data);
+        } else res.send(true);
       }
     );
   };
