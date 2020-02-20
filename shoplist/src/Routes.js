@@ -5,8 +5,8 @@ import Footer from "./components/Footer.js"
 import Log from "./components/Log.js";
 //import ShopList from "./components/ShopList.js";
 import Navbar from "./components/Navbar"
-import ActiveList from "./components/ActiveList"
-//import Lists from "./components/Lists"
+import Home from "./components/Home.js"
+import Lists from "./components/Lists"
 import Items from "./components/Items.js"
 import Auth from "./auth"
 import { ProtectedRoute } from './protRoute.js';
@@ -15,7 +15,6 @@ import ShopList from './components/ShopList';
 import Forgot from './components/Forgot';
 import CreateItems from './components/CreateItems';
 import UpdateItems from './components/UpdateItems';
-import AllLists from './components/AllLists';
 
 
 class Routes extends React.Component {
@@ -101,7 +100,7 @@ componentDidMount(){
           headerHandler={this.headerHandler}
           button={this.state.button}
          />
-         
+         <div className="main">
           <Switch>
           
             <Route exact path="/" component={Log} />
@@ -110,19 +109,19 @@ componentDidMount(){
             <Route exact path="/Login/Forgot" component={Forgot} />
             
             <ProtectedRoute exact path="/ShopList"
-              component={()=>{return(<div><div className="main"><ShopList /> </div> <Navbar /> </div>); }}
+              component={()=>{return(<div><ShopList />  <Navbar /> </div>); }}
             />
 
             <ProtectedRoute exact path="/ShopList/ActiveList"
-              component={()=>{return(<div><div className="main"><ActiveList/></div>  <Navbar /> </div>); }} 
+              component={()=>{return(<div><Home /> <Navbar /> </div>); }} 
            />
 
             <ProtectedRoute exact path="/ShopList/Lists"
-              component={()=>{return(<div><div className="main"><AllLists /></div>  <Navbar /> </div>); }}
+              component={()=>{return(<div><Lists /><Navbar /> </div>); }}
             />
 
             <ProtectedRoute exact path="/ShopList/Items" 
-              component={()=>{return(<div><div className="main"><Items /> </div> <Navbar /> </div>); }}
+              component={()=>{return(<div><Items /><Navbar /> </div>); }}
             />  
 
             {/* <ProtectedRoute exact path="/ShopList/Items">
@@ -135,17 +134,18 @@ componentDidMount(){
             </ProtectedRoute> */}
 
             <ProtectedRoute exact path="/ShopList/Items/CreateItems"
-            component={()=>{return(<div><div className="main"><CreateItems /> </div> <Navbar /> </div>);}}
+            component={()=>{return(<div><CreateItems /><Navbar /></div>);}}
             />
              
             <ProtectedRoute exact path="/ShopList/Items/UpdateItems"
-            component={()=>{return(<div><div className="main"><UpdateItems /> </div> <Navbar /> </div>);}}
+            component={()=>{return(<div><UpdateItems /><Navbar /> </div>);}}
             />
         
             <Route path="*" component={() => "404 NOT FOUND"}>
             </Route>
           </Switch>
           
+          </div>
         <Footer />
       </div>
     </Router>
