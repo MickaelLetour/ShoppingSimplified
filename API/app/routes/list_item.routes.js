@@ -7,7 +7,7 @@ module.exports = app => {
     // Retrieve all users
     app.get("/list_item", list_item.findAll);
   
-    // Retrieve a single user with userId
+    // Retrieve all items of list
     app.get("/list_item/listing=/:listId", list_item.findList);
 
     // Retrieve a single group with groupId

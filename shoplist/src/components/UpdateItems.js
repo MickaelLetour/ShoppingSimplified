@@ -192,7 +192,7 @@ class UpdateItems extends React.Component {
                         />
                     </label>
 
-                    <button id="buttonValid" className="ItemButton" onClick={this.handleSubmit}><NavLink to={"/ShopList/Items"}>Valider</NavLink></button>
+                    <button onClick={this.handleSubmit}><NavLink to={"/ShopList/Items"}>Validate</NavLink></button>
 
                     <button id="buttonDelete" className="ItemButton" onClick={this.handleClick}><NavLink to={"/ShopList/Items"}>Delete this Item</NavLink></button>
                     
