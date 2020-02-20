@@ -24,7 +24,8 @@ class Login extends Component {
                         <label className="Form">Username:
                             <input 
                                 type="text" 
-                                placeholder="Enter Username" 
+                                placeholder="Enter Username"
+                                className="Form__input"  
                                 value= {this.props.nickname}
                                 name="nickname" 
                                 onChange={this.props.handleChange}

@@ -5,7 +5,7 @@ import Footer from "./components/Footer.js"
 import Log from "./components/Log.js";
 //import ShopList from "./components/ShopList.js";
 import Navbar from "./components/Navbar"
-import ActiveList from "./components/Home.js"
+import ActiveList from "./components/ActiveList.js"
 import Lists from "./components/Lists"
 import Items from "./components/Items.js"
 import Auth from "./auth"

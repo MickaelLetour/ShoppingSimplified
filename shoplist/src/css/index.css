@@ -89,6 +89,18 @@ form select, form .ItemButton {
   width: 100%;
   margin-bottom: 5vh;
   height: 5vh;
+  border-radius: 5px;
+  text-align: center;
+}
+form .ItemButton {
+  width: 20%;
+  background-color: #250463;
+  color: white;
+  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: block;
 }
 form #buttonDelete {
   margin-top: 2vh;
@@ -126,7 +138,7 @@ form input {
   display: block;
   text-transform: none;
   width: 100%;
-  height: 7vh;
+  height: 5vh;
   font-weight: 400;
   color: #141414;
   margin-bottom: 5vh;
@@ -135,8 +147,7 @@ form input {
 .Form__show {
   cursor: pointer;
   position: absolute;
-  bottom: 2.5vh;
-  height: 2.5vh;
+  bottom: 0;
   right: 0;
   padding: 4px 8px;
   border: none;
@@ -159,6 +170,10 @@ form input {
   height: 5vh;
   border-radius: 5px;
   border: none;
+}
+.loginButton a {
+  text-decoration: none;
+  color: white;
 }
 
 .logbuttons .forgotpw {
@@ -285,23 +300,30 @@ form input {
 }
 
 /* General sidebar styles */
+/* Styling of overlay */
 .bm-overlay {
-  position: fixed;
-  top: 17vh;
+  width: 0% !important;
+  height: 0% !important;
+  background: rgba(0, 0, 0, 0.3);
 }
 
-/* .bm-menu-wrap {
+.bm-menu-wrap {
   position: fixed !important;
-  height:60% !important;
-  top: 17vh;
-} */
+  height: 0% !important;
+  width: 0% !important;
+  top: 0vh !important;
+  right: -50vh !important;
+  transition: 0s !important;
+}
+
 .bm-menu {
-  background: white;
+  background: #97C552;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
   position: fixed;
   top: 12vh;
   right: 0;
+  min-width: 15vw;
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -312,11 +334,6 @@ form input {
 /* Wrapper for item list */
 .bm-item-list {
   color: #250463;
-}
-
-/* Styling of overlay */
-.bm-overlay {
-  background: rgba(0, 0, 0, 0.3);
 }
 
 .itemList {
@@ -350,7 +367,43 @@ form input {
 }
 
 .main {
-  min-height: 68vh;
+  min-height: 75vh;
+  margin: auto;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
+.ReactModal__Content--after-open {
+  background-color: #97C552;
+  width: 50vh;
+  margin: auto;
+}
+.ReactModal__Content--after-open #divModal {
+  height: 50vh;
+}
+.ReactModal__Content--after-open #divModal form {
+  height: 50vh;
+}
+.ReactModal__Content--after-open #divModal form div {
+  display: flex;
+  justify-content: center;
+  margin-left: 5vw;
+  margin-bottom: 2vh;
+}
+.ReactModal__Content--after-open #divModal form div img {
+  border-radius: 50%;
+  border: solid 1px black;
+  width: 7vh;
+  height: 7vh;
+}
+.ReactModal__Content--after-open #divModal form div input {
+  height: 4vh;
+}
+.ReactModal__Content--after-open button {
+  border: none;
+  background-color: #250463;
+  color: white;
+  margin-left: 15vw;
 }
 
 .InputBox {
@@ -388,10 +441,9 @@ form input {
     margin-left: 0;
   }
 
-  .main {
-    max-height: 70vh;
-  }
-
+  /* .main {
+    max-height: 70vh;   
+  } */
   .mainNav {
     flex-wrap: wrap;
   }

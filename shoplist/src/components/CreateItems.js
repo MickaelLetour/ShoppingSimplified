@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 import Modal from "react-modal"
-import {NavLink} from "react-router-dom"
+import {NavLink, Redirect} from "react-router-dom"
 //import {RadioGroup, Radio} from 'react-radio-group'
 /* import avatar from "../img/user.png"
 import {dbGETFetch} from "./functions" */
@@ -15,8 +15,10 @@ class CreateItem extends Component {
             name :"",
             category_id :"",
             icon_id:"",
-            icon_selected:""
+            icon_selected:"",
+            clicked:false
         }
+
         this.handleSubmit = this.handleSubmit.bind(this);
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
@@ -72,6 +74,7 @@ class CreateItem extends Component {
             .then(res=>{
                 console.log(res);
                 console.log("Item Created");
+                this.setState({clicked : true})
             })
         }
 
@@ -98,58 +101,64 @@ class CreateItem extends Component {
         }
 
     render() {
-        return (
-            <div>
-                <form>
-
-                    <label>ItemCategory:<br/>
-                    <select name="category_id" value={this.state.category_id} onChange={e => this.setState({category_id : e.target.value})} required>
-                            <option></option>
-                        {Object.entries(this.state.category).map(([key, category], i) => (// for each row on object
-                            <option name="category" key={i} value={category.id_category}>{category.name}</option>
-                        ))}
-                    </select>
-                    </label><br/>
-
-                    <label>ItemIcon:</label><br/>
-                    <button onClick={this.openModal}>Icon</button>  {/* for open modal */}
-                    <Modal
-                        isOpen={this.state.modalIsOpen}//settings of modal
-                        onRequestClose={this.closeModal}
-                        contentLabel="Example Modal"
-                    >
-                        <div id="divModal">{/* inside modal */}
-                            <form>
-                                <label htmlFor="icon">
-                                    {Object.entries(this.state.icon).map(([key, icons], i) => (
-                                        <div key={i}>
-                                            <input type="radio" id="icon" name="icon" value={icons.id_icon} onChange={e => this.setState({icon_id : e.target.value})}/><img src={icons.icon} alt={icons.name} />
-                                        </div>
-                                    ))} 
-                                </label>
-                            </form>
-                            <button onClick={this.closeModal}>Valider</button>{/*  for close modal */}
-                        </div>
-                    </Modal>
-                    <br/>
-                    <img src={this.state.icon_selected.icon} alt={this.state.icon_selected.name}></img> {/* icon selected */}
-                    <br/>
-                    <label>ItemName:<br/>
-                        <input 
-                            type="text" 
-                            placeholder="Enter Name of item" 
-                            value= {this.state.name}                    //update the state with value of input
-                            name="name" 
-                            onChange={e => this.setState({name : e.target.value})}
-                            required 
-                        />
-                    </label>
-                
-                    <button onClick={this.handleSubmit}><NavLink to={"/ShopList/Items"}>OK</NavLink></button> {/* submit the form with the method related */}
-                </form>
-            </div>
-        )
-    }
+        if(this.state.clicked===false){
+            return (
+                <div>
+                    <form>
+    
+                        <label>ItemCategory:<br/>
+                        <select name="category_id" value={this.state.category_id} onChange={e => this.setState({category_id : e.target.value})} required>
+                                <option></option>
+                            {Object.entries(this.state.category).map(([key, category], i) => (// for each row on object
+                                <option name="category" key={i} value={category.id_category}>{category.name}</option>
+                            ))}
+                        </select>
+                        </label><br/>
+    
+                        <label>ItemIcon:</label><br/>
+                        <button className="ItemButton" onClick={this.openModal}>Icon</button>  {/* for open modal */}
+                        <Modal
+                            isOpen={this.state.modalIsOpen}//settings of modal
+                            onRequestClose={this.closeModal}
+                            contentLabel="Example Modal"
+                        >
+                            <div id="divModal">{/* inside modal */}
+                                <form>
+                                    <label htmlFor="icon">
+                                        {Object.entries(this.state.icon).map(([key, icons], i) => (
+                                            <div key={i}>
+                                                <img className="imgItem" src={icons.icon} alt={icons.name} />
+                                                <input type="radio" id="icon" name="icon" value={icons.id_icon} onChange={e => this.setState({icon_id : e.target.value})}/>
+                                            </div>
+                                        ))} 
+                                    </label>
+                                </form>
+                                <button onClick={this.closeModal}>Valider</button>{/*  for close modal */}
+                            </div>
+                        </Modal>
+                        <br/>
+                        <div id="imgUpdate"><img src={this.state.icon_selected.icon} alt={this.state.icon_selected.name}></img></div> {/* icon selected */}
+                        <br/>
+                        <label>ItemName:<br/>
+                            <input 
+                                type="text" 
+                                placeholder="Enter Name of item" 
+                                value= {this.state.name}                    //update the state with value of input
+                                name="name" 
+                                onChange={e => this.setState({name : e.target.value})}
+                                required 
+                            />
+                        </label>
+                    
+                        <button className="loginButton" onClick={this.handleSubmit}>Validate</button> {/* submit the form with the method related */}
+                    </form>
+                </div>
+            )
+        }
+        else {
+            return <Redirect push to="/ShopList/Items" />
+        }
+    }           
 }
 
 export default CreateItem

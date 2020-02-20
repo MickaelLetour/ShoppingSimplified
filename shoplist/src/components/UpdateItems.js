@@ -1,7 +1,7 @@
 import React from "react";
 import Auth from "../auth.js"
 import Modal from "react-modal"
-import {NavLink} from "react-router-dom"
+import {NavLink, Redirect} from "react-router-dom"
 
 class UpdateItems extends React.Component {
     constructor(props) {
@@ -19,7 +19,8 @@ class UpdateItems extends React.Component {
             icon:"",
             item : "",
             name:"",
-            icon_selected:""
+            icon_selected:"",
+            clicked:false
         }
         this.openMenu=this.openMenu.bind(this);
         this.closeMenu=this.closeMenu.bind(this);
@@ -56,7 +57,7 @@ class UpdateItems extends React.Component {
             return res;
         })
         
-        Modal.setAppElement('body')
+        Modal.setAppElement(document.getElementById('formUpdate'));
 
         fetch(`http://localhost:2112/itemsInfo/${this.state.itemId}` ,{//get informations of items with an id
                 method: 'GET',
@@ -72,8 +73,8 @@ class UpdateItems extends React.Component {
             this.setState({ icon_id : res.id_icon})
             return res;
         }) 
-        }
-        
+    }
+       
 
         openMenu() {//open the navbar
             this.setState({ menuOpen: true })
@@ -94,6 +95,7 @@ class UpdateItems extends React.Component {
 
         .then(res => {
             this.setState({ item : res})
+            this.setState({clicked : true})
             return res;
         }) 
         }
@@ -120,6 +122,7 @@ class UpdateItems extends React.Component {
             .then(res=>{
                 console.log(res);
                 console.log("Item modified");
+                this.setState({clicked : true})
             })
         }
 
@@ -145,61 +148,67 @@ class UpdateItems extends React.Component {
         }
 
         render() {
-            return (
-                <div>
-                <form>
-
-                    <label>ItemCategory:<br/>
-                    <select name="category_id" value={this.state.category_id} onChange={e => this.setState({category_id : e.target.value})} required>
-                            <option name="category" value={this.state.item.category_id}>{this.state.item.name}</option>
-                        {Object.entries(this.state.category).map(([key, category], i) => (//foreach row of this object
-                            <option name="category" key={i} value={category.id_category}>{category.name}</option>
-                        ))}
-                    </select>
-                    </label><br/>
-
-                    <label>ItemIcon:</label><br/>
-                    <button className="ItemButton" onClick={this.openModal}>Icon</button>
-                    <Modal
-                        isOpen={this.state.modalIsOpen}
-                        onRequestClose={this.closeModal}
-                        contentLabel="Example Modal"
-                    >
-                        <div id="divModal">
-                            <form>
-                                <label htmlFor="icon">
-                                    {Object.entries(this.state.icon).map(([key, icons], i) => (//foreach row of this object
-                                        <div key={i}>
-                                            <input type="radio" id="icon" name="icon" value={icons.id_icon} onChange={e => this.setState({icon_id : e.target.value})}/><img src={icons.icon} alt={icons.name_item} />
-                                        </div>
-                                    ))} 
-                                </label>
-                            </form>
-                            <button className="ItemButton" onClick={this.closeModal}>Valider</button> {/* close modal */}
-                        </div>
-                    </Modal>
-                    <br/>
-                    <div id="imgUpdate"><img src={this.state.icon_selected} alt={this.state.icon_selected.name}></img></div>
-                    <br/>
-                    <label>ItemName:<br/>
-                        <input 
-                            type="text" 
-                            placeholder={this.state.item.name_item} 
-                            value= {this.state.name}
-                            name="name" 
-                            onChange={e => this.setState({name : e.target.value})}
-                            required 
-                        />
-                    </label>
-
-                    <button onClick={this.handleSubmit}><NavLink to={"/ShopList/Items"}>Validate</NavLink></button>
-
-                    <button id="buttonDelete" className="ItemButton" onClick={this.handleClick}><NavLink to={"/ShopList/Items"}>Delete this Item</NavLink></button>
-                    
-                </form>
-            </div>
-        )
-    }
+            if(this.state.clicked===false){
+                return (
+                    <div id="formUpdate">
+                    <form>
+    
+                        <label>ItemCategory:<br/>
+                        <select name="category_id" value={this.state.category_id} onChange={e => this.setState({category_id : e.target.value})} required>
+                                <option name="category" value={this.state.item.category_id}>{this.state.item.name}</option>
+                            {Object.entries(this.state.category).map(([key, category], i) => (//foreach row of this object
+                                <option name="category" key={i} value={category.id_category}>{category.name}</option>
+                            ))}
+                        </select>
+                        </label><br/>
+    
+                        <label>ItemIcon:</label><br/>
+                        <button className="ItemButton" onClick={this.openModal}>Icon</button>
+                        <Modal
+                            isOpen={this.state.modalIsOpen}
+                            onRequestClose={this.closeModal}
+                            contentLabel="Example Modal"
+                        >
+                            <div id="divModal">
+                                <form>
+                                    <label htmlFor="icon">
+                                        {Object.entries(this.state.icon).map(([key, icons], i) => (//foreach row of this object
+                                            <div key={i}>
+                                            <img className="imgItem" src={icons.icon} alt={icons.name_item}/>
+                                            <input type="radio" id="icon" name="icon" value={icons.id_icon} onChange={e => this.setState({icon_id : e.target.value})}/>
+                                            </div>
+                                        ))} 
+                                    </label>
+                                </form>
+                                <button className="ItemButton" onClick={this.closeModal}>Valider</button> {/* close modal */}
+                            </div>
+                        </Modal>
+                        <br/>
+                        <div id="imgUpdate"><img src={this.state.icon_selected} alt={this.state.icon_selected.name}></img></div>
+                        <br/>
+                        <label>ItemName:<br/>
+                            <input 
+                                type="text" 
+                                placeholder={this.state.item.name_item} 
+                                value= {this.state.name}
+                                name="name" 
+                                onChange={e => this.setState({name : e.target.value})}
+                                required 
+                            />
+                        </label>
+    
+                        <button className="loginButton" onClick={this.handleSubmit}>Validate</button>
+    
+                        <button id="buttonDelete" className="loginButton" onClick={this.handleClick}>Delete this Item</button>
+                        
+                    </form>
+                    </div>
+                )
+            }
+            else {
+                return <Redirect push to="/ShopList/Items" />
+            }
+        }
 }
 
 export default UpdateItems

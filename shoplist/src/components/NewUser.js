@@ -118,6 +118,7 @@ class NewUser extends Component {
                         <label className="Form">Nickname:
                             <input 
                                 type="text" 
+                                className="Form__input"
                                 placeholder="Enter Nickname" 
                                 value= {this.state.nickname}
                                 name="nickname" 
@@ -130,6 +131,7 @@ class NewUser extends Component {
                         <label className="Form">Email:
                             <input 
                                 type="email" 
+                                className="Form__input"
                                 placeholder="Enter Email" 
                                 value= {this.state.email}
                                 name="email" 
