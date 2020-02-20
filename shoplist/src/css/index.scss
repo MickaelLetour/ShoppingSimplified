@@ -105,12 +105,9 @@ form {
   }
 }
 
-.imgUpdate{
+#imgUpdate{
   width: 100%;
-  justify-content: center;
-  img{
-    
-  }
+  text-align: center;
 }
 
 form input {
@@ -146,8 +143,8 @@ form input {
 .Form__show {
   cursor: pointer;
   position: absolute;
-  bottom: 15px;
-  height: 15px;
+  bottom: 2.5vh;
+  height: 2.5vh;
   right: 0;
   padding: 4px 8px;
   border:none;
@@ -456,10 +453,6 @@ form input {
 
   form {
     text-align: center;
-  }
-
-  .Form__show {
-    bottom: -25px;
   }
 
   .logbuttons {
