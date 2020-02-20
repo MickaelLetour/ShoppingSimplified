@@ -1,10 +1,11 @@
 import React from "react";
 import Auth from "../auth.js"
-import {dbGETFetch} from "./functions"
+import {dbGETFetch,dbPUTFetch} from "./functions"
 import Lists from "./Lists"
-import UpdateList from "./UpdateList.js"
+
 //import ActiveList from "./ActiveList"
-import DisplayList from "./forms/DisplayList.js";
+import SelectActives from "./forms/SelectActives";
+import {Redirect } from "react-router-dom";
 //import {BrowserRouter as Redirect} from 'react-router-dom';
 /* import Navbar from "./Navbar.js"
 
@@ -28,10 +29,13 @@ class ShopList extends React.Component {
             update:false,
             allcats : [],
             allicons : [],
+            actives: [],
+            itemsSelected : [],
         }
         
         this.componentDidMount=this.componentDidMount.bind(this);
         this.onclickHandler=this.onclickHandler.bind(this);
+        this.sendHandler=this.sendHandler.bind(this);
         //this.listCeck=this.listCeck.bind(this);
     }
 
@@ -74,7 +78,15 @@ class ShopList extends React.Component {
                             dbGETFetch(itemsUrl).then(itemid =>{
                                 //console.log(item)
                                 let itemdata = this.state.activeList;
+
+                                let status=[]; 
+                                //console.log(this.state.active)
                                 for(let data of itemid){
+                                    //console.log(data.status);
+
+                                    if(data.status===1)
+                                        status.push(data.id_Item);
+
                                     let idItem =  data.id_Item;
                                     let url =`http://localhost:2112/items/${idItem}`;
 
@@ -113,6 +125,9 @@ class ShopList extends React.Component {
                                        })
                                     })
                                 }
+                                this.setState({
+                                    actives : status,
+                                })
                                 
                             })
 
@@ -146,74 +161,84 @@ class ShopList extends React.Component {
     }
     
     onclickHandler(id) {
-        /* let items =  this.state.clickedItems;
-        let i=0;
-
+        let items =  this.state.itemsSelected;
         if(items.includes(id) === false)
         {
-            items.push(id);
-            items.sort();
+          items.push(id);
+          items.sort();
         }
-        else {
-          for(let i=0; i<items.length ; i++)
-          { 
-            if(items[i]===id)
-            items.splice(i,1)
+          else {
+            for(let i=0; i<items.length ; i++)
+            { 
+              if(items[i]===id)
+              items.splice(i,1)
+            }
           }
-        }
-
+  
         this.setState({
-            clickedItems : items
-          })
-        console.log(this.state.clickedItems) */
+            itemsSelected : items
+        })
+        //console.log(this.state.itemsSelected);
+    }
 
-        if(id === 'updateList'){
-            this.setState({
-                loading: true,
-                update : true,
-            })
+    sendHandler(){
+        let newItems =  this.state.itemsSelected;
+        let active = this.state.actives;
+        let oldactives =[];
+        let listId = Auth.getActiveList();
+        //console.log(newItems)
+        
 
-            setTimeout(() => {
-                this.setState({
-                    loading: false,
-                })
-            }, 2000) 
-        }
+        newItems.forEach(item => {
+            if(active.includes(item)!==true){
+                active.push(item);
+                active.sort();
+            } 
+        });
+
+        active.forEach(item => {
+            //var newactive = `http://localhost:2112/list_item/uping=/${listId}&${item}`;
+
+            if(newItems.includes(item)!==true){
+                oldactives.push(item);
+                oldactives.sort();
+                //item.splice(1);
+            }
+        });
+        //console.log(active);
+        oldactives.forEach(item =>{
+            var delOldactive = `http://localhost:2112/list_item/uping=/${listId}&${item}`;
+
+            let itemList = 
+            {
+              status : 0, 
+            }
+
+            //dbPUTFetch(delOldactive,itemList);
+        })
 
 
+
+        
     }
 
 
 
     render() {
-        if(this.state.update === false) {
-          return (
-            <div>
-                {
-                this.state.loading ?
-                (<h1>Loading</h1>) :
-                (this.state.list ? (<DisplayList 
-                                    items={this.state.activeList} 
-                                    onclickHandler={this.onclickHandler}
-                                    />) : (<Lists />))  }
-            </div>
-          )
-        }
-        else {
-            return(
-                <div>
-                {this.state.loading ?
-                (<h1>Loading</h1>) :
-                (<UpdateList 
-                    rawlist={this.state.listdata} 
-                    displayList={this.state.activeList}
-                    categories = {this.state.allcats}
-                    allicons = {this.state.allicons}
-                />) }
-                </div>
-            ) 
-        }
-
+        return (
+        <div>
+            {
+            this.state.loading ?
+            (<h1>Loading</h1>) :
+            (this.state.list ? (<SelectActives 
+                                items={this.state.activeList} 
+                                active={this.state.actives}
+                                selected={this.state.itemsSelected}
+                                onclickHandler={this.onclickHandler}
+                                send={this.sendHandler}
+                                />) : <Redirect push to="/ShopList/Lists" />)  }
+        </div>
+        )
     }
 }
 

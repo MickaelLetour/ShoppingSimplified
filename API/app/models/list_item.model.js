@@ -113,9 +113,9 @@ List_Item.removeAll = result => {
 
 //??
 List_Item.updateDataByIds = (id_list,id_item, list_item, result) => {
-    if(list_item.quantity !=null){
-    sql.query("UPDATE list_item SET quantity = ? WHERE id_List = ? AND id_Item = ?",
-      [list_item.quantity, id_list, id_item],
+    if(list_item.status !=null){
+    sql.query("UPDATE list_item SET status = ? WHERE id_List = ? AND id_Item = ?",
+      [list_item.status, id_list, id_item],
       (err, res) => {
         if (err) {
           console.log("error: ", err);
@@ -128,28 +128,14 @@ List_Item.updateDataByIds = (id_list,id_item, list_item, result) => {
           result({ kind: "not_found" }, null);
           return;
         }
+        console.log("updated item: ", {...list_item});
+        result(null, {...list_item });
       }
     );
   }
+ 
   
-  else if(list_item.status !=null){
-    sql.query("UPDATE list_item SET status = ? WHERE id_List = ? AND id_Item= ?",
-      [list_item.status, id_list,id_item],
-      (err, res) => {
-        if (err) {
-          console.log("error: ", err);
-          result(null, err);
-          return;
-        }
   
-        if (res.affectedRows == 0) {
-          // not found user with the id
-          result({ kind: "not_found" }, null);
-          return;
-        }
-      }
-    );
-  }
 }
 
 module.exports = List_Item;

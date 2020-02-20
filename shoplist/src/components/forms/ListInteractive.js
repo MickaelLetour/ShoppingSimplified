@@ -34,23 +34,22 @@ class Listinteractive extends Component {
             <ul className="ListDisplay">
               {this.props.items.map(item=>(
                   
-                    selected.includes(item.id) ? (
-                      <li key={item.id} 
-                      onClick={()=>this.props.onclickHandler(item.id)}
-                      className="DisplayItem"
-                      style={Done}
-                      >
-                      <h4>{item.name_item}</h4>
-                      <img src={item.icon_ID} alt="icon" width='55px' height="55px"></img></li>) :
-  
-                      (<li key={item.id} 
-                          onClick={()=>this.props.onclickHandler(item.id)}
-                          className="DisplayItem"
-                          style={NotDone}
-                          >
-                          <h4>{item.name_item}</h4>
-                          <img src={item.icon_ID} alt="icon" width='55px' height="55px"></img></li>)))
-                
+              selected.includes(item.id) ? (
+                <li key={item.id} 
+                onClick={()=>this.props.onclickHandler(item.id)}
+                className="DisplayItem"
+                style={Done}
+                >
+                <h4>{item.name_item}</h4>
+                <img src={item.icon_ID} alt="icon" width='55px' height="55px"></img></li>) :
+
+                (<li key={item.id} 
+                    onClick={()=>this.props.onclickHandler(item.id)}
+                    className="DisplayItem"
+                    style={NotDone}
+                    >
+                  <h4>{item.name_item}</h4>
+                  <img src={item.icon_ID} alt="icon" width='55px' height="55px"></img></li>)))
               }
             </ul>
             

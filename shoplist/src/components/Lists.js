@@ -21,7 +21,9 @@ class Lists extends React.Component {
         ncate :"",
         selectedItems : [],
         userID : Auth.sendID(),
-        active:false,
+        //active:false,
+        inserted: false,
+        loading : true,
       }
       this.componentDidMount=this.componentDidMount.bind(this);
       this.componentDidUpdate=this.componentDidUpdate.bind(this);
@@ -32,6 +34,9 @@ class Lists extends React.Component {
 
 
     componentDidMount() {
+     /*  this.setState({
+        updated : Auth.updated(),
+      }) */
       const url = "http://localhost:2112/items";
       const cats= "http://localhost:2112/categories";
 
@@ -157,7 +162,7 @@ class Lists extends React.Component {
         selectedItems : items
       })
 
-      this.state.displayList.map(selected =>{
+      for(let selected of this.state.displayList){
         //console.log(selected.id)
         for(let j=0 ; j<items.length ; j++)
         {
@@ -166,10 +171,8 @@ class Lists extends React.Component {
             i++;
           }
         }
-        return display;
-
         
-      })
+      }
 
       this.setState({
         ProvisionalItems : display,
@@ -194,136 +197,116 @@ class Lists extends React.Component {
 
 
 
+       if(this.state.ProvisionalItems.length !==0){
+        dbGETFetch(groupsURL).then(groups => {
+          //console.log(groups.id_Group)
+          let idgroups= groups.id_Group;
 
-       dbGETFetch(groupsURL).then(groups => {
-        //console.log(groups.id_Group)
-        let idgroups= groups.id_Group;
+          var verifyActiveLists = `http://localhost:2112/lists/groups/${idgroups}`;
 
-        var verifyActiveLists = `http://localhost:2112/lists/groups/${idgroups}`;
+          dbGETFetch(verifyActiveLists).then(actives=>{
+            //console.log(actives);
+            
 
-        dbGETFetch(verifyActiveLists).then(actives=>{
-          //console.log(actives);
-          
-
-          if(actives!==false){
-            for(let data of actives){
-              //console.log(data.active)
-              if(data.active ===1){
-                var dataList = 
-                {
-                    group_id: idgroups,
-                    name: this.state.listname,
-                    active: 0,  
-                }
-  
-              dbPOSTFetch(listsURL,dataList).then(createdlist =>{
-                dbGETFetch(lastList).then(list=>{
-                  for(let id of list){
-                    this.state.ProvisionalItems.map(items=>{
-                      var itemList = 
-                      {
-                        id_List: id.id,
-                        id_Item: items.id,
-                        quantity: 1, 
-                        status : 1, 
-                      }
-                      dbPOSTFetch(listitemURL,itemList).then(res=>{
-                        this.render()
-                        return (<Redirect to='/Shoplist' />)
-                      })
-                      return true
-                    })
-                  }
-                })
-                
-              })
-              } 
-            }
-          } 
-          
-          else {
-            var opdataList = 
-            {
-                group_id: idgroups,
-                name: this.state.listname,
-                active: 1,  
-            }
-
-          dbPOSTFetch(listsURL,opdataList).then(createdlist =>{
-            dbGETFetch(lastList).then(list=>{
-              for(let id of list){
-                this.state.ProvisionalItems.map(items=>{
-                  var itemList = 
+            if(actives!==false){
+              for(let data of actives){
+                //console.log(data.active)
+                if(data.active ===1){
+                  var dataList = 
                   {
-                    id_List: id.id,
-                    id_Item: items.id,
-                    quantity: 1, 
-                    status : 1, 
+                      group_id: idgroups,
+                      name: this.state.listname,
+                      active: 0,  
                   }
-                  dbPOSTFetch(listitemURL,itemList).then(res=>{
-                    return <Redirect to='/Shoplist' />
+    
+                dbPOSTFetch(listsURL,dataList).then(createdlist =>{
+                  dbGETFetch(lastList).then(list=>{
+                    for(let id of list){
+                      for(let items of this.state.ProvisionalItems)
+                      {
+                        var itemList = 
+                        {
+                          id_List: id.id,
+                          id_Item: items.id,
+                          quantity: 1, 
+                          status : 1, 
+                        }
+                        dbPOSTFetch(listitemURL,itemList)
+                      }
+                    }
+                    setTimeout(() => {
+                      this.setState({
+                          loading: false,
+                          inserted : true,
+                      })
+                    }, 2000) 
                   })
-                  return true
+                  
                 })
+                } 
               }
-              
+            } 
+            
+            else {
+              var opdataList = 
+              {
+                  group_id: idgroups,
+                  name: this.state.listname,
+                  active: 1,  
+              }
+
+            dbPOSTFetch(listsURL,opdataList).then(createdlist =>{
+              dbGETFetch(lastList).then(list=>{
+                for(let id of list){
+                  for(let items of this.state.ProvisionalItems)
+                  {
+                    var itemList = 
+                    {
+                      id_List: id.id,
+                      id_Item: items.id,
+                      quantity: 1, 
+                      status : 1, 
+                    }
+                    dbPOSTFetch(listitemURL,itemList)
+                  }
+                }
+                setTimeout(() => {
+                  this.setState({
+                      loading: false,
+                      inserted : true,
+                  })
+                }, 2000) 
+              })
             })
-          })
-          } 
-        }) 
-      })
-    } 
+            } 
+          }) 
+        })
+
+      }
+      else{
+        alert("Add at least one item");
+      }
+} 
 
 
     render(){
       //console.log(this.state.quantity);
-      let mount = this.componentDidUpdate();
-      if(this.state.displayList!=="" && mount.length ===0)
-      {
-      const items =  this.state.displayList.map(item => 
-       // this.state.originallist.map(ori=>
-          <ItemList 
-          key={item.id} 
-          item={item} 
-          ncate={this.state.ncate}
-          mount={this.componentDidUpdate()}
-          onclickHandler={this.onclickHandler}
-          quantity={this.state.quantity}
-          handleChange={this.handleChange} 
-          />   
-      )
-      return (
-        <div>
-            <ListName 
-            handleSubmitName={this.handleSubmitName}
-            handleChange={this.handleChange} 
-            listname={this.state.listname}
-            categorie={this.state.categorie}
+      if(this.state.inserted===false){
+        let mount = this.componentDidUpdate();
+        if(this.state.displayList!=="" && mount.length ===0)
+        {
+        const items =  this.state.displayList.map(item => 
+        // this.state.originallist.map(ori=>
+            <ItemList 
+            key={item.id} 
+            item={item} 
             ncate={this.state.ncate}
-            provisional={this.state.ProvisionalItems}
+            mount={this.componentDidUpdate()}
             onclickHandler={this.onclickHandler}
-            />
-          <div className="itemContainer">
-            <ul className="itemList">
-             {items}
-            </ul>
-          </div>
-        </div>
-      )
-      } else if(this.state.displayList!=="" && mount.length !==0){
-        
-        const nitems =  mount.map(nitem => 
-          // this.state.originallist.map(ori=>
-             <ItemList 
-             key={nitem.id} 
-             item={nitem} 
-             ncate={this.state.ncate}
-             mount={this.componentDidUpdate()}
-             onclickHandler={this.onclickHandler}
-             />
-
-         )
-        
+            quantity={this.state.quantity}
+            handleChange={this.handleChange} 
+            />   
+        )
         return (
           <div>
               <ListName 
@@ -337,19 +320,62 @@ class Lists extends React.Component {
               />
             <div className="itemContainer">
               <ul className="itemList">
-                {nitems}
+              {items}
               </ul>
             </div>
           </div>
         )
-      }
+        } else if(this.state.displayList!=="" && mount.length !==0){
+          
+          const nitems =  mount.map(nitem => 
+            // this.state.originallist.map(ori=>
+              <ItemList 
+              key={nitem.id} 
+              item={nitem} 
+              ncate={this.state.ncate}
+              mount={this.componentDidUpdate()}
+              onclickHandler={this.onclickHandler}
+              />
 
-      else {
-        return(
-          <div>Loading...</div>
-        )
+          )
+          
+          return (
+            <div>
+                <ListName 
+                handleSubmitName={this.handleSubmitName}
+                handleChange={this.handleChange} 
+                listname={this.state.listname}
+                categorie={this.state.categorie}
+                ncate={this.state.ncate}
+                provisional={this.state.ProvisionalItems}
+                onclickHandler={this.onclickHandler}
+                />
+              <div className="itemContainer">
+                <ul className="itemList">
+                  {nitems}
+                </ul>
+              </div>
+            </div>
+          )
+        }
+
+        else {
+          return(
+            <div>Loading...</div>
+          )
+        }
       }
+    else{
+      return(
+        <div>
+          {this.state.loading ? (<h1>Loading</h1>) :  <Redirect push to="/ShopList"/> }
+        </div>
+      )
+      
+      
     }
+  }
+
 }
 
 export default Lists

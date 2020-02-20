@@ -303,7 +303,7 @@ class Updatelist extends React.Component {
         }
       }
       else{
-        return <Redirect push to="/ShopList/ActiveList"/>
+        return <Redirect push to="/ShopList"/>
     }
   }
 }
