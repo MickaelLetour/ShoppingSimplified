@@ -85,19 +85,21 @@ class UpdateItems extends React.Component {
             this.setState({ menuOpen: false })
         }
 
-        handleClick() {//method on click
-            fetch("http://localhost:2112/items/"+this.state.itemId ,{//delete an item with an id
-                method: 'delete',
-                //mode : 'cors',
-        }).then(res => res.json())
-
-        .catch(err => err)
-
-        .then(res => {
-            this.setState({ item : res})
-            this.setState({clicked : true})
-            return res;
-        }) 
+        handleClick() {
+            if ( window.confirm("Are You sure you want delete this item?")){
+                fetch("http://localhost:2112/items/"+this.state.itemId ,{//delete an item with an id
+                    method: 'delete',
+                    //mode : 'cors',
+                }).then(res => res.json())
+            
+                .catch(err => err)
+            
+                .then(res => {
+                    this.setState({ item : res})
+                    this.setState({clicked : true})
+                    return res;
+                }) 
+            }
         }
 
         handleSubmit(event) {        //method on submit 
