@@ -111,11 +111,12 @@ class NewUser extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form autoComplete="on" onSubmit={this.handleSubmit}>
                     <h2>Sign UP</h2>
                     <hr/>
                     <div>
-                        <label className="Form">Nickname:
+                    <span className="spanRegister">(3 character mini)</span>
+                        <label className="Form">Nickname: 
                             <input 
                                 type="text" 
                                 className="Form__input"
@@ -123,6 +124,7 @@ class NewUser extends Component {
                                 value= {this.state.nickname}
                                 name="nickname" 
                                 onChange={this.handleChange}
+                                minLength="3" 
                                 required 
                             />
                         </label>
@@ -141,7 +143,8 @@ class NewUser extends Component {
                         </label>
                     </div>
                     <div>
-                        <label className="Form">Password:
+                    <span className="spanRegister">(6 character mini, 1maj, 1min, 1num)</span>
+                        <label className="Form">Password: 
                             <input 
                                 type={this.state.type} 
                                 className="Form__input" 
@@ -150,6 +153,9 @@ class NewUser extends Component {
                                 name="password"
                                 onChange={this.handleChange}
                                 required
+                                minLength="6"
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                                autoComplete="off"
                             />
 
                         </label>
@@ -163,6 +169,9 @@ class NewUser extends Component {
                                 value={this.state.confirmPassword}
                                 name="confirmPassword"
                                 onChange={this.handleChange}
+                                minLength="6"
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                                autoComplete="off"
                             />
                             <span className="Form__show" onClick={this.showHide}>{this.state.type === 'input' ? <img src="https://img.icons8.com/material-sharp/24/000000/preview-pane.png" alt='Hide' width="24" /> : <img src="https://img.icons8.com/material-rounded/24/000000/hide.png" alt="show" width="24" />}</span>
 

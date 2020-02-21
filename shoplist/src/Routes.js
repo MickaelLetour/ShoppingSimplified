@@ -123,7 +123,7 @@ componentDidMount(){
             <Route exact path="/Register" component={()=>{
               return(
                 <div>
-                  <Header headerHandler={this.headerHandler}button={this.state.button} status={this.state.status}/>
+                  <Header headerHandler={this.headerHandler} button={this.state.button} status={this.state.status}/>
                   <div className="main">
                     <NewUser />
                   </div>  
@@ -134,7 +134,7 @@ componentDidMount(){
             <Route exact path="/Login/Forgot" component={()=>{
               return(
                 <div>
-                  <Header headerHandler={this.headerHandler}button={this.state.button} status={this.state.status} status={this.state.status}/>
+                  <Header headerHandler={this.headerHandler} button={this.state.button} status={this.state.status}/>
                   <div className="main">
                     <Forgot />
                   </div>  

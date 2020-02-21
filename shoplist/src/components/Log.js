@@ -1,7 +1,7 @@
 import React from "react";
 import Auth from "../auth.js"
 import Login from "./Login.js"
-import {NavLink, Redirect} from "react-router-dom"
+import {Redirect} from "react-router-dom"
 /* 
 import Forgot from "./Forgot.js"
 import Navbar from "./Navbar.js"

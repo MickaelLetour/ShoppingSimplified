@@ -15,7 +15,7 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.props.handleSubmit}>
+                <form onSubmit={this.props.handleSubmit} autoComplete="on">
                     <div className="imgContainer">
                         <img src={avatar} alt="Avatar"/>
                     </div>
@@ -42,6 +42,7 @@ class Login extends Component {
                                     name="password"
                                     onChange={this.props.handleChange}
                                     required
+                                    autoComplete="off"
                                 />
 
                                 <span className="Form__show" onClick={this.props.showHide}>{this.props.type === 'input' ? <img src="https://img.icons8.com/material-sharp/24/000000/preview-pane.png" alt='Hide' width="24" /> : <img src="https://img.icons8.com/material-rounded/24/000000/hide.png" alt="show" width="24" />}</span>

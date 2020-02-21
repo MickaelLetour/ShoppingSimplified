@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 import Modal from "react-modal"
-import {NavLink, Redirect} from "react-router-dom"
+import {Redirect} from "react-router-dom"
 //import {RadioGroup, Radio} from 'react-radio-group'
 /* import avatar from "../img/user.png"
 import {dbGETFetch} from "./functions" */
@@ -104,7 +104,7 @@ class CreateItem extends Component {
         if(this.state.clicked===false){
             return (
                 <div>
-                    <form>
+                    <form autoComplete="on">
     
                         <label>ItemCategory:<br/>
                         <select name="category_id" value={this.state.category_id} onChange={e => this.setState({category_id : e.target.value})} required>
