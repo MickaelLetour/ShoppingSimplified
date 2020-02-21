@@ -24,11 +24,11 @@ class NewUser extends Component {
           type: this.state.type === 'password' ? 'input' : 'password'
           
         }) 
-        console.log(this.state.type); 
+        //console.log(this.state.type); 
       } 
 
       componentDidMount(){
-          console.log(Auth.button())
+          //console.log(Auth.button())
       }
 
     handleChange(event) {
@@ -70,7 +70,7 @@ class NewUser extends Component {
             .then((res=>{
             
             ids[0] = res.id;
-            console.log(res.id)
+            //console.log(res.id)
             
 
             dbPOSTFetch(urlgroup,DataGroup)
@@ -79,8 +79,8 @@ class NewUser extends Component {
                 ids[1] = res.id;
                 
             
-            console.log(ids[0]);
-            console.log(ids[1]);
+            //console.log(ids[0]);
+            //console.log(ids[1]);
 
             const urluserg = 'http://localhost:2112/user_groups';
             const DataUserGroup = 
@@ -104,7 +104,7 @@ class NewUser extends Component {
                 
         } 
         else {
-            console.log("password different confirmPassword");
+            //console.log("password different confirmPassword");
         }
     }
 

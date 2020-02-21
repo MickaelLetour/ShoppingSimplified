@@ -6,8 +6,8 @@ import Lists from "./Lists.js"
 
 
 class  ActiveList extends React.Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state ={
             idlist: Auth.getActiveList(),
             activeList : [],
@@ -16,58 +16,129 @@ class  ActiveList extends React.Component {
         }
         this.componentDidMount = this.componentDidMount.bind(this);
         this.onclickHandler=this.onclickHandler.bind(this);
+        this.clearHandler=this.clearHandler.bind(this);
     }
 
     componentDidMount(){
+        let localActive = Auth.getActiveItems()
         let id =  this.state.idlist;
-        if(id!==null){
+        //console.log(test);
+        if(localActive !==null){
+            if(id!==null){
 
-            var itemsUrl = `http://localhost:2112/list_item/listing=/${id}`;
+                let itemsUrl = `http://localhost:2112/list_item/listing=/${id}`;
+    
+                dbGETFetch(itemsUrl).then(itemid =>{
+                    //console.log(item)
+                    let itemdata = this.state.activeList;
+                    for(let data of itemid){
+                        //console.log(data)
+                        let idItem =  data.id_Item;
 
-            dbGETFetch(itemsUrl).then(itemid =>{
-                //console.log(item)
-                let itemdata = this.state.activeList;
-                for(let data of itemid){
-                    let idItem =  data.id_Item;
-                    let url =`http://localhost:2112/items/${idItem}`;
-
-                    dbGETFetch(url).then(items=>{
-                        //console.log(items.id)
+                        if(localActive.includes(idItem)){
                         
-                        let cat= items.category_id;
-                        let icon = items.icon_ID;
-            
-                    
-                        var caturl=`http://localhost:2112/categories/${cat}`;
-                        var iconurl=`http://localhost:2112/icons/${icon}`;
-            
-                        dbGETFetch(caturl)
-                        .catch(err => err)
-                        .then(categorie=>{
+                        let url =`http://localhost:2112/items/${idItem}`;
                         
-                        if(items.category_id === categorie.id_category){
-                            items.category_id = categorie.name;
-                            //console.log(data.category_id);
-                        }
-                        }) 
-            
-                        dbGETFetch(iconurl)
-                        .catch(err => err)
-                        .then(icons=>{
-                        //console.log(icons.icon)
-                        if(items.icon_ID===icons.id_icon){
-                            items.icon_ID=icons.icon;
+    
+                        dbGETFetch(url).then(items=>{
+                            //console.log(items.id)
                             
-                        }
-                        }) 
-                    itemdata.push(items);
-                    this.setState({
-                        activeList : itemdata,
-                    })
-                    })
-                }
-            })
+                            let cat= items.category_id;
+                            let icon = items.icon_ID;
+                
+                        
+                            var caturl=`http://localhost:2112/categories/${cat}`;
+                            var iconurl=`http://localhost:2112/icons/${icon}`;
+                
+                            dbGETFetch(caturl)
+                            .catch(err => err)
+                            .then(categorie=>{
+                            
+                            if(items.category_id === categorie.id_category){
+                                items.category_id = categorie.name;
+                                //console.log(data.category_id);
+                            }
+                            }) 
+                
+                            dbGETFetch(iconurl)
+                            .catch(err => err)
+                            .then(icons=>{
+                            //console.log(icons.icon)
+                            if(items.icon_ID===icons.id_icon){
+                                items.icon_ID=icons.icon;
+                                
+                            }
+                            }) 
+                        itemdata.push(items);
+                        this.setState({
+                            activeList : itemdata,
+                        })
+                        })
+                    }
+                    }
+                })
+            }
         }
+        else{
+            if(id!==null){
+
+                let itemsUrl = `http://localhost:2112/list_item/listing=/${id}`;
+    
+                dbGETFetch(itemsUrl).then(itemid =>{
+                    //console.log(item)
+                    let itemdata = this.state.activeList;
+                    for(let data of itemid){
+                        //console.log(data)
+                        let idItem =  data.id_Item;
+
+                        if(data.status === 1){
+                        
+                        let url =`http://localhost:2112/items/${idItem}`;
+                        
+    
+                        dbGETFetch(url).then(items=>{
+                            //console.log(items.id)
+                            
+                            let cat= items.category_id;
+                            let icon = items.icon_ID;
+                
+                        
+                            var caturl=`http://localhost:2112/categories/${cat}`;
+                            var iconurl=`http://localhost:2112/icons/${icon}`;
+                
+                            dbGETFetch(caturl)
+                            .catch(err => err)
+                            .then(categorie=>{
+                            
+                            if(items.category_id === categorie.id_category){
+                                items.category_id = categorie.name;
+                                //console.log(data.category_id);
+                            }
+                            }) 
+                
+                            dbGETFetch(iconurl)
+                            .catch(err => err)
+                            .then(icons=>{
+                            //console.log(icons.icon)
+                            if(items.icon_ID===icons.id_icon){
+                                items.icon_ID=icons.icon;
+                                
+                            }
+                            }) 
+                        itemdata.push(items);
+                        this.setState({
+                            activeList : itemdata,
+                        })
+                        })
+                    }
+                    }
+                })
+            }
+        }
+
+        
+        
+
 
 
         setTimeout(() => {
@@ -97,14 +168,24 @@ class  ActiveList extends React.Component {
         this.setState({
           selectedItems : items
         })
-        console.log(this.state.selectedItems);
+        //console.log(this.state.selectedItems);
   
       } 
+
+      clearHandler(id){
+        if(id==="Clear"){
+            this.setState({
+                selectedItems : [],
+            })
+        }
+
+
+      }
 
 
     render(){
 
-        console.log(this.state.idlist)
+        //console.log(this.state.idlist)
         return (
             <div className="main">
                 {
@@ -114,6 +195,7 @@ class  ActiveList extends React.Component {
                                     items={this.state.activeList} 
                                     onclickHandler={this.onclickHandler}
                                     selected={this.state.selectedItems}
+                                    clearHandler={this.clearHandler}
                                     />) : (<Lists />))  }
             </div>
         )

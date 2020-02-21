@@ -2,7 +2,6 @@ import React from "react";
 import {dbGETFetch, dbPUTFetch, dbDeleteFetch, dbPOSTFetch} from "./functions"
 import ItemList from "./forms/ItemList"
 import ListName from "./forms/UpdateListName"
-import Navbar from "./Navbar";
 import { Redirect } from "react-router-dom";
 
 
@@ -38,7 +37,8 @@ class Updatelist extends React.Component {
         let idstore = [];
         let i=0;
         var mounted = this.state.mountonce;
-      
+
+
         if(mounted===false)
         {
           dbGETFetch(itemsUrl)
@@ -50,7 +50,7 @@ class Updatelist extends React.Component {
               })
             }))
         }
-
+        
         dbGETFetch(itemsUrl)
         .catch(err => err)
         .then(items=>{
@@ -81,8 +81,9 @@ class Updatelist extends React.Component {
 
         }
     })
-      
+    //console.log(this.props.displayList)
       for(let ids of this.props.displayList){
+        
         idstore[i] = ids.id;
         i++;
       }
@@ -168,14 +169,17 @@ class Updatelist extends React.Component {
       }
 
       handleSubmitName(event) {
+        if(this.state.ProvisionalItems!==[]){
+
         event.preventDefault();
         //console.log(this.state.listname)
         //console.log(this.state.ProvisionalItems);
-        let userid = this.state.userID;
-        
+               
         var listitemURL = "http://localhost:2112/list_item";
   
           for(let list of this.props.rawlist){
+            //console.log(list)
+            if(list.active===1){
             let idlist= list.id;
             var listsUrl = `http://localhost:2112/lists/${idlist}`;
             
@@ -211,17 +215,33 @@ class Updatelist extends React.Component {
               }
             })
           }
+          }
           this.setState({
             uped : true,
           })
-          console.log("done");
+          //console.log("done");
       } 
+
+      else{
+        alert("Add at least one item");
+      }
+      
+    }
 
 
     render(){
-
-        var name = this.props.rawlist.map(lis=>{return lis.name})
-
+        var name = this.props.rawlist.map(lis=>{
+          if(lis.active === 1){
+            return lis.name;
+          }else{
+            return null;
+          }
+        })
+        for(let i=0; i<name.length;i++){
+          if(name[i]===null)
+          name.splice(i,1);
+        }
+        //console.log(name)
         let mount = this.componentDidUpdate();
 
         if(this.state.uped ===false){
@@ -272,7 +292,6 @@ class Updatelist extends React.Component {
                mount={this.componentDidUpdate()}
                onclickHandler={this.onclickHandler}
                />
-  
            )
           
           return (

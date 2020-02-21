@@ -34,9 +34,9 @@ class NewPassword extends Component {
     }
 
     handleSubmit(event) {
-        console.log(this.state.token);
-        console.log(this.state.password);
-        console.log(this.state.confirmPassword);  
+        //console.log(this.state.token);
+        //console.log(this.state.password);
+        //console.log(this.state.confirmPassword);  
         
         event.preventDefault();//cancel the default evenemement
 
@@ -50,7 +50,7 @@ class NewPassword extends Component {
             dbPOSTFetch(url,Data);//Create a new user
         }
         else {
-            console.log("password different confirmPassword");
+            //console.log("password different confirmPassword");
         }
     }
 

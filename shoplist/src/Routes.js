@@ -6,7 +6,7 @@ import Log from "./components/Log.js";
 //import ShopList from "./components/ShopList.js";
 import Navbar from "./components/Navbar"
 import ActiveList from "./components/ActiveList.js"
-import Lists from "./components/Lists"
+import AllLists from "./components/AllLists.js"
 import Items from "./components/Items.js"
 import Auth from "./auth"
 import { ProtectedRoute } from './protRoute.js';
@@ -117,7 +117,7 @@ componentDidMount(){
            />
 
             <ProtectedRoute exact path="/ShopList/Lists"
-              component={()=>{return(<div><Lists /><Navbar /> </div>); }}
+              component={()=>{return(<div><AllLists /><Navbar /> </div>); }}
             />
 
             <ProtectedRoute exact path="/ShopList/Items" 

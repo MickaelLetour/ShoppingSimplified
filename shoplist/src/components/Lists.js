@@ -47,7 +47,7 @@ class Lists extends React.Component {
         dbGETFetch(cats)
         .catch(err => err)
         .then(allcats=>{
-          console.log(allcats)
+          //console.log(allcats)
         this.setState({
           categorie : allcats,
           })
@@ -92,7 +92,7 @@ class Lists extends React.Component {
           dbGETFetch(iconurl)
           .catch(err => err)
           .then(icons=>{
-            console.log(icons.icon)
+            //console.log(icons.icon)
             if(data.icon_ID===icons.id_icon){
               data.icon_ID=icons.icon;
               this.setState({
@@ -184,7 +184,7 @@ class Lists extends React.Component {
     handleSubmitName(event) {
       event.preventDefault();
       //console.log(this.state.listname)
-      console.log(this.state.ProvisionalItems);
+      //console.log(this.state.ProvisionalItems);
       let userid = this.state.userID;
       
       var groupsURL= `http://localhost:2112/user_groups/userpower=/${userid}`;

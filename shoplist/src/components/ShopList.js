@@ -1,20 +1,12 @@
 import React from "react";
 import Auth from "../auth.js"
 import {dbGETFetch,dbPUTFetch} from "./functions"
-import Lists from "./Lists"
+
 
 //import ActiveList from "./ActiveList"
 import SelectActives from "./forms/SelectActives";
 import {Redirect } from "react-router-dom";
 //import {BrowserRouter as Redirect} from 'react-router-dom';
-/* import Navbar from "./Navbar.js"
-
-
-import Items from "./Items.js"
-//import NewUser from "./components/NewUser.js";
-import {BrowserRouter as Router, Switch} from "react-router-dom"
-
-import { ProtectedRoute } from '../protRoute.js'; */
 
 
 
@@ -26,7 +18,7 @@ class ShopList extends React.Component {
             list: true,
             loading: true,
             activeList : [],
-            update:false,
+            activation:false,
             allcats : [],
             allicons : [],
             actives: [],
@@ -183,6 +175,8 @@ class ShopList extends React.Component {
 
     sendHandler(){
         let newItems =  this.state.itemsSelected;
+        if(newItems.length !==0){
+            Auth.setActiveItems(newItems);
         let active = this.state.actives;
         let oldactives =[];
         let listId = Auth.getActiveList();
@@ -192,18 +186,26 @@ class ShopList extends React.Component {
         newItems.forEach(item => {
             if(active.includes(item)!==true){
                 active.push(item);
-                active.sort();
+                //active.sort();
             } 
         });
 
+
         active.forEach(item => {
-            //var newactive = `http://localhost:2112/list_item/uping=/${listId}&${item}`;
+            var newactive = `http://localhost:2112/list_item/uping=/${listId}&${item}`;
 
             if(newItems.includes(item)!==true){
                 oldactives.push(item);
-                oldactives.sort();
+                //oldactives.sort();
                 //item.splice(1);
             }
+            let itemList = 
+            {
+              status : 1, 
+            }
+
+            dbPUTFetch(newactive,itemList);
+
         });
         //console.log(active);
         oldactives.forEach(item =>{
@@ -214,31 +216,51 @@ class ShopList extends React.Component {
               status : 0, 
             }
 
-            //dbPUTFetch(delOldactive,itemList);
+            dbPUTFetch(delOldactive,itemList);
         })
 
-
-
+       
+            this.setState({
+                activation : true,
+                loading: false,
+            })  
+        }
+        
+    else{
+        alert("Activate at least one item");
+        }
         
     }
 
 
-
     render() {
-        return (
-        <div>
-            {
-            this.state.loading ?
-            (<h1>Loading</h1>) :
-            (this.state.list ? (<SelectActives 
-                                items={this.state.activeList} 
-                                active={this.state.actives}
-                                selected={this.state.itemsSelected}
-                                onclickHandler={this.onclickHandler}
-                                send={this.sendHandler}
-                                />) : <Redirect push to="/ShopList/Lists" />)  }
-        </div>
-        )
+        if(this.state.activation!==true){
+            return (
+                <div>
+                    {
+                    this.state.loading ?
+                    (<h1>Loading</h1>) :
+                    (this.state.list ? (<SelectActives 
+                                        items={this.state.activeList} 
+                                        active={this.state.actives}
+                                        selected={this.state.itemsSelected}
+                                        onclickHandler={this.onclickHandler}
+                                        send={this.sendHandler}
+                                        />) : <Redirect push to="/ShopList/Lists" />)  }
+                </div>
+                )
+        }
+        else {
+            return (
+                <div>
+                    {
+                    this.state.loading ?
+                    (<h1>Loading</h1>) :
+                    (<Redirect push to="/ShopList/ActiveList" />)  }
+                </div>
+                )
+        }
+        
     }
 }
 

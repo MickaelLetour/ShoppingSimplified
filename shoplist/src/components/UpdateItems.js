@@ -29,7 +29,7 @@ class UpdateItems extends React.Component {
         this.closeModal = this.closeModal.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
-        console.log(this.state.itemId);
+        //console.log(this.state.itemId);
 
         fetch("http://localhost:2112/categories" ,{//get all categories on database
             method: 'GET',
@@ -108,7 +108,7 @@ class UpdateItems extends React.Component {
                     icon_id: this.state.icon_id,
                     name: this.state.name
                 };
-            console.log(data);
+            //console.log(data);
             fetch("http://localhost:2112/items/"+this.state.itemId, {//update item with id item
                 method : 'PUT',
                 body: JSON.stringify(data),
@@ -120,8 +120,8 @@ class UpdateItems extends React.Component {
             .catch(err => err)
         
             .then(res=>{
-                console.log(res);
-                console.log("Item modified");
+                //console.log(res);
+                //console.log("Item modified");
                 this.setState({clicked : true})
             })
         }
@@ -132,7 +132,7 @@ class UpdateItems extends React.Component {
          
         closeModal() {// close modal
             this.setState({modalIsOpen: false});
-            console.log(this.state.icon_id);
+            //console.log(this.state.icon_id);
             fetch(`http://localhost:2112/icons/${this.state.icon_id}` ,{
             method: 'GET',
             mode : 'cors',

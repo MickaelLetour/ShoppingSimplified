@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-
+import {NavLink} from "react-router-dom"
 
 //import {dbGETFetch} from "./functions"
 
@@ -13,8 +13,7 @@ class ListName extends Component {
         //this.props.categorie.map(cat =>  console.log(cat.id) )
       }
 
-    
-      
+
 
     render() {
         // console.log(this.props.provisional)
@@ -35,6 +34,7 @@ class ListName extends Component {
                                 value= {this.props.listname}
                                 name="listname" 
                                 onChange={this.props.handleChange}
+                                pattern= "[A-Za-z0-9]+"
                                 required 
                             />
                         </label>
@@ -45,6 +45,7 @@ class ListName extends Component {
                                 value={this.props.ncate} 
                                 onChange={this.props.handleChange}
                                 placeholder="Type corresponding Number or Name"
+                                pattern= "[A-Za-z0-9]+"
                                 />
                             <datalist id="categorie">
                             {this.props.categorie.map(cat =>  (
@@ -68,7 +69,7 @@ class ListName extends Component {
                         </div> 
 
                         <div className="logbuttons">
-                            <button type="button" className="forgotpw">Cancel</button>
+                            <button type="button" className="forgotpw"><NavLink to={"/Shoplist"}>Cancel</NavLink></button>
                             <button 
                             className="loginButton" 
                             type="submit"

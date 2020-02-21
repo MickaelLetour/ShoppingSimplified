@@ -29,6 +29,7 @@ class Login extends Component {
                                 value= {this.props.nickname}
                                 name="nickname" 
                                 onChange={this.props.handleChange}
+                                pattern= "[A-Za-z0-9]+"
                                 required 
                             />
                         </label>
@@ -41,6 +42,7 @@ class Login extends Component {
                                     value={this.props.pass}
                                     name="password"
                                     onChange={this.props.handleChange}
+                                    pattern= "[A-Za-z0-9]+"
                                     required
                                 />
 

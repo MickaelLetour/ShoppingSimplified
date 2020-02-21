@@ -36,6 +36,7 @@ class UpdateListName extends Component {
                                 value= {this.props.listname}
                                 name="listname" 
                                 onChange={this.props.handleChange}
+                                pattern= "[A-Za-z0-9]+"
                                 required 
                             />
                         </label>
@@ -46,6 +47,7 @@ class UpdateListName extends Component {
                                 value={this.props.ncate} 
                                 onChange={this.props.handleChange}
                                 placeholder="Type corresponding Number or Name"
+                                pattern= "[A-Za-z0-9]+"
                                 />
                             <datalist id="categorie">
                             {this.props.categorie.map(cat =>  (

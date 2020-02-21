@@ -4,7 +4,8 @@ class Auth {
       this.Button="Register";
       this.id = "";
       this.activeList = null;
-      this.updated = null
+      this.updated = null;
+      this.activeItems = null;
     }
   
     login(cb) {
@@ -56,6 +57,15 @@ class Auth {
 
     getActiveList(){
       return this.activeList;
+    }
+
+    setActiveItems(data){
+      this.activeItems = data;
+      return this.activeItems;
+    }
+
+    getActiveItems(){
+      return this.activeItems;
     }
 
 

@@ -23,8 +23,8 @@ class Forgot extends Component {
     }
 
     handleSubmit(event) {//send nickame and email for forgot password
-        console.log(this.state.nickname);
-        console.log(this.state.email); 
+        //console.log(this.state.nickname);
+        //console.log(this.state.email); 
         
         event.preventDefault();
 

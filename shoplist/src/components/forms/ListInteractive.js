@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 //import {NavLink} from "react-router-dom"
-//import {Redirect } from "react-router-dom";
+import {NavLink } from "react-router-dom";
 
 
 //import {dbGETFetch} from "./functions"
@@ -55,11 +55,20 @@ class Listinteractive extends Component {
             
             </div>
             <div className="logbuttons">
-            <button type="button" className="forgotpw"
-            type="button"
-            id="updateList"
-            onClick={()=>this.props.onclickHandler('updateList')}>Clear List</button>
-          </div>
+              <button  
+              className="forgotpw"
+              type="button"
+              id="Clear"
+              onClick={()=>this.props.clearHandler('Clear')}>Clear List</button>
+
+              <button 
+              className="forgotpw"
+              type="button"
+              id="change"
+              ><label><NavLink to={"/Shoplist"}>Change List</NavLink></label></button>
+              
+            </div>
+          
          </div>
         )
     }

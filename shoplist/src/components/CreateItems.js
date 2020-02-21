@@ -60,7 +60,7 @@ class CreateItem extends Component {
                     icon_id: this.state.icon_id,
                     name: this.state.name
                 };
-            console.log(data);
+            //console.log(data);
             fetch("http://localhost:2112/items", {
                 method : 'POST',
                 body: JSON.stringify(data),
@@ -72,8 +72,8 @@ class CreateItem extends Component {
             .catch(err => err)
         
             .then(res=>{
-                console.log(res);
-                console.log("Item Created");
+                //console.log(res);
+                //console.log("Item Created");
                 this.setState({clicked : true})
             })
         }
@@ -84,7 +84,7 @@ class CreateItem extends Component {
          
         closeModal() {//close the modal and get informations of icon with an id selected
             this.setState({modalIsOpen: false});
-            console.log(this.state.icon_id);
+            //console.log(this.state.icon_id);
             fetch(`http://localhost:2112/icons/${this.state.icon_id}` ,{
             method: 'GET',
             mode : 'cors',
@@ -95,7 +95,7 @@ class CreateItem extends Component {
     
         .then(res => {
             this.setState({ icon_selected : res})
-            console.log(this.state.icon_selected.icon)
+            //console.log(this.state.icon_selected.icon)
             return res;
         })
         }

@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-//import {NavLink} from "react-router-dom"
+import {NavLink} from "react-router-dom"
 //import {Redirect } from "react-router-dom";
 
 
@@ -32,13 +32,14 @@ class DisplayList extends Component {
             
             </div>
             <div className="logbuttons">
-            <button type="button" className="forgotpw">Delete</button>
+            <button type="button" className="forgotpw"><NavLink to={"/Shoplist"}>Cancel</NavLink></button>
             <button 
             className="loginButton" 
             type="button"
             id="updateList"
             onClick={()=>this.props.onclickHandler('updateList')}
             >Update</button>
+            
           </div>
          </div>
         )

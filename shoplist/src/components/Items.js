@@ -23,7 +23,7 @@ class Items extends React.Component {
 
         .then(res => {
             this.setState({ listItem : res})
-            console.log(this.state.listItem)
+            //console.log(this.state.listItem)
             return res;
         }) 
         }

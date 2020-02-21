@@ -1,10 +1,4 @@
 import React, {Component} from "react"
-//import {NavLink} from "react-router-dom"
-//import {Redirect } from "react-router-dom";
-
-
-//import {dbGETFetch} from "./functions"
-
 
 class SelectActives extends Component {
     constructor(props){
@@ -27,9 +21,9 @@ class SelectActives extends Component {
         backgroundColor : "#f5ad28"
      }
 
-     const deactive={
+/*      const deactive={
         backgroundColor : "white"
-     }
+     } */
 
 
       let selected = this.props.selected;

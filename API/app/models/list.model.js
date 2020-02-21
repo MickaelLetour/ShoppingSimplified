@@ -124,7 +124,7 @@ list.updateById = (id, list, result) => {
 list.updateActiveById = (id, list, result) => {
   sql.query(
     "UPDATE list SET active = ? WHERE id = ?",
-    [list.name, id],
+    [list.active, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);

@@ -40,7 +40,7 @@ class Log extends React.Component {
           type: this.state.type === 'password' ? 'input' : 'password'
           
         }) 
-        console.log(this.state.type); 
+        //console.log(this.state.type); 
       } 
 
       handleChange(event) {
