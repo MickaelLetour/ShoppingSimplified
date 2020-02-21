@@ -26,7 +26,7 @@ class Listinteractive extends Component {
         let selected =this.props.selected;
 
         selected.forEach(element => {
-            console.log(element)
+            //console.log(element)
         });
       return (
         <div>

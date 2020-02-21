@@ -171,43 +171,13 @@ componentDidMount(){
                 <div>
                   <Header headerHandler={this.headerHandler}button={this.state.button} status={this.state.status}/>
                   <div className="main">
-                    <Lists />
+                    <AllLists />
                   </div> 
                   <Navbar />
                 </div>
               ); 
             }} />
             
-<<<<<<< HEAD
-            <ProtectedRoute exact path="/ShopList"
-              component={()=>{return(<div><ShopList />  <Navbar /> </div>); }}
-            />
-
-            <ProtectedRoute exact path="/ShopList/ActiveList"
-              component={()=>{return(<div><ActiveList /> <Navbar /> </div>); }} 
-           />
-
-            <ProtectedRoute exact path="/ShopList/Lists"
-              component={()=>{return(<div><AllLists /><Navbar /> </div>); }}
-            />
-
-            <ProtectedRoute exact path="/ShopList/Items" 
-              component={()=>{return(<div><Items /><Navbar /> </div>); }}
-            />  
-
-            {/* <ProtectedRoute exact path="/ShopList/Items">
-            <div>
-            <div className="main">
-              <Items />
-            </div>
-              <Navbar />
-            </div>
-            </ProtectedRoute> */}
-
-            <ProtectedRoute exact path="/ShopList/Items/CreateItems"
-            component={()=>{return(<div><CreateItems /><Navbar /></div>);}}
-            />
-=======
             <ProtectedRoute exact path="/ShopList/Items" component={()=>{
               return(
                 <div>
@@ -219,7 +189,6 @@ componentDidMount(){
                 </div>
               ); 
             }} />
->>>>>>> ebb1416a2cf91ea459900f5fc93f15ecb022783d
              
             <ProtectedRoute exact path="/ShopList/Items/CreateItems" component={()=>{
               return(
