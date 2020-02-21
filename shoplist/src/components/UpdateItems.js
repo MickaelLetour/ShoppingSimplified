@@ -86,7 +86,7 @@ class UpdateItems extends React.Component {
         }
 
         handleClick() {
-            if ( window.confirm("Are You sure you want delete this item?")){
+            if ( window.confirm("Are You sure you wish delete this item?")){
                 fetch("http://localhost:2112/items/"+this.state.itemId ,{//delete an item with an id
                     method: 'delete',
                     //mode : 'cors',
