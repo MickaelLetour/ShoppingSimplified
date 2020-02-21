@@ -61,6 +61,7 @@ componentDidMount(){
 
 
   headerHandler(){
+    console.log(this.state.status);
       if(this.state.button=== 'Register' && (this.state.status === false))
       {
         Auth.setLoginButton();
@@ -80,8 +81,10 @@ componentDidMount(){
         })
       }
 
-      if(this.state.button === 'Register' && (this.state.status === true)){
+      if(this.state.button === 'Logout' && (this.state.status === true)){
+        Auth.logout();
         Auth.setLogout();
+        Auth.isAuthenticated()
         console.log("i entered2")
         console.log(Auth.button())
         this.setState({
@@ -90,24 +93,92 @@ componentDidMount(){
       }
   }
 
-
-
   render() {
     return (
       <Router>
-      <div>
-        <Header 
-          headerHandler={this.headerHandler}
-          button={this.state.button}
-         />
-         <div className="main">
+      <div>      
           <Switch>
           
-            <Route exact path="/" component={Log} />
-            <Route exact path="/Login" component={Log} />
-            <Route exact path="/Register" component={NewUser}/>
-            <Route exact path="/Login/Forgot" component={Forgot} />
+            <Route exact path="/" component={()=>{
+              return(
+                <div>
+                  <Header headerHandler={this.headerHandler} button={this.state.button} status={this.state.status}/>
+                  <div className="main">
+                    <Log />
+                  </div>
+                </div>
+              ); 
+            }}/>
+
+            <Route exact path="/Login" component={()=>{
+              return(
+                <div><Header headerHandler={this.headerHandler} button={this.state.button} status={this.state.status}/>
+                  <div className="main">
+                    <Log />
+                  </div>  
+                </div>
+              ); 
+            }} />
+
+            <Route exact path="/Register" component={()=>{
+              return(
+                <div>
+                  <Header headerHandler={this.headerHandler} button={this.state.button} status={this.state.status}/>
+                  <div className="main">
+                    <NewUser />
+                  </div>  
+                </div>
+              ); 
+            }} />
+
+            <Route exact path="/Login/Forgot" component={()=>{
+              return(
+                <div>
+                  <Header headerHandler={this.headerHandler} button={this.state.button} status={this.state.status}/>
+                  <div className="main">
+                    <Forgot />
+                  </div>  
+                </div>
+              ); 
+            }} />
             
+            <ProtectedRoute exact path="/ShopList" component={()=>{
+              return(
+                <div>
+                  <Header headerHandler={this.headerHandler}button={this.state.button} status={this.state.status}/>
+                  <div className="main">
+                    <ShopList />
+                  </div> 
+                  <Navbar />
+                </div>
+              ); 
+            }} />
+
+            <ProtectedRoute exact path="/ShopList/ActiveList" component={()=>{
+              return(
+                <div>
+                  <Header headerHandler={this.headerHandler}button={this.state.button} status={this.state.status}/>
+                  <div className="main">
+                    <ActiveList />
+                  </div> 
+                  <Navbar />
+                </div>
+              ); 
+            }} />
+
+            <ProtectedRoute exact path="/ShopList/Lists" component={()=>{
+              return(
+                <div>
+                  <Header headerHandler={this.headerHandler}button={this.state.button} status={this.state.status}/>
+                  <div className="main">
+                    <Lists />
+                  </div> 
+                  <Navbar />
+                </div>
+              ); 
+            }} />
+            
+<<<<<<< HEAD
             <ProtectedRoute exact path="/ShopList"
               component={()=>{return(<div><ShopList />  <Navbar /> </div>); }}
             />
@@ -136,10 +207,43 @@ componentDidMount(){
             <ProtectedRoute exact path="/ShopList/Items/CreateItems"
             component={()=>{return(<div><CreateItems /><Navbar /></div>);}}
             />
+=======
+            <ProtectedRoute exact path="/ShopList/Items" component={()=>{
+              return(
+                <div>
+                  <Header headerHandler={this.headerHandler}button={this.state.button} status={this.state.status}/>
+                  <div className="main">
+                    <Items />
+                  </div> 
+                  <Navbar />
+                </div>
+              ); 
+            }} />
+>>>>>>> ebb1416a2cf91ea459900f5fc93f15ecb022783d
              
-            <ProtectedRoute exact path="/ShopList/Items/UpdateItems"
-            component={()=>{return(<div><UpdateItems /><Navbar /> </div>);}}
-            />
+            <ProtectedRoute exact path="/ShopList/Items/CreateItems" component={()=>{
+              return(
+                <div>
+                  <Header headerHandler={this.headerHandler}button={this.state.button} status={this.state.status}/>
+                  <div className="main">
+                    <CreateItems />
+                  </div> 
+                  <Navbar />
+                </div>
+              ); 
+            }} />
+
+            <ProtectedRoute exact path="/ShopList/Items/UpdateItems" component={()=>{
+              return(
+                <div>
+                  <Header headerHandler={this.headerHandler}button={this.state.button} status={this.state.status}/>
+                  <div className="main">
+                    <UpdateItems />
+                  </div> 
+                  <Navbar />
+                </div>
+              ); 
+            }} />
         
             <Route path="*" component={() => "404 NOT FOUND"}>
             </Route>
@@ -147,7 +251,6 @@ componentDidMount(){
           
           </div>
         <Footer />
-      </div>
     </Router>
     )
   }
