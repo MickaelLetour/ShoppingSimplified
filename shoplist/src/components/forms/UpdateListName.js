@@ -67,9 +67,10 @@ class UpdateListName extends Component {
                              ))) : (<img src="https://image.flaticon.com/icons/svg/916/916912.svg" alt="icon" width='100%' height="100%"></img>)
                                  
                              }
-                          </ul>  
+                          </ul> 
+                          
                         </div> 
-
+                        <h6>Click on Items to Select/Deselect</h6> 
                         <div className="logbuttons">
                             <button type="button" className="secondary"><NavLink to={"/Shoplist"}>Cancel</NavLink></button>
                             <button 

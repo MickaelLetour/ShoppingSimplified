@@ -67,7 +67,7 @@ class ListName extends Component {
                              }
                           </ul>  
                         </div> 
-
+                        <h6>Click on Items to Select/Deselect</h6> 
                         <div className="logbuttons">
                             <button type="button" className="secondary"><NavLink to={"/Shoplist"}>Cancel</NavLink></button>
                             <button 
