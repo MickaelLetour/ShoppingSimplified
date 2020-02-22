@@ -8,13 +8,15 @@ import Navbar from "./components/Navbar"
 import ActiveList from "./components/ActiveList.js"
 import AllLists from "./components/AllLists.js"
 import Items from "./components/Items.js"
-import Auth from "./auth"
+import Auth from "./auth.js"
 import { ProtectedRoute } from './protRoute.js';
 import NewUser from './components/NewUser';
 import ShopList from './components/ShopList';
 import Forgot from './components/Forgot';
 import CreateItems from './components/CreateItems';
 import UpdateItems from './components/UpdateItems';
+import Profile from "./components/Profile.js";
+import Account from "./components/Account.js"
 
 
 class Routes extends React.Component {
@@ -208,6 +210,30 @@ componentDidMount(){
                   <Header headerHandler={this.headerHandler}button={this.state.button} status={this.state.status}/>
                   <div className="main">
                     <UpdateItems />
+                  </div> 
+                  <Navbar />
+                </div>
+              ); 
+            }} />
+
+            <ProtectedRoute exact path="/ShopList/Profile" component={()=>{
+              return(
+                <div>
+                  <Header headerHandler={this.headerHandler}button={this.state.button} status={this.state.status}/>
+                  <div className="main">
+                    <Profile />
+                  </div> 
+                  <Navbar />
+                </div>
+              ); 
+            }} />
+
+            <ProtectedRoute exact path="/ShopList/Account" component={()=>{
+              return(
+                <div>
+                  <Header headerHandler={this.headerHandler}button={this.state.button} status={this.state.status}/>
+                  <div className="main">
+                    <Account />
                   </div> 
                   <Navbar />
                 </div>
