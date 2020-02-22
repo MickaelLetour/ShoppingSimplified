@@ -1,5 +1,5 @@
 import React from "react"
-import shopcart from "../img/shopcart.jpg"
+import shopcart from "../img/sales.png"
 import {NavLink} from "react-router-dom"
 import Auth from "../auth"
 
