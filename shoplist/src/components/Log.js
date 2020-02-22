@@ -1,14 +1,8 @@
 import React from "react";
 import Auth from "../auth.js"
-
 import Login from "./forms/Login.js"
-/* 
-import Forgot from "./Forgot.js"
-import Navbar from "./Navbar.js"
-import NewUser from "./NewUser.js"
-import NewPassword from "./NewPassword.js"
-import {dbPOSTFetch} from "./functions"
-import {BrowserRouter as Router} from "react-router-dom" */
+import {Redirect} from "react-router-dom"
+
 import {dbGETFetch} from "./functions"
 
 
@@ -22,6 +16,7 @@ class Log extends React.Component {
             password: '',
             logged:false,
             menuOpen: false,
+            test:false
         }
         this.showHide = this.showHide.bind(this);
         this.handleChange = this.handleChange.bind(this)
@@ -71,11 +66,16 @@ class Log extends React.Component {
              if(this.state.logged !==false){
                 //console.log("this test" +test);
                 //Auth.isAuthenticated();
-                Auth.storeID(res);
+                Auth.storeID(res);;
                 Auth.setLogout();
                 Auth.login(()=> {
-                this.props.history.push("/ShopList");
+                    this.setState({
+                        test: true  
+                    })
+                /* this.props.history.push("/ShopList"); */
                 })
+                
+                
                 //console.log(Auth);
                 //let test2 = Auth.storeID();
                 //console.log("this test " +Auth.storeID(res));
@@ -86,10 +86,9 @@ class Log extends React.Component {
              }
              
          });
-
          //console.log(this.state.logged);
          
-           
+         
     }  
 /*     componentDidMount() {
          this.handleSubmit().then(result=> this.setState({
@@ -101,8 +100,8 @@ class Log extends React.Component {
 
 
     render() {
-        return (
-
+        if(this.state.test ===false){
+            return (
                 <div>
                     <Login showHide={this.showHide} 
                         type={this.state.type}
@@ -115,8 +114,11 @@ class Log extends React.Component {
                     {/* <NewUser /> */}
                    {/*  <NewPassword />  */} 
                 </div>
-
-        )
+            )
+        }
+        else if (this.state.test === true){
+            return <Redirect push to="/ShopList" />
+        }
     }
 }
 

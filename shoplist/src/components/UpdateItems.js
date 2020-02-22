@@ -1,7 +1,7 @@
 import React from "react";
 import Auth from "../auth.js"
 import Modal from "react-modal"
-import {NavLink, Redirect} from "react-router-dom"
+import {Redirect} from "react-router-dom"
 
 class UpdateItems extends React.Component {
     constructor(props) {
@@ -85,19 +85,21 @@ class UpdateItems extends React.Component {
             this.setState({ menuOpen: false })
         }
 
-        handleClick() {//method on click
-            fetch("http://localhost:2112/items/"+this.state.itemId ,{//delete an item with an id
-                method: 'delete',
-                //mode : 'cors',
-        }).then(res => res.json())
-
-        .catch(err => err)
-
-        .then(res => {
-            this.setState({ item : res})
-            this.setState({clicked : true})
-            return res;
-        }) 
+        handleClick() {
+            if ( window.confirm("Are You sure you wish delete this item?")){
+                fetch("http://localhost:2112/items/"+this.state.itemId ,{//delete an item with an id
+                    method: 'delete',
+                    //mode : 'cors',
+                }).then(res => res.json())
+            
+                .catch(err => err)
+            
+                .then(res => {
+                    this.setState({ item : res})
+                    this.setState({clicked : true})
+                    return res;
+                }) 
+            }
         }
 
         handleSubmit(event) {        //method on submit 
@@ -151,7 +153,7 @@ class UpdateItems extends React.Component {
             if(this.state.clicked===false){
                 return (
                     <div id="formUpdate">
-                    <form>
+                    <form autoComplete="on">
     
                         <label>ItemCategory:<br/>
                         <select name="category_id" value={this.state.category_id} onChange={e => this.setState({category_id : e.target.value})} required>
