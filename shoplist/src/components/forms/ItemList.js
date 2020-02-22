@@ -21,7 +21,7 @@ class ItemList extends Component {
           return (
             <li><div className="item" onClick={()=>this.props.onclickHandler(this.props.item.id)}>
                 <h4>{this.props.item.name_item}</h4>
-                <img src={this.props.item.icon_ID} alt="icon" width='60vw' height="60vh"></img>
+                <img className="imgItem" src={this.props.item.icon_ID} alt="icon" width='60vw' height="60vh"></img>
                 <label>{this.props.item.category_id}</label>
             </div>
             {/* <input className="Quantity"
@@ -39,7 +39,7 @@ class ItemList extends Component {
               return (
                 <li><div className="item" onClick={()=>this.props.onclickHandler(this.props.item.id)}>
                     <h4>{this.props.item.name_item}</h4>
-                    <img src={this.props.item.icon_ID} alt="icon" width='60vw' height="60vh"></img>
+                    <img className="imgItem" src={this.props.item.icon_ID} alt="icon" width='60vw' height="60vh"></img>
                     <label>{this.props.item.category_id}</label>
                 </div>
                {/*  <input className="Quantity"

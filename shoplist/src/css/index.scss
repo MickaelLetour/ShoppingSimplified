@@ -3,6 +3,7 @@ $bodyColor : rgba(226, 167, 28, 0.5);
 $formColor : rgba(226, 167, 28, 0.40);
 $HeaderColor : #97C552;
 $button : #250463;
+$secondaryButton : #fc1d00b6;
 
 @import url(http://fr.allfont.net/allfont.css?fonts=angelina);
 
@@ -87,8 +88,8 @@ body, html {
 
 form {
   margin: 3em auto;
-  max-width: 320px;
-  min-height: 320px;
+  max-width: 80vw;
+  min-height: 50vh;
   background: $formColor;
   padding: 40px;
   border-radius: 10px;
@@ -183,9 +184,9 @@ form input {
   height: 5vh;
   border-radius: 5px;
   border:none;
-  a{
+  &:hover{
     text-decoration: none;
-    color:white;
+    color:$HeaderColor;
   }
 }
 
@@ -194,10 +195,11 @@ form input {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  
   color: white;
   border:none;
   &:hover{
-    border:solid blue 1px;
+    color:$HeaderColor;
   }
   a{
     text-decoration: none;
@@ -205,6 +207,28 @@ form input {
   }
 }
 
+.textButtonsColor{
+  text-decoration: none;
+  color: white;
+  &:hover{
+    color:$HeaderColor;
+  }
+}
+
+.secondary {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  border-radius: 5px;
+  border:none;
+  background-color: $secondaryButton;
+  &:hover{
+    text-decoration: none;
+    color:$HeaderColor;
+  }
+}
 
 #item{
   display: flex;
@@ -365,10 +389,15 @@ background: rgba(0, 0, 0, 0.3);
   height: auto;
   justify-content: space-around;
   position: relative;
-  background-color: red;
+  background-color: $formColor;
   align-items: center;
+  :active {
+    border-radius: 100%;
+    background: $HeaderColor;
+  }
   
   .item {
+    display: flex;
     width: 200px;
     height: 40%;
     margin:3vh;
@@ -377,10 +406,14 @@ background: rgba(0, 0, 0, 0.3);
     background: #069;
     color: #fff;
     display: flex;
+    justify-content: center;
     align-items: center;
-   
+    border-radius: 100%;
     //justify-content: center;
+
   }
+
+  
 }
 
 
@@ -432,7 +465,6 @@ background: rgba(0, 0, 0, 0.3);
 
 .InputBox {
   display: flex;
-  
   background-color: white;
   width: 100%;
   height: 200px;
@@ -449,14 +481,24 @@ background: rgba(0, 0, 0, 0.3);
   .ListDisplay {
     display: flex;
     flex-wrap:wrap; 
+    justify-content: center;
+    max-height: 100vh;
+    align-items: center;
     list-style-type: none;
     margin: 5%;
     padding:0;
-    
+    //background-color: $formColor;
+
+
     
 
     .DisplayItem {
-      margin:7px;
+      display: table-row;
+      justify-content: center;
+      border-radius: 100%;
+      margin:10px;
+      width: 70px;
+      text-align: center;      
     }
     /* padding: 0;
     height: auto;
@@ -464,6 +506,38 @@ background: rgba(0, 0, 0, 0.3);
     position: relative;
     background-color: red; */
     //align-items: center; 
+  }
+
+   .ListNameselect {
+    display: flex;
+    justify-content: center;
+    border-radius: 100%;
+    margin:10px;
+    width: 70px;
+    text-align: center;  
+    background: #069;
+    color: #fff;
+    align-items: center;
+    border-radius: 100%;
+
+      :active {
+    border-radius: 100%;
+    background: $HeaderColor;
+  } 
+  }
+
+  .DisplayBox {
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+    margin-left:auto;
+    margin-right:auto;
+    max-width: 90vw;
+    max-height: 100vh;
+    margin-top:3vh;
+    margin-bottom:3vh;
+    overflow: auto;
+    background-color: $formColor;
   }
 
 @media only screen and (max-width: 768px) {

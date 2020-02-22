@@ -30,7 +30,7 @@ class SelectActives extends Component {
       let active = this.props.active;
       return (
         <div>
-          <div className="InputBox" >
+          <div className="DisplayBox" >
             <ul className="ListDisplay">
                 {this.props.items.map(item=>( 
                 selected.includes(item.id) ? (
@@ -74,7 +74,7 @@ class SelectActives extends Component {
             
             </div>
             <div className="logbuttons">
-            <button type="button" className="forgotpw">Delete</button>
+            <button type="button" className="secondary">Delete</button>
             <button 
             className="loginButton" 
             type="button"

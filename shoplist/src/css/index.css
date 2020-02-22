@@ -78,8 +78,8 @@ body, html {
 
 form {
   margin: 3em auto;
-  max-width: 320px;
-  min-height: 320px;
+  max-width: 80vw;
+  min-height: 50vh;
   background: rgba(226, 167, 28, 0.4);
   padding: 40px;
   border-radius: 10px;
@@ -171,9 +171,9 @@ form input {
   border-radius: 5px;
   border: none;
 }
-.loginButton a {
+.loginButton:hover {
   text-decoration: none;
-  color: white;
+  color: #97C552;
 }
 
 .logbuttons .forgotpw {
@@ -185,11 +185,34 @@ form input {
   border: none;
 }
 .logbuttons .forgotpw:hover {
-  border: solid blue 1px;
+  color: #97C552;
 }
 .logbuttons .forgotpw a {
   text-decoration: none;
   color: blue;
+}
+
+.textButtonsColor {
+  text-decoration: none;
+  color: white;
+}
+.textButtonsColor:hover {
+  color: #97C552;
+}
+
+.secondary {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  background-color: #fc1d00b6;
+}
+.secondary:hover {
+  text-decoration: none;
+  color: #97C552;
 }
 
 #item {
@@ -345,10 +368,15 @@ form input {
   height: auto;
   justify-content: space-around;
   position: relative;
-  background-color: red;
+  background-color: rgba(226, 167, 28, 0.4);
   align-items: center;
 }
+.itemList :active {
+  border-radius: 100%;
+  background: #97C552;
+}
 .itemList .item {
+  display: flex;
   width: 200px;
   height: 40%;
   margin: 3vh;
@@ -357,7 +385,9 @@ form input {
   background: #069;
   color: #fff;
   display: flex;
+  justify-content: center;
   align-items: center;
+  border-radius: 100%;
 }
 
 .Quantity {
@@ -423,6 +453,9 @@ form input {
 .ListDisplay {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  max-height: 100vh;
+  align-items: center;
   list-style-type: none;
   margin: 5%;
   padding: 0;
@@ -433,7 +466,43 @@ form input {
   background-color: red; */
 }
 .ListDisplay .DisplayItem {
-  margin: 7px;
+  display: table-row;
+  justify-content: center;
+  border-radius: 100%;
+  margin: 10px;
+  width: 70px;
+  text-align: center;
+}
+
+.ListNameselect {
+  display: flex;
+  justify-content: center;
+  border-radius: 100%;
+  margin: 10px;
+  width: 70px;
+  text-align: center;
+  background: #069;
+  color: #fff;
+  align-items: center;
+  border-radius: 100%;
+}
+.ListNameselect :active {
+  border-radius: 100%;
+  background: #97C552;
+}
+
+.DisplayBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 90vw;
+  max-height: 100vh;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  overflow: auto;
+  background-color: rgba(226, 167, 28, 0.4);
 }
 
 @media only screen and (max-width: 768px) {

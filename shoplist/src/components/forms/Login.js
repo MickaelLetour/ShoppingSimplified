@@ -1,5 +1,5 @@
 import React, {Component} from "react"
-import avatar from "../img/user.png"
+import avatar from "../../img/user.png"
 import {NavLink} from "react-router-dom"
 //import {dbGETFetch} from "./functions"
 

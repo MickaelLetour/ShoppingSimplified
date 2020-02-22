@@ -21,16 +21,16 @@ class Listinteractive extends Component {
         }
 
         const NotDone={
-            backgroundColor : "#250463"
+            backgroundColor : "#fc1d00b6"
         }
         let selected =this.props.selected;
 
         selected.forEach(element => {
-            console.log(element)
+            //console.log(element)
         });
       return (
         <div>
-          <div className="InputBox" >
+          <div className="DisplayBox" >
             <ul className="ListDisplay">
               {this.props.items.map(item=>(
                   
@@ -56,16 +56,16 @@ class Listinteractive extends Component {
             </div>
             <div className="logbuttons">
               <button  
-              className="forgotpw"
+              className="secondary"
               type="button"
               id="Clear"
               onClick={()=>this.props.clearHandler('Clear')}>Clear List</button>
 
               <button 
-              className="forgotpw"
+              className="loginButton"
               type="button"
               id="change"
-              ><label><NavLink to={"/Shoplist"}>Change List</NavLink></label></button>
+              ><NavLink to={"/Shoplist"} className="textButtonsColor" >Change List</NavLink></button>
               
             </div>
           

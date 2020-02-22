@@ -19,11 +19,12 @@ class ListNameDisplay extends Component {
       //console.log(this.props.lists)
         return (
           <div>
-            <div className="InputBox" >
+            <div className="DisplayBox" >
               <ul className="ListDisplay">
                 {this.props.lists.map(list=>(
+                  
                     <li key={list.id}
-                    className="DisplayItem"
+                    className="ListNameselect"
                     onClick={()=>this.props.listSelect(list.id)}
                     >
                     <h4>{list.name}</h4>

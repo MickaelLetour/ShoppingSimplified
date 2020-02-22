@@ -19,7 +19,7 @@ class DisplayList extends Component {
       //console.log(this.props.items)
       return (
         <div>
-          <div className="InputBox" >
+          <div className="DisplayBox" >
             <ul className="ListDisplay">
               {this.props.items.map(item=>(
                 <li key={item.id}
@@ -32,7 +32,7 @@ class DisplayList extends Component {
             
             </div>
             <div className="logbuttons">
-            <button type="button" className="forgotpw"><NavLink to={"/Shoplist"}>Cancel</NavLink></button>
+            <button type="button" className="secondary"><NavLink to={"/Shoplist"}>Cancel</NavLink></button>
             <button 
             className="loginButton" 
             type="button"

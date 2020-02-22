@@ -1,7 +1,7 @@
 import React from "react";
 import Auth from "../auth.js"
 
-import Login from "./Login.js"
+import Login from "./forms/Login.js"
 /* 
 import Forgot from "./Forgot.js"
 import Navbar from "./Navbar.js"
@@ -79,6 +79,10 @@ class Log extends React.Component {
                 //console.log(Auth);
                 //let test2 = Auth.storeID();
                 //console.log("this test " +Auth.storeID(res));
+             }
+
+             else {
+                alert("Bad Username or Password!");
              }
              
          });
