@@ -1,18 +1,17 @@
-import React from "react";
-import {dbGETFetch, dbPUTFetch, dbDeleteFetch, dbPOSTFetch} from "./functions"
-import ItemList from "./forms/ItemList"
-import ListName from "./forms/UpdateListName"
-import { Redirect } from "react-router-dom";
+import React from "react"; //Imports react, allow implementation of JSX
+import {dbGETFetch, dbPUTFetch, dbDeleteFetch, dbPOSTFetch} from "./functions" //imports functions
+import ItemList from "./forms/ItemList" //imports ItemList Component
+import ListName from "./forms/UpdateListName" //imports ListName Component
+import { Redirect } from "react-router-dom"; //imports Redirect Component
 
 
-
-//import CreateList from "./createList";
-
-
+//Component for update of the current active List
+//Opens ItemList, ListName,
+//Receives props from AllLists
 class Updatelist extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state={
+    constructor(props) { //constructor 
+      super(props); //allows usage of props
+      this.state={ //state field
         originallist : "",
         itemsdisplayList:"",
         listname : "",
