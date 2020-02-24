@@ -26,7 +26,7 @@ exports.create = (req, res) => {
     });
   };
 
-// Retrieve all categories from the database.
+// Retrieve all icons from the database.
 exports.findAll = (req, res) => {
     Icon.getAll((err, data) => {
       if (err)
@@ -111,7 +111,7 @@ exports.delete = (req, res) => {
     });
   };
 
-// Delete all categories from the database.
+// Delete all icons from the database.
 exports.deleteAll = (req, res) => {
     Icon.removeAll((err, data) => {
       if (err)

@@ -119,7 +119,7 @@ Icon.remove = (id, result) => {
   });
 };
 
-//delete all icon
+//delete all icons
 Icon.removeAll = result => {
   sql.query("DELETE FROM icon", (err, res) => {
     if (err) {

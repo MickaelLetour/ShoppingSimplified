@@ -1,123 +1,97 @@
-import React from "react";
-import Auth from "../auth.js"
-import Login from "./forms/Login.js"
-import {Redirect} from "react-router-dom"
-
-import {dbGETFetch} from "./functions"
-
+import React from "react"; //Imports react, allow implementation of JSX
+import Auth from "../auth.js" //imports local storage class auth
+import Login from "./forms/Login.js" //ilmports login component
+import {Redirect} from "react-router-dom" //Import Redirect component
+import {dbGETFetch} from "./functions" //import functions
 
 
+//login management component
+//loads login form component
 class Log extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
-            type: 'password',
-            nickname: '',
-            password: '',
-            logged:false,
-            menuOpen: false,
-            test:false
+            type: 'password', //display type of input
+            nickname: '', // stores usernickname
+            password: '', //store user password
+            logged: false,
         }
+        //methods used in the component
         this.showHide = this.showHide.bind(this);
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit=this.handleSubmit.bind(this);
         
-        //this.componentDidMount=this.componentDidMount.bind(this);
     }
 
-/* 
-    componentDidMount(){
-        console.log("mikael "+Auth.isAuthenticated());
-    } */
-
+    //show or hides password input
     showHide(){
-        this.setState({
+        this.setState({ //updates state acording to current value
           type: this.state.type === 'password' ? 'input' : 'password'
           
         }) 
         //console.log(this.state.type); 
       } 
 
-      handleChange(event) {
-        const {name, value} = event.target
-        
+      handleChange(event) { //stores input target form values on change and updates
+        const {name, value} = event.target 
         this.setState({
             [name]: value
         })
     }
 
-    handleSubmit(event) {
+    handleSubmit(event) { //sends form on user login press
         let nick =this.state.nickname;
         let pass= this.state.password;
-        event.preventDefault();
+        event.preventDefault(); //prevents default submit behavior
         
 
         const url = `http://localhost:2112/users/pass/${nick}&${pass}`;
 
         //let response = dbGETFetch(url);
-
+        //verify if data inserted by user was correct
         dbGETFetch(url).then((res) => {
-            //console.log("result "+res);
-             this.setState({
-                 logged: res  
-             })
-             //console.log(this.state.logged) 
-             //let test = Auth.isAuthenticated();
-             if(this.state.logged !==false){
+
+             if(res!==false){ //if user inserted good username and password
                 //console.log("this test" +test);
                 //Auth.isAuthenticated();
-                Auth.storeID(res);;
-                Auth.setLogout();
-                Auth.login(()=> {
-                    this.setState({
-                        test: true  
+                Auth.storeID(res);//store user id on Auth
+                Auth.setLogout(); //set value of user to logged out
+                Auth.login(()=> { //Sets user in Auth to loged in
+                    this.setState({ //sets state to logged in
+                        logged: true  
                     })
-                /* this.props.history.push("/ShopList"); */
+                /* this.props.history.push("/ShopList");  other way to change page*/
                 })
                 
-                
-                //console.log(Auth);
-                //let test2 = Auth.storeID();
-                //console.log("this test " +Auth.storeID(res));
              }
 
-             else {
+             else { //if data inserted by user was wrong
                 alert("Bad Username or Password!");
              }
              
          });
-         //console.log(this.state.logged);
-         
-         
+
     }  
-/*     componentDidMount() {
-         this.handleSubmit().then(result=> this.setState({
-            logged : result,
-        }))
-        console.log(this.state.logged); 
-    } */
     
 
 
-    render() {
-        if(this.state.test ===false){
-            return (
-                <div>
-                    <Login showHide={this.showHide} 
-                        type={this.state.type}
-                        handleChange={this.handleChange}
-                        nickname={this.state.nickname}
-                        password={this.state.password}
-                        handleSubmit={this.handleSubmit}
+    render() {//render the component to the react DOM
+        if(this.state.logged !==true){ //if user is logged off
+            return (//render info
+                <div>{/* wrapper div */}
+                    <Login 
+                        showHide={this.showHide} //loads Login component
+                        type={this.state.type} //sends type of input as props
+                        handleChange={this.handleChange} //sends handlechange as props
+                        nickname={this.state.nickname} //send nickname as props
+                        password={this.state.password} //sends password as props
+                        handleSubmit={this.handleSubmit} //sends handlesubmit as props
                     />
-                    {/* <Forgot /> */}
-                    {/* <NewUser /> */}
-                   {/*  <NewPassword />  */} 
                 </div>
             )
         }
-        else if (this.state.test === true){
-            return <Redirect push to="/ShopList" />
+        else{ //if user is logged in
+            return <Redirect push to="/ShopList" /> //send user to "../ShopList"
         }
     }
 }

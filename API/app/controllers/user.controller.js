@@ -79,18 +79,7 @@ exports.findAll = (req, res) => {
     });
   };
 
-/* exports.verifyUser = (req,res)=> {
-  User.getAll((err, data) => {
-    if (err)
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving users."
-      });
-    else 
-    //console.log(res.password);
-    //res.send(data);
-  //});
-} */
+
 //update password where token correspon and redirect at home
 exports.updatePassword = (req , res) => {
   const user = new User({
@@ -144,6 +133,7 @@ exports.forgotUpdate = (req, res) => {
     }
   });
 }
+
 // generate token for password forgot
 exports.forgot = (req,res) => {
   const user = new User({
@@ -274,19 +264,16 @@ exports.updateByToken = (req, res) => { //function for update password with toke
 
   
 
-
+//verify user password
    exports.VerifyPassword = (req, res)=> {
     User.getPwByNick(req.params.userNick, (err, data) =>{
-        //let value=req.params.userPass.slice(0,-1);
-        //console.log(data);
+
         if(data==null) 
-            res.send(false);
+            res.send(false); //returns false if date inserted doesn't match
 
         else {
           if(passwordHash.verify(req.params.userPass, data.password)===true && data.active===1){
-           /*  console.log(req.params.userPass);
-            console.log(data.password); */
-            //console.log(data);
+
             let id = JSON.stringify(data.id);
             res.send(id);
           }

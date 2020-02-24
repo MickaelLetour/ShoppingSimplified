@@ -1,20 +1,4 @@
-
-/* export function showHide(){
-    this.setState({
-      type: this.state.type === 'password' ? 'input' : 'password'
-    })  
-  }
-
-  import fetch from 'isomorphic-fetch';
- */
-  // * snip *
-  
-
-  /* const Data = {nickname: "alfatester",
-        password: "ultiass",
-        email: "two@mail.com",
-        photo: "superphotourl"} ; */
-export function dbPOSTFetch(url,data) {
+export function dbPOSTFetch(url,data) { //fetch funtion of type POST
       return fetch(url, {
           method: 'POST',
           mode: 'cors',
@@ -33,7 +17,7 @@ export function dbPOSTFetch(url,data) {
       })
   } 
 
-  export function dbPUTFetch(url,data) {
+  export function dbPUTFetch(url,data) { //fetch funtion of type PUT
     return fetch(url, {
         method: 'PUT',
         mode: 'cors',
@@ -52,7 +36,7 @@ export function dbPOSTFetch(url,data) {
     })
 }
 
-  export async function dbGETFetch(url) {
+  export async function dbGETFetch(url) { //fetch funtion of type GET
     return await fetch(url, {
         method: 'GET',
         mode: 'cors',
@@ -66,7 +50,7 @@ export function dbPOSTFetch(url,data) {
     })
 } 
 
-export async function dbDeleteFetch(url) {
+export async function dbDeleteFetch(url) { //fetch funtion of type DELETE
     return await fetch(url, {
         method: 'DELETE',
         //mode: 'cors',
@@ -79,21 +63,3 @@ export async function dbDeleteFetch(url) {
         return res;
     })
 }
-
-/*   export function test(){
-      console.log("i'm a function");
-  } */
-
-
-  /* export async function fetchData(resp){
-    let response = await fetch(resp);
-    let data = await response.json();
-    data = JSON.stringify(data);
-    data = JSON.parse(data);
-    return data;
-   } */
-
-  /*  export async function fetchData(resp){
-    let response = await fetch(resp);
-    return response.json();
-   } */

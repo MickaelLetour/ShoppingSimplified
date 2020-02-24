@@ -23,7 +23,7 @@ List_Item.create = (newList_Item, result) => {
   });
 };
 
-//find list_item with an id
+//find list of items with it's id
 List_Item.findListById = (listId, result) => {
   sql.query(`SELECT * FROM list_item WHERE id_List = ${listId}`, (err, res) => {
     if (err) {
@@ -42,9 +42,9 @@ List_Item.findListById = (listId, result) => {
   });
 };
 
-//????
+//Find item in list by its id
 List_Item.findItemById = (itemId, result) => {
-    sql.query(`SELECT * FROM list_item WHERE id_Group = ${itemId}`, (err, res) => {
+    sql.query(`SELECT * FROM list_item WHERE id_Item = ${itemId}`, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
@@ -111,7 +111,7 @@ List_Item.removeAll = result => {
   });
 };
 
-//??
+//update item_list connections->never used
 List_Item.updateDataByIds = (id_list,id_item, list_item, result) => {
     if(list_item.status !=null){
     sql.query("UPDATE list_item SET status = ? WHERE id_List = ? AND id_Item = ?",

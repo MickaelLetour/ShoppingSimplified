@@ -64,7 +64,7 @@ Group.getAll = result => {
   });
 };
 
-// update a group with an Id
+// update a group with it's Id
 Group.updateById = (id, group, result) => {
 
   if(group.group_name !=null){
@@ -150,6 +150,8 @@ result(null, { id: id, ...Group });
 
 };
 
+
+//Delete agroup Identifyed by it's id
 Group.remove = (id, result) => {
   sql.query("DELETE FROM `groups` WHERE id = ?", id, (err, res) => {
     if (err) {
@@ -169,6 +171,7 @@ Group.remove = (id, result) => {
   });
 };
 
+//remove all groups
 Group.removeAll = result => {
   sql.query("DELETE FROM `groups`", (err, res) => {
     if (err) {

@@ -51,10 +51,10 @@ class Routes extends React.Component {
 componentDidMount(){
   let stats=Auth.isAuthenticated();
    if(stats === true){
-   console.log("i entered mount")
+   //console.log("i entered mount")
     Auth.setLogout();
-        console.log("i entered3")
-        console.log(Auth.button())
+        //console.log("i entered3")
+        //console.log(Auth.button())
         this.setState({
           button : Auth.button(),
         })
@@ -63,12 +63,12 @@ componentDidMount(){
 
 
   headerHandler(){
-    console.log(this.state.status);
+    //console.log(this.state.status);
       if(this.state.button=== 'Register' && (this.state.status === false))
       {
         Auth.setLoginButton();
-        console.log("i entered")
-        console.log(Auth.button())
+        //console.log("i entered")
+        //console.log(Auth.button())
         this.setState({
           button : Auth.button(),
         })
@@ -76,8 +76,8 @@ componentDidMount(){
       
       if(this.state.button === 'Login' && (this.state.status === false)){
         Auth.setRegister();
-        console.log("i entered2")
-        console.log(Auth.button())
+        //console.log("i entered2")
+        //console.log(Auth.button())
         this.setState({
           button : Auth.button(),
         })
@@ -87,8 +87,8 @@ componentDidMount(){
         Auth.logout();
         Auth.setLogout();
         Auth.isAuthenticated()
-        console.log("i entered2")
-        console.log(Auth.button())
+        //console.log("i entered2")
+        //console.log(Auth.button())
         this.setState({
           button : Auth.button(),
         })

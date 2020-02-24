@@ -39,7 +39,7 @@ exports.findAll = (req, res) => {
     });
   };
 
-  //finds last list added
+  //find last list added
   exports.findLast = (req, res) => {
     List.lastAdded((err, data) => {
       if (err)
@@ -73,10 +73,7 @@ exports.findOne = (req, res) => {
     List.listByGroupId(req.params.groupid, (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
-          res.send(false)
-          /*res.status(404).send(false);/* {
-            message: `Not found list with id ${req.params.groupid}.`
-          } );*/
+          res.send(false) //returns false if does not find any
         } else {
           res.status(500).send({
             message: "Error retrieving list with id " + req.params.listId

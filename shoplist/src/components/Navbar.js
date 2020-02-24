@@ -1,23 +1,12 @@
-import React, {Component} from "react"
-import { slide as Menu } from "react-burger-menu";
-import {NavLink} from 'react-router-dom'
+import React from "react" //Imports react, allow implementation of JSX
+import { slide as Menu } from "react-burger-menu"; //import slide from react-burger-menu
+import {NavLink} from 'react-router-dom' //import NavLink from react router
 
-
-class Navbar extends Component {
-    constructor(props) {
-        super(props)
-    
-        this.state = {
-          
-        }
-      }
-    
-     
-    
-      render() {
-        return (
-            <Menu >
-                <NavLink className="menu-item" to="/ShopList" >
+//function for navbar
+function Navbar() {
+        return ( //render info
+            <Menu > {/* opens menu */}
+                <NavLink className="menu-item" to="/ShopList" > {/* Link for respective page */}
                  Shop List
                 </NavLink>
 
@@ -41,7 +30,7 @@ class Navbar extends Component {
                     Account
                 </NavLink>
             </Menu>
-          )}
+          )
         }
 
         

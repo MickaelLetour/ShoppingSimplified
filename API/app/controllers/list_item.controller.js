@@ -58,7 +58,7 @@ exports.findList = (req, res) => {
   };
 
 
-// Find ?????
+// Find specific item with it's id
 exports.findItem = (req, res) => {
 List_Item.findItemById(req.params.itemId, (err, data) => {
     if (err) {
@@ -92,7 +92,7 @@ exports.delete = (req, res) => {
     });
   };
 
-// Delete all list_item from the database.
+//Delete all list_item from the database.
 exports.deleteAll = (req, res) => {
     List_Item.removeAll((err, data) => {
       if (err)
@@ -105,7 +105,7 @@ exports.deleteAll = (req, res) => {
   };
 
 
-  // Update a list_item status identified by the item_Id  and list idin the request
+// Update a list_item status identified by the item_Id  and list id in the request
 exports.update = (req, res) => {
     // Validate Request
     if (!req.body) {

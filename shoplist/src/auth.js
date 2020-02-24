@@ -1,70 +1,69 @@
 class Auth {
     constructor() {
-      this.authenticated = false;
-      this.Button="Register";
-      this.id = "";
-      this.activeList = null;
-      this.updated = null;
-      this.activeItems = null;
+      this.authenticated = false; //user log status
+      this.Button="Register"; //header button text
+      this.userid = ""; //logged user id
+      this.activeList = null; //active list id
+      this.activeItems = null; //active items array
     }
   
-    login(cb) {
+    login(cb) {//logs in with callback
       this.authenticated = true;
       cb();
     }
   
-    logout(cb) {
+    logout(cb) { //loggs out with callback
       this.authenticated = false;
       cb();
     }
   
-    isAuthenticated() {
+    isAuthenticated() { //return authenticated value
       return this.authenticated;
     }
 
-    setLoginButton() {
+    setLoginButton() { //button text
       this.Button = "Login";
       return this.Button
     }
 
-    setRegister() {
+    setRegister() { //button text
       this.Button = "Register";
       return this.Button
     }
 
-    setLogout() {
+    setLogout() { //button text
       this.Button = "Logout";
       return this.Button
     }
 
-    storeID(id) {
-      this.id =id;
-      return this.id;
+    storeID(id) { //saves user id
+      this.userid =id;
+      return this.userid;
     }
 
-    sendID(){
-      return this.id;
+    sendID(){ //returns user id
+      return this.userid;
     }
 
-    button() {
+    button() { //returns header button text
       return this.Button;
     }
 
-    saveActivelist(id){
+    saveActivelist(id){ //saves id of active list
       this.activeList = id;
       return this.activeList;
     }
 
-    getActiveList(){
+    getActiveList(){ //returns active list id
       return this.activeList;
     }
 
-    setActiveItems(data){
+    setActiveItems(data){//saves locally array of ids of active items
       this.activeItems = data;
       return this.activeItems;
     }
 
-    getActiveItems(){
+    getActiveItems(){ //returns array of active items
       return this.activeItems;
     }
 

@@ -111,17 +111,6 @@ user.getAll = result => {
   })
 } 
 
-/* user.getEmail = result => {
-  sql.query("SELECT email FROM user", (err,res)=>{
-    if(err) {
-      console.log("mail: ", err);
-      result(null,err);
-      return;
-    }
-    console.log("emails: ", res);
-    result(null, res);
-  });
-} */
 
 //select all pass of users
 user.getPass = result => {
@@ -293,27 +282,6 @@ else if(user.photo !=null){
 }
 console.log("updated user: ", { id: id, ...user });
 result(null, { id: id, ...user });  
-/* else {
- sql.query(`UPDATE user SET nickname = ?, password = ?, email = ?, photo = ? WHERE id = ${id}`,
-    [user.nickname, user.password, user.email, user.photo],
-    (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
-      }
-
-      if (res.affectedRows == 0) {
-        // not found user with the id
-        result({ kind: "not_found" }, null);
-        return;
-      }
-
-      console.log("updated user: ", { id: id, ...user });
-      result(null, { id: id, ...user });
-    }
-  );
-  } */
 };
 
 //delete a user with an id

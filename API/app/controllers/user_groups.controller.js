@@ -55,6 +55,8 @@ exports.findOneUserinGroups = (req, res) => {
     });
   };
 
+
+//get all user from a group
 exports.findOneGroupofUsers = (req, res) => {
 User_Groups.findGroupById(req.params.groupId, (err, data) => {
     if (err) {
@@ -71,7 +73,7 @@ User_Groups.findGroupById(req.params.groupId, (err, data) => {
 });
 };
 
-// Delete a user with the specified userId in the request
+// Delete a user with the specified userId in the request->not used
 exports.delete = (req, res) => {
     User_Groups.removeGuser(req.params.userId, req.params.groupId, (err, data) => {
       if (err) {

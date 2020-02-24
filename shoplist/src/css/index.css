@@ -464,11 +464,6 @@ form input {
   list-style-type: none;
   margin: 5%;
   padding: 0;
-  /* padding: 0;
-  height: auto;
-
-  position: relative;
-  background-color: red; */
 }
 .ListDisplay .DisplayItem {
   display: table-row;

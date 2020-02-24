@@ -7,6 +7,7 @@ const category = function(category) {//verify the type of data send and it's ok,
   }
 };
 
+//create new category
 category.create = (newcategory, result) => {//
   sql.query("INSERT INTO category SET ?", newcategory, (err, res) => {
     if (err) {
@@ -20,7 +21,7 @@ category.create = (newcategory, result) => {//
   });
 };
 
-//get category with an Id
+//get category with it's Id
 category.findById = (categoryId, result) => {
   sql.query(`SELECT * FROM category WHERE id_category = ${categoryId}`, (err, res) => {
     if (err) {
@@ -40,7 +41,7 @@ category.findById = (categoryId, result) => {
   });
 };
 
-//get all category
+//get all categorys
 category.getAll = result => {
   sql.query("SELECT * FROM category", (err, res) => {
     if (err) {
@@ -98,7 +99,7 @@ category.remove = (id, result) => {
   });
 };
 
-//delete all category
+//delete all categorys
 category.removeAll = result => {
   sql.query("DELETE FROM category", (err, res) => {
     if (err) {

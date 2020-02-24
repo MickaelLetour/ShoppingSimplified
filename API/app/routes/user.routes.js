@@ -22,7 +22,7 @@ module.exports = app => {
     // Create a new user
     app.delete("/users", users.deleteAll);
 
-    //???
+    //Verify username and password for login
     app.get("/users/pass/:userNick&:userPass", users.VerifyPassword);
 
     //confirm activation of new user with a token
