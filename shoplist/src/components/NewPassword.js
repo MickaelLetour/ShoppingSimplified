@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {dbPOSTFetch} from "./functions";
+import {Redirect} from "react-router-dom"
 
 let params = new URLSearchParams(document.location.search.substring(1));//get information on url
 let token = params.get("token");
@@ -12,7 +13,8 @@ class NewPassword extends Component {
           logged: false,
           password: '',
           confirmPassword:'',
-          token: token
+          token: token,
+          update: false
         }
         this.showHide = this.showHide.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -47,57 +49,63 @@ class NewPassword extends Component {
                     password: this.state.password,
                     token: this.state.token
                 };
-            dbPOSTFetch(url,Data);//Create a new user
+            dbPOSTFetch(url,Data);
+            this.setState({update:true});
         }
         else {
             //console.log("password different confirmPassword");
         }
     }
 
-    render() {
-        return (
-            <div>
-                <form onSubmit={this.handleSubmit}>{/* method on submit */}
-                    <h2>Update Password</h2>
-                    <hr/>
-                    <div>
-                        <label className="Form">Password:
-                            <input 
-                                type={this.state.type} 
-                                className="Form__input" 
-                                placeholder="Enter Password" 
-                                value={this.state.password}
-                                name="password"
-                                onChange={this.handleChange}
-                                required
-                            />
-
-                        </label>
-                    </div>
-                    <div>
-                        <label className="Form">Confirm Password:
-                            <input 
-                                type={this.state.type} 
-                                className="Form__input" 
-                                placeholder="Confirm Password" 
-                                value={this.state.confirmPassword}
-                                name="confirmPassword"
-                                onChange={this.handleChange}
-                            />
-
-                            <span className="Form__show" onClick={this.showHide}>{this.state.type === 'input' ? 'Hide' : 'Show'}</span>
-                        </label>
-                    </div> 
-                    <div className="logbuttons">
-                            <button 
-                            className="loginButton" 
-                            type="submit"
-                            >Submit</button>
-                    </div>
-                    <hr/>
-                </form>
-            </div>
-        )
+    render() { 
+        if (this.state.update === false){
+            return (
+                <div>
+                    <form onSubmit={this.handleSubmit}>{/* method on submit */}
+                        <h2>Update Password</h2>
+                        <hr/>
+                        <div>
+                            <label className="Form">Password:
+                                <input 
+                                    type={this.state.type} 
+                                    className="Form__input" 
+                                    placeholder="Enter Password" 
+                                    value={this.state.password}
+                                    name="password"
+                                    onChange={this.handleChange}
+                                    required
+                                />
+    
+                            </label>
+                        </div>
+                        <div>
+                            <label className="Form">Confirm Password:
+                                <input 
+                                    type={this.state.type} 
+                                    className="Form__input" 
+                                    placeholder="Confirm Password" 
+                                    value={this.state.confirmPassword}
+                                    name="confirmPassword"
+                                    onChange={this.handleChange}
+                                />
+    
+                                <span className="Form__show" onClick={this.showHide}>{this.state.type === 'input' ? 'Hide' : 'Show'}</span>
+                            </label>
+                        </div> 
+                        <div className="logbuttons">
+                                <button 
+                                className="loginButton" 
+                                type="submit"
+                                >Submit</button>
+                        </div>
+                        <hr/>
+                    </form>
+                </div>
+            )
+        }
+        else {
+            return <Redirect push to="/Login" />
+        }
     }
 }
 

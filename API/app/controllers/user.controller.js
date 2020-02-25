@@ -127,7 +127,7 @@ exports.forgotUpdate = (req, res) => {
           res.send("jwt expired");
         }
         else {
-        res.redirect('http://localhost:21012/?token='+data[0].temporaryToken);// redirect on page for update after forgot password with token
+        res.redirect('http://localhost:21012/NewPassword?token='+data[0].temporaryToken);// redirect on page for update after forgot password with token
         }
       })
     }

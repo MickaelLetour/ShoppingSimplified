@@ -16,7 +16,8 @@ import Forgot from './components/Forgot';
 import CreateItems from './components/CreateItems';
 import UpdateItems from './components/UpdateItems';
 import Profile from "./components/Profile.js";
-import Account from "./components/Account.js"
+import Account from "./components/Account.js";
+import NewPassword from "./components/NewPassword.js";
 
 
 class Routes extends React.Component {
@@ -139,6 +140,17 @@ componentDidMount(){
                   <Header headerHandler={this.headerHandler} button={this.state.button} status={this.state.status}/>
                   <div className="main">
                     <Forgot />
+                  </div>  
+                </div>
+              ); 
+            }} />
+
+            <Route exact path="/NewPassword/" component={()=>{
+              return(
+                <div>
+                  <Header headerHandler={this.headerHandler} button={this.state.button} status={this.state.status}/>
+                  <div className="main">
+                    <NewPassword />
                   </div>  
                 </div>
               ); 

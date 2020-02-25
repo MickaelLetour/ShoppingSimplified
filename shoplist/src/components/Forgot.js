@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 import {dbPOSTFetch} from "./functions"
-import {NavLink} from "react-router-dom"
+import {Redirect} from "react-router-dom"
 
 class Forgot extends Component {
     constructor(){
@@ -8,7 +8,8 @@ class Forgot extends Component {
         this.state = {
           logged: false,
           email: '',
-          nickname: ''
+          nickname: '',
+          forgot:false
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,50 +36,56 @@ class Forgot extends Component {
                 email: this.state.email,
             };
         dbPOSTFetch(url,Data);
+        this.setState({forgot:true});
     }
 
     render() {
-        return (
-            <div>
-                <form onSubmit={this.handleSubmit}> {/* method on submit */}
-                    <h2>Forgot Password</h2>
-                    <hr/>
-                    <div>
-                        <label className="Form">Nickname:
-                            <input 
-                                type="text" 
-                                placeholder="Enter Nickname" 
-                                value= {this.state.nickname}
-                                name="nickname" 
-                                onChange={this.handleChange}
-                                required 
-                            />
-                        </label>
-                    </div>
-                    <div>
-                        <label className="Form">Email:
-                            <input 
-                                type="email" 
-                                placeholder="Enter Email" 
-                                value= {this.state.email}
-                                name="email" 
-                                onChange={this.handleChange}
-                                required 
-                            />
-                        </label>
-                    </div>
-                    
-                    <div className="logbuttons">
-                            <button 
-                            className="loginButton" 
-                            type="submit"
-                            >Submit</button>
-                    </div>
-                    <hr/>
-                    <button type="button" className="loginButton"><NavLink to={"/Login"}>Sign In</NavLink></button> {/* redirect on click */} 
-                </form>
-            </div>
-        )
+        if(this.state.forgot === false) {
+            return (
+                <div>
+                    <form onSubmit={this.handleSubmit}> {/* method on submit */}
+                        <h2>Forgot Password</h2>
+                        <hr/>
+                        <div>
+                            <label className="Form">Nickname:
+                                <input 
+                                    type="text" 
+                                    placeholder="Enter Nickname" 
+                                    value= {this.state.nickname}
+                                    name="nickname" 
+                                    onChange={this.handleChange}
+                                    required 
+                                />
+                            </label>
+                        </div>
+                        <div>
+                            <label className="Form">Email:
+                                <input 
+                                    type="email" 
+                                    placeholder="Enter Email" 
+                                    value= {this.state.email}
+                                    name="email" 
+                                    onChange={this.handleChange}
+                                    required 
+                                />
+                            </label>
+                        </div>
+                        
+                        <div className="logbuttons">
+                                <button 
+                                className="loginButton" 
+                                type="submit"
+                                >Submit</button>
+                        </div>
+                        <hr/>
+                        <button type="button" className="loginButton">Sign In</button>  
+                    </form>
+                </div>
+            )
+        }  
+        else {
+            return <Redirect push to="/Login" />
+        }
     }
 }
 
