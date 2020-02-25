@@ -230,7 +230,7 @@ class ShopList extends React.Component {
 
     render() {//render the component to the react DOM
         if(this.state.activation!==true){ //if activate list was not pressed
-            return (
+            return ( //render info
                 <div>
                     {
                     this.state.loading ? //if loading is true
