@@ -14,7 +14,7 @@ class Login extends Component {
     render() { //render the component to the react DOM
         return (//render info
             <div> {/* wrapper div */}
-                <form onSubmit={this.props.handleSubmit} autoComplete="on"> {/* form for login, subimithandler set on parent component */}
+                <form id="loginform" onSubmit={this.props.handleSubmit} autoComplete="on"> {/* form for login, subimithandler set on parent component */}
                     <div className="imgContainer">
                         <img src={avatar} alt="Avatar"/> {/* avatar display */}
                     </div>

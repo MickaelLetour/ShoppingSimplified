@@ -93,7 +93,7 @@ body, html {
 
 form {
   margin: 3em auto;
-  max-width: 30vw;
+  max-width: 80vw;
   min-height: 50vh;
   background: $formColor;
   padding: 40px;
@@ -117,6 +117,7 @@ form {
     display: block;
   }
 
+
   #buttonDelete{
     margin-top:2vh;
   }
@@ -130,6 +131,10 @@ form {
 #imgUpdate{
   width: 100%;
   text-align: center;
+}
+
+#loginform {
+  max-width: 30vw;
 }
 
 form input {

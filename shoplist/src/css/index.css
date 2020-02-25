@@ -83,7 +83,7 @@ body, html {
 
 form {
   margin: 3em auto;
-  max-width: 30vw;
+  max-width: 80vw;
   min-height: 50vh;
   background: rgba(226, 167, 28, 0.4);
   padding: 40px;
@@ -118,6 +118,10 @@ form #buttonValid {
 #imgUpdate {
   width: 100%;
   text-align: center;
+}
+
+#loginform {
+  max-width: 30vw;
 }
 
 form input {
