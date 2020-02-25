@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import {dbPOSTFetch} from "./functions"
 import Auth from "../auth.js"
+import {Redirect} from "react-router-dom"
 
 class NewUser extends Component {
     
@@ -13,6 +14,7 @@ class NewUser extends Component {
           password: '',
           confirmPassword:'',
           nickname: '',
+          register:false
         }
         this.showHide = this.showHide.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -95,7 +97,8 @@ class NewUser extends Component {
 
 
                 Auth.setRegister();
-                this.props.history.push("/"); 
+                //this.props.history.push("/"); 
+                this.setState({register:true});
                            
             })
 
@@ -109,84 +112,89 @@ class NewUser extends Component {
     }
 
     render() {
-        return (
-            <div>
-                <form autoComplete="on" onSubmit={this.handleSubmit}>
-                    <h2>Sign UP</h2>
-                    <hr/>
-                    <div>
-                    <span className="spanRegister">(3 character mini)</span>
-                        <label className="Form">Nickname: 
-                            <input 
-                                type="text" 
-                                className="Form__input"
-                                placeholder="Enter Nickname" 
-                                value= {this.state.nickname}
-                                name="nickname" 
-                                onChange={this.handleChange}
-                                minLength="3" 
-                                required 
-                            />
-                        </label>
-                    </div>
-                    <div>
-                        <label className="Form">Email:
-                            <input 
-                                type="email" 
-                                className="Form__input"
-                                placeholder="Enter Email" 
-                                value= {this.state.email}
-                                name="email" 
-                                onChange={this.handleChange}
-                                required 
-                            />
-                        </label>
-                    </div>
-                    <div>
-                    <span className="spanRegister">(6 character mini, 1maj, 1min, 1num)</span>
-                        <label className="Form">Password: 
-                            <input 
-                                type={this.state.type} 
-                                className="Form__input" 
-                                placeholder="Enter Password" 
-                                value={this.state.password}
-                                name="password"
-                                onChange={this.handleChange}
-                                required
-                                minLength="6"
-                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
-                                autoComplete="off"
-                            />
-
-                        </label>
-                    </div>
-                    <div>
-                        <label className="Form">Confirm Password:
-                            <input 
-                                type={this.state.type} 
-                                className="Form__input" 
-                                placeholder="Confirm Password" 
-                                value={this.state.confirmPassword}
-                                name="confirmPassword"
-                                onChange={this.handleChange}
-                                minLength="6"
-                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
-                                autoComplete="off"
-                            />
-                            <span className="Form__show" onClick={this.showHide}>{this.state.type === 'input' ? <img src="https://img.icons8.com/material-sharp/24/000000/preview-pane.png" alt='Hide' width="24" /> : <img src="https://img.icons8.com/material-rounded/24/000000/hide.png" alt="show" width="24" />}</span>
-
-                        </label>
-                    </div> 
-                    <div className="logbuttons">
-                            <button 
-                            className="loginButton" 
-                            type="submit"
-                            >Submit</button>
-                    </div>
-                    <hr/>
-                </form>
-            </div>
-        )
+        if (this.state.register===false){
+            return (
+                <div>
+                    <form autoComplete="on" onSubmit={this.handleSubmit}>
+                        <h2>Sign UP</h2>
+                        <hr/>
+                        <div>
+                        <span className="spanRegister">(3 character mini)</span>
+                            <label className="Form">Nickname: 
+                                <input 
+                                    type="text" 
+                                    className="Form__input"
+                                    placeholder="Enter Nickname" 
+                                    value= {this.state.nickname}
+                                    name="nickname" 
+                                    onChange={this.handleChange}
+                                    minLength="3" 
+                                    required 
+                                />
+                            </label>
+                        </div>
+                        <div>
+                            <label className="Form">Email:
+                                <input 
+                                    type="email" 
+                                    className="Form__input"
+                                    placeholder="Enter Email" 
+                                    value= {this.state.email}
+                                    name="email" 
+                                    onChange={this.handleChange}
+                                    required 
+                                />
+                            </label>
+                        </div>
+                        <div>
+                        <span className="spanRegister">(6 character mini, 1maj, 1min, 1num)</span>
+                            <label className="Form">Password: 
+                                <input 
+                                    type={this.state.type} 
+                                    className="Form__input" 
+                                    placeholder="Enter Password" 
+                                    value={this.state.password}
+                                    name="password"
+                                    onChange={this.handleChange}
+                                    required
+                                    minLength="6"
+                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                                    autoComplete="off"
+                                />
+    
+                            </label>
+                        </div>
+                        <div>
+                            <label className="Form">Confirm Password:
+                                <input 
+                                    type={this.state.type} 
+                                    className="Form__input" 
+                                    placeholder="Confirm Password" 
+                                    value={this.state.confirmPassword}
+                                    name="confirmPassword"
+                                    onChange={this.handleChange}
+                                    minLength="6"
+                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                                    autoComplete="off"
+                                />
+                                <span className="Form__show" onClick={this.showHide}>{this.state.type === 'input' ? <img src="https://img.icons8.com/material-sharp/24/000000/preview-pane.png" alt='Hide' width="24" /> : <img src="https://img.icons8.com/material-rounded/24/000000/hide.png" alt="show" width="24" />}</span>
+    
+                            </label>
+                        </div> 
+                        <div className="logbuttons">
+                                <button 
+                                className="loginButton" 
+                                type="submit"
+                                >Submit</button>
+                        </div>
+                        <hr/>
+                    </form>
+                </div>
+            )
+        }
+        else {
+            return <Redirect push to="/Login" />
+        }
     }
 }
 
