@@ -557,6 +557,10 @@ form input {
     max-width: 80vw;
   }
 
+  #loginform {
+    max-width: 50vw;
+  }
+
   .logbuttons {
     margin-top: 2em;
   }
@@ -570,6 +574,10 @@ form input {
     display: flex;
     display: block;
     width: 100vw;
+  }
+
+  #loginform {
+    max-width: 80vw;
   }
 }
 /*# sourceMappingURL=index.css.map */
