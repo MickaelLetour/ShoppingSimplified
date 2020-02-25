@@ -93,7 +93,7 @@ body, html {
 
 form {
   margin: 3em auto;
-  max-width: 80vw;
+  max-width: 30vw;
   min-height: 50vh;
   background: $formColor;
   padding: 40px;
@@ -587,6 +587,7 @@ background: rgba(0, 0, 0, 0.3);
 
   form {
     text-align: center;
+    max-width: 80vw;
   }
 
   .logbuttons {

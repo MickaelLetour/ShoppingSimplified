@@ -83,7 +83,7 @@ body, html {
 
 form {
   margin: 3em auto;
-  max-width: 80vw;
+  max-width: 30vw;
   min-height: 50vh;
   background: rgba(226, 167, 28, 0.4);
   padding: 40px;
@@ -550,6 +550,7 @@ form input {
 
   form {
     text-align: center;
+    max-width: 80vw;
   }
 
   .logbuttons {
