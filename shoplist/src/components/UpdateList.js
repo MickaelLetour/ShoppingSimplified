@@ -151,7 +151,7 @@ class Updatelist extends React.Component {
         let itemList = [];
         let i = 0;
         let asID = Number(this.state.ncate) //pass all contents of categorie filter to numbers if possible
-        if(this.state.ncate.length !==0){ //if categorie filter was used
+        if(this.state.ncate.length !==0 && this.state.displayList !==undefined){ //if categorie filter was used
             this.state.originallist.map(original=> //opens original list json object
             this.state.displayList.map(items =>{ //opens display list json object
               

@@ -24,7 +24,7 @@ require("./routes/item.routes.js")(app);
 require("./routes/list.routes.js")(app);
 
 
-let allowCrossDomain = function(req, res, next) {//???????
+let allowCrossDomain = function(req, res, next) {//Request type permissions/configuration
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader("Access-Control-Allow-Headers", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");

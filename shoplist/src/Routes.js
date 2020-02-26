@@ -3,7 +3,6 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
 import Header from "./components/Header"
 import Footer from "./components/Footer.js"
 import Log from "./components/Log.js";
-//import ShopList from "./components/ShopList.js";
 import Navbar from "./components/Navbar"
 import ActiveList from "./components/ActiveList.js"
 import AllLists from "./components/AllLists.js"

@@ -20,7 +20,6 @@ class Lists extends React.Component {
         mountonce: false, //ensures that is only executed once
         ncate :"", //saves value of categorie selected in filter
         selectedItems : [], //stores provisional items ids into one array
-        userID : Auth.sendID(), //gets user id from Auth
         inserted: false, //stores if insert button was pressed
         loading : true, //loading state
       }
@@ -105,7 +104,7 @@ class Lists extends React.Component {
       let itemList = [];
       let i = 0;
       let asID = Number(this.state.ncate) //pass all contents of categorie filter to numbers if possible
-      if(this.state.ncate.length !==0){ //if categorie filter was used
+      if(this.state.ncate.length !==0 && this.state.displayList !==undefined){ //if categorie filter was used
           this.state.originallist.map(original=> //opens original list json object
           this.state.displayList.map(items =>{ //opens display list json object
             
@@ -176,7 +175,7 @@ class Lists extends React.Component {
       event.preventDefault(); //prevents default behavior of submit
       //console.log(this.state.listname)
       //console.log(this.state.ProvisionalItems);
-      let userid = this.state.userID; //gets user id frol the state
+      let userid = Auth.sendID(); //gets user id from Auth
       
       var groupsURL= `http://localhost:2112/user_groups/userpower=/${userid}`;
       

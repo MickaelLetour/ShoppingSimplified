@@ -25,6 +25,7 @@ class ListName extends Component {
                 <form onSubmit={this.props.handleSubmitName}> {/* form with it's submit handler set on parent page */}
                     <div> {/* input wrapper */}
                         <label className="Form">List Name: 
+                        <h6>Leters and Number Only</h6>
                             <input /* input for List name */
                                 type="text" /* type of input */
                                 placeholder="Enter Listname" /* Text displayed in field when empty */
@@ -37,7 +38,7 @@ class ListName extends Component {
                             />
                         </label>
 
-                        <label className="Form">Item Categorie to Add:
+                        <label className="Form">Item Category to Add:
                             <input list="categorie" //input that allows user to choose a category from a list
                                 name="ncate" //name of input
                                 value={this.props.ncate}  //value of input writen, Checks for ids and Names

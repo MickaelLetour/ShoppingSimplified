@@ -13,7 +13,7 @@ class ItemList extends Component {
 
     render() {//render the component to the react DOM
       //console.log(this.props.mount)
-        if(this.props.mount.length ===0 ) //verify if user used filter to display items
+        if(this.props.mount.length ===0 && this.props.munt!==undefined) //verify if user used filter to display items
         { //if it didn't return all items Stored
           return ( //render items unfiltered
             <li> {/* list child */}
