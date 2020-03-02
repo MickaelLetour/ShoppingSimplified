@@ -22,7 +22,7 @@ if (isset($_SESSION['username'])){
     $user = $_SESSION['username'];
     echo "<h3>Bienvenue $user</h3>
     <a id='disconnect' href='../API/logout.php'>Deconnection</a>
-    <a id='switch' href='../Consultation/index.php'>Consultation</a>
+    <a id='switch' href='http://Consultation.test/index.php'>Consultation</a>
     </div>
     <div id='foot'>";
     
@@ -33,7 +33,7 @@ if (isset($_SESSION['username'])){
 else {
     echo "<header id='disconnected'>";
     echo "<div id='head'>";
-    echo "<a id='switchDis' href='../Consultation/index.php'>Consultation des livres et auteurs</a>";
+    echo "<a id='switchDis' href='http://Consultation.test/index.php'>Consultation des livres et auteurs</a>";
     echo "<h3>Connection</h3>";
     if(isset($_SESSION['token'])){
         $token = $_SESSION['token'];
