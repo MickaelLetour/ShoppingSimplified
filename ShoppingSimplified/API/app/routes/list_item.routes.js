@@ -1,25 +1,25 @@
 module.exports = app => {
     const list_item = require("../controllers/list_item.controller.js");
   
-    // Create a new user
-    app.post("/list_item", list_item.create);
+    // Create a list_item
+    app.post("/list_item", list_item.create); //rout for list_item creation
  
-    // Retrieve all users
-    app.get("/list_item", list_item.findAll);
+    // Retrieve all list_items
+    app.get("/list_item", list_item.findAll); //rout for list_item listing
   
-    // Retrieve a single user with userId
-    app.get("/list_item/listing=/:listId", list_item.findList);
+    // Retrieve all items of a list
+    app.get("/list_item/listing=/:listId", list_item.findList); //route for items belonging to list
 
-    // Retrieve a single group with groupId
-    app.get("/list_item/itemoverload=/:itemId", list_item.findItem);
+    // Retrieve all lists that the identified item belongs to
+    app.get("/list_item/itemoverload=/:itemId", list_item.findItem); //route to retrive lists were item exists
  
-    // Delete a user with userId
-    app.delete("/list_item/:listId&:itemId", list_item.delete);
+    // Delete a item with from a list
+    app.delete("/list_item/:listId&:itemId", list_item.delete); //route to list and item delete
   
-     // Create a new user
+     // Delete all lists
     app.delete("/list_item/delall", list_item.deleteAll); 
 
-    // Update a user with userId
-    app.put("/list_item/uping=/:listId&:itemId", list_item.update);
+    // Update a item status in list
+    app.put("/list_item/uping=/:listId&:itemId", list_item.update); //route to list item status
 
   };

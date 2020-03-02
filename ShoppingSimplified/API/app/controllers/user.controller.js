@@ -17,7 +17,7 @@ exports.create = (req, res) => {
     // Create a user
     const user = new User({
       nickname : req.body.nickname,
-      password : req.body.password,
+      password : req.body.password,  //save informations necessary for the request on a const
       email: req.body.email,
       photo: req.body.photo,
       active : 0,
@@ -33,7 +33,7 @@ exports.create = (req, res) => {
         });
       else {
 
-        let transporter = nodemailer.createTransport({
+        let transporter = nodemailer.createTransport({ // setting for send email to newuser
           service: 'gmail',
           auth: {
             user: 'mickael.letour@gmail.com',
@@ -41,13 +41,14 @@ exports.create = (req, res) => {
           }
         });
   
-        let confirmAccount = {
+        let confirmAccount = { // message in email 
           from : 'mickael.letour@gmail.com',
           to : user.email,
           subject: 'Confirm your registration',
           text : 'Please clik on this link for confirm your registration : http://localhost:2112/confirm/'+user.temporaryToken
         };
   
+        //send email
         transporter.sendMail(confirmAccount, function (err, info){
           if (err) {
             console.log(err);
@@ -78,18 +79,8 @@ exports.findAll = (req, res) => {
     });
   };
 
-/* exports.verifyUser = (req,res)=> {
-  User.getAll((err, data) => {
-    if (err)
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving users."
-      });
-    else 
-    //console.log(res.password);
-    //res.send(data);
-  //});
-} */
+
+//update password where token correspon and redirect at home
 exports.updatePassword = (req , res) => {
   const user = new User({
     password : req.body.password,
@@ -115,6 +106,7 @@ exports.updatePassword = (req , res) => {
   })
 }
 
+//redirect on page for to do update password after click the link in email
 exports.forgotUpdate = (req, res) => {
   User.verifToken(req.params.token, (err , data) => {
     if (err) {
@@ -129,19 +121,20 @@ exports.forgotUpdate = (req, res) => {
       }
     } 
     else {
-      const private_key= '0djg6lf6jddd66rgj5dvfejbrte35gch6fr28dh6fhrd0gghv65gt6tvv';
-      jwt.verify(req.params.token, private_key, function(err,decoded) {    
+      const private_key= '0djg6lf6jddd66rgj5dvfejbrte35gch6fr28dh6fhrd0gghv65gt6tvv';// key token
+      jwt.verify(req.params.token, private_key, function(err,decoded) {    //decode token
         if(err) {  
           res.send("jwt expired");
         }
         else {
-        res.redirect('http://localhost:21012/?token='+data[0].temporaryToken);
+        res.redirect('http://localhost:21012/NewPassword?token='+data[0].temporaryToken);// redirect on page for update after forgot password with token
         }
       })
     }
   });
 }
 
+// generate token for password forgot
 exports.forgot = (req,res) => {
   const user = new User({
     nickname : req.body.nickname,
@@ -163,7 +156,7 @@ exports.forgot = (req,res) => {
       }
     } else {
 
-      let transporter = nodemailer.createTransport({
+      let transporter = nodemailer.createTransport({ //send email for update password
         service: 'gmail',
         auth: {
           user: 'mickael.letour@gmail.com',
@@ -209,7 +202,7 @@ exports.findOne = (req, res) => {
   };
   
 
-exports.updateByToken = (req, res) => {
+exports.updateByToken = (req, res) => { //function for update password with token
 
   if(!req.params.token){
     res.status(400).send({
@@ -261,7 +254,7 @@ exports.updateByToken = (req, res) => {
                 console.log('Email sent: ' + info.response);
               }
             });
-            res.redirect('http://localhost:21012/');
+            res.redirect('http://localhost:21012/');//redirect at home app
           }
         });
       };
@@ -271,20 +264,18 @@ exports.updateByToken = (req, res) => {
 
   
 
-
+//verify user password
    exports.VerifyPassword = (req, res)=> {
     User.getPwByNick(req.params.userNick, (err, data) =>{
-        //let value=req.params.userPass.slice(0,-1);
-        //console.log(data);
+
         if(data==null) 
-            res.send(false);
+            res.send(false); //returns false if date inserted doesn't match
 
         else {
           if(passwordHash.verify(req.params.userPass, data.password)===true && data.active===1){
-           /*  console.log(req.params.userPass);
-            console.log(data.password); */
-            
-            res.send(true);
+
+            let id = JSON.stringify(data.id);
+            res.send(id);
           }
           else {
             res.send(false);

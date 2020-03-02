@@ -2,14 +2,19 @@ const sql = require("./connect.js");
 
 // constructor
 const list = function(list) {
-    if (typeof list.group_id === 'number' && list.group_id.length !=0){// int error with postman
+    if (typeof list.group_id === 'number'  && list.group_id !==null) {
         this.group_id = list.group_id;
     }
     if (typeof list.name === 'string' && list.name.length !=0){
         this.name = list.name;
     }
+
+    if (typeof list.active === 'number' && list.active !==null){
+      this.active = list.active;
+  }
 };
 
+//create a new list
 list.create = (newlist, result) => {
   sql.query("INSERT INTO list SET ?", newlist, (err, res) => {
     if (err) {
@@ -23,6 +28,7 @@ list.create = (newlist, result) => {
   });
 };
 
+//get a list with an id
 list.findById = (listId, result) => {
   sql.query(`SELECT * FROM list WHERE id = ${listId}`, (err, res) => {
     if (err) {
@@ -42,6 +48,41 @@ list.findById = (listId, result) => {
   });
 };
 
+//get list by group with an id
+list.listByGroupId = (idGroup, result) =>{
+  sql.query(`SELECT * FROM list WHERE group_id = ${idGroup}` , (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      console.log("found list: ", res);
+      result(null, res);
+      return;
+    }
+
+    // not found list with the id
+    result({ kind: "not_found" }, null);
+  });
+}
+
+//get the last list added
+list.lastAdded = result => {
+  sql.query("SELECT * FROM list ORDER BY id DESC LIMIT 1", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    console.log("lists: ", res);
+    result(null, res);
+  });
+};
+
+//get all list
 list.getAll = result => {
   sql.query("SELECT * FROM list", (err, res) => {
     if (err) {
@@ -55,6 +96,7 @@ list.getAll = result => {
   });
 };
 
+//update a list with an id
 list.updateById = (id, list, result) => {
   sql.query(
     "UPDATE list SET name = ? WHERE id = ?",
@@ -77,6 +119,35 @@ list.updateById = (id, list, result) => {
     }
   );
 };
+
+//update the list active with his id
+list.updateActiveById = (id, list, result) => {
+  sql.query(
+    "UPDATE list SET active = ? WHERE id = ?",
+    [list.active, id],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      if (res.affectedRows == 0) {
+        // not found list with the id
+        result({ kind: "not_found" }, null);
+        return;
+      }
+
+      console.log("updated list: ", { id: id, ...list });
+      result(null, { id: id, ...list });
+    }
+  );
+};
+
+
+
+
+
 
 list.remove = (id, result) => {
   sql.query("DELETE FROM list WHERE id = ?", id, (err, res) => {

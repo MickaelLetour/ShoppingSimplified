@@ -1,13 +1,14 @@
 const sql = require("./connect.js");
 
 // constructor
-const category = function(category) {
+const category = function(category) {//verify the type of data send and it's ok, stock it.
   if (typeof category.name === 'string' && category.name.length !=0){
     this.name = category.name;
   }
 };
 
-category.create = (newcategory, result) => {
+//create new category
+category.create = (newcategory, result) => {//
   sql.query("INSERT INTO category SET ?", newcategory, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -20,8 +21,9 @@ category.create = (newcategory, result) => {
   });
 };
 
+//get category with it's Id
 category.findById = (categoryId, result) => {
-  sql.query(`SELECT * FROM category WHERE id = ${categoryId}`, (err, res) => {
+  sql.query(`SELECT * FROM category WHERE id_category = ${categoryId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -39,6 +41,7 @@ category.findById = (categoryId, result) => {
   });
 };
 
+//get all categorys
 category.getAll = result => {
   sql.query("SELECT * FROM category", (err, res) => {
     if (err) {
@@ -52,9 +55,10 @@ category.getAll = result => {
   });
 };
 
+//update category with an Id
 category.updateById = (id, category, result) => {
   sql.query(
-    "UPDATE category SET name = ? WHERE id = ?",
+    "UPDATE category SET name = ? WHERE id_category = ?",
     [category.name, id],
     (err, res) => {
       if (err) {
@@ -75,8 +79,9 @@ category.updateById = (id, category, result) => {
   );
 };
 
+//delete one category with an Id
 category.remove = (id, result) => {
-  sql.query("DELETE FROM category WHERE id = ?", id, (err, res) => {
+  sql.query("DELETE FROM category WHERE id_category = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -94,6 +99,7 @@ category.remove = (id, result) => {
   });
 };
 
+//delete all categorys
 category.removeAll = result => {
   sql.query("DELETE FROM category", (err, res) => {
     if (err) {

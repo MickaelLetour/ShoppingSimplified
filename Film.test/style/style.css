@@ -1,0 +1,43 @@
+body {
+  background-color: black;
+}
+
+.container {
+  width: 100%;
+}
+
+.header {
+  text-align: center;
+  color: white;
+  margin: 25px auto;
+}
+
+.affiche {
+  background-color: red;
+  border: black solid 5px;
+  width: 800px;
+  height: 600px;
+  position: fixed;
+  z-index: 3;
+  top: 100px;
+  left: 350px;
+  visibility: hidden;
+}
+
+.card {
+  background-color: blue;
+  border: black solid 1px;
+}
+.card .jackette {
+  margin: 10px auto;
+  transition-timing-function: linear;
+  width: 250px;
+  height: 300px;
+}
+
+input {
+  position: fixed;
+  visibility: hidden;
+}
+
+/*# sourceMappingURL=style.css.map */

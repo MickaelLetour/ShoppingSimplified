@@ -2,11 +2,21 @@ const sql = require("./connect.js");
 
 // constructor
 const Group = function(group) {
-  this.group_name = group.group_name;
-  this.n_members = group.n_members;
-  this.logo = group.logo;
-};
-
+  if (typeof group.group_name === 'string' && group.group_name.length !=0){
+    this.group_name = group.group_name;
+  }
+  if (typeof group.n_members === 'number' && group.n_members.length !=0){
+    this.n_members = group.n_members;
+  }
+  if (typeof group.active === 'number' && group.active.length !=0){
+    this.active = group.active;
+  }
+  if (typeof group.logo === 'string' && group.logo.length !=0){
+    this.logo = group.logo;
+  }
+}
+  
+//create a new group
 Group.create = (newGroup, result) => {
   sql.query("INSERT INTO `groups` SET ?", newGroup, (err, res) => {
     if (err) {
@@ -20,6 +30,7 @@ Group.create = (newGroup, result) => {
   });
 };
 
+// get a group with an Id
 Group.findById = (groupId, result) => {
   sql.query("SELECT * FROM `groups` WHERE id = ${groupId}", (err, res) => {
     if (err) {
@@ -39,6 +50,7 @@ Group.findById = (groupId, result) => {
   });
 };
 
+//get all groups
 Group.getAll = result => {
   sql.query("SELECT * FROM `groups`", (err, res) => {
     if (err) {
@@ -52,6 +64,7 @@ Group.getAll = result => {
   });
 };
 
+// update a group with it's Id
 Group.updateById = (id, group, result) => {
 
   if(group.group_name !=null){
@@ -75,6 +88,26 @@ Group.updateById = (id, group, result) => {
 
 else if(group.n_members !=null){
   sql.query("UPDATE `groups` SET n_members = ? WHERE id = ${id}",
+    [group.n_members],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+
+      if (res.affectedRows == 0) {
+        // not found user with the id
+        result({ kind: "not_found" }, null);
+        return;
+      }
+    }
+  );
+}
+
+
+else if(group.active !=null){
+  sql.query("UPDATE `groups` SET active = ? WHERE id = ${id}",
     [group.n_members],
     (err, res) => {
       if (err) {
@@ -117,6 +150,8 @@ result(null, { id: id, ...Group });
 
 };
 
+
+//Delete agroup Identifyed by it's id
 Group.remove = (id, result) => {
   sql.query("DELETE FROM `groups` WHERE id = ?", id, (err, res) => {
     if (err) {
@@ -136,6 +171,7 @@ Group.remove = (id, result) => {
   });
 };
 
+//remove all groups
 Group.removeAll = result => {
   sql.query("DELETE FROM `groups`", (err, res) => {
     if (err) {

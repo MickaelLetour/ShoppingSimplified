@@ -1,0 +1,146 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+@media only screen and (min-width: 1025px) {
+  .entry-title, .site-branding {
+    text-align: center;
+    overflow: auto;
+  }
+
+  .site-branding {
+    height: 33vh;
+  }
+
+  #site-navigation {
+    height: 33vh;
+  }
+
+  #masthead {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    width: 55vw;
+    margin-left: 22.5vw;
+    margin-right: 22.5vw;
+    padding: 20px;
+    border-left: white 1px solid;
+    border-right: white 1px solid;
+  }
+
+  #primary-menu, #site-navigation {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    overflow: auto;
+  }
+
+  #secondary {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    overflow: auto;
+  }
+
+  #colophon {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 20vw;
+    height: 33vh;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .site-branding {
+    width: 85vw;
+    margin: auto;
+  }
+
+  #site-navigation {
+    width: 85vw;
+    margin: auto;
+  }
+
+  main {
+    width: 85vw;
+    margin: auto;
+  }
+
+  #secondary {
+    width: 85vw;
+    margin: auto;
+  }
+
+  #colophon {
+    width: 85vw;
+    margin: auto;
+  }
+}
+@media only screen and (max-width: 1024px) and (min-width: 426px) {
+  .entry-title, .site-branding {
+    text-align: center;
+    overflow: auto;
+  }
+
+  .site-branding {
+    height: 33vh;
+  }
+
+  #site-navigation {
+    height: 33vh;
+  }
+
+  #masthead {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #secondary {
+    width: 75vw;
+    margin-left: 22.5vw;
+    border-left: white 1px solid;
+    border-right: white 1px solid;
+  }
+
+  #primary-menu, #site-navigation {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    overflow: auto;
+  }
+
+  #colophon {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 20vw;
+    height: 33vh;
+  }
+
+  main {
+    width: 75vw;
+    margin-left: 22.5vw;
+    margin-right: 22.5vw;
+    padding: 20px;
+    border-left: white 1px solid;
+    border-right: white 1px solid;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

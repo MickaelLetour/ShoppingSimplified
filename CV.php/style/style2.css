@@ -1,0 +1,31 @@
+.logo {
+  width: 25px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+header {
+  width: 100%;
+  background-color: rgba(0, 0, 255, 0.801);
+}
+header .nomTitre {
+  font-size: 15px;
+  text-align: center;
+}
+header nav {
+  background-color: white;
+  margin: 20px auto 20px auto;
+}
+
+.elementNav {
+  justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 50px;
+}
+
+/*# sourceMappingURL=style2.css.map */

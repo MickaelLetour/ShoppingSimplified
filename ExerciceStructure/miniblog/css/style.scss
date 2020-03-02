@@ -1,0 +1,135 @@
+body{
+    background-color: black;
+    color:white;
+    height: 100%;
+    width: 100%;
+    display:inline-block;
+    margin:0;
+}
+hr{
+    height: 5px;
+    color:cyan;
+    background-color: cyan;
+}
+a {
+    text-decoration: none;
+    color: cyan;
+}
+#box{
+    border:white 5px solid;
+    margin:15vh auto;
+    width: 50%;
+    height: 70%;
+}
+#formArticle{
+    padding:4%;
+    display:flex;
+    flex-wrap: wrap;
+    height: 90%;
+}
+.boxLink{
+    border:white 2px solid;
+    width: 50vw;
+    height: 7vh;
+    line-height: 7vh;
+    text-align: center;
+    background-color:black;
+    font-size: 20px;
+    margin:1% auto;
+}
+.boxLink:hover{
+border:rgb(248, 116, 138) 2px solid;
+}
+header{
+    width: 100%;
+    height: 5vh;
+    border:white 2px solid;
+    background-color: cyan;
+    color:black;
+    position:fixed;
+    top:0px;
+    left:0px;
+    right:0px;
+    display:flex;
+    justify-content: space-around;
+    a{
+        text-decoration: none;
+        color:black;
+    }
+    .boxHeader{
+        font-size: 20px;
+        line-height: 30px;
+    }
+}
+footer{
+    width: 100%;
+    height: 5vh;
+    border:white 2px solid;
+    background-color: cyan;
+    color:black;
+    position: fixed;
+    bottom:0px;
+    left:0px;
+    right: 0px;
+    display:flex;
+    justify-content: space-around;
+}
+h1,h3,h2 {
+    border:white solid 2px;
+    color:cyan;
+    text-align: center;
+    width: 200px;
+    margin:auto;
+}
+p {
+    text-align: center;
+}
+#titleArticle {
+    margin-top:100px;
+}
+
+#formComment{
+    border: white 2px solid;
+    width: 600px;
+    margin:auto;
+    margin-bottom: 50px;
+    padding: 20px;
+    .caseForm{
+        width: 500px;
+    }
+    label,.caseForm{
+        margin-left: 50px;
+        margin-right: auto;
+    }
+    .submit{
+        
+        margin:auto;
+        margin-left: 150px;
+        width: 300px;
+    }
+}
+#hrForm{
+    height: 5px;
+    color:cyan;
+    background-color: cyan;
+    width: 500px;
+}
+.boxLog{
+    height: 40%;
+    margin: 5% auto;
+    width: 100%;
+}
+.formLog{
+    width: 70%;
+    margin: auto;
+}
+.champC,label,.buttonCQ{
+    margin:2% 20% 2% 20%;
+    width: 60%;
+    font-size: 20px;
+}
+
+.buttonCQ {
+    width: 20%;
+    margin: 2% 40% 2% 40%;
+}

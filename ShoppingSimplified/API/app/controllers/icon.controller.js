@@ -1,6 +1,6 @@
 const Icon = require("../models/icon.model.js");
 
-// Create and Save a new category
+// Create and Save a new icon
 exports.create = (req, res) => {
     // Validate request
     if (!req.body) {
@@ -9,13 +9,13 @@ exports.create = (req, res) => {
       });
     }
   
-    // Create a category
-    const icon = new Icon({
+    // Create a icon
+    const icon = new Icon({ //save informations necessary for the request on a const
       icon : req.body.icon,
       name : req.body.name
     });
   
-    // Save category in the database
+    // Save icon in the database
     Icon.create(icon, (err, data) => {
       if (err)
         res.status(500).send({
@@ -26,7 +26,7 @@ exports.create = (req, res) => {
     });
   };
 
-// Retrieve all categories from the database.
+// Retrieve all icons from the database.
 exports.findAll = (req, res) => {
     Icon.getAll((err, data) => {
       if (err)
@@ -38,7 +38,18 @@ exports.findAll = (req, res) => {
     });
   };
 
-// Find a single category with a categoryId
+exports.findAllWithInfo = (req, res) => {
+    Icon.getNotUsed((err, data) => {
+      if (err)
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving icons."
+        });
+      else res.send(data);
+    });
+  };
+  
+// Find a single icon with a iconId
 exports.findOne = (req, res) => {
     Icon.findById(req.params.iconId, (err, data) => {
       if (err) {
@@ -55,7 +66,7 @@ exports.findOne = (req, res) => {
     });
   };
 
-// Update a category identified by the categoryId in the request
+// Update a icon identified by the iconId in the request
 exports.update = (req, res) => {
     // Validate Request
     if (!req.body) {
@@ -83,7 +94,7 @@ exports.update = (req, res) => {
     );
   };
 
-// Delete a category with the specified categoryId in the request
+// Delete a icon with the specified iconId in the request
 exports.delete = (req, res) => {
     Icon.remove(req.params.iconId, (err, data) => {
       if (err) {
@@ -100,7 +111,7 @@ exports.delete = (req, res) => {
     });
   };
 
-// Delete all categories from the database.
+// Delete all icons from the database.
 exports.deleteAll = (req, res) => {
     Icon.removeAll((err, data) => {
       if (err)

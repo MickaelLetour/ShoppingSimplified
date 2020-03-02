@@ -3,6 +3,14 @@ $bodyColor : rgba(226, 167, 28, 0.5);
 $formColor : rgba(226, 167, 28, 0.40);
 $HeaderColor : #97C552;
 $button : #250463;
+$secondaryButton : #fc1d00b6;
+
+@import url(http://fr.allfont.net/allfont.css?fonts=angelina);
+
+h1 {
+  text-align: center;
+  margin-top:40vh;
+}
 
 body{
   margin : 0;
@@ -22,7 +30,7 @@ hr {
   justify-content: space-between;
   text-align: center;
   background-color: $HeaderColor;
-  font-family: Angelina Alt Demo;
+  font-family: 'Angelina';
   border-bottom: $fontColor solid 1px;
   .imgNav {
     width: 15vh;
@@ -30,7 +38,12 @@ hr {
     margin-left: 2vw;
     border-radius: 5px;
   }
-  #title,#linkLogin {
+
+  #title{
+    margin-left: 7vw;
+  }
+
+  #title,#button{
     margin-top: 5vh;
     color : white;
     font-size: 2.5em;
@@ -38,22 +51,36 @@ hr {
     color:$fontColor
     }
   }
-  #linkLogin {
-    margin-right: 2vw;
+  #button{
+    margin-right: 10vw;
     width: 15vh;
+    a{
+      text-decoration: none;
+      color:blue;
+      &:hover{
+        border:blue solid 1px;
+      }
+    }
   }
 }
 
 footer {
+  margin:0;
+  position: relative;
   background-color: $HeaderColor;
   width: 100%;
-  height: 15vh;
   border-top: $fontColor solid 1px;
+  text-align: center;
+  ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
 }
 
 .imgContainer img {
   max-width: 100%;
-  height: 40vh;
+  height: 20vh;
   display: block;
   margin-right: auto;
   margin-left: auto;
@@ -66,12 +93,47 @@ body, html {
 
 form {
   margin: 3em auto;
-  max-width: 320px;
-  min-height: 320px;
+  max-width: 80vw;
+  min-height: 50vh;
   background: $formColor;
   padding: 40px;
-  box-shadow: 0 0 20px $fontColor;
   border-radius: 10px;
+  select,.ItemButton{
+    border:none;
+    width: 100%;
+    margin-bottom: 5vh;
+    height: 5vh;
+    border-radius:5px ;
+    text-align: center;
+  }
+  .ItemButton{
+    width: 20%;
+    background-color: $button;
+    color: white;
+    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    display: block;
+  }
+
+  #buttonDelete{
+    margin-top:2vh;
+  }
+
+  #buttonValid{
+    width: 100%;
+    margin-top: 2vh;
+  }
+}
+
+#imgUpdate{
+  width: 100%;
+  text-align: center;
+}
+
+#loginform , #registerForm, #formCreateItem {
+  max-width: 30vw;
 }
 
 form input {
@@ -79,10 +141,13 @@ form input {
   margin-bottom: 1em;
   width: 100%;
   height: 5vh;
-  border-width: 0 0 1.5px;
-  border-style: solid;
-  border-color: $fontColor;
   border-radius: 5px;
+  border:none;
+}
+
+.spanRegister{
+  font-size: 0.7em;
+  color: $fontColor;
 }
 
 .Form {
@@ -92,43 +157,33 @@ form input {
   font-weight: 700;
   width: 100%;
   color: $button;
+  box-decoration-break: none;
 }
 
 .Form__input {
+  
   display: block;
   text-transform: none;
   width: 100%;
-  height: 7vh;
-  border-width: 0 0 1.5px;
-  border-style: solid;
-  border-color: $fontColor;
+  height: 5vh;
   font-weight: 400;
   color: $fontColor;
   margin-bottom: 5vh;
 }
 
-.Form__input:focus, .Form__input:active {
-  border-color: $HeaderColor;
-  outline: 0;
-
-}
 .Form__show {
   cursor: pointer;
   position: absolute;
-  bottom: 11px;
-  height: 16px;
+  bottom:0;
   right: 0;
-  background: $button;
-  color: white;
   padding: 4px 8px;
-  border-radius: 4px;
-  font-weight: 700;
-  font-size: 0.8em;
+  border:none;
 }
 
 .logbuttons {
   display: flex;
   justify-content: space-evenly;
+  border:none;
 
 }
 
@@ -142,6 +197,11 @@ form input {
   width: 10vw;
   height: 5vh;
   border-radius: 5px;
+  border:none;
+  &:hover{
+    text-decoration: none;
+    color:$HeaderColor;
+  }
 }
 
 .logbuttons .forgotpw {
@@ -149,14 +209,111 @@ form input {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  background-color: #f44336;
+  
   color: white;
-  border-color: #f44336;
+  border:none;
+  &:hover{
+    color:$HeaderColor;
+  }
+  a{
+    text-decoration: none;
+    color:blue;
+  }
+}
+
+.textButtonsColor{
+  text-decoration: none;
+  color: white;
+  &:hover{
+    color:$HeaderColor;
+  }
+}
+
+.secondary {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  border-radius: 5px;
+  border:none;
+  background-color: $secondaryButton;
+  &:hover{
+    text-decoration: none;
+    color:$HeaderColor;
+  }
+}
+
+#item{
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  ul{
+    list-style: none;
+    padding:0;
+    .imgItem{
+      width: 7.5vh;
+      height:7.5vh ;
+      border: 2px solid black;
+      border-radius: 50%;
+      &:active {
+        border : $HeaderColor 2px solid;
+      }
+    }
+    li{
+      padding:0;
+    }
+  }
+}
+
+.buttonUpdate{
+  background-color: $HeaderColor;
+  border:none;
+  &:hover{
+    border:$bodyColor 3px solid;
+  }
+  a{
+    text-decoration: none;
+    color:$fontColor;
+    
+  }
+}
+
+.item {
+  margin-right: 3vw;
+  margin-left: 3vw;
+}
+
+#newItem{
+  margin-top: 10vh;
+  height: 5vh;
+  background-color: $HeaderColor;
+  border:none;
+  &:hover{
+    border:$bodyColor 3px solid;
+  }
+  a{
+    text-decoration: none;
+    color:$fontColor;
+    
+  }
+}
+
+#icon-modal{
+  display: flex;
+  flex-wrap: wrap;
 }
 
 //---------------
 // NavBar
 
+.bm {
+  position: fixed;
+  float: right;
+}
 /* Individual item */
 .bm-item {
   display: inline-block;
@@ -180,7 +337,7 @@ form input {
   position: fixed;
   width: 36px;
   height: 30px;
-  left: 36px;
+  right: 36px;
   top: 36px;
 }
 
@@ -201,10 +358,30 @@ form input {
 }
 
 /* General sidebar styles */
+
+/* Styling of overlay */
+.bm-overlay{
+width: 0% !important;
+height: 0% !important;
+background: rgba(0, 0, 0, 0.3);
+} 
+.bm-menu-wrap {
+  position: fixed !important;
+  height:0% !important;
+  width: 0% !important;
+  top: 0vh!important;
+  right: -50vh!important;
+  transition: 0s!important;
+} 
+
 .bm-menu {
-  background: $formColor;
+  background: $HeaderColor;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
+  position: fixed;
+  top:12vh;
+  right: 0;
+  min-width: 15vw;
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -217,30 +394,170 @@ form input {
   color: $button;
 }
 
-/* Styling of overlay */
-.bm-overlay {
-  background: rgba(0, 0, 0, 0.3);
+.itemList {
+  display: flex;
+  flex-wrap:wrap;
+  list-style-type: none;
+  margin: 30px;
+  padding: 0;
+  height: auto;
+  justify-content: space-around;
+  position: relative;
+  background-color: $formColor;
+  align-items: center;
+  :active {
+    border-radius: 100%;
+    background: $HeaderColor;
+  }
+  
+  .item {
+    display: flex;
+    width: 200px;
+    height: 40%;
+    margin:3vh;
+    position: inherit;
+    text-align: center;
+    background: #069;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    //justify-content: center;
+
+  }
+
+  
 }
 
 
-/* #arrive {
-  ul {
-    display: flex;
-    justify-content: space-evenly;
-    list-style: none;
-    li{
-      h1 {
-        color:$fontColor;
-        font-size: 3em;
-        line-height: 40vh;
+.Quantity {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+.main {
+  min-height: 75vh;  
+  margin: auto;
+  margin-top: 5vh;
+  margin-bottom: 5vh; 
+}
+
+
+.ReactModal__Content--after-open{
+  background-color: $HeaderColor;
+  width: 50vh;
+  margin: auto;
+  #divModal{
+    height: 50vh;
+    form{
+      height: 50vh;
+      div{
+        display: flex;
+        justify-content: center;
+        margin-left:5vw;
+        margin-bottom: 2vh;
+        img{
+          border-radius: 50%;
+          border:solid 1px black;
+          width: 7vh;
+          height: 7vh;
+        }
+        input{
+          height: 4vh;
+        }
       }
     }
   }
-} */
+  button{
+    border:none;
+    background-color: $button;
+    color:white;
+    margin-left: 15vw;
+  }
+}
+
+.InputBox {
+  display: flex;
+  background-color: white;
+  width: 100%;
+  height: 200px;
+  overflow: auto;
+  /* padding: 20%; */
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:3vh;
+  margin-bottom:3vh;
+  justify-content: center;
+   
+  }
+
+  .ListDisplay {
+    display: flex;
+    flex-wrap:wrap; 
+    justify-content: center;
+    max-height: 100vh;
+    align-items: center;
+    list-style-type: none;
+    margin: 5%;
+    padding:0;
+    //background-color: $formColor;
 
 
+    
+
+    .DisplayItem {
+      display: table-row;
+      justify-content: center;
+      border-radius: 100%;
+      margin:10px;
+      width: 70px;
+      text-align: center;      
+    }
+
+  }
+
+   .ListNameselect {
+    display: flex;
+    justify-content: center;
+    border-radius: 100%;
+    margin:10px;
+    width: 70px;
+    text-align: center;  
+    background: #069;
+    color: #fff;
+    align-items: center;
+    border-radius: 100%;
+
+      :active {
+    border-radius: 100%;
+    background: $HeaderColor;
+  } 
+  }
+
+  .DisplayBox {
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+    margin-left:auto;
+    margin-right:auto;
+    max-width: 90vw;
+    max-height: 100vh;
+    margin-top:3vh;
+    margin-bottom:3vh;
+    overflow: auto;
+    background-color: $formColor;
+  }
 
 @media only screen and (max-width: 768px) {
+
+  #title{
+    margin-left:0;
+  }
+
+  /* .main {
+    max-height: 70vh;   
+  } */
 
   .mainNav {
     flex-wrap: wrap;
@@ -251,7 +568,7 @@ form input {
       margin-top: 1vh;
       margin-bottom: 1vh;
     }
-    #title,#linkLogin {
+    #title,#button {
       margin : auto;
       margin-top: 1vh;
       margin-bottom: 1vh;
@@ -259,12 +576,26 @@ form input {
     }
   }
 
-  form {
-    text-align: center;
+  .headerButton {
+    width: 100%;
+    margin: auto;
   }
 
-  .Form__show {
-    bottom: -25px;
+  .bm-burger-button {
+    position: fixed;
+    width: 36px;
+    height: 30px;
+    right: 36px;
+    top: 26px;
+  }
+
+  form {
+    text-align: center;
+    max-width: 80vw;
+  }
+
+  #loginform {
+    max-width: 50vw;
   }
 
   .logbuttons {
@@ -274,7 +605,6 @@ form input {
   .loginButton{
     width: 20vw;
   }
-
 }
 //---rui test
 @media only screen and (max-width: 400px) {
@@ -283,6 +613,11 @@ form input {
     display: block;
     width:100vw;
   }
+  #loginform {
+    max-width: 80vw;
+  }
 }
+
+
 
 /*# sourceMappingURL=index.css.map */

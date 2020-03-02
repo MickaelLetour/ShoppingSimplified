@@ -1,6 +1,6 @@
 const User_Groups = require("../models/user_groups.model.js");
 
-// Create and Save a new user
+// Create and Save a new user_groups
 exports.create = (req, res) => {
     // Validate request
     if (!req.body) {
@@ -9,13 +9,13 @@ exports.create = (req, res) => {
       });
     }
   
-    // Create a conection
+    // Create a new user_group
     const user_groups = new User_Groups({
       id_User : req.body.id_User,
       id_Group : req.body.id_Group,
     });
   
-    // Save user in the database
+    // Save user and group in the database
     User_Groups.create(user_groups, (err, data) => {
       if (err)
         res.status(500).send({
@@ -55,6 +55,8 @@ exports.findOneUserinGroups = (req, res) => {
     });
   };
 
+
+//get all user from a group
 exports.findOneGroupofUsers = (req, res) => {
 User_Groups.findGroupById(req.params.groupId, (err, data) => {
     if (err) {
@@ -71,7 +73,7 @@ User_Groups.findGroupById(req.params.groupId, (err, data) => {
 });
 };
 
-// Delete a user with the specified userId in the request
+// Delete a user with the specified userId in the request->not used
 exports.delete = (req, res) => {
     User_Groups.removeGuser(req.params.userId, req.params.groupId, (err, data) => {
       if (err) {

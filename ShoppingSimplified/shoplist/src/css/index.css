@@ -1,3 +1,9 @@
+@import url(http://fr.allfont.net/allfont.css?fonts=angelina);
+h1 {
+  text-align: center;
+  margin-top: 40vh;
+}
+
 body {
   margin: 0;
 }
@@ -16,7 +22,7 @@ hr {
   justify-content: space-between;
   text-align: center;
   background-color: #97C552;
-  font-family: Angelina Alt Demo;
+  font-family: "Angelina";
   border-bottom: #141414 solid 1px;
 }
 .mainNav .imgNav {
@@ -25,29 +31,46 @@ hr {
   margin-left: 2vw;
   border-radius: 5px;
 }
-.mainNav #title, .mainNav #linkLogin {
+.mainNav #title {
+  margin-left: 7vw;
+}
+.mainNav #title, .mainNav #button {
   margin-top: 5vh;
   color: white;
   font-size: 2.5em;
 }
-.mainNav #title #titleColor, .mainNav #linkLogin #titleColor {
+.mainNav #title #titleColor, .mainNav #button #titleColor {
   color: #141414;
 }
-.mainNav #linkLogin {
-  margin-right: 2vw;
+.mainNav #button {
+  margin-right: 10vw;
   width: 15vh;
+}
+.mainNav #button a {
+  text-decoration: none;
+  color: blue;
+}
+.mainNav #button a:hover {
+  border: blue solid 1px;
 }
 
 footer {
+  margin: 0;
+  position: relative;
   background-color: #97C552;
   width: 100%;
-  height: 15vh;
   border-top: #141414 solid 1px;
+  text-align: center;
+}
+footer ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 .imgContainer img {
   max-width: 100%;
-  height: 40vh;
+  height: 20vh;
   display: block;
   margin-right: auto;
   margin-left: auto;
@@ -60,12 +83,45 @@ body, html {
 
 form {
   margin: 3em auto;
-  max-width: 320px;
-  min-height: 320px;
+  max-width: 80vw;
+  min-height: 50vh;
   background: rgba(226, 167, 28, 0.4);
   padding: 40px;
-  box-shadow: 0 0 20px #141414;
   border-radius: 10px;
+}
+form select, form .ItemButton {
+  border: none;
+  width: 100%;
+  margin-bottom: 5vh;
+  height: 5vh;
+  border-radius: 5px;
+  text-align: center;
+}
+form .ItemButton {
+  width: 20%;
+  background-color: #250463;
+  color: white;
+  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  display: block;
+}
+form #buttonDelete {
+  margin-top: 2vh;
+}
+form #buttonValid {
+  width: 100%;
+  margin-top: 2vh;
+}
+
+#imgUpdate {
+  width: 100%;
+  text-align: center;
+}
+
+#loginform, #registerForm, #formCreateItem {
+  max-width: 30vw;
 }
 
 form input {
@@ -73,10 +129,13 @@ form input {
   margin-bottom: 1em;
   width: 100%;
   height: 5vh;
-  border-width: 0 0 1.5px;
-  border-style: solid;
-  border-color: #141414;
   border-radius: 5px;
+  border: none;
+}
+
+.spanRegister {
+  font-size: 0.7em;
+  color: #141414;
 }
 
 .Form {
@@ -86,43 +145,32 @@ form input {
   font-weight: 700;
   width: 100%;
   color: #250463;
+  box-decoration-break: none;
 }
 
 .Form__input {
   display: block;
   text-transform: none;
   width: 100%;
-  height: 7vh;
-  border-width: 0 0 1.5px;
-  border-style: solid;
-  border-color: #141414;
+  height: 5vh;
   font-weight: 400;
   color: #141414;
   margin-bottom: 5vh;
 }
 
-.Form__input:focus, .Form__input:active {
-  border-color: #97C552;
-  outline: 0;
-}
-
 .Form__show {
   cursor: pointer;
   position: absolute;
-  bottom: 11px;
-  height: 16px;
+  bottom: 0;
   right: 0;
-  background: #250463;
-  color: white;
   padding: 4px 8px;
-  border-radius: 4px;
-  font-weight: 700;
-  font-size: 0.8em;
+  border: none;
 }
 
 .logbuttons {
   display: flex;
   justify-content: space-evenly;
+  border: none;
 }
 
 .loginButton {
@@ -135,6 +183,11 @@ form input {
   width: 10vw;
   height: 5vh;
   border-radius: 5px;
+  border: none;
+}
+.loginButton:hover {
+  text-decoration: none;
+  color: #97C552;
 }
 
 .logbuttons .forgotpw {
@@ -142,9 +195,104 @@ form input {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  background-color: #f44336;
   color: white;
-  border-color: #f44336;
+  border: none;
+}
+.logbuttons .forgotpw:hover {
+  color: #97C552;
+}
+.logbuttons .forgotpw a {
+  text-decoration: none;
+  color: blue;
+}
+
+.textButtonsColor {
+  text-decoration: none;
+  color: white;
+}
+.textButtonsColor:hover {
+  color: #97C552;
+}
+
+.secondary {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  background-color: #fc1d00b6;
+}
+.secondary:hover {
+  text-decoration: none;
+  color: #97C552;
+}
+
+#item {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+#item ul {
+  list-style: none;
+  padding: 0;
+}
+#item ul .imgItem {
+  width: 7.5vh;
+  height: 7.5vh;
+  border: 2px solid black;
+  border-radius: 50%;
+}
+#item ul .imgItem:active {
+  border: #97C552 2px solid;
+}
+#item ul li {
+  padding: 0;
+}
+
+.buttonUpdate {
+  background-color: #97C552;
+  border: none;
+}
+.buttonUpdate:hover {
+  border: rgba(226, 167, 28, 0.5) 3px solid;
+}
+.buttonUpdate a {
+  text-decoration: none;
+  color: #141414;
+}
+
+.item {
+  margin-right: 3vw;
+  margin-left: 3vw;
+}
+
+#newItem {
+  margin-top: 10vh;
+  height: 5vh;
+  background-color: #97C552;
+  border: none;
+}
+#newItem:hover {
+  border: rgba(226, 167, 28, 0.5) 3px solid;
+}
+#newItem a {
+  text-decoration: none;
+  color: #141414;
+}
+
+#icon-modal {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.bm {
+  position: fixed;
+  float: right;
 }
 
 /* Individual item */
@@ -168,7 +316,7 @@ form input {
   position: fixed;
   width: 36px;
   height: 30px;
-  left: 36px;
+  right: 36px;
   top: 36px;
 }
 
@@ -189,10 +337,30 @@ form input {
 }
 
 /* General sidebar styles */
+/* Styling of overlay */
+.bm-overlay {
+  width: 0% !important;
+  height: 0% !important;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.bm-menu-wrap {
+  position: fixed !important;
+  height: 0% !important;
+  width: 0% !important;
+  top: 0vh !important;
+  right: -50vh !important;
+  transition: 0s !important;
+}
+
 .bm-menu {
-  background: rgba(226, 167, 28, 0.4);
+  background: #97C552;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
+  position: fixed;
+  top: 12vh;
+  right: 0;
+  min-width: 15vw;
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -205,26 +373,155 @@ form input {
   color: #250463;
 }
 
-/* Styling of overlay */
-.bm-overlay {
-  background: rgba(0, 0, 0, 0.3);
+.itemList {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: 30px;
+  padding: 0;
+  height: auto;
+  justify-content: space-around;
+  position: relative;
+  background-color: rgba(226, 167, 28, 0.4);
+  align-items: center;
+}
+.itemList :active {
+  border-radius: 100%;
+  background: #97C552;
+}
+.itemList .item {
+  display: flex;
+  width: 200px;
+  height: 40%;
+  margin: 3vh;
+  position: inherit;
+  text-align: center;
+  background: #069;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
 }
 
-/* #arrive {
-  ul {
-    display: flex;
-    justify-content: space-evenly;
-    list-style: none;
-    li{
-      h1 {
-        color:$fontColor;
-        font-size: 3em;
-        line-height: 40vh;
-      }
-    }
-  }
-} */
+.Quantity {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.main {
+  min-height: 75vh;
+  margin: auto;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+
+.ReactModal__Content--after-open {
+  background-color: #97C552;
+  width: 50vh;
+  margin: auto;
+}
+.ReactModal__Content--after-open #divModal {
+  height: 50vh;
+}
+.ReactModal__Content--after-open #divModal form {
+  height: 50vh;
+}
+.ReactModal__Content--after-open #divModal form div {
+  display: flex;
+  justify-content: center;
+  margin-left: 5vw;
+  margin-bottom: 2vh;
+}
+.ReactModal__Content--after-open #divModal form div img {
+  border-radius: 50%;
+  border: solid 1px black;
+  width: 7vh;
+  height: 7vh;
+}
+.ReactModal__Content--after-open #divModal form div input {
+  height: 4vh;
+}
+.ReactModal__Content--after-open button {
+  border: none;
+  background-color: #250463;
+  color: white;
+  margin-left: 15vw;
+}
+
+.InputBox {
+  display: flex;
+  background-color: white;
+  width: 100%;
+  height: 200px;
+  overflow: auto;
+  /* padding: 20%; */
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  justify-content: center;
+}
+
+.ListDisplay {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-height: 100vh;
+  align-items: center;
+  list-style-type: none;
+  margin: 5%;
+  padding: 0;
+}
+.ListDisplay .DisplayItem {
+  display: table-row;
+  justify-content: center;
+  border-radius: 100%;
+  margin: 10px;
+  width: 70px;
+  text-align: center;
+}
+
+.ListNameselect {
+  display: flex;
+  justify-content: center;
+  border-radius: 100%;
+  margin: 10px;
+  width: 70px;
+  text-align: center;
+  background: #069;
+  color: #fff;
+  align-items: center;
+  border-radius: 100%;
+}
+.ListNameselect :active {
+  border-radius: 100%;
+  background: #97C552;
+}
+
+.DisplayBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 90vw;
+  max-height: 100vh;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  overflow: auto;
+  background-color: rgba(226, 167, 28, 0.4);
+}
+
 @media only screen and (max-width: 768px) {
+  #title {
+    margin-left: 0;
+  }
+
+  /* .main {
+    max-height: 70vh;   
+  } */
   .mainNav {
     flex-wrap: wrap;
   }
@@ -235,19 +532,33 @@ form input {
     margin-top: 1vh;
     margin-bottom: 1vh;
   }
-  .mainNav #title, .mainNav #linkLogin {
+  .mainNav #title, .mainNav #button {
     margin: auto;
     margin-top: 1vh;
     margin-bottom: 1vh;
     width: 100%;
   }
 
-  form {
-    text-align: center;
+  .headerButton {
+    width: 100%;
+    margin: auto;
   }
 
-  .Form__show {
-    bottom: -25px;
+  .bm-burger-button {
+    position: fixed;
+    width: 36px;
+    height: 30px;
+    right: 36px;
+    top: 26px;
+  }
+
+  form {
+    text-align: center;
+    max-width: 80vw;
+  }
+
+  #loginform {
+    max-width: 50vw;
   }
 
   .logbuttons {
@@ -263,6 +574,10 @@ form input {
     display: flex;
     display: block;
     width: 100vw;
+  }
+
+  #loginform {
+    max-width: 80vw;
   }
 }
 /*# sourceMappingURL=index.css.map */

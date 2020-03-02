@@ -6,6 +6,7 @@ const User_Groups = function(user_groups) {
   this.id_Group = user_groups.id_Group;
 };
 
+// create a new group of users
 User_Groups.create = (newUser_Group, result) => {
   sql.query("INSERT INTO `user_groups` SET ?", newUser_Group, (err, res) => {
     if (err) {
@@ -19,8 +20,9 @@ User_Groups.create = (newUser_Group, result) => {
   });
 };
 
+//get users in groups with an id of users
 User_Groups.findUserGById = (userId, result) => {
-  sql.query(`SELECT * FROM "user_groups" WHERE id_User = ${userId}`, (err, res) => {
+  sql.query(`SELECT * FROM user_groups WHERE id_User = ${userId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -37,6 +39,7 @@ User_Groups.findUserGById = (userId, result) => {
   });
 };
 
+//get a group with an id
 User_Groups.findGroupById = (groupId, result) => {
     sql.query(`SELECT * FROM user_groups WHERE id_Group = ${groupId}`, (err, res) => {
       if (err) {
@@ -55,6 +58,7 @@ User_Groups.findGroupById = (groupId, result) => {
     });
   };
 
+  //get all groups
 User_Groups.getAll = result => {
   sql.query("SELECT * FROM `user_groups`", (err, res) => {
     if (err) {
@@ -68,7 +72,7 @@ User_Groups.getAll = result => {
   });
 };
 
-
+// delete an user in a groups with an id of user
 User_Groups.removeGuser = (id_user,id_group, result) => {
   sql.query("DELETE FROM user_groups WHERE id_User = ? AND id_Group = ?",
   [id_user,id_group], (err, res) => {
@@ -90,6 +94,7 @@ User_Groups.removeGuser = (id_user,id_group, result) => {
   });
 };
 
+//delete all groups of users
 User_Groups.removeAll = result => {
   sql.query("DELETE FROM `user_groups`", (err, res) => {
     if (err) {

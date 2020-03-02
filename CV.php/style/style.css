@@ -1,0 +1,93 @@
+body {
+  font-family: helvetica, comic;
+  font-size: 16px;
+}
+
+.container {
+  border: black solid;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.header {
+  background: #061466;
+  border: 1px black solid;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px auto;
+  padding: 5px;
+  width: 90%;
+}
+.header .nomTitre {
+  background-color: #061466;
+  width: 30%;
+  text-align: center;
+}
+.header nav {
+  background-color: white;
+  width: 60%;
+  height: 50px;
+  margin: auto;
+}
+.header nav .elementNav {
+  justify-content: space-around;
+  display: flex;
+}
+.header nav .elementNav li {
+  list-style-type: none;
+}
+
+.logo {
+  width: 25px;
+}
+
+.boxInfoPerso {
+  width: 55%;
+  margin: 10px auto;
+  display: flex;
+  flex-wrap: wrap;
+  background: #061466;
+  border: 1px black solid;
+}
+.boxInfoPerso .boxPropos {
+  width: 55%;
+  margin: auto;
+}
+.boxInfoPerso .boxPropos ul li {
+  padding: 5px;
+}
+.boxInfoPerso .boxPropos nav {
+  width: 100%;
+  height: 35px;
+  margin: auto;
+}
+.boxInfoPerso .boxPropos nav .elementNav {
+  justify-content: space-around;
+  display: flex;
+}
+.boxInfoPerso .boxPropos nav .elementNav li {
+  list-style-type: none;
+}
+.boxInfoPerso .photo {
+  width: 40%;
+  margin: auto;
+}
+.boxInfoPerso .photo img {
+  width: 150px;
+  transition-timing-function: linear;
+  object-fit: contain;
+}
+
+.boxInfo {
+  width: 70%;
+  margin: 10px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: #061466;
+  border: 1px black solid;
+}
+
+/*# sourceMappingURL=style.css.map */
