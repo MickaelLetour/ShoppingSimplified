@@ -67,17 +67,17 @@ item.findByIdWithInfo = (itemId, result) => {
   });
 };
 
-// find all items
-item.getAll = result => {
-  sql.query("SELECT * FROM item", (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
+// find all items and send theyr data
+item.getAll = result => { //opens function with no paremeters
+  sql.query("SELECT * FROM item", (err, res) => { //sends request to database using "sql." connection and syntax
+    if (err) { //if an error occurs returns the error
+      console.log("error: ", err); //console logs error
+      result(null, err); //returns error
       return;
     }
 
-    console.log("items: ", res);
-    result(null, res);
+    console.log("items: ", res); //if there was no error, console logs response
+    result(null, res); //returns response to controller
   });
 };
 

@@ -18,35 +18,33 @@ export function dbPOSTFetch(url,data) { //fetch funtion of type POST
   } 
 
   export function dbPUTFetch(url,data) { //fetch funtion of type PUT
-    return fetch(url, {
-        method: 'PUT',
-        mode: 'cors',
-        body: JSON.stringify(data),
-        headers: {
+    return fetch(url, { //uses the URL passed as parametter to connect to the right URL of the API
+        method: 'PUT', //method we are using for this request
+        mode: 'cors', //mode to let the browser grant access to information from other origin
+        body: JSON.stringify(data), //object body containing all information to be updated into the database
+        headers: { //informs the browser that it will be passing JSON information
             'Content-Type': 'application/json'
         }
-    }).then(res =>res.json()) 
+    }).then(res =>res.json()) //receives API response into a json object
         
-    .catch(err => err)
+    .catch(err => err) //returns any error message received
 
     .then(res=>{
-        /* console.log(res);
-        console.log("item created"); */
-        return res;
+        return res; //returns the request response
     })
 }
 
   export async function dbGETFetch(url) { //fetch funtion of type GET
-    return await fetch(url, {
-        method: 'GET',
-        mode: 'cors',
+    return await fetch(url, { //uses the URL passed as parametter to connect to the right URL of the API
+        method: 'GET', //method we are using for this request
+        mode: 'cors', //mode to let the browser grant access to information from other origin
        
-    }).then(res =>res.json()) 
+    }).then(res =>res.json()) //passes API responso into a json object
         
-    .catch(err => err)
+    .catch(err => err) //returns any error message received
 
     .then(res=>{
-        return res;
+        return res; //returns the request response
     })
 } 
 

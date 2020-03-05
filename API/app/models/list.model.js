@@ -97,25 +97,25 @@ list.getAll = result => {
 };
 
 //update a list with an id
-list.updateById = (id, list, result) => {
-  sql.query(
-    "UPDATE list SET name = ? WHERE id = ?",
-    [list.name, id],
-    (err, res) => {
-      if (err) {
+list.updateById = (id, list, result) => { //opens function with requested parameters
+  sql.query( //opens sql connection query
+    "UPDATE list SET name = ? WHERE id = ?", //sql update instruction
+    [list.name, id], //changes list name where id matches with the values in request
+    (err, res) => { //if there was a error 
+      if (err) { //return the error
         console.log("error: ", err);
         result(null, err);
         return;
       }
 
-      if (res.affectedRows == 0) {
+      if (res.affectedRows == 0) { //if there was no change or list with id not found
         // not found list with the id
-        result({ kind: "not_found" }, null);
+        result({ kind: "not_found" }, null); //returns not found
         return;
       }
 
-      console.log("updated list: ", { id: id, ...list });
-      result(null, { id: id, ...list });
+      console.log("updated list: ", { id: id, ...list }); //console log response
+      result(null, { id: id, ...list }); //returns server response to controller.
     }
   );
 };

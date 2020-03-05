@@ -68,9 +68,9 @@ class ShopList extends React.Component {
                                 let itemdata = this.state.activeList; //save previous active list item into stockage array
 
                                 let status=[]; //open active items id array 
-                                //console.log(this.state.active)
+                                //console.log(itemid)
                                 for(let data of itemid){ //open item object
-                                    //console.log(data.status);
+                                    //console.log(data);
 
                                     if(data.status===1) //if item is active
                                         status.push(data.id_Item); //store its id into stockage array

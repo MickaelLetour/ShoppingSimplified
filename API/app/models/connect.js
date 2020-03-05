@@ -16,3 +16,4 @@ connection.connect(error => {//connection on the database
 });
 
 module.exports = connection;
+

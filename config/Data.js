@@ -7,13 +7,14 @@ let con = mysql.createConnection({
     database: "ShoppingSimplified"
   }); 
 
-con.connect(function(err) {
-    let sql;
-    if (err) throw err;
+con.connect(function(err) { //opens connection
+    let sql; //var were sql script will be stored
+    if (err) throw err;//verify and returns error if any
     console.log("Connected!");
+    //script for table creation
     sql = "CREATE TABLE IF NOT EXISTS `User` (id INT AUTO_INCREMENT NOT NULL, nickname VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, photo TEXT, active INT NOT NULL DEFAUlT '0', temporaryToken VARCHAR(255), PRIMARY KEY (id))";
-    con.query(sql, function (err, result) {
-        if (err) throw err;
+    con.query(sql, function (err, result) { //query that sends sql script qnd returns server response
+        if (err) throw err;//verify and returns error if any
         console.log("Table USER created");
     }); 
 

@@ -43,7 +43,7 @@ class Updatelist extends React.Component {
         { //ensures it only loads once and retrieve all items information
           dbGETFetch(itemsUrl)
           .catch(err => err)
-          .then((items=>{
+          .then((items=>{ //executes code only after the request had a response
             this.setState({ //stores original item data into state
               originallist : items,
               mountonce : true,
@@ -97,7 +97,7 @@ class Updatelist extends React.Component {
 
 
     handleChange(event) {
-        const {name, value} = event.target //recovers values and stores it for the list name change and categorie filter
+        const {name, value} = event.target //recovers values and stores it for the list name change and category filter
           this.setState({
             [name]: value
         }) 
@@ -111,14 +111,14 @@ class Updatelist extends React.Component {
         if(items.includes(id) === false) //if id received was still not selected
         {
           items.push(id); //adds new selected item
-          items.sort(); //orders array
+          items.sort(); //orders array, in here it is necessary
         }
-          else { //if it was allready selected
+          else { //if it was already selected
             for(let i=0; i<items.length ; i++) //opens array of ids
             { 
               if(items[i]===id) //finds corresponding id and delets it
               items.splice(i,1)
-              items.sort();
+              items.sort(); //just for precaution reorder the resulting array
             }
           }
   
@@ -151,9 +151,9 @@ class Updatelist extends React.Component {
         let itemList = [];
         let i = 0;
         let asID = Number(this.state.ncate) //pass all contents of categorie filter to numbers if possible
-        if(this.state.ncate.length !==0 && this.state.displayList !==undefined){ //if categorie filter was used
+        if(this.state.ncate.length !==0 && this.state.displayList !==undefined){ //if category filter was used
             this.state.originallist.map(original=> //opens original list json object
-            this.state.displayList.map(items =>{ //opens display list json object
+            this.state.displayList.map(items =>{ //opens current display list json object
               
               if( items.id === original.id &&
                 (items.category_id.indexOf(this.state.ncate) !== -1 ||  
@@ -167,7 +167,7 @@ class Updatelist extends React.Component {
             )
             
           }
-          return itemList //returns list to display
+          return itemList //returns list to display empty if filter was not used
       }
 
       handleSubmitName(event) {//when user press update button
@@ -218,10 +218,13 @@ class Updatelist extends React.Component {
             })
           }
           }
-          this.setState({ //states that update was pressed
-            uped : true,
-          })
-          //console.log("done");
+                  //small loading timer function
+          setTimeout(() => {
+            this.setState({
+                uped : true, //states that update was pressed
+            })
+          }, 1500) 
+          
       } 
 
       else{ //informes user to select at lest one item in case there is none

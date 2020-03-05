@@ -133,9 +133,6 @@ List_Item.updateDataByIds = (id_list,id_item, list_item, result) => {
       }
     );
   }
- 
-  
-  
 }
 
 module.exports = List_Item;

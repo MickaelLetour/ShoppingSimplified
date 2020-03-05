@@ -68,7 +68,7 @@ exports.findOne = (req, res) => {
     });
   };
 
-//Find all lists beloonging to a group
+//Find all lists belonging to a group
   exports.findGroupLists = (req, res) => {
     List.listByGroupId(req.params.groupid, (err, data) => {
       if (err) {
@@ -85,20 +85,20 @@ exports.findOne = (req, res) => {
 
 
 // Update a list identified by the listId in the request
-exports.update = (req, res) => {
+exports.update = (req, res) => { //opens update function with the request qnd response pqrqmeters
     // Validate Request
-    if (!req.body) {
-      res.status(400).send({
+    if (!req.body) { //if the request.body is empty
+      res.status(400).send({ //sends error
         message: "Content can not be empty!"
       });
     }
   
-    List.updateById(
-      req.params.listId,
-      new List(req.body),
-      (err, data) => {
-        if (err) {
-          if (err.kind === "not_found") {
+    List.updateById( //opens model function
+      req.params.listId, //sends requested list id as parameter
+      new List(req.body), //builds and sends the body of the list as a object
+      (err, data) => { //returns error if any and the response
+        if (err) { //if there was an error
+          if (err.kind === "not_found") { //returns error depending on it's tipe
             res.status(404).send({
               message: `Not found list with id ${req.params.listId}.`
             });
@@ -107,7 +107,7 @@ exports.update = (req, res) => {
               message: "Error updating list with id " + req.params.listId
             });
           }
-        } else res.send(data);
+        } else res.send(data); //returns request response to App
       }
     );
   };

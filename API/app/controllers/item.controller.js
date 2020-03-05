@@ -28,14 +28,14 @@ exports.create = (req, res) => {
   };
 
 // Retrieve all items from the database.
-exports.findAll = (req, res) => {
-    Item.getAll((err, data) => {
-      if (err)
-        res.status(500).send({
-          message:
+exports.findAll = (req, res) => { //receives required qtributes from request and opens function
+    Item.getAll((err, data) => { //calls mysql function that will send the request to THE DB, as well as receiving it's response
+      if (err) //if the response is an error
+        res.status(500).send({//verifies if it is this error type
+          message://error message
             err.message || "Some error occurred while retrieving items."
         });
-      else res.send(data);
+      else res.send(data);//in case there were no errors, sends response to App
     });
 };
 

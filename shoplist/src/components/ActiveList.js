@@ -176,8 +176,6 @@ class  ActiveList extends React.Component {
                 selectedItems : [],
             })
         }
-
-
       }
 
 
