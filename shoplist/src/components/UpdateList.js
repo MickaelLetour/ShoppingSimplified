@@ -130,7 +130,7 @@ class Updatelist extends React.Component {
           //console.log(selected.id)
           for(let j=0 ; j<items.length ; j++)
           {
-            if(items[i]===selected.id){ //stores all data in a array
+            if(items[j]===selected.id){ //stores all data in a array
               display[i] = selected;
               i++;
             }

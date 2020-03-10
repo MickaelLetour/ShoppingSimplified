@@ -71,9 +71,9 @@ class  ActiveList extends React.Component {
                                 
                             }
                             }) 
-                        itemdata.push(items); //add new item to stockage array
+                        itemdata.push(items); //add new item to storage array
                         this.setState({
-                            activeList : itemdata, //save stockage array in state for reload if neaded
+                            activeList : itemdata, //save storage array in state for reload if neaded
                         })
                         })
                     }

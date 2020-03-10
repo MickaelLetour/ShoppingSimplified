@@ -147,7 +147,6 @@ class Lists extends React.Component {
             items.splice(i,1) //delete items[i] were id is storeds
           }
         }
-
       this.setState({
         selectedItems : items //update select items
       })
@@ -156,7 +155,7 @@ class Lists extends React.Component {
         //console.log(selected.id)
         for(let j=0 ; j<items.length ; j++)
         {
-          if(items[i]===selected.id){
+          if(items[j]===selected.id){
             display[i] = selected; //create new displaylist
             i++;
           }
