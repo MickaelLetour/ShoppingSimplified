@@ -10,7 +10,7 @@ function Header (props) {
     let status = Auth.isAuthenticated();
     function logout(){
         Auth.logout(()=> {
-            console.log("i entered in")
+            //console.log("i entered in")
         })
         props.headerHandler()
     }
