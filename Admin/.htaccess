@@ -1,9 +1,0 @@
-RewriteEngine On
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([^\.]+)$ $1.php [NC,L]
-
-<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|inc|bak|json|gitignore)$">
-Order Allow,Deny
-Deny from all
-</FilesMatch>

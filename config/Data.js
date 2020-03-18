@@ -11,7 +11,7 @@ con.connect(function(err) {
     let sql;
     if (err) throw err;
     console.log("Connected!");
-    sql = "CREATE TABLE IF NOT EXISTS `User` (id INT AUTO_INCREMENT NOT NULL, nickname VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, photo TEXT, active INT NOT NULL DEFAUlT '0', temporaryToken VARCHAR(255) NOT NULL, PRIMARY KEY (id))";
+    sql = "CREATE TABLE IF NOT EXISTS `User` (id INT AUTO_INCREMENT NOT NULL, nickname VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, photo TEXT, active INT NOT NULL DEFAUlT '0', temporaryToken VARCHAR(255), PRIMARY KEY (id))";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Table USER created");
@@ -19,7 +19,7 @@ con.connect(function(err) {
 
     if (err) throw err;
     console.log("Connected!");
-    sql = "CREATE TABLE IF NOT EXISTS `Groups` (id INT AUTO_INCREMENT NOT NULL, group_name VARCHAR(255), n_members INT(2), logo TEXT, PRIMARY KEY (id))";
+    sql = "CREATE TABLE IF NOT EXISTS `Groups` (id INT AUTO_INCREMENT NOT NULL, group_name VARCHAR(255), n_members INT(2), active INT(1), logo TEXT, PRIMARY KEY (id))";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Table Group created");
@@ -37,7 +37,7 @@ con.connect(function(err) {
 
     if (err) throw err;
     console.log("Connected!");
-    sql = "CREATE TABLE IF NOT EXISTS `List` (id INT(15) AUTO_INCREMENT NOT NULL, group_id INT(11), name VARCHAR(255), PRIMARY KEY (id), FOREIGN KEY (group_id) references `Groups`(id))";
+    sql = "CREATE TABLE IF NOT EXISTS `List` (id INT(15) AUTO_INCREMENT NOT NULL, group_id INT(11), name VARCHAR(255), active INT(1), PRIMARY KEY (id), FOREIGN KEY (group_id) references `Groups`(id))";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Table List created");
@@ -46,7 +46,7 @@ con.connect(function(err) {
 
     if (err) throw err;
     console.log("Connected!");
-    sql = "CREATE TABLE IF NOT EXISTS `Category` (id INT(5) AUTO_INCREMENT NOT NULL, name VARCHAR(255), PRIMARY KEY (id))";
+    sql = "CREATE TABLE IF NOT EXISTS `Category` (id_category INT(5) AUTO_INCREMENT NOT NULL, name VARCHAR(255), PRIMARY KEY (id_category))";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Table Category created");
@@ -54,7 +54,7 @@ con.connect(function(err) {
 
     if (err) throw err;
     console.log("Connected!");
-    sql = "CREATE TABLE IF NOT EXISTS `Icon` (id INT(20) AUTO_INCREMENT NOT NULL, icon TEXT, name VARCHAR(255), PRIMARY KEY (id))";
+    sql = "CREATE TABLE IF NOT EXISTS `Icon` (id_icon INT(20) AUTO_INCREMENT NOT NULL, icon TEXT, name VARCHAR(255), PRIMARY KEY (id_icon))";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Table ICON created");
@@ -62,7 +62,7 @@ con.connect(function(err) {
 
     if (err) throw err;
     console.log("Connected!");
-    sql = "CREATE TABLE IF NOT EXISTS `Item` (id INT(20) AUTO_INCREMENT NOT NULL, category_id INT(5),icon_ID INT(20), name VARCHAR(255), PRIMARY KEY (id), FOREIGN KEY (category_id) references `Category`(id), FOREIGN KEY (icon_ID) references `Icon`(id))";
+    sql = "CREATE TABLE IF NOT EXISTS `Item` (id INT(20) AUTO_INCREMENT NOT NULL, category_id INT(5),icon_ID INT(20), name_item VARCHAR(255), PRIMARY KEY (id), FOREIGN KEY (category_id) references `Category`(id_category), FOREIGN KEY (icon_ID) references `Icon`(id_icon))";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Table ITEM created");
