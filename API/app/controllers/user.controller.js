@@ -36,13 +36,13 @@ exports.create = (req, res) => {
         let transporter = nodemailer.createTransport({ // setting for send email to newuser
           service: 'gmail',
           auth: {
-            user: 'mickael.letour@gmail.com',
-            pass:'Ellhaym131214'
+            user: '****',
+            pass:'****'
           }
         });
   
         let confirmAccount = { // message in email 
-          from : 'mickael.letour@gmail.com',
+          from : '****',
           to : user.email,
           subject: 'Confirm your registration',
           text : 'Please clik on this link for confirm your registration : http://localhost:2112/confirm/'+user.temporaryToken
