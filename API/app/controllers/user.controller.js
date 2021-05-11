@@ -159,13 +159,13 @@ exports.forgot = (req,res) => {
       let transporter = nodemailer.createTransport({ //send email for update password
         service: 'gmail',
         auth: {
-          user: 'mickael.letour@gmail.com',
-          pass:'Ellhaym131214'
+          user: '****',
+          pass:'****'
         }
       });
 
       let forgotPass = {
-        from : 'mickael.letour@gmail.com',
+        from : '****',
         to : user.email,
         subject: 'Modification password',
         text : 'For modified your password, click on this link : http://localhost:2112/forgot/'+user.temporaryToken
@@ -235,13 +235,13 @@ exports.updateByToken = (req, res) => { //function for update password with toke
             var transporter2 = nodemailer.createTransport({
               service: 'gmail',
               auth: {
-                user: 'mickael.letour@gmail.com',
-                pass:'Ellhaym131214'
+                user: '****',
+                pass:'****'
               }
             });
           
             var confirmedAccount = {
-              from : 'mickael.letour@gmail.com',
+              from : '****',
               to : '???',
               subject: 'Account confirmed',
               text : 'Your registration was confirmed'
